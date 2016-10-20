@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Base Components">
+      <UniqueIdentifier>{0256bef8-ae1b-4110-8834-117e36aef6ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base Components\Headers">
+      <UniqueIdentifier>{22b9fd76-436c-4eb4-8924-bfd0e9010d89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base Components\Source">
+      <UniqueIdentifier>{44d0b8a8-0b3f-41a0-8111-3d298afa325c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Object">
+      <UniqueIdentifier>{ee23fe53-0a5a-458f-91f4-bb892bac39d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game State Manager">
+      <UniqueIdentifier>{23ba157c-909c-451b-861b-a578de2dbf31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{0415c2a5-7010-4221-97aa-9387abcbd582}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sprite">
+      <UniqueIdentifier>{e0c344b1-949a-487f-9eb0-ad4c22cb3575}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Systems">
+      <UniqueIdentifier>{8941819b-f132-43aa-a191-79d1b16a5627}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Systems\Core">
+      <UniqueIdentifier>{29fda0e4-cadd-4aaa-b153-08107e1c117a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Systems\Graphics System">
+      <UniqueIdentifier>{00abe410-29ee-43e8-8d85-3698f579a747}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\DataType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\global.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BoxCollider.h">
+      <Filter>Base Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Component.h">
+      <Filter>Base Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LinePrimitive.h">
+      <Filter>Base Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RavelObject.h">
+      <Filter>Base Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Sprite2D.h">
+      <Filter>Base Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Text.h">
+      <Filter>Base Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Transform.h">
+      <Filter>Base Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameObject.h">
+      <Filter>Game Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameStateManager.h">
+      <Filter>Game State Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameState.h">
+      <Filter>Game State Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Matrix3x3.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\sprite.h">
+      <Filter>Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RavelEngine.h">
+      <Filter>Systems\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GraphicsManager.h">
+      <Filter>Systems\Graphics System</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Factory.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\System.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\global.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BoxCollider.cpp">
+      <Filter>Base Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Component.cpp">
+      <Filter>Base Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LinePrimitive.cpp">
+      <Filter>Base Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Sprite2D.cpp">
+      <Filter>Base Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Text.cpp">
+      <Filter>Base Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Transform.cpp">
+      <Filter>Base Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameObject.cpp">
+      <Filter>Game Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameStateManager.cpp">
+      <Filter>Game State Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Matrix3x3.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\sprite.cpp">
+      <Filter>Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RavelEngine.cpp">
+      <Filter>Systems\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GraphicsManager.cpp">
+      <Filter>Systems\Graphics System</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Factory.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
