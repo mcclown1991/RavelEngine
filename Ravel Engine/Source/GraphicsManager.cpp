@@ -3,6 +3,13 @@
 
 GraphicsManager::GraphicsManager()
 {
+	sInt32 height = RavelEngine::GetRavelEngine()->GetScreenHeight();
+	_viewTransform.Mtx33Identity();
+	_viewTransform.m[4] = -1;
+	_viewTransform.m[5] = (float)height;
+	//Mtx3x3Inverse(&_viewTransform);
+
+	hge = RavelEngine::GetRavelEngine()->GetHGE();
 }
 
 GraphicsManager* GetGFX()
@@ -29,8 +36,8 @@ sInt32 GraphicsManager::AddLineBatch(LinePrimitive* _line){
 
 Sprite** GraphicsManager::CreateTexture(std::string const& filepath, float width, float height){
 	if (_Textures.count(filepath) == 0){
-		HGE* h = RavelEngine::GetRavelEngine()->GetHGE();
-		rawTEXTURE tex = h->Texture_Load(filepath.c_str());
+		
+		rawTEXTURE tex = hge->Texture_Load(filepath.c_str());
 		Sprite* sp = new Sprite(&tex, width, height);
 		_Textures[filepath] = sp;
 	}
@@ -84,4 +91,14 @@ void GraphicsManager::OnExit()
 		delete iter.second;
 
 	});
+	_Textures.clear();
+
+	spriteList.clear();
+	textList.clear();
+	lineList.clear();
+}
+
+
+Matrix3x3 const& GraphicsManager::GetViewTransform() const{
+	return _viewTransform;
 }

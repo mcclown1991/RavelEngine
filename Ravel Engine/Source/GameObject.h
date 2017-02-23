@@ -20,6 +20,7 @@ public:
 	void virtual OnDestory();
 
 	void virtual OnMouseDown();
+	void virtual OnCollisionEnter(BoxCollider* other);
 
 	bool Draw();
 
@@ -27,11 +28,19 @@ public:
 
 	void AddParent(Transform* trans);
 
+	typedef std::pair<std::multimap<std::string, Component* >::iterator, std::multimap<std::string, Component* >::iterator> ComponentList;
+
 	template <class T>
 	T* AddComponent();
 
 	template <typename T>
 	std::multimap<std::string, Component* >::const_iterator GetComponent();
+	
+	template <typename T>
+	ComponentList GetComponents();
+
+	template <typename T>
+	T* GetComponentWithTag(std::string const& tag);
 
 	Transform* transform;
 	bool IsActive;
@@ -57,6 +66,7 @@ T* GameObject::AddComponent()
 	newComp->gameObject = this;
 	newComp->parent = transform;
 	newComp->transform = new Transform();
+	newComp->transform->parent = transform;
 	newComp->OnStart();
 	return newComp;
 }
@@ -67,6 +77,20 @@ std::multimap<std::string, Component* >::const_iterator GameObject::GetComponent
 	std::string identifier = typeid(T).name();
 	//return dynamic_cast<T*>(m_Component_List[identifier]);
 	return m_Component_List.find(identifier);
+}
+
+template <typename T>
+GameObject::ComponentList GameObject::GetComponents() {
+	std::string identifier = typeid(T).name;
+	return m_Component_List.equal_range(identifier);
+}
+
+template <typename T>
+T* GameObject::GetComponentWithTag(std::string const& tag) {
+	for (auto& it : m_Component_List) {
+		if (it.second->tag == tag)
+			return dynamic_cast<T*>(it.second);
+	}
 }
 
 #endif

@@ -2,6 +2,7 @@
 #define TRANSFORM_H
 
 #include "Component.h"
+#include "Matrix3x3.h"
 
 class Transform : public Component{
 public:
@@ -12,11 +13,20 @@ public:
 	virtual void Update();
 	virtual void OnDestory();
 
-	void SetPosition(fVector2);
+	void SetPosition(Vector2);
 
-	fVector2 GetPosition();
+	Vector2 GetPosition();
+	Matrix3x3 GetTransforms();
 
-	fVector2 position;
+	//Public Functions
+	Vector2 up;
+	Vector2 position;
+	float localEulerAngles;
+	float hscale, vscale;
+
+	//Transform Functions
+	void Rotate(float angle);
+	void Scale(float scale);
 };
 
 #endif

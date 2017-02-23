@@ -73,13 +73,41 @@ Sprite::~Sprite(void)
 // Date			: 20/11/08
 // Last Changed :
 //------------------------------------------------------------------------------------
-bool Sprite::Render(fVector2 r_vPos)
+bool Sprite::Render(Vector2 r_vPos)
 {
 
 	m_pHgeSprite->RenderStretch(r_vPos.x, r_vPos.y,
 		r_vPos.x + GetSize().x, r_vPos.y + GetSize().y);
 
 	return true;
+}
+
+bool Sprite::Render(Vector2 const& pos, Matrix3x3 const & transform)
+{
+	Vector2 left (pos), right (pos + GetSize());
+	left = transform * left;
+	right = transform * right;
+
+	m_pHgeSprite->RenderStretch(left.x, left.y,
+		right.x, right.y);
+
+	//m_pHgeSprite->RenderEx(pos.x, pos.y, )
+
+	return true;
+}
+
+bool Sprite::Render(Vector2 const & pos, float angle, float hscale, float vscale)
+{
+	m_pHgeSprite->RenderEx(pos.x, pos.y, angle, hscale, vscale);
+
+	return false;
+}
+
+bool Sprite::Render(Vector2 quad[4])
+{
+	m_pHgeSprite->Render4V(quad[0].x, quad[0].y, quad[1].x, quad[1].y, quad[2].x, quad[2].y,
+		quad[3].x, quad[3].y);
+	return false;
 }
 
 //------------------------------------------------------------------------------------
@@ -103,12 +131,12 @@ bool Sprite::SetTexture(HTEXTURE* r_pTexture)
 // Date			: 20/11/08
 // Last Changed :
 //------------------------------------------------------------------------------------
-fVector2 Sprite::GetScreenPosition()	
+Vector2 Sprite::GetScreenPosition()	
 {
 	return( m_vScreenPosition );
 }
 
-fVector2 Sprite::GetSize()
+Vector2 Sprite::GetSize()
 {
 	return ( m_vSize );
 }

@@ -1,5 +1,6 @@
 #include "RavelEngine.h"
 #include "Factory.h"
+#include "CollisionManager.h"
 
 RavelEngine RavelEngine::m_EngineInstance;
 
@@ -62,7 +63,15 @@ bool Update()
 
 	if (!RavelEngine::GetRavelEngine()->GetStateManager()->GSM_Running())	return true;
 
+	if (RavelEngine::GetRavelEngine()->IsResetQueried()) {
+		factory()->Quit();
+		GetGFX()->OnExit();
+		RavelEngine::GetRavelEngine()->GetStateManager()->ResetState();
+
+	}
+
 	factory()->Update();
+	//GetCollision()->Update();
 	RavelEngine::GetRavelEngine()->GetStateManager()->StateUpdate();
 	// Continue execution
 	return false;
@@ -136,8 +145,8 @@ void RavelEngine::SystemRun(GameState* State, std::string& errormsg){
 	if (hge->System_Initiate())
 	{
 		//TODO : removed font for now
-		fntLarge = new hgeFont("..\\gfx\\font1.fnt");
-		fntSmall = new hgeFont("..\\gfx\\font2.fnt");
+		fntLarge = new hgeFont("gfx\\font1.fnt");
+		fntSmall = new hgeFont("gfx\\font2.fnt");
 
 
 		gsm.GSM_Init();
@@ -181,3 +190,7 @@ void RavelEngine::SystemExit(){
 	hge->Release();
 }
 
+void RavelEngine::ResetScene(){
+	
+	_resetqueued = true;
+}

@@ -34,5 +34,9 @@ void LinePrimitive::Initialise(float x0, float y0, float x1, float y1, DWORD col
 void LinePrimitive::Draw(HGE* hge){
 	//use Gfx_RenderLine!!!
 	//http://kvakvs.github.io/hge/doc/index.html
-	hge->Gfx_RenderLine(_x0, _y0, _x1, _y1, _color);
+	Vector2 p0 = Vector2(_x0, _y0);
+	Vector2 p1 = Vector2(_x1, _y1);
+	//p0 = GetGFX()->GetViewTransform() * p0;
+	//p1 = GetGFX()->GetViewTransform() * p1;
+	hge->Gfx_RenderLine(p0.x, p0.y, p1.x, p1.y, _color);
 }

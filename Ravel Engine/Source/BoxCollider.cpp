@@ -1,5 +1,6 @@
 #include "BoxCollider.h"
 #include "RavelEngine.h"
+#include "CollisionManager.h"
 
 BoxCollider::BoxCollider() : hover(nullptr), click(nullptr), release(nullptr)
 {
@@ -29,6 +30,7 @@ void BoxCollider::CreateBoxCollider(float width, float height)
 {
 	_width = width;
 	_height = height;
+	GetCollision()->AddCollider(this, Vector2(width, height));
 	_Rect = new hgeRect(parent->position.x, parent->position.y, parent->position.x + width, parent->position.y + height);
 }
 
@@ -56,4 +58,9 @@ void BoxCollider::OnMouseClick()
 
 void BoxCollider::OnMouseRelease()
 {
+}
+
+void BoxCollider::OnCollision(BoxCollider * other)
+{
+	gameObject->OnCollisionEnter(other);
 }

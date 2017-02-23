@@ -19,6 +19,8 @@ public:
 	void OnMouseClick();
 	void OnMouseRelease();
 
+	void OnCollision(BoxCollider* other);
+
 	//delegates
 	typedef void(*FunctionTrigger)();
 

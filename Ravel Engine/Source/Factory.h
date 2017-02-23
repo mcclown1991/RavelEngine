@@ -32,6 +32,7 @@ public:
 		for (auto& iter : _go){
 			iter.second->OnDestory();
 		}
+		_go.clear();
 	}
 	void LoadFromFile(const std::string&);
 	pGOC& CreateGameObject(const std::string&);

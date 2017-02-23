@@ -35,6 +35,7 @@ public:
 
 	fVector2(float32 _x, float32 _y){ x=_x; y=_y; }
 	fVector2()						{ x=0; y=0; }
+	fVector2(fVector2 const& _1)	{ x = _1.x; y = _1.y; }
 
 	fVector2	operator-  ()						const	{ return fVector2(-x, -y);		}
 	fVector2	operator-  (const fVector2 &v)		const	{ return fVector2(x-v.x, y-v.y); }

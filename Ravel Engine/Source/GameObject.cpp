@@ -38,6 +38,13 @@ void GameObject::OnMouseDown()
 	}
 }
 
+void GameObject::OnCollisionEnter(BoxCollider * other)
+{
+	for (auto iter : m_Component_List) {
+		iter.second->OnCollisionEnter(other);
+	}
+}
+
 bool GameObject::Draw()
 {
 	return true;

@@ -43,6 +43,9 @@
     <Filter Include="Systems\Graphics System">
       <UniqueIdentifier>{00abe410-29ee-43e8-8d85-3698f579a747}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Systems\Collision System">
+      <UniqueIdentifier>{58d63559-1dc1-4c6f-a582-2274b0c1b090}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -105,6 +108,18 @@
     <ClInclude Include="Source\System.h">
       <Filter>Systems</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Button.h">
+      <Filter>Base Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Time.h">
+      <Filter>Base Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Vector2.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CollisionManager.h">
+      <Filter>Systems\Collision System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\global.cpp">
@@ -151,6 +166,15 @@
     </ClCompile>
     <ClCompile Include="Source\Factory.cpp">
       <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Time.cpp">
+      <Filter>Base Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Vector2.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CollisionManager.cpp">
+      <Filter>Systems\Collision System</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

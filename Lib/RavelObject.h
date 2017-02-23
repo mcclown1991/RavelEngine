@@ -4,6 +4,8 @@
 #include <string>
 #include "DataType.h"
 
+class BoxCollider;
+
 class RavelObject{
 public:
 	RavelObject() {};
@@ -17,6 +19,8 @@ public:
 
 	virtual void OnMouseDown() {}
 	virtual void OnMouseHover() {}
+
+	virtual void OnCollisionEnter(BoxCollider*) {}
 };
 
 #endif

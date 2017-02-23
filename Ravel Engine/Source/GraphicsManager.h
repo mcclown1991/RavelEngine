@@ -5,6 +5,7 @@
 #include <map>
 #include <algorithm>
 #include "DataType.h"
+#include "Matrix3x3.h"
 #include "Sprite2D.h"
 #include "GameObject.h"
 #include "Text.h"
@@ -29,12 +30,16 @@ public:
 
 	void OnExit();
 
+	Matrix3x3 const& GetViewTransform() const;
+
 private:
 	std::list<Sprite2D *>spriteList;
 	std::list<Text *>textList;
 	std::list<LinePrimitive *>lineList;
 
 	std::map<std::string, Sprite*> _Textures;
+	Matrix3x3 _viewTransform;
+	HGE* hge;
 };
 
 GraphicsManager* GetGFX();

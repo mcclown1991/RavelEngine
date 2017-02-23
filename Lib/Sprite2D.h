@@ -20,6 +20,8 @@ public:
 private:
 	Sprite** m_Sprite;
 	rawTEXTURE* m_Texture;
+	Vector2 m_Vertex[4];
+	Matrix3x3 m_Reference_Frame;
 };
 
 #endif

@@ -17,6 +17,19 @@ prior written consent of DigiPen Institute of Technology is prohibited.
 
 #define PI			3.14159265358f
 
+Matrix3x3::Matrix3x3()
+{
+	m[0] = 1;
+	m[1] = 0;
+	m[2] = 0;
+	m[3] = 0;
+	m[4] = 1;
+	m[5] = 0;
+	m[6] = 0;
+	m[7] = 0;
+	m[8] = 1;
+}
+
 /**************************************************************************/
 /*!
 Non Default constructor, takes in an array[9]
@@ -105,9 +118,9 @@ Matrix3x3& Matrix3x3::operator *= (const Matrix3x3 &rhs)
 overloaded * operator for concatenation of 2 matrix
 */
 /**************************************************************************/
-Matrix3x3 operator * (const Matrix3x3 &lhs, const Matrix3x3 &rhs)
+Matrix3x3 Matrix3x3::operator* (Matrix3x3 const& rhs) const
 {
-	Matrix3x3 m = lhs;
+	Matrix3x3 m = *this;
 	m *= rhs;
 
 	return m;
@@ -118,12 +131,12 @@ Matrix3x3 operator * (const Matrix3x3 &lhs, const Matrix3x3 &rhs)
 overloaded * operator for multiplying a vector and a matrix
 */
 /**************************************************************************/
-fVector2  operator * (const Matrix3x3 &pMtx, const fVector2 &rhs)
+Vector2  Matrix3x3::operator * (Vector2 const& rhs) const
 {
-	fVector2 v;
-	v.x = pMtx.m[0] * rhs.x + pMtx.m[1] * rhs.y + pMtx.m[2];
+	Vector2 v;
+	v.x = m[0] * rhs.x + m[1] * rhs.y + m[2];
 
-	v.y = pMtx.m[3] * rhs.x + pMtx.m[4] * rhs.y + pMtx.m[5];
+	v.y = m[3] * rhs.x + m[4] * rhs.y + m[5];
 
 	return v;
 
@@ -147,134 +160,162 @@ void Mtx33Identity(Matrix3x3 &pResult)
 	pResult.m[8] = 1;
 }
 
-/**************************************************************************/
-/*!
-This function creates a translation matrix from x & y
-and saves it in pResult
-*/
-/**************************************************************************/
-void Mtx33Translate(Matrix3x3 &pResult, float x, float y)
+Matrix3x3 Matrix3x3::Mtx33Identity()
 {
-	pResult.m[0] = 1;
-	pResult.m[1] = 0;
-	pResult.m[2] = x;
-	pResult.m[3] = 0;
-	pResult.m[4] = 1;
-	pResult.m[5] = y;
-	pResult.m[6] = 0;
-	pResult.m[7] = 0;
-	pResult.m[8] = 1;
+	Matrix3x3 result;
+	result.m[0] = 1;
+	result.m[1] = 0;
+	result.m[2] = 0;
+	result.m[3] = 0;
+	result.m[4] = 1;
+	result.m[5] = 0;
+	result.m[6] = 0;
+	result.m[7] = 0;
+	result.m[8] = 1;
+	return result;
 }
 
-/**************************************************************************/
-/*!
-This function creates a scaling matrix from x & y
-and saves it in pResult
-*/
-/**************************************************************************/
-void Mtx33Scale(Matrix3x3 &pResult, float x, float y)
-{
-	pResult.m[0] = x;
-	pResult.m[1] = 0;
-	pResult.m[2] = 0;
-	pResult.m[3] = 0;
-	pResult.m[4] = y;
-	pResult.m[5] = 0;
-	pResult.m[6] = 0;
-	pResult.m[7] = 0;
-	pResult.m[8] = 1;
-}
-
-/**************************************************************************/
-/*!
-This matrix creates a rotation matrix from "angle" whose value
-is in radian. Save the resultant matrix in pResult.
-*/
-/**************************************************************************/
-void Mtx33RotRad(Matrix3x3 &pResult, float angle)
-{
-	//Mtx33Identity(pResult);
-	Matrix3x3 m;
-	Mtx33Identity(m);
-
-	m.m00 = cosf(angle);
-	m.m01 = -sinf(angle);
-	m.m10 = sinf(angle);
-	m.m11 = cosf(angle);
-
-	pResult = m;
-}
-
-/**************************************************************************/
-/*!
-This matrix creates a rotation matrix from "angle" whose value
-is in degree. Save the resultant matrix in pResult.
-*/
-/**************************************************************************/
-void Mtx33RotDeg(Matrix3x3 &pResult, float angle)
-{
-	Mtx33RotRad(pResult, (PI / 180.0f) * angle);
-}
-
-/**************************************************************************/
-/*!
-This functions calculated the transpose matrix of pMtx
-and saves it in pResult
-*/
-/**************************************************************************/
-void Mtx33Transpose(Matrix3x3 &pResult, const Matrix3x3 &pMtx)
-{
-	Matrix3x3 m;
-
-	for (int a = 0; a < 3; a++)
-	{
-		for (int b = 0; b < 3; b++)
-		{
-			m.m[b * 3 + a] = pMtx.m[a * 3 + b];
-		}
-	}
-
-	pResult = m;
-}
-
-/**************************************************************************/
-/*!
-This function calculates the inverse matrix of pMtx and saves the
-result in pResult. If the matrix inversion fails, pResult
-would be set to NULL.
-*/
-/**************************************************************************/
-void Mtx33Inverse(Matrix3x3 *pResult, float *determinant, const Matrix3x3 &pMtx)
-{
-	float x, y, z;
-
-	x = pMtx.m[0] * (pMtx.m[4] * pMtx.m[8] - pMtx.m[5] * pMtx.m[7]);
-	y = pMtx.m[1] * (pMtx.m[3] * pMtx.m[8] - pMtx.m[5] * pMtx.m[6]);
-	z = pMtx.m[2] * (pMtx.m[3] * pMtx.m[7] - pMtx.m[4] * pMtx.m[6]);
-	*determinant = x - y + z;
-
-	if (*determinant == 0)
-		pResult = nullptr;
-
-	Matrix3x3 m;
-
-	m.m[0] = pMtx.m[4] * pMtx.m[8] - pMtx.m[5] * pMtx.m[7];
-	m.m[1] = pMtx.m[5] * pMtx.m[6] - pMtx.m[3] * pMtx.m[8];
-	m.m[2] = pMtx.m[3] * pMtx.m[7] - pMtx.m[4] * pMtx.m[6];
-	m.m[3] = pMtx.m[2] * pMtx.m[7] - pMtx.m[1] * pMtx.m[8];
-	m.m[4] = pMtx.m[0] * pMtx.m[8] - pMtx.m[2] * pMtx.m[6];
-	m.m[5] = pMtx.m[1] * pMtx.m[6] - pMtx.m[0] * pMtx.m[7];
-	m.m[6] = pMtx.m[1] * pMtx.m[5] - pMtx.m[2] * pMtx.m[4];
-	m.m[7] = pMtx.m[2] * pMtx.m[3] - pMtx.m[0] * pMtx.m[5];
-	m.m[8] = pMtx.m[0] * pMtx.m[4] - pMtx.m[1] * pMtx.m[3];
-
-	for (int i = 0; i < 3; i++)
-	{
-		m.m[i] /= *determinant;
-		m.m[i + 3] /= *determinant;
-		m.m[i + 6] /= *determinant;
-	}
-
-
-	*pResult = m;
-}
+///**************************************************************************/
+///*!
+//This function creates a translation matrix from x & y
+//and saves it in pResult
+//*/
+///**************************************************************************/
+//void Mtx33Translate(Matrix3x3 &pResult, float x, float y)
+//{
+//	pResult.m[0] = 1;
+//	pResult.m[1] = 0;
+//	pResult.m[2] = x;
+//	pResult.m[3] = 0;
+//	pResult.m[4] = 1;
+//	pResult.m[5] = y;
+//	pResult.m[6] = 0;
+//	pResult.m[7] = 0;
+//	pResult.m[8] = 1;
+//}
+//
+///**************************************************************************/
+///*!
+//This function creates a scaling matrix from x & y
+//and saves it in pResult
+//*/
+///**************************************************************************/
+//void Mtx33Scale(Matrix3x3 &pResult, float x, float y)
+//{
+//	pResult.m[0] = x;
+//	pResult.m[1] = 0;
+//	pResult.m[2] = 0;
+//	pResult.m[3] = 0;
+//	pResult.m[4] = y;
+//	pResult.m[5] = 0;
+//	pResult.m[6] = 0;
+//	pResult.m[7] = 0;
+//	pResult.m[8] = 1;
+//}
+//
+///**************************************************************************/
+///*!
+//This matrix creates a rotation matrix from "angle" whose value
+//is in radian. Save the resultant matrix in pResult.
+//*/
+///**************************************************************************/
+//void Mtx33RotRad(Matrix3x3 &pResult, float angle)
+//{
+//	//Mtx33Identity(pResult);
+//	Matrix3x3 m;
+//	Mtx33Identity(m);
+//
+//	float cosine = cosf(angle);
+//	float sine = sinf(angle);
+//
+//	m.m00 = cosine;
+//	m.m01 = sine;
+//	m.m10 = sine;
+//	m.m11 = cosine;
+//
+//	pResult = m;
+//}
+//
+///**************************************************************************/
+///*!
+//This matrix creates a rotation matrix from "angle" whose value
+//is in degree. Save the resultant matrix in pResult.
+//*/
+///**************************************************************************/
+//void Mtx33RotDeg(Matrix3x3 &pResult, float angle)
+//{
+//	Mtx33RotRad(pResult, (PI / 180.0f) * angle);
+//}
+//
+///**************************************************************************/
+///*!
+//This functions calculated the transpose matrix of pMtx
+//and saves it in pResult
+//*/
+///**************************************************************************/
+//void Mtx33Transpose(Matrix3x3 &pResult, const Matrix3x3 &pMtx)
+//{
+//	Matrix3x3 m;
+//
+//	for (int a = 0; a < 3; a++)
+//	{
+//		for (int b = 0; b < 3; b++)
+//		{
+//			m.m[b * 3 + a] = pMtx.m[a * 3 + b];
+//		}
+//	}
+//
+//	pResult = m;
+//}
+//
+///**************************************************************************/
+///*!
+//This function calculates the inverse matrix of pMtx and saves the
+//result in pResult. If the matrix inversion fails, pResult
+//would be set to NULL.
+//*/
+///**************************************************************************/
+////void Mtx33Inverse(Matrix3x3 *pResult, float *determinant, const Matrix3x3 &pMtx)
+////{
+////	float x, y, z;
+////
+////	x = pMtx.m[0] * (pMtx.m[4] * pMtx.m[8] - pMtx.m[5] * pMtx.m[7]);
+////	y = pMtx.m[1] * (pMtx.m[3] * pMtx.m[8] - pMtx.m[5] * pMtx.m[6]);
+////	z = pMtx.m[2] * (pMtx.m[3] * pMtx.m[7] - pMtx.m[4] * pMtx.m[6]);
+////	*determinant = x - y + z;
+////
+////	if (*determinant == 0)
+////		pResult = nullptr;
+////
+////	Matrix3x3 m;
+////
+////	m.m[0] = pMtx.m[4] * pMtx.m[8] - pMtx.m[5] * pMtx.m[7];
+////	m.m[1] = pMtx.m[5] * pMtx.m[6] - pMtx.m[3] * pMtx.m[8];
+////	m.m[2] = pMtx.m[3] * pMtx.m[7] - pMtx.m[4] * pMtx.m[6];
+////	m.m[3] = pMtx.m[2] * pMtx.m[7] - pMtx.m[1] * pMtx.m[8];
+////	m.m[4] = pMtx.m[0] * pMtx.m[8] - pMtx.m[2] * pMtx.m[6];
+////	m.m[5] = pMtx.m[1] * pMtx.m[6] - pMtx.m[0] * pMtx.m[7];
+////	m.m[6] = pMtx.m[1] * pMtx.m[5] - pMtx.m[2] * pMtx.m[4];
+////	m.m[7] = pMtx.m[2] * pMtx.m[3] - pMtx.m[0] * pMtx.m[5];
+////	m.m[8] = pMtx.m[0] * pMtx.m[4] - pMtx.m[1] * pMtx.m[3];
+////
+////	for (int i = 0; i < 3; i++)
+////	{
+////		m.m[i] /= *determinant;
+////		m.m[i + 3] /= *determinant;
+////		m.m[i + 6] /= *determinant;
+////	}
+////
+////
+////	*pResult = m;
+////}
+//
+//void Mtx3x3Inverse(Matrix3x3 *pResult){
+//	Matrix3x3 m = Matrix3x3(*pResult);
+//	m.m01 = pResult->m10;
+//	m.m10 = pResult->m01;
+//	m.m[2] = -m.m[2];
+//	m.m[5] = -m.m[5];
+//
+//	*pResult = m;
+//}
