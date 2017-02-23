@@ -1,0 +1,22 @@
+#ifndef RAVELOBJECT_H
+#define RAVELOBJECT_H
+
+#include <string>
+#include "DataType.h"
+
+class RavelObject{
+public:
+	RavelObject() {};
+	virtual ~RavelObject() {};
+
+	// Component must have functions
+	
+	virtual void OnStart() = 0;
+	virtual void Update() = 0;
+	virtual void OnDestory() = 0;
+
+	virtual void OnMouseDown() {}
+	virtual void OnMouseHover() {}
+};
+
+#endif
