@@ -46,6 +46,12 @@
     <Filter Include="Systems\Collision System">
       <UniqueIdentifier>{58d63559-1dc1-4c6f-a582-2274b0c1b090}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Systems\Graphics System\OpenGL">
+      <UniqueIdentifier>{da167e66-4e84-4371-8b66-cef121cc7a4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Systems\Window">
+      <UniqueIdentifier>{1078da96-0518-4f16-8a47-cfe00aadf54d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -120,6 +126,12 @@
     <ClInclude Include="Source\CollisionManager.h">
       <Filter>Systems\Collision System</Filter>
     </ClInclude>
+    <ClInclude Include="Source\OpenGL.h">
+      <Filter>Systems\Graphics System\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\WindowsHandle.h">
+      <Filter>Systems\Window</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\global.cpp">
@@ -175,6 +187,12 @@
     </ClCompile>
     <ClCompile Include="Source\CollisionManager.cpp">
       <Filter>Systems\Collision System</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\OpenGL.cpp">
+      <Filter>Systems\Graphics System\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\WindowsHandle.cpp">
+      <Filter>Systems\Window</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
