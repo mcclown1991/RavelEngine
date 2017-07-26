@@ -8,7 +8,6 @@
 #include "GameObject.h"
 #include "GraphicsManager.h"
 
-//serial reader
 class Factory : public System
 {
 private:

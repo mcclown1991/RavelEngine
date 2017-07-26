@@ -20,7 +20,7 @@ public:
 	float StopTimer();
 
 private:
-	HGE* hge;
+	//HGE* hge;
 	float _dt;
 	bool _timertick;
 };

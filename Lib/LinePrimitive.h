@@ -13,11 +13,11 @@ public :
 	virtual void Update();
 	virtual void OnDestory();
 
-	void Initialise(float x0, float y0, float x1, float y1, DWORD color);
-	void Draw(HGE* hge);
+	void Initialise(float x0, float y0, float x1, float y1);
+	void Draw();
 
 private:
 	float _x0, _x1, _y0, _y1;
-	DWORD _color;
+	//DWORD _color;
 };
 #endif

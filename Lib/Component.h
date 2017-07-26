@@ -4,6 +4,10 @@
 #include <string>
 #include "RavelObject.h"
 
+//Data Types for components
+template <typename T>
+using RavelAction = void(T::*)();
+
 class GameObject;
 class Transform;
 

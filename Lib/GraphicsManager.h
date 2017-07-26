@@ -10,11 +10,15 @@
 #include "GameObject.h"
 #include "Text.h"
 #include "LinePrimitive.h"
+#include "GraphicsAPI.h"
 
 class GraphicsManager
 {
 public:
 	GraphicsManager();
+
+	void InitialiseGraphicsManager(Graphics* render);
+
 	sInt32 AddSprite(Sprite2D* m_sprite);
 	bool RemoveSprite(sInt32 index);
 
@@ -22,7 +26,9 @@ public:
 
 	sInt32 AddLineBatch(LinePrimitive* _line);
 
-	Sprite** CreateTexture(std::string const& filepath, float width, float height);
+	//Sprite** CreateTexture(std::string const& filepath, float width, float height);
+
+	unsigned CreateTexture(std::string const& filepath);
 
 	bool ClearSprite();
 
@@ -32,16 +38,23 @@ public:
 
 	Matrix3x3 const& GetViewTransform() const;
 
+	HRESULT SetVertexShader(std::string const& file);
+	HRESULT SetFragmentShader(std::string const& file);
+
+	Graphics* Renderer() { return renderer; }
+
 private:
+	Graphics* renderer;
+
 	std::list<Sprite2D *>spriteList;
 	std::list<Text *>textList;
 	std::list<LinePrimitive *>lineList;
 
-	std::map<std::string, Sprite*> _Textures;
+	//std::map<std::string, Sprite*> _Textures;
 	Matrix3x3 _viewTransform;
-	HGE* hge;
+	//HGE* hge;
 };
 
-GraphicsManager* GetGFX();
+GraphicsManager* GetGraphicsManager();
 
 #endif

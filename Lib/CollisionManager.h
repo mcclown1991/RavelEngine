@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
 #include <algorithm>
-#include <hgerect.h>
 #include "BoxCollider.h"
 
 class CollisionManager {
@@ -11,7 +10,7 @@ public:
 	void Update();
 
 private:
-	std::vector<std::pair<BoxCollider*, hgeRect*>> _colliders;
+	//std::vector<std::pair<BoxCollider*, hgeRect*>> _colliders;
 	
 };
 

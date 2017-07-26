@@ -1,6 +1,7 @@
 #pragma once
 
 #include "DataType.h"
+#include <directxmath.h>
 
 class Vector2 {
 public:
@@ -51,6 +52,10 @@ public:
 	static Vector2 Max(Vector2 const& a, Vector2 const& b);
 	static Vector2 Min(Vector2 const& a, Vector2 const& b);
 
+	//DirectX operation
+	DirectX::XMFLOAT2 ToXMFloat();
+
 	/// public variables
 	float x, y, magnitude, sqmagnitude;
+	Vector2* normalized;
 };
