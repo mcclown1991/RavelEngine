@@ -52,6 +52,12 @@
     <Filter Include="Systems\Window">
       <UniqueIdentifier>{1078da96-0518-4f16-8a47-cfe00aadf54d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Systems\Graphics System\DirectX 11">
+      <UniqueIdentifier>{2ac0ff81-a40e-4bf4-a183-aafe702603fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Systems\Input">
+      <UniqueIdentifier>{78efc5a4-5570-4cea-85f1-db5361c545f0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -132,6 +138,24 @@
     <ClInclude Include="Source\WindowsHandle.h">
       <Filter>Systems\Window</Filter>
     </ClInclude>
+    <ClInclude Include="Source\DirectX11.h">
+      <Filter>Systems\Graphics System\DirectX 11</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GraphicsAPI.h">
+      <Filter>Systems\Graphics System</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Input.h">
+      <Filter>Systems\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RavelMath.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Vector3.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Matrix4x4.h">
+      <Filter>Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\global.cpp">
@@ -193,6 +217,18 @@
     </ClCompile>
     <ClCompile Include="Source\WindowsHandle.cpp">
       <Filter>Systems\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DirectX11.cpp">
+      <Filter>Systems\Graphics System\DirectX 11</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Input.cpp">
+      <Filter>Systems\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Matrix4x4.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Vector3.cpp">
+      <Filter>Math</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

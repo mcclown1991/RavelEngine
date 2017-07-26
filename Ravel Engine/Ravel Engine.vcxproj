@@ -44,8 +44,8 @@
     <OutDir>$(SolutionDir)Lib\</OutDir>
     <IntDir>.\Debug\</IntDir>
     <TargetName>Ravel Engine Debug v0.2a</TargetName>
-    <IncludePath>$(SolutionDir)opengl\glfw-3.2.bin.WIN32\include;$(SolutionDir)opengl\glew-2.0.0\include;.\hge181\include;$(IncludePath);$(SolutionDir)opengl\glm</IncludePath>
-    <LibraryPath>$(SolutionDir)opengl\glew-2.0.0\lib\Release\Win32;$(SolutionDir)opengl\glfw-3.2.bin.WIN32\lib-vc2015;.\hge181\lib\vc;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)DirectXTK\Inc;$(SolutionDir)opengl\glfw-3.2.bin.WIN32\include;$(SolutionDir)opengl\glew-2.0.0\include;.\hge181\include;$(IncludePath);$(SolutionDir)opengl\glm;$(DXSDK_DIR)Lib\Include</IncludePath>
+    <LibraryPath>$(SolutionDir)DirectXTK;$(SolutionDir)opengl\glew-2.0.0\lib\Release\Win32;$(SolutionDir)opengl\glfw-3.2.bin.WIN32\lib-vc2015;.\hge181\lib\vc;$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -60,6 +60,13 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>Copy "$(ProjectDir)\Source\*.h" "$(SolutionDir)\Lib"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -87,47 +94,61 @@
     <ClInclude Include="Source\CollisionManager.h" />
     <ClInclude Include="Source\Component.h" />
     <ClInclude Include="Source\DataType.h" />
+    <ClInclude Include="Source\DirectX11.h" />
     <ClInclude Include="Source\Factory.h" />
     <ClInclude Include="Source\GameObject.h" />
     <ClInclude Include="Source\GameState.h" />
     <ClInclude Include="Source\GameStateManager.h" />
     <ClInclude Include="Source\global.h" />
+    <ClInclude Include="Source\GraphicsAPI.h" />
     <ClInclude Include="Source\GraphicsManager.h" />
+    <ClInclude Include="Source\Input.h" />
     <ClInclude Include="Source\LinePrimitive.h" />
     <ClInclude Include="Source\main.h" />
     <ClInclude Include="Source\Matrix3x3.h" />
+    <ClInclude Include="Source\Matrix4x4.h" />
     <ClInclude Include="Source\OpenGL.h" />
     <ClInclude Include="Source\RavelEngine.h" />
+    <ClInclude Include="Source\RavelMath.h" />
     <ClInclude Include="Source\RavelObject.h" />
-    <ClInclude Include="Source\sprite.h" />
+    <ClInclude Include="Source\sprite.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Source\Sprite2D.h" />
     <ClInclude Include="Source\System.h" />
     <ClInclude Include="Source\Text.h" />
     <ClInclude Include="Source\Time.h" />
     <ClInclude Include="Source\Transform.h" />
     <ClInclude Include="Source\Vector2.h" />
+    <ClInclude Include="Source\Vector3.h" />
     <ClInclude Include="Source\WindowsHandle.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\BoxCollider.cpp" />
     <ClCompile Include="Source\CollisionManager.cpp" />
     <ClCompile Include="Source\Component.cpp" />
+    <ClCompile Include="Source\DirectX11.cpp" />
     <ClCompile Include="Source\Factory.cpp" />
     <ClCompile Include="Source\GameObject.cpp" />
     <ClCompile Include="Source\GameStateManager.cpp" />
     <ClCompile Include="Source\global.cpp" />
     <ClCompile Include="Source\GraphicsManager.cpp" />
+    <ClCompile Include="Source\Input.cpp" />
     <ClCompile Include="Source\LinePrimitive.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Matrix3x3.cpp" />
+    <ClCompile Include="Source\Matrix4x4.cpp" />
     <ClCompile Include="Source\OpenGL.cpp" />
     <ClCompile Include="Source\RavelEngine.cpp" />
-    <ClCompile Include="Source\sprite.cpp" />
+    <ClCompile Include="Source\sprite.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Source\Sprite2D.cpp" />
     <ClCompile Include="Source\Text.cpp" />
     <ClCompile Include="Source\Time.cpp" />
     <ClCompile Include="Source\Transform.cpp" />
     <ClCompile Include="Source\Vector2.cpp" />
+    <ClCompile Include="Source\Vector3.cpp" />
     <ClCompile Include="Source\WindowsHandle.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
