@@ -246,9 +246,9 @@ bool XBOXController::IsPressed(WORD button)
 const float XBOXController::LeftStickAngle()
 {
 	Vector2 r(leftStickX, leftStickY);
+	r.Normalize();
 
-
-	float angle = atan2(r.normalized->x, r.normalized->y);
+	float angle = atan2(r.x, r.y);
 
 	//check for NaN
 	if (angle != angle)
@@ -261,13 +261,13 @@ const float XBOXController::RightStickAngle()
 {
 	Vector2 r(rightStickX, rightStickY);
 
-	if (r.sqmagnitude < 0.64f)
+	if (r.SqLenght() < 0.64f)
 	{
 		return false;
 	}
+	r.Normalize();
 
-
-	float angle = atan2(r.normalized->x, r.normalized->y);
+	float angle = atan2(r.x, r.y);
 
 	//check for NaN
 	if (angle != angle)

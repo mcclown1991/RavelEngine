@@ -29,11 +29,11 @@ PixelInputType main(VertexInputType input )
 	temp = mul(temp, camera);
 	output.position = mul(temp, projection);
 
-	//input.tex.x += uv.x;
-	//input.tex.y += uv.y;
+	input.tex.x += uv.x;
+	input.tex.y += uv.y;
 
-	//input.tex.x *= scale.x;
-	//input.tex.y *= scale.y;
+	input.tex.x *= scale.x;
+	input.tex.y *= scale.y;
 
 	output.tex = input.tex;
 

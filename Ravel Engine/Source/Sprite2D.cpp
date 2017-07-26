@@ -21,6 +21,8 @@ void Sprite2D::Update(){
 void Sprite2D::OnDestory(){
 	//HGE* h = RavelEngine::GetRavelEngine()->GetHGE();
 	//delete m_Sprite;
+	m_Model->OnDestory();
+	delete m_Model;
 }
 
 void Sprite2D::CreateTexture(std::string texture, float width, float height){
@@ -53,8 +55,8 @@ void Sprite2D::CreateTexture(std::string texture, float width, float height){
 
 	GetGraphicsManager()->Renderer()->CreateTexture(texture, m_SampleID);
 	m_Model = new Transform();
-	m_Model->hscale = width;
-	m_Model->vscale = height;
+	m_Model->hscale = width * 0.5f;
+	m_Model->vscale = height * 0.5f;
 	m_UV = Vector2(0.f, 0.f);
 	m_Size = Vector2(1, 1);
 
@@ -77,7 +79,7 @@ void Sprite2D::Render(){
 	vertice[2] = trans * m_Vertex[2];
 	vertice[3] = trans * m_Vertex[3];*/
 
-	GetGraphicsManager()->Renderer()->Render(m_SampleID, trans, m_UV, m_Size, false, 0);
+	GetGraphicsManager()->Renderer()->Render(m_SampleID, trans, m_UV, m_Size, true, 1);
 
 	//vertice[0] = m_Reference_Frame * vertice[0];
 	//vertice[1] = m_Reference_Frame * vertice[1];

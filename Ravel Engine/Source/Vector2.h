@@ -46,7 +46,8 @@ public:
 	/// Some helpful operations
 	Vector2 Normalized() const;
 	Vector2 Normalize();
-	float Length();
+	float Length() const;
+	float SqLenght() const;
 	static float Distance(Vector2 const& a, Vector2 const& b);
 	static Vector2 Lerp(Vector2 const& a, Vector2 const& b, float t);
 	static Vector2 Max(Vector2 const& a, Vector2 const& b);
@@ -56,6 +57,5 @@ public:
 	DirectX::XMFLOAT2 ToXMFloat();
 
 	/// public variables
-	float x, y, magnitude, sqmagnitude;
-	Vector2* normalized;
+	float x, y;
 };

@@ -1,7 +1,9 @@
 cbuffer alpha : register (cb0)
 {
 	float alpha;
-	float3 pad;
+	int pad;
+	int pad2;
+	int pad3;
 };
 
 struct PixelInputType
@@ -19,10 +21,10 @@ float4 main(PixelInputType input) : SV_TARGET
 
 	textureColor = ObjTexture.Sample(ObjSamplerState, input.tex);
 
-	/*textureColor[0] = 0.2;
-	textureColor[1] = 0.2;
+	/*textureColor[0] = input.tex[0];
+	textureColor[1] = input.tex[1];
 	textureColor[2] = 0;
-	textureColor[3] = 1;*/
-
+	textureColor[3] = 1;
+	*/
 	return textureColor;
 }

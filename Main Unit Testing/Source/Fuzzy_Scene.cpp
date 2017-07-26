@@ -9,7 +9,7 @@ void Fuzzy_Scene::Init()
 
 	Factory::pGOC& m_Test = factory()->CreateGameObject("Test");
 	Sprite2D* m_spr = m_Test->AddComponent<Sprite2D>();
-	m_spr->CreateTexture("BlueDoor.png", 32, 64);
+	m_spr->CreateTexture("Background.png", 1280, 720);
 	//m_Test->transform->Scale(100);
 	//m_Test->transform->hscale = 1280;
 	//m_Test->transform->vscale = 720;

@@ -369,7 +369,7 @@ void DirectX11::LinkProgram() {
 }
 
 void DirectX11::StartFrame() {
-	float color[4] = { 1.f, 1.f, 1.f, 1.f };
+	float color[4] = { 0.f, 0.f, 0.f, 1.f };
 	m_DeviceContext->ClearRenderTargetView(m_BackBuffer, color);
 
 	m_DeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
@@ -392,7 +392,7 @@ void DirectX11::EndFrame() {
 }
 
 void DirectX11::OrthoProjectionMatrix(float ScreenW, float ScreenH) {
-	TransformBuffer.projection = DirectX::XMMatrixOrthographicLH(ScreenW, ScreenH, 1.f, 10.0f);
+	TransformBuffer.projection = DirectX::XMMatrixOrthographicLH(ScreenW, ScreenH, 1.f, 1000.0f);
 }
 
 HRESULT DirectX11::CreateMesh() {

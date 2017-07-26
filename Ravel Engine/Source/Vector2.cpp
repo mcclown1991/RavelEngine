@@ -1,21 +1,10 @@
 #include "Vector2.h"
 
-Vector2::Vector2() : x(0.f), y(0.f), magnitude(0.f), sqmagnitude(0.f), normalized(this) {}
+Vector2::Vector2() : x(0.f), y(0.f) {}
 
-Vector2::Vector2(float32 X, float32 Y) : x(X), y(Y), magnitude(0.f), sqmagnitude(0.f), normalized(new Vector2(*this)){
-	sqmagnitude = x*x + y*y;
-	if (sqmagnitude != 1) {
-		magnitude = sqrtf(sqmagnitude);
-		normalized->x = x / magnitude;
-		normalized->y = y / magnitude;
-	}
-	else {
-		magnitude = 1;
-	}
-	//normalized->Normalize();
-}
+Vector2::Vector2(float32 X, float32 Y) : x(X), y(Y){}
 
-Vector2::Vector2(Vector2 const& r) : x(r.x), y(r.y), magnitude(r.magnitude), sqmagnitude(r.sqmagnitude) {}
+Vector2::Vector2(Vector2 const& r) : x(r.x), y(r.y) {}
 
 Vector2 Vector2::operator-() const{
 	return Vector2(-x, -y);
@@ -57,18 +46,25 @@ float Vector2::operator^(Vector2 const & r) const
 
 Vector2 Vector2::Normalized() const
 {
-	return Vector2(*this / magnitude);
+	return Vector2(*this / Length());
 }
 
 Vector2 Vector2::Normalize()
 {
-	*this/magnitude;
+	*this/Length();
 	return *this;
 }
 
-float Vector2::Length()
+float Vector2::Length() const
 {
+	float magnitude{};
+	magnitude = x * x + y * y;
+	magnitude = sqrt(magnitude);
 	return magnitude;
+}
+
+float Vector2::SqLenght() const {
+	return x * x + y * y;
 }
 
 float Vector2::Distance(Vector2 const& a, Vector2 const& b)

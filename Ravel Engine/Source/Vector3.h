@@ -46,13 +46,12 @@ public:
 	/// Some helpful operations
 	Vector3 Normalized() const;
 	Vector3 Normalize();
-	float Length();
+	float Length() const;
 	static float Distance(Vector3 const& a, Vector3 const& b);
 	static Vector3 Lerp(Vector3 const& a, Vector3 const& b, float t);
 	static Vector3 Max(Vector3 const& a, Vector3 const& b);
 	static Vector3 Min(Vector3 const& a, Vector3 const& b);
 
 	/// public variables
-	float x, y, z, magnitude, sqmagnitude;
-	Vector3* normalized;
+	float x, y, z;
 };
