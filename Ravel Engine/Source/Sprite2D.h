@@ -14,13 +14,15 @@ public:
 	virtual void Update();
 	virtual void OnDestory();
 
-	void CreateTexture(std::string , float , float );
+	void CreateTexture(std::string filename, float width, float height);
 	void Render();
 
 private:
-	Sprite** m_Sprite;
-	rawTEXTURE* m_Texture;
-	Vector2 m_Vertex[4];
+	Transform* m_Model;
+	unsigned m_SampleID;
+	//rawTEXTURE* m_Texture;
+	Vector2 m_UV;
+	Vector2 m_Size;
 	Matrix3x3 m_Reference_Frame;
 };
 

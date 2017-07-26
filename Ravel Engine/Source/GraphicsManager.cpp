@@ -7,12 +7,17 @@ GraphicsManager::GraphicsManager()
 	_viewTransform.Mtx33Identity();
 	_viewTransform.m[4] = -1;
 	_viewTransform.m[5] = (float)height;
-	//Mtx3x3Inverse(&_viewTransform);
 
-	hge = RavelEngine::GetRavelEngine()->GetHGE();
+	//hge = RavelEngine::GetRavelEngine()->GetHGE();
 }
 
-GraphicsManager* GetGFX()
+void GraphicsManager::InitialiseGraphicsManager(Graphics* render) {
+	renderer = render;
+	renderer->OrthoProjectionMatrix(RavelEngine::GetRavelEngine()->GetScreenWidth(),
+		RavelEngine::GetRavelEngine()->GetScreenHeight());
+}
+
+GraphicsManager* GetGraphicsManager()
 {
 	static GraphicsManager s;
 	return(&s);
@@ -34,15 +39,21 @@ sInt32 GraphicsManager::AddLineBatch(LinePrimitive* _line){
 	return lineList.size() - 1;
 }
 
-Sprite** GraphicsManager::CreateTexture(std::string const& filepath, float width, float height){
-	if (_Textures.count(filepath) == 0){
-		
-		rawTEXTURE tex = hge->Texture_Load(filepath.c_str());
-		Sprite* sp = new Sprite(&tex, width, height);
-		_Textures[filepath] = sp;
-	}
+//Sprite** GraphicsManager::CreateTexture(std::string const& filepath, float width, float height){
+//	if (_Textures.count(filepath) == 0){
+//		
+//		rawTEXTURE tex = hge->Texture_Load(filepath.c_str());
+//		Sprite* sp = new Sprite(&tex, width, height);
+//		_Textures[filepath] = sp;
+//	}
+//
+//	return &_Textures[filepath];
+//}
 
-	return &_Textures[filepath];
+unsigned GraphicsManager::CreateTexture(std::string const& filepath) {
+	unsigned id = 0;
+	renderer->CreateTexture(filepath, id);
+	return id;
 }
 
 bool GraphicsManager::RemoveSprite(sInt32 index)
@@ -61,6 +72,7 @@ bool GraphicsManager::ClearSprite()
 
 bool GraphicsManager::Render()
 {
+	renderer->StartFrame();
 
 	std::for_each(spriteList.begin(), spriteList.end(), [](Sprite2D* _sprite)
 	{
@@ -76,9 +88,11 @@ bool GraphicsManager::Render()
 
 	std::for_each(lineList.begin(), lineList.end(), [](LinePrimitive* _line)
 	{
-		if (_line->IsActive)
-			_line->Draw(RavelEngine::GetRavelEngine()->GetHGE());
+		/*if (_line->IsActive)
+			_line->Draw(RavelEngine::GetRavelEngine()->GetHGE());*/
 	});
+
+	renderer->EndFrame();
 
 	return true;
 }
@@ -87,18 +101,31 @@ void GraphicsManager::OnExit()
 {
 	ClearSprite();
 	
-	std::for_each(_Textures.begin(), _Textures.end(), [](std::pair<std::string, Sprite*> iter) {
-		delete iter.second;
+	//std::for_each(_Textures.begin(), _Textures.end(), [](std::pair<std::string, Sprite*> iter) {
+	//	delete iter.second;
 
-	});
-	_Textures.clear();
+	//});
+	//_Textures.clear();
 
 	spriteList.clear();
-	textList.clear();
+	//textList.clear();
 	lineList.clear();
 }
 
 
 Matrix3x3 const& GraphicsManager::GetViewTransform() const{
 	return _viewTransform;
+}
+
+//TODO : Might want to change to store shaders somewhere so can change it
+HRESULT GraphicsManager::SetVertexShader(std::string const& file) {
+	unsigned id = renderer->LoadVertexShader(file, "main", "vs_4_0");
+	renderer->SetVertexShader(id);
+	return S_OK;
+}
+
+HRESULT GraphicsManager::SetFragmentShader(std::string const& file) {
+	unsigned id = renderer->LoadFragmentShader(file, "main", "ps_4_0");
+	renderer->SetFragmentShader(id);
+	return S_OK;
 }

@@ -2,7 +2,6 @@
 #define TEXT_H
 
 #include <string>
-#include <hgefont.h>
 #include "Component.h"
 
 class Text : public Component {
@@ -24,13 +23,13 @@ public:
 	std::string text;
 	int alignment;
 	Mode mode;
-	DWORD color;
+	//DWORD color;
 
 private:
-	hgeFont* _small;
+	/*hgeFont* _small;
 	hgeFont* _large;
 
-	hgeFont* _render;
+	hgeFont* _render;*/
 	
 };
 #endif

@@ -7,9 +7,6 @@
 #include <sstream>
 #include <math.h>
 
-#include <hge.h>
-#include <hgeSprite.h>
-
 typedef				char		char8;
 
 typedef signed		char		sInt8;
@@ -23,8 +20,6 @@ typedef unsigned	int			uInt32;
 typedef				float		float32;
 typedef				double		float64;
 
-typedef				HTEXTURE	rawTEXTURE;
-typedef				hgeSprite	SPRITE;
 
 #define MAXDRAWITEMS 300
 

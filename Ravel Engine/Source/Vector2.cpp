@@ -1,10 +1,18 @@
 #include "Vector2.h"
 
-Vector2::Vector2() : x(0.f), y(0.f), magnitude(0.f), sqmagnitude(0.f) {}
+Vector2::Vector2() : x(0.f), y(0.f), magnitude(0.f), sqmagnitude(0.f), normalized(this) {}
 
-Vector2::Vector2(float32 X, float32 Y) : x(X), y(Y), magnitude(0.f), sqmagnitude(0.f){
+Vector2::Vector2(float32 X, float32 Y) : x(X), y(Y), magnitude(0.f), sqmagnitude(0.f), normalized(new Vector2(*this)){
 	sqmagnitude = x*x + y*y;
-	magnitude = sqrtf(sqmagnitude);
+	if (sqmagnitude != 1) {
+		magnitude = sqrtf(sqmagnitude);
+		normalized->x = x / magnitude;
+		normalized->y = y / magnitude;
+	}
+	else {
+		magnitude = 1;
+	}
+	//normalized->Normalize();
 }
 
 Vector2::Vector2(Vector2 const& r) : x(r.x), y(r.y), magnitude(r.magnitude), sqmagnitude(r.sqmagnitude) {}
@@ -87,5 +95,10 @@ Vector2 Vector2::Min(Vector2 const & a, Vector2 const & b)
 	else return a;
 }
 
-
+DirectX::XMFLOAT2 Vector2::ToXMFloat() {
+	DirectX::XMFLOAT2 result;
+	result.y = this->y;
+	result.x = this->x;
+	return result;
+}
 

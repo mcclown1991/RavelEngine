@@ -91,6 +91,13 @@ Matrix4x4::Matrix4x4(float _00, float _01, float _02, float _03,
 	m[15] = _33;
 }
 
+Matrix4x4::Matrix4x4(Matrix3x3 const& pMat) {
+	m[0] = pMat.m[0];	m[1] = pMat.m[1];	m[2] = pMat.m[2];	m[3] = 0;
+	m[4] = pMat.m[3];	m[5] = pMat.m[4];	m[6] = pMat.m[5];	m[7] = 0;
+	m[8] = pMat.m[6];	m[9] = pMat.m[7];	m[10] = pMat.m[8];	m[11] = 0;
+	m[12] = 0;			m[13] = 0;			m[14] = 0;			m[15] = 1;
+}
+
 /**************************************************************************/
 /*!
 overloaded assignment operator
@@ -114,6 +121,21 @@ Matrix4x4& Matrix4x4::operator = (const Matrix4x4 &rhs)
 	m[13] = rhs.m[13];
 	m[14] = rhs.m[14];
 	m[15] = rhs.m[15];
+
+	return *this;
+}
+
+/**************************************************************************/
+/*!
+overloaded assignment operator
+*/
+/**************************************************************************/
+Matrix4x4& Matrix4x4::operator = (const Matrix3x3 &rhs)
+{
+	m[0] = rhs.m[0];	m[1] = rhs.m[1];	m[2] = rhs.m[2];	m[3] = 0;
+	m[4] = rhs.m[3];	m[5] = rhs.m[4];	m[6] = rhs.m[5];	m[7] = 0;
+	m[8] = rhs.m[6];	m[9] = rhs.m[7];	m[10] = rhs.m[8];	m[11] = 0;
+	m[12] = 0;			m[13] = 0;			m[14] = 0;			m[15] = 1;
 
 	return *this;
 }
@@ -190,19 +212,18 @@ void Mtx33Identity(Matrix4x4 &pResult)
 	pResult.m[8] = 1;
 }
 
-Matrix4x4 Matrix4x4::Mtx33Identity()
+Matrix4x4 Matrix4x4::Mtx44Identity()
 {
-	Matrix4x4 result;
-	result.m[0] = 1;
-	result.m[1] = 0;
-	result.m[2] = 0;
-	result.m[3] = 0;
-	result.m[4] = 1;
-	result.m[5] = 0;
-	result.m[6] = 0;
-	result.m[7] = 0;
-	result.m[8] = 1;
-	return result;
+	Matrix4x4 id;
+	id.m[0] = 1;	id.m[1] = 0;	id.m[2] = 0;	id.m[3] = 0;
+	id.m[4] = 0;	id.m[5] = 1;	id.m[6] = 0;	id.m[7] = 0;
+	id.m[8] = 0;	id.m[9] = 0;	id.m[10] = 1;	id.m[11] = 0;
+	id.m[12] = 0;	id.m[13] = 0;	id.m[14] = 0;	id.m[15] = 1;
+	return id;
+}
+
+DirectX::XMMATRIX Matrix4x4::ToXMMatrix() {
+	return DirectX::XMMATRIX(m);
 }
 
 ///**************************************************************************/

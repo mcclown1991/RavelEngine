@@ -1,6 +1,6 @@
 #include "Time.h"
 
-Time::Time() : hge(nullptr), _dt(0.f), _timertick(false)
+Time::Time() : _dt(0.f), _timertick(false)
 {
 }
 
@@ -10,13 +10,13 @@ Time::~Time()
 
 void Time::OnStart()
 {
-	hge = RavelEngine::GetRavelEngine()->GetHGE();
+	//hge = RavelEngine::GetRavelEngine()->GetHGE();
 }
 
 void Time::Update()
 {
-	if (_timertick)
-		_dt += hge->Timer_GetDelta();
+	//if (_timertick)
+	//	_dt += hge->Timer_GetDelta();
 }
 
 void Time::OnDestory()
@@ -25,7 +25,8 @@ void Time::OnDestory()
 
 float Time::GetTimeElapsed()
 {
-	return hge->Timer_GetTime();
+	//return hge->Timer_GetTime();
+	return 0;
 }
 
 void Time::StartTimer()

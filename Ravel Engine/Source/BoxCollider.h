@@ -27,7 +27,7 @@ public:
 	FunctionTrigger hover, click, release;
 
 private:
-	hgeRect*	_Rect;
+	//hgeRect*	_Rect;
 	float		_width;
 	float		_height;
 };

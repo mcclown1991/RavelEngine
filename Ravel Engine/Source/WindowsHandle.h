@@ -48,7 +48,9 @@ private:
 	bool isFullScreen;
 
 public:
-	WindowsHandle() {	}
+	WindowsHandle() : System() {	}
+
+	void Init() {}
 
 	bool InitConfigure(HINSTANCE hInstance, int nCmdShow);
 	bool InitWindow(HINSTANCE hInstance, int nCmdShow);
@@ -61,10 +63,7 @@ public:
 	void InitWindowHandle(HINSTANCE hInstance, int nCmdShow, bool console = false);
 	void InitWindowHandle(HWND hWnd, int nCmdShow, bool console = false);
 
-	virtual void StartUp() {}
-	virtual void Update(float dt);
-
-	virtual void ShutDown();
+	void Update();
 
 	GAMEWINDOW* getWindowHandle();
 	USERPREF* getUSER();

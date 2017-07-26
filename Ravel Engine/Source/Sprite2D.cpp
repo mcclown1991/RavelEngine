@@ -11,10 +11,7 @@ Sprite2D::~Sprite2D(){
 }
 
 void Sprite2D::OnStart(){
-	m_Vertex[0] = Vector2();
-	m_Vertex[1] = Vector2();
-	m_Vertex[2] = Vector2();
-	m_Vertex[3] = Vector2();
+
 }
 
 void Sprite2D::Update(){
@@ -22,15 +19,15 @@ void Sprite2D::Update(){
 }
 
 void Sprite2D::OnDestory(){
-	HGE* h = RavelEngine::GetRavelEngine()->GetHGE();
+	//HGE* h = RavelEngine::GetRavelEngine()->GetHGE();
 	//delete m_Sprite;
 }
 
 void Sprite2D::CreateTexture(std::string texture, float width, float height){
 
-	m_Sprite = GetGFX()->CreateTexture(texture, width, height);
+	//m_Sprite = GetGFX()->CreateTexture(texture, width, height);
 
-	m_Vertex[1].x += width;
+	/*m_Vertex[1].x += width;
 	m_Vertex[2].x += width;
 	m_Vertex[2].y += height;
 	m_Vertex[3].y += height;
@@ -52,9 +49,16 @@ void Sprite2D::CreateTexture(std::string texture, float width, float height){
 	}
 
 	m_Reference_Frame.m[2] = -width;
-	m_Reference_Frame.m[5] = -height;
+	m_Reference_Frame.m[5] = -height;*/
 
-	GetGFX()->AddSprite(this);
+	GetGraphicsManager()->Renderer()->CreateTexture(texture, m_SampleID);
+	m_Model = new Transform();
+	m_Model->hscale = width;
+	m_Model->vscale = height;
+	m_UV = Vector2(0.f, 0.f);
+	m_Size = Vector2(1, 1);
+
+	GetGraphicsManager()->AddSprite(this);
 }
 
 void Sprite2D::Render(){
@@ -64,14 +68,16 @@ void Sprite2D::Render(){
 
 	Vector2 view = parent->GetPosition() + transform->position;
 
-	Matrix3x3 trans = transform->GetTransforms();
+	Matrix4x4 trans = m_Model->GetTransforms() * transform->GetTransforms();
 	//trans = m_Reference_Frame * trans;
-	Vector2 vertice[4];
+	//Vector2 vertice[4];
 
-	vertice[0] = trans * m_Vertex[0];
+	/*vertice[0] = trans * m_Vertex[0];
 	vertice[1] = trans * m_Vertex[1];
 	vertice[2] = trans * m_Vertex[2];
-	vertice[3] = trans * m_Vertex[3];
+	vertice[3] = trans * m_Vertex[3];*/
+
+	GetGraphicsManager()->Renderer()->Render(m_SampleID, trans, m_UV, m_Size, false, 0);
 
 	//vertice[0] = m_Reference_Frame * vertice[0];
 	//vertice[1] = m_Reference_Frame * vertice[1];
@@ -80,5 +86,5 @@ void Sprite2D::Render(){
 
 	//(*m_Sprite)->Render(view, parent->localEulerAngles + transform->localEulerAngles, transform->hscale, transform->vscale);
 
-	(*m_Sprite)->Render(vertice);
+	//(*m_Sprite)->Render(vertice);
 }

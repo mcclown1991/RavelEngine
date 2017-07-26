@@ -2,10 +2,20 @@
 
 Vector3::Vector3() : x(0.f), y(0.f), z(0.f), magnitude(0.f), sqmagnitude(0.f), normalized(this) {}
 
-Vector3::Vector3(float32 X, float32 Y, float32 Z) : x(X), y(Y), magnitude(0.f), sqmagnitude(0.f), normalized(new Vector3(*this)) {
+Vector3::Vector3(float32 X, float32 Y, float32 Z) : x(X), y(Y), z(Z), magnitude(0.f), sqmagnitude(0.f), normalized(new Vector3(*this)) {
 	sqmagnitude = x*x + y*y + z*z;
-	magnitude = sqrtf(sqmagnitude);
-	normalized->Normalize();
+	
+	if (sqmagnitude != 1) {
+		magnitude = sqrtf(sqmagnitude);
+		normalized->x = x / magnitude;
+		normalized->y = y / magnitude;
+		normalized->z = z / magnitude;
+	}
+	else {
+		magnitude = 1;
+	}
+
+	//normalized->Normalize();
 }
 
 Vector3::Vector3(Vector3 const& r) : x(r.x), y(r.y), z(r.z), magnitude(r.magnitude), sqmagnitude(r.sqmagnitude) {}
