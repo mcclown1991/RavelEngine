@@ -49,7 +49,7 @@ void OpenGL::Initialise(HWND hWnd, unsigned Width, unsigned Height, bool IsWindo
 	// Clear the screen
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	m_Projection = glm::ortho(0.f, static_cast<float>(Width), static_cast<float>(Height), 0.f, -5.f, 5.f);
+	
 }
 
 void OpenGL::UnInitialise() {
@@ -122,7 +122,7 @@ void OpenGL::EndFrame() {
 }
 
 void OpenGL::OrthoProjectionMatrix(float ScreenW, float ScreenH) {
-
+	m_Projection = glm::ortho(0.f, ScreenW, ScreenH, 0.f, -5.f, 5.f);
 }
 
 HRESULT OpenGL::CreateMesh() {

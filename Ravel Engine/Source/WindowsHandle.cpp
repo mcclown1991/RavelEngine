@@ -313,72 +313,26 @@ bool WindowsHandle::InitConfigure(HINSTANCE hInstance, int nCmdShow)
 				}
 			}
 		}
-		if (temp.compare(" 1920 x 1080 @ 60Hz") == 0)
+		temp.erase(0, 1);
+		gw.Width = std::atoi(temp.c_str());
+
+		std::getline(myReadFile, temp);
 		{
-			gw.Width = 1980;
-			gw.Height = 1080;
-			std::cout << "Resolution = " << temp << std::endl;
+			iter = temp.begin();
+			for (char t : temp)
+			{
+				iter++;
+				if (t == '=')
+				{
+					temp.erase(temp.begin(), iter);
+					break;
+				}
+			}
 		}
-		else if (temp.compare(" 1600 x 1024 @ 60Hz") == 0)
-		{
-			gw.Width = 1600;
-			gw.Height = 1024;
-			std::cout << "Resolution = " << temp << std::endl;
-		}
-		else if (temp.compare(" 1600 x 900 @ 60Hz") == 0)
-		{
-			gw.Width = 1600;
-			gw.Height = 900;
-			std::cout << "Resolution = " << temp << std::endl;
-		}
-		else if (temp.compare(" 1440 x 1080 @ 60Hz") == 0)
-		{
-			gw.Width = 1440;
-			gw.Height = 1080;
-			std::cout << "Resolution = " << temp << std::endl;
-		}
-		else if (temp.compare(" 1440 x 960 @ 60Hz") == 0)
-		{
-			gw.Width = 1440;
-			gw.Height = 960;
-			std::cout << "Resolution = " << temp << std::endl;
-		}
-		else if (temp.compare(" 1280 x 1024 @ 60Hz") == 0)
-		{
-			gw.Width = 1280;
-			gw.Height = 1024;
-			std::cout << "Resolution = " << temp << std::endl;
-		}
-		else if (temp.compare(" 1366 x 768 @ 60Hz") == 0)
-		{
-			gw.Width = 1366;
-			gw.Height = 768;
-			std::cout << "Resolution = " << temp << std::endl;
-		}
-		else if (temp.compare(" 1280 x 800 @ 60Hz") == 0)
-		{
-			gw.Width = 1280;
-			gw.Height = 800;
-			std::cout << "Resolution = " << temp << std::endl;
-		}
-		else if (temp.compare(" 1280 x 720 @ 60Hz") == 0)
-		{
-			gw.Width = 1280;
-			gw.Height = 720;
-			std::cout << "Resolution = " << temp << std::endl;
-		}
-		else if (temp.compare(" 1024 x 768 @ 60Hz") == 0)
-		{
-			gw.Width = 1024;
-			gw.Height = 768;
-			std::cout << "Resolution = " << temp << std::endl;
-		}
-		else if (temp.compare(" 800 x 600 @ 60Hz") == 0)
-		{
-			gw.Width = 800;
-			gw.Height = 600;
-			std::cout << "Resolution = " << temp << std::endl;
-		}
+		temp.erase(0, 1);
+		gw.Height = std::atoi(temp.c_str());
+
+		std::cout << "Resolution = " << gw.Width << " x " << gw.Height << std::endl;
 	}
 	else
 	{

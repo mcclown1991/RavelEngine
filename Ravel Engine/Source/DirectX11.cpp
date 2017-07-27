@@ -286,7 +286,45 @@ void DirectX11::Initialise(HWND hWnd, unsigned Width, unsigned Height, bool IsWi
 	}
 
 void DirectX11::UnInitialise() {
+	//release all pointers
+	//release buffers
+	pVertex->Release();
+	pIndex->Release();
+	pTransform->Release();
+	pUV->Release();
+	pAlpha->Release();
 
+	pVertex = nullptr;
+	pIndex = nullptr;
+	pTransform = nullptr;
+	pUV = nullptr;
+	pAlpha = nullptr;
+
+	//release com objects
+	pLayTex = nullptr;
+	Transparency = nullptr;
+	depthStencilBuffer = nullptr;
+
+	for (auto elem : m_SampleList) {
+		if(elem)
+			elem->Release();
+	}
+
+	for (auto elem : m_SampleState) {
+		if (elem)
+			elem->Release();
+	}
+
+	m_SwapChain.Release();
+	m_BackBuffer->Release();
+	m_Device.Release();
+	m_DeviceContext.Release();
+
+	if (pDebug != nullptr)
+	{
+		pDebug->ReportLiveDeviceObjects(D3D11_RLDO_DETAIL);
+		pDebug = nullptr;
+	}
 }
 
 unsigned DirectX11::LoadVertexShader(std::string filename, std::string entry, std::string shaderModel)

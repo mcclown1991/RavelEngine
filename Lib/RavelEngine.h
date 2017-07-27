@@ -50,6 +50,8 @@ public:
 		return SCREENHEIGHT;
 	}
 
+	void SetWindowTitle(std::string const& title);
+
 private:
 	RavelEngine();
 	~RavelEngine();

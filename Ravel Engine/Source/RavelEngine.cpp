@@ -23,73 +23,10 @@ void RavelEngine::CommandPrompt(){
 	// allocate a console for this app
 	AllocConsole();
 
-	//// set the screen buffer to be big enough to let us scroll text
-	//GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &coninfo);
-
-	//coninfo.dwSize.Y = 500;
-	//SetConsoleScreenBufferSize(GetStdHandle(STD_OUTPUT_HANDLE), coninfo.dwSize);
-
-	//// redirect unbuffered STDOUT to the console
-	//lStdHandle = (long)GetStdHandle(STD_OUTPUT_HANDLE);
-	//hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
-	//fp = _fdopen(hConHandle, "w");
-	//*stdout = *fp;
-	//setvbuf(stdout, NULL, _IONBF, 0);
-
-	//// redirect unbuffered STDIN to the console
-	//lStdHandle = (long)GetStdHandle(STD_INPUT_HANDLE);
-	//hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
-	//fp = _fdopen(hConHandle, "r");
-	//*stdin = *fp;
-	//setvbuf(stdin, NULL, _IONBF, 0);
-
-	//// redirect unbuffered STDERR to the console
-	//lStdHandle = (long)GetStdHandle(STD_ERROR_HANDLE);
-	//hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
-	//fp = _fdopen(hConHandle, "w");
-	//*stderr = *fp;
-	//setvbuf(stderr, NULL, _IONBF, 0);
-
-	//// make cout, wcout, cin, wcin, wcerr, cerr, wclog and clog
-	//// point to console as well
-	//std::ios_base::sync_with_stdio();
-
 	freopen_s(&fp, "CONOUT$", "w", stdout);
 
 }
 
-bool Update()
-{
-	// By returning "true" we tell HGE
-	// to stop running the application.
-	//if (RavelEngine::GetRavelEngine()->GetHGE()->Input_GetKeyState(HGEK_ESCAPE)) return true;
-
-	//if (!RavelEngine::GetRavelEngine()->GetStateManager()->GSM_Running())	return true;
-
-	if (RavelEngine::GetRavelEngine()->IsResetQueried()) {
-		factory()->Quit();
-		GetGraphicsManager()->OnExit();
-		RavelEngine::GetRavelEngine()->GetStateManager()->ResetState();
-	}
-
-	factory()->Update();
-	//GetCollision()->Update();
-	RavelEngine::GetRavelEngine()->GetStateManager()->StateUpdate();
-	// Continue execution
-	return false;
-}
-
-bool Render(){
-	//HGE* hge = RavelEngine::GetRavelEngine()->GetHGE();
-
-	//hge->Gfx_BeginScene();							//start the renderer, frame begins
-	//hge->Gfx_Clear(0x00000000);						//ensure scene is cleared
-
-	GetGraphicsManager()->Render();
-
-	//hge->Gfx_EndScene();							//Stop the renderer, frame over
-	return false;
-}
 
 void RavelEngine::SystemInit(HINSTANCE hInstance, int nCmdShow) {
 	//// Enable run-time memory check for debug builds.
@@ -99,11 +36,20 @@ void RavelEngine::SystemInit(HINSTANCE hInstance, int nCmdShow) {
 
 #ifdef _DEBUG
 	CommandPrompt();
+
+	std::cout << "=============================================================\n";
+	std::cout << "	Initialising Ravel Engine\n";
+	std::cout << "=============================================================" << std::endl;
+	std::cout << "Setting up Window settings.........." << std::endl;
 	pWindow->InitWindowHandle(hInstance, nCmdShow, true);
+	std::cout << "Done!" << std::endl;
+	std::cout << "=============================================================" << std::endl;
+	std::cout << "Setting up Rendering Engine.........." << std::endl;
 #else
 	pWindow->InitWindowHandle(hInstance, nCmdShow, false);
 #endif
 
+	
 	switch (pWindow->getUSER()->renderer_) {
 	case 0:
 		pRenderer = new DirectX11();
@@ -118,6 +64,14 @@ void RavelEngine::SystemInit(HINSTANCE hInstance, int nCmdShow) {
 	pRenderer->Initialise(pWindow->getWindowHandle()->hWnd, pWindow->getWindowHandle()->Width, pWindow->getWindowHandle()->Height, pWindow->getWindowHandle()->Windowed);
 	GetGraphicsManager()->InitialiseGraphicsManager(pRenderer);
 
+#ifdef _DEBUG
+	std::cout << "Done!" << std::endl;
+	std::cout << "=============================================================" << std::endl;
+#endif
+}
+
+void RavelEngine::SetWindowTitle(std::string const& title) {
+	pWindow->SetWindowTitle(const_cast<char*>(title.c_str()));
 }
 
 void RavelEngine::SystemInit(sInt32 Width, sInt32 Height, bool IsWindowed, std::string Title, bool ShowMouse){
@@ -239,6 +193,8 @@ void RavelEngine::SystemExit(){
 	factory()->Quit();
 	gsm.GSM_Exit();
 	GetGraphicsManager()->OnExit();
+
+	pRenderer->UnInitialise();
 
 	// Now ESC has been pressed or the user
 	// has closed the window by other means.
