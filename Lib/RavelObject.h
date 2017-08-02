@@ -2,6 +2,7 @@
 #define RAVELOBJECT_H
 
 #include <string>
+#include <functional>
 #include "DataType.h"
 
 class BoxCollider;
@@ -21,6 +22,16 @@ public:
 	virtual void OnMouseHover() {}
 
 	virtual void OnCollisionEnter(BoxCollider*) {}
+
+	virtual std::size_t GetInstanceID() {
+		return instanceID(name);
+	}
+
+	std::string name;
+
+private:
+	std::hash<std::string> instanceID;
+
 };
 
 #endif

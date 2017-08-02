@@ -44,7 +44,6 @@ public:
 
 	Transform* transform;
 	bool IsActive;
-	std::string name;
 
 private:
 	struct COMPARATOR {
