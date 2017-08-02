@@ -44,8 +44,8 @@
     <OutDir>$(SolutionDir)Lib\</OutDir>
     <IntDir>.\Debug\</IntDir>
     <TargetName>Ravel Engine Debug v0.2a</TargetName>
-    <IncludePath>$(SolutionDir)DirectXTK\Inc;$(SolutionDir)opengl\glfw-3.2.bin.WIN32\include;$(SolutionDir)opengl\glew-2.0.0\include;.\hge181\include;$(IncludePath);$(SolutionDir)opengl\glm;$(DXSDK_DIR)Lib\Include</IncludePath>
-    <LibraryPath>$(SolutionDir)DirectXTK;$(SolutionDir)opengl\glew-2.0.0\lib\Release\Win32;$(SolutionDir)opengl\glfw-3.2.bin.WIN32\lib-vc2015;.\hge181\lib\vc;$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)LUA\include;$(SolutionDir)DirectXTK\Inc;$(SolutionDir)opengl\glfw-3.2.bin.WIN32\include;$(SolutionDir)opengl\glew-2.0.0\include;.\hge181\include;$(IncludePath);$(SolutionDir)opengl\glm;$(DXSDK_DIR)Lib\Include</IncludePath>
+    <LibraryPath>$(SolutionDir)LUA\lib;$(SolutionDir)DirectXTK;$(SolutionDir)opengl\glew-2.0.0\lib\Release\Win32;$(SolutionDir)opengl\glfw-3.2.bin.WIN32\lib-vc2015;.\hge181\lib\vc;$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -111,6 +111,8 @@
     <ClInclude Include="Source\RavelEngine.h" />
     <ClInclude Include="Source\RavelMath.h" />
     <ClInclude Include="Source\RavelObject.h" />
+    <ClInclude Include="Source\Script.h" />
+    <ClInclude Include="Source\ScriptManager.h" />
     <ClInclude Include="Source\sprite.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
@@ -140,6 +142,9 @@
     <ClCompile Include="Source\Matrix4x4.cpp" />
     <ClCompile Include="Source\OpenGL.cpp" />
     <ClCompile Include="Source\RavelEngine.cpp" />
+    <ClCompile Include="Source\Script.cpp" />
+    <ClCompile Include="Source\ScriptFunction.cpp" />
+    <ClCompile Include="Source\ScriptManager.cpp" />
     <ClCompile Include="Source\sprite.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>

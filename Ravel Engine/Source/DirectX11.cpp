@@ -330,6 +330,9 @@ void DirectX11::UnInitialise() {
 unsigned DirectX11::LoadVertexShader(std::string filename, std::string entry, std::string shaderModel)
 {
 	wchar_t* wString = new wchar_t[4096];
+
+	filename += "_dx.vs";
+
 	MultiByteToWideChar(CP_ACP, 0, filename.c_str(), -1, wString, 4096);
 
 	ID3D10Blob* blob; ID3D10Blob* err;
@@ -366,6 +369,9 @@ unsigned DirectX11::LoadVertexShader(std::string filename, std::string entry, st
 
 unsigned DirectX11::LoadFragmentShader(std::string filename, std::string entry, std::string shaderModel) {
 	wchar_t* wString = new wchar_t[4096];
+
+	filename += "_dx.frag";
+
 	MultiByteToWideChar(CP_ACP, 0, filename.c_str(), -1, wString, 4096);
 
 	ID3D10Blob* blob; ID3D10Blob* err;

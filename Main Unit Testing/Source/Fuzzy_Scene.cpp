@@ -4,8 +4,8 @@ Fuzzy_Scene Fuzzy_Scene::_Scene;
 
 void Fuzzy_Scene::Init()
 {
-	GetGraphicsManager()->SetVertexShader("Shaders\\Texture.hlsl");
-	GetGraphicsManager()->SetFragmentShader("Shaders\\PixelShader.hlsl");
+	GetGraphicsManager()->SetVertexShader("Shaders\\Texture");
+	GetGraphicsManager()->SetFragmentShader("Shaders\\Fragments");
 
 	Factory::pGOC& m_Test = factory()->CreateGameObject("Test");
 	Sprite2D* m_spr = m_Test->AddComponent<Sprite2D>();

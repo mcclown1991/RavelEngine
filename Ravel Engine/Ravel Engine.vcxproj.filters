@@ -58,6 +58,9 @@
     <Filter Include="Systems\Input">
       <UniqueIdentifier>{78efc5a4-5570-4cea-85f1-db5361c545f0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Systems\Scripting">
+      <UniqueIdentifier>{99ab19f1-3bae-425c-afea-ff1cbf9bc04f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -156,6 +159,12 @@
     <ClInclude Include="Source\Matrix4x4.h">
       <Filter>Math</Filter>
     </ClInclude>
+    <ClInclude Include="Source\ScriptManager.h">
+      <Filter>Systems\Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Script.h">
+      <Filter>Base Components\Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\global.cpp">
@@ -229,6 +238,15 @@
     </ClCompile>
     <ClCompile Include="Source\Vector3.cpp">
       <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ScriptManager.cpp">
+      <Filter>Systems\Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ScriptFunction.cpp">
+      <Filter>Systems\Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Script.cpp">
+      <Filter>Base Components\Source</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

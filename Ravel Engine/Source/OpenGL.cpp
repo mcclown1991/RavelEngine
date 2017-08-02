@@ -36,6 +36,10 @@ void OpenGL::Initialise(HWND hWnd, unsigned Width, unsigned Height, bool IsWindo
 		std::cout << "Failed to make context" << std::endl;
 	}
 
+	GLenum err = glewInit();
+
+
+
 	glViewport(0, 0, Width, Height);
 
 	// Dark blue background
@@ -64,7 +68,7 @@ unsigned OpenGL::LoadVertexShader(std::string filename, std::string entry, std::
 
 	// Read the Vertex Shader code from the file
 	std::string VertexShaderCode;
-	std::ifstream VertexShaderStream(filename, std::ios::in);
+	std::ifstream VertexShaderStream(filename + "_gl.vs", std::ios::in);
 	if (VertexShaderStream.is_open()) {
 		std::string Line = "";
 		while (std::getline(VertexShaderStream, Line))
@@ -126,6 +130,18 @@ void OpenGL::OrthoProjectionMatrix(float ScreenW, float ScreenH) {
 }
 
 HRESULT OpenGL::CreateMesh() {
+	VERTEX vertices[] =
+	{
+		VERTEX(-1.0f, -1.0f, 1.0f, 0.0f, 1.0f),
+		VERTEX(-1.0f, 1.0f, 1.0f, 0.0f, 0.0f),
+		VERTEX(1.0f, 1.0f, 1.0f, 1.0f, 0.0f),
+		VERTEX(1.0f, -1.0f, 1.0f, 1.0f, 1.0f)
+	};
+
+	GLuint vbo = 0;
+	glGenBuffers(1, &vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(VERTEX) * 4, vertices, GL_STATIC_DRAW);
 	return S_OK;
 }
 

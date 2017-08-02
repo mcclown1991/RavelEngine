@@ -31,11 +31,19 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Shaders\Texture.hlsl">
+    <FxCompile Include="Shaders\Texture_dx.vs">
       <Filter>Resource Files\Shader</Filter>
     </FxCompile>
-    <FxCompile Include="Shaders\PixelShader.hlsl">
+    <FxCompile Include="Shaders\Fragments_dx.frag">
       <Filter>Resource Files\Shader</Filter>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\Texture_gl.vs">
+      <Filter>Resource Files\Shader</Filter>
+    </None>
+    <None Include="Shaders\Fragments_gl.frag">
+      <Filter>Resource Files\Shader</Filter>
+    </None>
   </ItemGroup>
 </Project>
