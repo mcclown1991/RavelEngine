@@ -40,6 +40,7 @@ public:
 
 	HRESULT SetVertexShader(std::string const& file);
 	HRESULT SetFragmentShader(std::string const& file);
+	void LinkProgram();
 
 	Graphics* Renderer() { return renderer; }
 

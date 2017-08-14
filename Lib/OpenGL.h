@@ -41,6 +41,10 @@ private:
 	HGLRC hRC;
 	int m_PixelFormat;
 
+	unsigned m_VertexID, m_FragmentID;
+
+	GLuint m_ProgramID;
+
 	glm::mat4 m_Projection;
 };
 

@@ -129,3 +129,7 @@ HRESULT GraphicsManager::SetFragmentShader(std::string const& file) {
 	renderer->SetFragmentShader(id);
 	return S_OK;
 }
+
+void GraphicsManager::LinkProgram() {
+	renderer->LinkProgram();
+}
