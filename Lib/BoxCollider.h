@@ -1,9 +1,9 @@
 #ifndef BOXCOLLIDER_H
 #define BOXCOLLIDER_H
 
-#include <hgerect.h>
 #include "Component.h"
 #include "Transform.h"
+#include "RavelRect.h"
 
 class BoxCollider : public Component {
 public:
@@ -14,6 +14,7 @@ public:
 	virtual void Update();
 	virtual void OnDestory();
 
+	void CreateBoxCollider();
 	void CreateBoxCollider(float width, float height);
 	void OnMouseOver();
 	void OnMouseClick();
@@ -30,5 +31,6 @@ private:
 	//hgeRect*	_Rect;
 	float		_width;
 	float		_height;
+	RavelRect*	_rect;
 };
 #endif

@@ -11,10 +11,14 @@ void Fuzzy_Scene::Init()
 	Factory::pGOC& m_Test = factory()->CreateGameObject("Test");
 	Sprite2D* m_spr = m_Test->AddComponent<Sprite2D>();
 	m_spr->CreateTexture("Background.png", 1280, 720);
-	//m_Test->transform->Scale(100);
-	//m_Test->transform->hscale = 1280;
-	//m_Test->transform->vscale = 720;
-	m_Test->transform->position = Vector2(0, 0);
+	m_Test->transform->position = Vector2(10, 0);
+
+	Factory::pGOC& m_Door = factory()->CreateGameObject("Door");
+	m_spr = m_Door->AddComponent<Sprite2D>();
+	m_spr->CreateTexture("BlueDoor.png", 32, 64);
+	m_Door->transform->position = Vector2(500, 0);
+	m_Door->transform->Scale(2);
+	m_Door->transform->Rotate(45);
 }
 
 void Fuzzy_Scene::Load()

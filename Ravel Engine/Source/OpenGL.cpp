@@ -206,9 +206,11 @@ HRESULT OpenGL::CreateMesh() {
 }
 
 HRESULT OpenGL::CreateTexture(std::string const& filename, unsigned& sampleID) {
+	//GLuint texture = Load
 	return S_OK;
 }
 
 HRESULT OpenGL::Render(unsigned sampleID, Matrix4x4 transform, Vector2 uv, Vector2 UVscale, bool blend, float alpha) {
+	
 	return S_OK;
 }

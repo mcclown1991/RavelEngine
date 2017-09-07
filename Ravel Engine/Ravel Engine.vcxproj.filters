@@ -165,6 +165,9 @@
     <ClInclude Include="Source\Script.h">
       <Filter>Base Components\Headers</Filter>
     </ClInclude>
+    <ClInclude Include="Source\RavelRect.h">
+      <Filter>Systems\Collision System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\global.cpp">
@@ -247,6 +250,9 @@
     </ClCompile>
     <ClCompile Include="Source\Script.cpp">
       <Filter>Base Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RavelRect.cpp">
+      <Filter>Systems\Collision System</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

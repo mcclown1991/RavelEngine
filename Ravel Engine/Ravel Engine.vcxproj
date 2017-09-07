@@ -111,6 +111,7 @@
     <ClInclude Include="Source\RavelEngine.h" />
     <ClInclude Include="Source\RavelMath.h" />
     <ClInclude Include="Source\RavelObject.h" />
+    <ClInclude Include="Source\RavelRect.h" />
     <ClInclude Include="Source\Script.h" />
     <ClInclude Include="Source\ScriptManager.h" />
     <ClInclude Include="Source\sprite.h">
@@ -142,6 +143,7 @@
     <ClCompile Include="Source\Matrix4x4.cpp" />
     <ClCompile Include="Source\OpenGL.cpp" />
     <ClCompile Include="Source\RavelEngine.cpp" />
+    <ClCompile Include="Source\RavelRect.cpp" />
     <ClCompile Include="Source\Script.cpp" />
     <ClCompile Include="Source\ScriptFunction.cpp" />
     <ClCompile Include="Source\ScriptManager.cpp" />

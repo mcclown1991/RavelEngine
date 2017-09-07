@@ -92,9 +92,9 @@ Matrix4x4::Matrix4x4(float _00, float _01, float _02, float _03,
 }
 
 Matrix4x4::Matrix4x4(Matrix3x3 const& pMat) {
-	m[0] = pMat.m[0];	m[1] = pMat.m[1];	m[2] = pMat.m[2];	m[3] = 0;
-	m[4] = pMat.m[3];	m[5] = pMat.m[4];	m[6] = pMat.m[5];	m[7] = 0;
-	m[8] = pMat.m[6];	m[9] = pMat.m[7];	m[10] = pMat.m[8];	m[11] = 0;
+	m[0] = pMat.m[0];	m[1] = pMat.m[1];	m[2] = 0;	m[3] = pMat.m[2];
+	m[4] = pMat.m[3];	m[5] = pMat.m[4];	m[6] = 0;	m[7] = pMat.m[5];
+	m[8] = pMat.m[6];	m[9] = pMat.m[7];	m[10] = 0;	m[11] = pMat.m[8];
 	m[12] = 0;			m[13] = 0;			m[14] = 0;			m[15] = 1;
 }
 

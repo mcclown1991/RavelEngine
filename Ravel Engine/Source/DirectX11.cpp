@@ -436,7 +436,7 @@ void DirectX11::EndFrame() {
 }
 
 void DirectX11::OrthoProjectionMatrix(float ScreenW, float ScreenH) {
-	TransformBuffer.projection = DirectX::XMMatrixOrthographicLH(ScreenW, ScreenH, 1.f, 1000.0f);
+	TransformBuffer.projection = DirectX::XMMatrixOrthographicLH(ScreenW, ScreenH, 1.f, 10.0f);
 }
 
 HRESULT DirectX11::CreateMesh() {

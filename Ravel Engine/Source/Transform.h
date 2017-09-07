@@ -17,9 +17,11 @@ public:
 
 	Vector2 GetPosition();
 	Matrix3x3 GetTransforms();
+	Matrix3x3 GetLocalTransforms();
 
 	//Public Functions
 	Vector2 up;
+	Vector2 right;
 	Vector2 position;
 	float localEulerAngles;
 	float hscale, vscale;

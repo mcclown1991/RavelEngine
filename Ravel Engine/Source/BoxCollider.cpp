@@ -4,6 +4,10 @@
 
 BoxCollider::BoxCollider() : hover(nullptr), click(nullptr), release(nullptr)
 {
+	std::cout << "Creating new Box Collider" << std::endl;
+
+	//create new rect
+	//_rect = new RavelRect()
 }
 
 BoxCollider::~BoxCollider()
@@ -16,7 +20,6 @@ void BoxCollider::OnStart()
 
 void BoxCollider::Update()
 {
-	//_Rect->Set(parent->position.x, parent->position.y, parent->position.x + _width, parent->position.y + _height);
 	OnMouseOver();
 	OnMouseClick();
 }
@@ -24,6 +27,12 @@ void BoxCollider::Update()
 void BoxCollider::OnDestory()
 {
 	//delete _Rect;
+}
+
+void BoxCollider::CreateBoxCollider() {
+	_width = gameObject->transform->hscale * 2;
+	_height = gameObject->transform->vscale * 2;
+	GetCollision()->AddCollider(this, Vector2(_width, _height));
 }
 
 void BoxCollider::CreateBoxCollider(float width, float height)

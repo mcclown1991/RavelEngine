@@ -1,6 +1,6 @@
 #include "Transform.h"
 
-Transform::Transform() : Component(), up(0, 1), position(0, 0), localEulerAngles(0.f), hscale(1.f), vscale(1.f){
+Transform::Transform() : Component(), up(0, 1), right(1, 0), position(0, 0), localEulerAngles(0.f), hscale(1.f), vscale(1.f){
 }
 
 Transform::~Transform(){
@@ -31,12 +31,11 @@ Vector2 Transform::GetPosition()
 Matrix3x3 Transform::GetTransforms()
 {
 	Matrix3x3 transforms;
-	float cosine = cosf(localEulerAngles);
-	float sine = sinf(localEulerAngles);
-	transforms.m[0] = cosine * hscale;
-	transforms.m[1] = -sine * hscale;
-	transforms.m[3] = sine * vscale;
-	transforms.m[4] = cosine * vscale;
+
+	transforms.m[0] = right.x * hscale;
+	transforms.m[1] = up.x * vscale;
+	transforms.m[3] = right.y * hscale;
+	transforms.m[4] = up.y * vscale;
 
 	transforms.m[2] = position.x;
 	transforms.m[5] = position.y;
@@ -44,11 +43,26 @@ Matrix3x3 Transform::GetTransforms()
 	return parent == nullptr ? transforms : parent->GetTransforms() * transforms;
 }
 
+Matrix3x3 Transform::GetLocalTransforms() {
+	Matrix3x3 transforms;
+
+	transforms.m[0] = right.x * hscale;
+	transforms.m[1] = up.x * vscale;
+	transforms.m[3] = right.y * hscale;
+	transforms.m[4] = up.y * vscale;
+
+	transforms.m[2] = position.x;
+	transforms.m[5] = position.y;
+
+	return transforms;
+}
+
 void Transform::Rotate(float angle)
 {
 	angle = (3.14125f / 180.0f) * angle;
 	localEulerAngles += angle;
-	up = Vector2(-sin(localEulerAngles), cos(localEulerAngles));
+	up = Vector2(-sin(-localEulerAngles), cos(-localEulerAngles));
+	right = Vector2(up.y, -up.x);
 }
 
 void Transform::Scale(float scale)
