@@ -164,18 +164,22 @@ bool WindowsHandle::InitWindow(HINSTANCE hInstance, int nCmdShow)
 
 	RegisterClassEx(&wc);
 
-	ShowCursor(false);
+	ShowCursor(true);
 
 	RECT desktopRect;
 
 	GetWindowRect(GetDesktopWindow(), &desktopRect);
+
+	RECT drawArea = { 0, 0, gw.Width, gw.Height };
+	AdjustWindowRect(&drawArea, WS_OVERLAPPEDWINDOW, FALSE);
 
 	gw.hWnd = CreateWindowEx(NULL,
 		wc.lpszClassName,
 		TEXT("Ravel Engine"),
 		gw.Windowed ? WS_SYSMENU : WS_EX_TOPMOST | WS_POPUP,
 		(desktopRect.right - gw.Width) >> 1, (desktopRect.bottom - gw.Height) >> 1,
-		gw.Width, gw.Height,
+		drawArea.right - drawArea.left,
+		drawArea.bottom - drawArea.top,
 		NULL,
 		NULL,
 		hInstance,

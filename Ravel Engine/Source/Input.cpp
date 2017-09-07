@@ -1,6 +1,6 @@
 #include "Input.h"
-#include "WindowsHandle.h"
 #include <iostream>
+#include <algorithm>
 
 void InitInput(HWND hWnd)
 {
@@ -120,9 +120,11 @@ void GetMousePos(float& x, float& y) {
 	POINT p;
 	GetCursorPos(&p);
 	if (ScreenToClient(hwnd, &p)) {
-		x = static_cast<float>(p.x);
-		y = static_cast<float>(p.y);
-		std::cout << "X: " << x << "  Y: " << y << std::endl;
+		Vector2 position(static_cast<float>(p.x), static_cast<float>(p.y));
+		position = RavelEngine::GetRavelEngine()->ScenceTransform() * position;
+		x = position.x;
+		y = position.y;
+		//::cout << "X: " << x << "  Y: " << y << std::endl;
 	}
 }
 
@@ -211,8 +213,8 @@ bool XBOXController::Refesh()
 		rightTrigger = (float)_controllerState.Gamepad.bRightTrigger / 255;
 
 #else	//Any older VS versions
-		float normLX = max(-1, (float)_controllerState.Gamepad.sThumbLX / 32767);
-		float normLY = max(-1, (float)_controllerState.Gamepad.sThumbLY / 32767);
+		float normLX = std::max(-1.f, (float)_controllerState.Gamepad.sThumbLX / 32767);
+		float normLY = std::max(-1.f, (float)_controllerState.Gamepad.sThumbLY / 32767);
 
 		leftStickX = (abs(normLX) < deadzoneX ? 0 : (abs(normLX) - deadzoneX) * (normLX / abs(normLX)));
 		leftStickY = (abs(normLY) < deadzoneY ? 0 : (abs(normLY) - deadzoneY) * (normLY / abs(normLY)));
@@ -220,9 +222,9 @@ bool XBOXController::Refesh()
 		if (deadzoneX > 0) leftStickX *= 1 / (1 - deadzoneX);
 		if (deadzoneY > 0) leftStickY *= 1 / (1 - deadzoneY);
 
-		float normRX = max(-1, (float)_controllerState.Gamepad.sThumbRX / 32767);
-		float normRY = max(-1, (float)_controllerState.Gamepad.sThumbRY / 32767);
-
+		float normRY = std::max(-1.f, (float)_controllerState.Gamepad.sThumbRY / 32767);
+		float normRX = std::max(-1.f, (float)_controllerState.Gamepad.sThumbRX / 32767);
+								  
 		rightStickX = (abs(normRX) < deadzoneX ? 0 : (abs(normRX) - deadzoneX) * (normRX / abs(normRX)));
 		rightStickY = (abs(normRY) < deadzoneY ? 0 : (abs(normRY) - deadzoneY) * (normRY / abs(normRY)));
 

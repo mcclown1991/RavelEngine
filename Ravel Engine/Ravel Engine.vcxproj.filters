@@ -168,6 +168,9 @@
     <ClInclude Include="Source\RavelRect.h">
       <Filter>Systems\Collision System</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Collider2D.h">
+      <Filter>Base Components\Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\global.cpp">
@@ -253,6 +256,9 @@
     </ClCompile>
     <ClCompile Include="Source\RavelRect.cpp">
       <Filter>Systems\Collision System</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Collider2D.cpp">
+      <Filter>Base Components\Source</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -8,6 +8,7 @@
 #include <xinput.h>
 #include <bitset>
 #include "RavelMath.h"
+#include "RavelEngine.h"
 
 #pragma comment(lib,"xinput.lib")
 

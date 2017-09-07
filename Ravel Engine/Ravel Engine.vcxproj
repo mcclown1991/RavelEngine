@@ -91,6 +91,7 @@
   <ItemGroup>
     <ClInclude Include="Source\BoxCollider.h" />
     <ClInclude Include="Source\Button.h" />
+    <ClInclude Include="Source\Collider2D.h" />
     <ClInclude Include="Source\CollisionManager.h" />
     <ClInclude Include="Source\Component.h" />
     <ClInclude Include="Source\DataType.h" />
@@ -128,6 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\BoxCollider.cpp" />
+    <ClCompile Include="Source\Collider2D.cpp" />
     <ClCompile Include="Source\CollisionManager.cpp" />
     <ClCompile Include="Source\Component.cpp" />
     <ClCompile Include="Source\DirectX11.cpp" />

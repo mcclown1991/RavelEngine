@@ -6,6 +6,7 @@
 #include "GameObject.h"
 #include "Factory.h"
 #include "RavelEngine.h"
+#include "BoxCollider.h"
 
 class Fuzzy_Scene : public GameState {
 public:
@@ -26,6 +27,8 @@ public:
 	static Fuzzy_Scene *Instance() { return &_Scene; }
 
 	void End(bool hit);
+
+	Transform* m_trans;
 
 private:
 	static Fuzzy_Scene _Scene;	//!< static instance of state

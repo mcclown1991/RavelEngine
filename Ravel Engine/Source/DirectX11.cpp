@@ -413,7 +413,7 @@ void DirectX11::LinkProgram() {
 }
 
 void DirectX11::StartFrame() {
-	float color[4] = { 0.f, 0.f, 0.f, 1.f };
+	float color[4] = { 255.f, 0.f, 0.f, 1.f };
 	m_DeviceContext->ClearRenderTargetView(m_BackBuffer, color);
 
 	m_DeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);

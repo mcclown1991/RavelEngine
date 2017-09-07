@@ -5,7 +5,7 @@
 #include <functional>
 #include "DataType.h"
 
-class BoxCollider;
+class Collider2D;
 
 class RavelObject{
 public:
@@ -21,7 +21,7 @@ public:
 	virtual void OnMouseDown() {}
 	virtual void OnMouseHover() {}
 
-	virtual void OnCollisionEnter(BoxCollider*) {}
+	virtual void OnCollisionEnter2D(Collider2D*) {}
 
 	virtual std::size_t GetInstanceID() {
 		return instanceID(name);

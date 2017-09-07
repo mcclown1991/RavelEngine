@@ -1,19 +1,25 @@
 #include "CollisionManager.h"
+#include "Input.h"
 
 CollisionManager::CollisionManager()
 {
 }
 
-sInt32 CollisionManager::AddCollider(BoxCollider * col, Vector2 size)
+sInt32 CollisionManager::AddCollider(Collider2D * col)
 {
-	//hgeRect* rect = new hgeRect(col->parent->position.x, col->parent->position.y, size.x, size.y);
-	//_colliders.push_back(std::make_pair(col, rect));
-	//return _colliders.size() - 1;
+	_colliders.push_back(col);
 	return 0;
 }
 
 void CollisionManager::Update()
 {
+	// Update mouse hovers
+	Vector2 mouse;
+	GetMousePos(mouse.x, mouse.y);
+	for (auto& iter : _colliders) {
+		iter->CursorIntersectionTest(mouse);
+	}
+
 	//for (auto& iter : _colliders) {
 	//	Vector2 p(iter.second->x1, iter.second->y1);
 	//	Vector2 q(iter.second->x2, iter.second->y2);

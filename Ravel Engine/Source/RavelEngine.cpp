@@ -64,6 +64,9 @@ void RavelEngine::SystemInit(HINSTANCE hInstance, int nCmdShow) {
 	pRenderer->Initialise(pWindow->getWindowHandle()->hWnd, pWindow->getWindowHandle()->Width, pWindow->getWindowHandle()->Height, pWindow->getWindowHandle()->Windowed);
 	GetGraphicsManager()->InitialiseGraphicsManager(pRenderer);
 
+	ref.m[3] = -SCREENWIDTH >> 1;
+	ref.m[7] = -SCREENHEIGHT >> 1;
+
 #ifdef _DEBUG
 	std::cout << "Done!" << std::endl;
 	std::cout << "=============================================================" << std::endl;
@@ -137,7 +140,7 @@ bool RavelEngine::Update() {
 		}
 
 		factory()->Update();
-		//GetCollision()->Update();
+		GetCollision()->Update();
 		GetStateManager()->StateUpdate();
 		GetGraphicsManager()->Render();
 	}
@@ -216,4 +219,8 @@ void RavelEngine::QuitRaised() {
 void RavelEngine::ResetScene(){
 	
 	_resetqueued = true;
+}
+
+Matrix4x4 RavelEngine::ScenceTransform() const {
+	return ref;
 }

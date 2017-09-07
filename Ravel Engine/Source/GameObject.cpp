@@ -38,10 +38,10 @@ void GameObject::OnMouseDown()
 	}
 }
 
-void GameObject::OnCollisionEnter(BoxCollider * other)
+void GameObject::OnCollisionEnter2D(Collider2D * other)
 {
 	for (auto iter : m_Component_List) {
-		iter.second->OnCollisionEnter(other);
+		iter.second->OnCollisionEnter2D(other);
 	}
 }
 

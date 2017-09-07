@@ -1,11 +1,10 @@
 #ifndef BOXCOLLIDER_H
 #define BOXCOLLIDER_H
 
-#include "Component.h"
-#include "Transform.h"
+#include "Collider2D.h"
 #include "RavelRect.h"
 
-class BoxCollider : public Component {
+class BoxCollider : public Collider2D {
 public:
 	BoxCollider();
 	virtual ~BoxCollider();
@@ -16,11 +15,14 @@ public:
 
 	void CreateBoxCollider();
 	void CreateBoxCollider(float width, float height);
-	void OnMouseOver();
-	void OnMouseClick();
-	void OnMouseRelease();
+	virtual void OnMouseOver();
+	virtual void OnMouseClick();
+	virtual void OnMouseRelease();
 
-	void OnCollision(BoxCollider* other);
+	virtual void OnCollision2D(Collider2D* other);
+
+	virtual void IntersectionTest(Collider2D* other);
+	virtual void CursorIntersectionTest(Vector2 mouse);
 
 	//delegates
 	typedef void(*FunctionTrigger)();

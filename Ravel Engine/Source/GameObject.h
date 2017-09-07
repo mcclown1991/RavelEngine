@@ -8,6 +8,7 @@
 #include "RavelObject.h"
 #include "Transform.h"
 #include "Sprite2D.h"
+#include "Collider2D.h"
 
 class GameObject : public RavelObject
 {
@@ -20,7 +21,7 @@ public:
 	void virtual OnDestory();
 
 	void virtual OnMouseDown();
-	void virtual OnCollisionEnter(BoxCollider* other);
+	void virtual OnCollisionEnter2D(Collider2D* other);
 
 	bool Draw();
 

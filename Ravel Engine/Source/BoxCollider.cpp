@@ -1,6 +1,7 @@
 #include "BoxCollider.h"
 #include "RavelEngine.h"
 #include "CollisionManager.h"
+#include "Input.h"
 
 BoxCollider::BoxCollider() : hover(nullptr), click(nullptr), release(nullptr)
 {
@@ -32,14 +33,16 @@ void BoxCollider::OnDestory()
 void BoxCollider::CreateBoxCollider() {
 	_width = gameObject->transform->hscale * 2;
 	_height = gameObject->transform->vscale * 2;
-	GetCollision()->AddCollider(this, Vector2(_width, _height));
+	GetCollision()->AddCollider(this);
+	_rect = new RavelRect(gameObject->transform->right * _width, gameObject->transform->up * _height, gameObject->transform->position);
 }
 
 void BoxCollider::CreateBoxCollider(float width, float height)
 {
 	_width = width;
 	_height = height;
-	GetCollision()->AddCollider(this, Vector2(width, height));
+	GetCollision()->AddCollider(this);
+	_rect = new RavelRect(gameObject->transform->right * _width, gameObject->transform->up * _height, gameObject->transform->position);
 	//_Rect = new hgeRect(parent->position.x, parent->position.y, parent->position.x + width, parent->position.y + height);
 }
 
@@ -69,7 +72,20 @@ void BoxCollider::OnMouseRelease()
 {
 }
 
-void BoxCollider::OnCollision(BoxCollider * other)
+void BoxCollider::OnCollision2D(Collider2D * other)
 {
-	gameObject->OnCollisionEnter(other);
+	gameObject->OnCollisionEnter2D(other);
+}
+
+void BoxCollider::IntersectionTest(Collider2D* other) {
+
+}
+
+void BoxCollider::CursorIntersectionTest(Vector2 mouse) {
+	//do position testing remeber mouse position is in screen space
+	//convert mouse to world space
+	if (_rect->Intersect(mouse)) {
+		gameObject->OnMouseHover();
+		std::cout << "BoxCollider: OnMouseHover()" << std::endl;
+	}
 }

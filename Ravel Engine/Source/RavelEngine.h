@@ -52,6 +52,8 @@ public:
 
 	void SetWindowTitle(std::string const& title);
 
+	Matrix4x4 ScenceTransform() const;
+
 private:
 	RavelEngine();
 	~RavelEngine();
@@ -75,6 +77,8 @@ private:
 
 	bool _resetqueued = false;
 	bool _quit = false;
+
+	Matrix4x4 ref;
 };
 
 #endif
