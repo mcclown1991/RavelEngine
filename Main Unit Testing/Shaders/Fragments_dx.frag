@@ -1,4 +1,4 @@
-cbuffer alpha : register (cb0)
+cbuffer alpha : register(b0)
 {
 	float alpha;
 	int pad;

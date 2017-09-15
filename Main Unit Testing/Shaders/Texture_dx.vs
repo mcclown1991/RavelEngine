@@ -1,10 +1,10 @@
-cbuffer Transform : register (cb0) {
+cbuffer Transform : register (b0) {
 	matrix world;
 	matrix projection;
 	matrix camera;
 };
 
-cbuffer UV : register (cb1) {
+cbuffer UV : register (b1) {
 	float2 uv;
 	float2 scale;
 };
