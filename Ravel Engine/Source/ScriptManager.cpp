@@ -22,6 +22,12 @@ ScriptManager::ScriptManager()
 	RegisterFunctions(luaState);
 }
 
+void ScriptManager::RegisterLUAFunction() {
+	for (auto& item : luaFunc) {
+		lua_register(luaState, item.first.c_str(), item.second);
+	}
+}
+
 bool ScriptManager::LoadScript(const std::string script)
 {
 	std::list<std::string>::iterator itr = std::find(loaded_.begin(), loaded_.end(), script);
@@ -32,7 +38,7 @@ bool ScriptManager::LoadScript(const std::string script)
 	// Update Script Manager currently loaded scriptID //
 	this->scriptID_ = script;
 
-	std::string scriptPath = "Resources/Script/" + script;
+	std::string scriptPath = script;
 
 	if (luaL_dofile(luaState, scriptPath.c_str()))
 	{
@@ -52,21 +58,15 @@ bool ScriptManager::UpdateScript(std::string script, const std::string luaevent,
 	//script = "Resources/Script/" + script;
 	if (script.empty())
 	{
-		//std::cout << "LUA ERROR: Calling event " << luaevent << " on an object that does not exist\n";
-		return false;
-	}
-
-	if (script.empty())
-	{
-		//std::cout << "LUA ERROR: Calling event " << luaevent << " on an object that does not exist\n";
+		std::cout << "LUA ERROR: Calling event " << luaevent << " on an object that does not exist\n";
 		return false;
 	}
 
 	lua_getglobal(luaState, script.c_str());
 	if (!lua_istable(luaState, -1))
 	{
-		//std::cout << "LUA ERROR: Event " << luaevent << " called on : " << script <<
-		//" which does not exist.\n";
+		std::cout << "LUA ERROR: Event " << luaevent << " called on : " << script <<
+		" which does not exist.\n";
 		lua_pop(luaState, 2);
 		return false;
 	}
@@ -75,8 +75,8 @@ bool ScriptManager::UpdateScript(std::string script, const std::string luaevent,
 
 	if (!lua_isfunction(luaState, -1))
 	{
-		//std::cout << "LUA ERROR: Event " << luaevent << " does not exist for "
-		//<< script << std::endl;
+		std::cout << "LUA ERROR: Event " << luaevent << " does not exist for "
+		<< script << std::endl;
 		lua_pop(luaState, 2);
 		return false;
 	}
@@ -86,8 +86,8 @@ bool ScriptManager::UpdateScript(std::string script, const std::string luaevent,
 
 	if (lua_pcall(luaState, 2, 0, 0))
 	{
-		//std::cout << "LUA ERROR: While calling " << luaevent << " on " << script
-		//	<< " - " << lua_tostring(luaState, -1) << std::endl;
+		std::cout << "LUA ERROR: While calling " << luaevent << " on " << script
+			<< " - " << lua_tostring(luaState, -1) << std::endl;
 		lua_pop(luaState, 2);
 		return false;
 	}
@@ -107,4 +107,8 @@ void ScriptManager::Reset()
 	luaL_openlibs(luaState);
 	loaded_.clear();
 	RegisterFunctions(luaState);
+}
+
+void ScriptManager::AddFunction(std::string const& FunctionName, LuaFunction FunctionPointer) {
+	luaFunc.push_back(std::make_pair(FunctionName, FunctionPointer));
 }

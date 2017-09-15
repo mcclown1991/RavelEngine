@@ -6,12 +6,16 @@
 #include <stdio.h>
 #include <sstream>
 #include <list>
+#include <vector>
 
 extern "C" {
 #include "lua.h"
 #include "lualib.h"
 #include "lauxlib.h"
 }
+
+
+typedef int(*LuaFunction)(lua_State*);
 
 class ScriptManager
 {
@@ -24,11 +28,14 @@ public:
 	bool UpdateScript(std::string script, const std::string luaevent, std::size_t me, float dt);
 	void Resume();
 	void Reset();
+	void AddFunction(std::string const& FunctionName, LuaFunction FunctionPointer);
+	void RegisterLUAFunction();
 
 private:
 	lua_State* luaState;
 	std::list<std::string> loaded_;
 	std::string current_Script;
+	std::vector<std::pair<std::string, LuaFunction>> luaFunc;
 
 public:
 	std::string scriptID_;
@@ -78,4 +85,7 @@ bool ScriptManager::CallEvent(std::string script, const std::string luaevent, st
 }
 
 ScriptManager* GetScriptManager();
+
+
+
 #endif
