@@ -16,8 +16,13 @@ void CollisionManager::Update()
 	// Update mouse hovers
 	Vector2 mouse;
 	GetMousePos(mouse.x, mouse.y);
-	for (auto& iter : _colliders) {
-		iter->CursorIntersectionTest(mouse);
+
+	for (int i = 0; i < _colliders.size(); ++i) {
+		_colliders[i]->CursorIntersectionTest(mouse);
+
+		for (int j = i + 1; j < _colliders.size(); ++j) {
+			_colliders[i]->IntersectionTest(_colliders[j]);
+		}
 	}
 
 	//for (auto& iter : _colliders) {

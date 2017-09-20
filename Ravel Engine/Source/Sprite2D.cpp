@@ -28,10 +28,12 @@ void Sprite2D::OnDestory(){
 void Sprite2D::CreateTexture(std::string texture, float width, float height){
 	GetGraphicsManager()->Renderer()->CreateTexture(texture, m_SampleID);
 	m_Model = new Transform();
-	m_Model->hscale = width * 0.45f;
-	m_Model->vscale = height * 0.45f;
+	m_Model->hscale = width * 0.89f;
+	m_Model->vscale = height * 0.89f;
 	m_UV = Vector2(0.f, 0.f);
 	m_Size = Vector2(1, 1);
+
+	m_Dimension = Vector2(width, height);
 
 	GetGraphicsManager()->AddSprite(this);
 }

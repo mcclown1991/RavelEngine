@@ -35,7 +35,7 @@ public:
 	T* AddComponent();
 
 	template <typename T>
-	std::multimap<std::string, Component* >::const_iterator GetComponent();
+	T* GetComponent();
 	
 	template <typename T>
 	ComponentList GetComponents();
@@ -62,7 +62,6 @@ T* GameObject::AddComponent()
 {
 	T* newComp = new T();
 	m_Component_List.insert(std::pair<std::string, Component*>(typeid(T).name(), newComp));
-	//m_Component_List[typeid(T).name()] = newComp;
 	newComp->gameObject = this;
 	newComp->parent = transform;
 	newComp->transform = new Transform();
@@ -72,11 +71,14 @@ T* GameObject::AddComponent()
 }
 
 template <typename T>
-std::multimap<std::string, Component* >::const_iterator GameObject::GetComponent()
+T* GameObject::GetComponent()
 {
 	std::string identifier = typeid(T).name();
 	//return dynamic_cast<T*>(m_Component_List[identifier]);
-	return m_Component_List.find(identifier);
+	std::multimap<std::string, Component* >::const_iterator iter = m_Component_List.find(identifier);
+	if (iter == m_Component_List.end())
+		return nullptr;
+	return dynamic_cast<T*>(iter->second);
 }
 
 template <typename T>

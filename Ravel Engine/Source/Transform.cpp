@@ -37,8 +37,8 @@ Matrix3x3 Transform::GetTransforms()
 	transforms.m[3] = right.y * hscale;
 	transforms.m[4] = up.y * vscale;
 
-	transforms.m[2] = position.x;
-	transforms.m[5] = position.y;
+	transforms.m[2] = position.x * 0.89f;
+	transforms.m[5] = position.y * 0.89f;
 
 	return parent == nullptr ? transforms : parent->GetTransforms() * transforms;
 }
@@ -51,8 +51,8 @@ Matrix3x3 Transform::GetLocalTransforms() {
 	transforms.m[3] = right.y * hscale;
 	transforms.m[4] = up.y * vscale;
 
-	transforms.m[2] = position.x;
-	transforms.m[5] = position.y;
+	transforms.m[2] = position.x * 0.89f;
+	transforms.m[5] = position.y * 0.89f;
 
 	return transforms;
 }

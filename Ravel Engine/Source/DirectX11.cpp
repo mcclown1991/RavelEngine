@@ -443,10 +443,10 @@ HRESULT DirectX11::CreateMesh() {
 	// create 2 triangle using the VERTEX struct
 	VERTEX vertices[] =
 	{
-		VERTEX(-1.0f, -1.0f, 1.0f, 0.0f, 1.0f),
-		VERTEX(-1.0f, 1.0f, 1.0f, 0.0f, 0.0f),
-		VERTEX(1.0f, 1.0f, 1.0f, 1.0f, 0.0f),
-		VERTEX(1.0f, -1.0f, 1.0f, 1.0f, 1.0f)
+		VERTEX(-0.5f, -0.5f, 0.5f, 0.0f, 1.0f),
+		VERTEX(-0.5f, 0.5f, 0.5f, 0.0f, 0.0f),
+		VERTEX(0.5f, 0.5f, 0.5f, 1.0f, 0.0f),
+		VERTEX(0.5f, -0.5f, 0.5f, 1.0f, 1.0f)
 	};
 
 	DWORD indices[] = {

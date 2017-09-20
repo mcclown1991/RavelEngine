@@ -17,13 +17,16 @@ public:
 	void CreateTexture(std::string filename, float width, float height);
 	void Render();
 
+	Vector2 m_Dimension;
+
 private:
 	Transform* m_Model;
 	unsigned m_SampleID;
 	//rawTEXTURE* m_Texture;
 	Vector2 m_UV;
 	Vector2 m_Size;
-	Matrix3x3 m_Reference_Frame;
+
+	
 };
 
 #endif

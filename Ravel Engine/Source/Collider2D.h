@@ -29,4 +29,5 @@ protected:
 
 public :
 	Circle circle;
+	bool isRect;
 };

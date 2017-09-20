@@ -124,7 +124,7 @@ void GetMousePos(float& x, float& y) {
 		position = RavelEngine::GetRavelEngine()->ScenceTransform() * position;
 		x = position.x;
 		y = position.y;
-		//::cout << "X: " << x << "  Y: " << y << std::endl;
+		//std::cout << "X: " << x << "  Y: " << y << std::endl;
 	}
 }
 

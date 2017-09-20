@@ -21,8 +21,7 @@ void BoxCollider::OnStart()
 
 void BoxCollider::Update()
 {
-	OnMouseOver();
-	OnMouseClick();
+	_rect->Update(gameObject->transform->right * _width, gameObject->transform->up * _height, gameObject->transform->position);
 }
 
 void BoxCollider::OnDestory()
@@ -31,10 +30,19 @@ void BoxCollider::OnDestory()
 }
 
 void BoxCollider::CreateBoxCollider() {
-	_width = gameObject->transform->hscale * 2;
-	_height = gameObject->transform->vscale * 2;
+
+	Sprite2D* sp = gameObject->GetComponent<Sprite2D>();
+	if (sp != nullptr) {
+		_width = sp->m_Dimension.x;
+		_height = sp->m_Dimension.y;
+	}
+	else {
+		_width = gameObject->transform->hscale;
+		_height = gameObject->transform->vscale;
+	}
 	GetCollision()->AddCollider(this);
-	_rect = new RavelRect(gameObject->transform->right * _width, gameObject->transform->up * _height, gameObject->transform->position);
+	_rect = new RavelRect(Vector2(_width, _height));
+	isRect = true;
 }
 
 void BoxCollider::CreateBoxCollider(float width, float height)
@@ -42,30 +50,19 @@ void BoxCollider::CreateBoxCollider(float width, float height)
 	_width = width;
 	_height = height;
 	GetCollision()->AddCollider(this);
-	_rect = new RavelRect(gameObject->transform->right * _width, gameObject->transform->up * _height, gameObject->transform->position);
+	_rect = new RavelRect(Vector2(_width, _height));
 	//_Rect = new hgeRect(parent->position.x, parent->position.y, parent->position.x + width, parent->position.y + height);
+	isRect = true;
 }
 
 void BoxCollider::OnMouseOver()
 {
-	//HGE* hge = RavelEngine::GetRavelEngine()->GetHGE();
-	//float x, y;
-	/*hge->Input_GetMousePos(&x, &y);
-	if (_Rect->TestPoint(x, y)) {
-		gameObject->OnMouseHover();
-	}*/
 	
 }
 
 void BoxCollider::OnMouseClick()
 {
-	/*HGE* hge = RavelEngine::GetRavelEngine()->GetHGE();
-	float x, y;
-	hge->Input_GetMousePos(&x, &y);
-	if (_Rect->TestPoint(x, y)) {
-		if (hge->Input_KeyDown(HGEK_LBUTTON))
-			gameObject->OnMouseDown();
-	}*/
+
 }
 
 void BoxCollider::OnMouseRelease()
@@ -78,7 +75,13 @@ void BoxCollider::OnCollision2D(Collider2D * other)
 }
 
 void BoxCollider::IntersectionTest(Collider2D* other) {
-
+	if (other->isRect) {
+		if (_rect->Intersect(static_cast<BoxCollider*>(other)->_rect)) {
+			gameObject->OnCollisionEnter2D(other);
+			other->gameObject->OnCollisionEnter2D(this);
+			std::cout << gameObject->name << " :: " << "BoxCollider: OnCollisionEnter()" << "->" << other->gameObject->name << std::endl;
+		}
+	}
 }
 
 void BoxCollider::CursorIntersectionTest(Vector2 mouse) {
@@ -86,6 +89,6 @@ void BoxCollider::CursorIntersectionTest(Vector2 mouse) {
 	//convert mouse to world space
 	if (_rect->Intersect(mouse)) {
 		gameObject->OnMouseHover();
-		std::cout << "BoxCollider: OnMouseHover()" << std::endl;
+		std::cout << gameObject->name << " :: " << "BoxCollider: OnMouseHover()" << std::endl;
 	}
 }
