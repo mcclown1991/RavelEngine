@@ -16,4 +16,20 @@ public:
 	Vector2 x, y;
 
 	Matrix3x3 v, r;
+
+	Vector2 TopLeft() {
+		return origin + y;
+	}
+
+	Vector2 TopRight() {
+		return origin + x + y;
+	}
+
+	Vector2 BottomLeft() {
+		return origin;
+	}
+
+	Vector2 BottomRight() {
+		return origin + x;
+	}
 };

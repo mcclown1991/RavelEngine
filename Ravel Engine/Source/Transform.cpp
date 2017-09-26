@@ -61,7 +61,7 @@ void Transform::Rotate(float angle)
 {
 	angle = (3.14125f / 180.0f) * angle;
 	localEulerAngles += angle;
-	up = Vector2(-sin(-localEulerAngles), cos(-localEulerAngles));
+	up = Vector2(-sin(localEulerAngles), cos(localEulerAngles));
 	right = Vector2(up.y, -up.x);
 }
 
