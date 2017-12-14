@@ -14,14 +14,14 @@ public:
 
 	// Component must have functions
 	
-	virtual void OnStart() = 0;
-	virtual void Update() = 0;
-	virtual void OnDestory() = 0;
+	//virtual void OnStart() = 0;
+	//virtual void Update() = 0;
+	//virtual void OnDestory() = 0;
 
-	virtual void OnMouseDown() {}
-	virtual void OnMouseHover() {}
+	//virtual void OnMouseDown() {}
+	//virtual void OnMouseHover() {}
 
-	virtual void OnCollisionEnter2D(Collider2D*) {}
+	//virtual void OnCollisionEnter2D(Collider2D*) {}
 
 	virtual std::size_t GetInstanceID() {
 		return instanceID(name);

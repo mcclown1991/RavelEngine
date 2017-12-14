@@ -15,6 +15,7 @@
 #include "WindowsHandle.h"
 #include "DirectX11.h"
 #include "OpenGL.h"
+#include "Time.h"
 
 class RavelEngine{
 public:

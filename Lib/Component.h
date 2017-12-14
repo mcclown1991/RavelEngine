@@ -16,11 +16,11 @@ public:
 	Component();
 	virtual ~Component();
 
-	virtual void OnStart();
-	virtual void Update();
-	virtual void OnDestory();
+	//virtual void OnStart();
+	//virtual void Update();
+	//virtual void OnDestory();
 
-	virtual void SetActive(bool isactive);
+	//virtual void SetActive(bool isactive);
 
 	//variables
 	GameObject* gameObject;

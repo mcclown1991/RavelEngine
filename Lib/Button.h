@@ -1,10 +1,10 @@
 #pragma once
 #include "RavelEngine.h"
-#include "Component.h"
+#include "RavelBehaviour.h"
 #include "Factory.h"
 
 template <class T>
-class Button : public Component {
+class Button : public RavelBehaviour {
 public:
 	Button();
 	virtual ~Button();

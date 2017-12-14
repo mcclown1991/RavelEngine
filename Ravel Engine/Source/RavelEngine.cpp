@@ -143,6 +143,7 @@ bool RavelEngine::Update() {
 		GetCollision()->Update();
 		GetStateManager()->StateUpdate();
 		GetGraphicsManager()->Render();
+		GetTime()->deltaTime = dt;
 	}
 
 	pWindow->EndFrame();

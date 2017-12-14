@@ -37,6 +37,11 @@ void Fuzzy_Scene::Init()
 	col = m_Door1->AddComponent<BoxCollider>();
 	col->CreateBoxCollider();
 	
+
+	xb = new XBOXController(1);
+	if (xb->Refesh()) std::cout << "Refreshed";
+	if (xb->IsConnected()) std::cout << "XBox controller is connected";
+	
 }
 
 void Fuzzy_Scene::Load()
@@ -67,6 +72,14 @@ void Fuzzy_Scene::Update()
 		m_trans->Rotate(1);
 		std::cout << m_trans->localEulerAngles << std::endl;
 	}
+
+	xb->GetState();
+	xb->Vibrate(60000, 60000);
+	if (!xb->Refesh()) {
+		std::cout << "Not connected";
+	}
+	if (xb->LeftStickAngle() > 0)
+		std::cout << "Dop";
 }
 
 void Fuzzy_Scene::Free()

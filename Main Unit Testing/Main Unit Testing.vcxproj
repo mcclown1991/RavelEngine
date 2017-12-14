@@ -156,6 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Fuzzy_Scene.h" />
+    <ClInclude Include="Source\Timer.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shaders\Fragments_dx.frag">

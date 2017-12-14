@@ -1,28 +1,17 @@
 #ifndef TIME_H
 #define TIME_H
 
-#include "Component.h"
 #include "RavelEngine.h"
 
-class Time : public Component {
+class Time {
 public:
 	Time();
-	virtual ~Time();
+	~Time();
 
-	virtual void OnStart();
-	virtual void Update();
-	virtual void OnDestory();
-
-	float GetTimeElapsed();
-	void StartTimer();
-	void PauseTimer();
-	float QueryTimer();
-	float StopTimer();
-
-private:
-	//HGE* hge;
-	float _dt;
-	bool _timertick;
+public:
+	float deltaTime;
 };
+
+Time* GetTime();
 
 #endif

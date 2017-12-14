@@ -71,14 +71,14 @@ void BoxCollider::OnMouseRelease()
 
 void BoxCollider::OnCollision2D(Collider2D * other)
 {
-	gameObject->OnCollisionEnter2D(other);
+	//gameObject->OnCollisionEnter2D(other);
 }
 
 void BoxCollider::IntersectionTest(Collider2D* other) {
 	if (other->isRect) {
 		if (_rect->Intersect(static_cast<BoxCollider*>(other)->_rect)) {
-			gameObject->OnCollisionEnter2D(other);
-			other->gameObject->OnCollisionEnter2D(this);
+			//gameObject->OnCollisionEnter2D(other);
+			//other->gameObject->OnCollisionEnter2D(this);
 			std::cout << gameObject->name << " :: " << "BoxCollider: OnCollisionEnter()" << "->" << other->gameObject->name << std::endl;
 		}
 	}
@@ -88,7 +88,7 @@ void BoxCollider::CursorIntersectionTest(Vector2 mouse) {
 	//do position testing remeber mouse position is in screen space
 	//convert mouse to world space
 	if (_rect->Intersect(mouse)) {
-		gameObject->OnMouseHover();
+		//gameObject->OnMouseHover();
 		std::cout << gameObject->name << " :: " << "BoxCollider: OnMouseHover()" << std::endl;
 	}
 }

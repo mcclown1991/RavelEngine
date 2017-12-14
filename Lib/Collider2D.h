@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Component.h"
+#include "RavelBehaviour.h"
 #include "Transform.h"
 
-class Collider2D : public Component {
+class Collider2D : public RavelBehaviour {
 public:
 	Collider2D();
 	virtual ~Collider2D();

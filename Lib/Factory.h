@@ -8,6 +8,8 @@
 #include "GameObject.h"
 #include "GraphicsManager.h"
 
+
+#undef SendMessage
 class Factory : public System
 {
 private:
@@ -24,12 +26,12 @@ public:
 	virtual void Init() {}
 	virtual void Update() {
 		for (auto& iter : _go){
-			iter.second->Update();
+			iter.second->SendMessage("Update");
 		}
 	}
 	void Quit(){
 		for (auto& iter : _go){
-			iter.second->OnDestory();
+			iter.second->SendMessage("OnDestory");
 		}
 		_go.clear();
 	}
@@ -38,8 +40,6 @@ public:
 	void CreateEmptyObject();
 	pGOC& GetGameObject(const std::string&);
 
-	//template <typename T>
-	//std::unique_ptr<T>& CreateComponent();
 };
 
 Factory* factory();

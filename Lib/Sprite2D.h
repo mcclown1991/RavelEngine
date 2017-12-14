@@ -1,11 +1,11 @@
 #ifndef SPRITE2D_H
 #define SPRITE2D_H
 
-#include "Component.h"
+#include "RavelBehaviour.h"
 #include "sprite.h"
 #include "Transform.h"
 
-class Sprite2D : public Component{
+class Sprite2D : public RavelBehaviour{
 public:
 	Sprite2D();
 	virtual ~Sprite2D();

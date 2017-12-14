@@ -7,19 +7,3 @@ Component::Component() : gameObject(nullptr), tag(), parent(nullptr), transform(
 Component::~Component(){
 	
 }
-
-void Component::OnStart(){
-
-}
-
-void Component::Update(){
-
-}
-
-void Component::OnDestory(){
-
-}
-
-void Component::SetActive(bool isactive){
-	IsActive = isactive;
-}

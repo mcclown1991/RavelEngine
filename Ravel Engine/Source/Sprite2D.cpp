@@ -2,7 +2,7 @@
 #include "RavelEngine.h"
 #include "GraphicsManager.h"
 
-Sprite2D::Sprite2D() : Component(){
+Sprite2D::Sprite2D() : RavelBehaviour(){
 
 }
 

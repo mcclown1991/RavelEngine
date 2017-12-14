@@ -2,9 +2,9 @@
 #define TEXT_H
 
 #include <string>
-#include "Component.h"
+#include "RavelBehaviour.h"
 
-class Text : public Component {
+class Text : public RavelBehaviour {
 public:
 	Text();
 	virtual ~Text();

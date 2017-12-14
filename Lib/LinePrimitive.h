@@ -1,10 +1,10 @@
 #ifndef LINEPRIMITIVE
 #define LINEPRIMITIVE
 
-#include "Component.h"
+#include "RavelBehaviour.h"
 #include "Transform.h"
 
-class LinePrimitive : public Component{
+class LinePrimitive : public RavelBehaviour{
 public :
 	LinePrimitive();
 	virtual ~LinePrimitive();

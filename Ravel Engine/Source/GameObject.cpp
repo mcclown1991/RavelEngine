@@ -3,6 +3,12 @@
 GameObject::GameObject() : RavelObject(), transform(new Transform()), IsActive(true), m_Component_List()
 {
 	std::cout << "Gameobject created!" << std::endl;
+
+	m_Functionptr["Update"] = &GameObject::Update;
+	m_Functionptr["OnDestory"] = &GameObject::OnDestory;
+	m_Functionptr["OnMouseDown"] = &GameObject::OnMouseDown;
+
+	m_ColFunctionptr["OnCollisionEnter2D"] = &GameObject::OnCollisionEnter2D;
 }
 
 GameObject::~GameObject(){
@@ -12,10 +18,6 @@ GameObject::~GameObject(){
 		delete iter.second;
 	}
 	m_Component_List.clear();
-}
-
-void GameObject::OnStart(){
-
 }
 
 void GameObject::Update(){
@@ -53,11 +55,21 @@ bool GameObject::Draw()
 void GameObject::SetActive(bool isactive){
 	IsActive = isactive;
 	for (auto iter : m_Component_List){
-		iter.second->SetActive(IsActive);
+		iter.second->enabled = IsActive;
 	}
 }
 
 void GameObject::AddParent(Transform* trans)
 {
 	transform->parent = trans;
+}
+
+void GameObject::SendMessage(std::string const & functionName)
+{
+	(this->*m_Functionptr[functionName])();
+}
+
+void GameObject::SendMessage(std::string const & functionName, Collider2D * other)
+{
+	(this->*m_ColFunctionptr[functionName])(other);
 }

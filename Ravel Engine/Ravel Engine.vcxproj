@@ -89,6 +89,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Behaviour.h" />
     <ClInclude Include="Source\BoxCollider.h" />
     <ClInclude Include="Source\Button.h" />
     <ClInclude Include="Source\Collider2D.h" />
@@ -109,6 +110,7 @@
     <ClInclude Include="Source\Matrix3x3.h" />
     <ClInclude Include="Source\Matrix4x4.h" />
     <ClInclude Include="Source\OpenGL.h" />
+    <ClInclude Include="Source\RavelBehaviour.h" />
     <ClInclude Include="Source\RavelEngine.h" />
     <ClInclude Include="Source\RavelMath.h" />
     <ClInclude Include="Source\RavelObject.h" />
@@ -128,6 +130,7 @@
     <ClInclude Include="Source\WindowsHandle.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Behaviour.cpp" />
     <ClCompile Include="Source\BoxCollider.cpp" />
     <ClCompile Include="Source\Collider2D.cpp" />
     <ClCompile Include="Source\CollisionManager.cpp" />

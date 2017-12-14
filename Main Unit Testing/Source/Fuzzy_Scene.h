@@ -7,6 +7,7 @@
 #include "Factory.h"
 #include "RavelEngine.h"
 #include "BoxCollider.h"
+#include "Input.h"
 
 class Fuzzy_Scene : public GameState {
 public:
@@ -32,6 +33,8 @@ public:
 
 private:
 	static Fuzzy_Scene _Scene;	//!< static instance of state
+
+	XBOXController *xb;
 
 };
 

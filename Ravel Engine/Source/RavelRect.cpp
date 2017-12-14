@@ -37,7 +37,7 @@ bool RavelRect::Intersect(RavelRect* rect) {
 	Vector2 bottom_left = v * rect->BottomLeft();
 
 	//check target origin is withing bounds
-	std::cout << "Target position: X " << bottom_left.x << ", Y " << bottom_left.y << std::endl;
+	//std::cout << "Target position: X " << bottom_left.x << ", Y " << bottom_left.y << std::endl;
 
 	//try AABB first
 	//bottom left

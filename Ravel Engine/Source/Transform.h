@@ -1,10 +1,10 @@
 #ifndef TRANSFORM_H
 #define TRANSFORM_H
 
-#include "Component.h"
+#include "RavelBehaviour.h"
 #include "Matrix3x3.h"
 
-class Transform : public Component{
+class Transform : public RavelBehaviour {
 public:
 	Transform();
 	virtual ~Transform();

@@ -1,6 +1,6 @@
 #include "Transform.h"
 
-Transform::Transform() : Component(), up(0, 1), right(1, 0), position(0, 0), localEulerAngles(0.f), hscale(1.f), vscale(1.f){
+Transform::Transform() : RavelBehaviour(), up(0, 1), right(1, 0), position(0, 0), localEulerAngles(0.f), hscale(1.f), vscale(1.f){
 }
 
 Transform::~Transform(){
