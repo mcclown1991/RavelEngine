@@ -22,7 +22,7 @@ void Factory::LoadFromFile(const std::string& file)
 Factory::pGOC& Factory::CreateGameObject(const std::string& name)
 {
 	int id = HASH(name);
-	_go[id] = std::unique_ptr<GameObject>();
+	//_go[id] = std::unique_ptr<GameObject>();
 	_go[id] = std::make_unique<GameObject>();
 	_go[id]->name = name;
 	return _go[id];
@@ -31,7 +31,7 @@ Factory::pGOC& Factory::CreateGameObject(const std::string& name)
 void Factory::CreateEmptyObject()
 {
 	std::string _empty("empty");
-	_go[HASH(_empty)] = std::unique_ptr<GameObject>();
+	_go[HASH(_empty)] = std::make_unique<GameObject>();
 }
 
 Factory::pGOC& Factory::GetGameObject(const std::string& name)

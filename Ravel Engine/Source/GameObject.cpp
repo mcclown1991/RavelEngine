@@ -1,6 +1,7 @@
 #include "GameObject.h"
 
-GameObject::GameObject() : RavelObject(), transform(new Transform()), IsActive(true), m_Component_List()
+GameObject::GameObject() : RavelObject(), transform(
+	Transform()), IsActive(true), m_Component_List()
 {
 	std::cout << "Gameobject created!" << std::endl;
 
