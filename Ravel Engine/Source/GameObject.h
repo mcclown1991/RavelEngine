@@ -70,6 +70,8 @@ private:
 	void OnMouseDown();
 
 	void OnCollisionEnter2D(Collider2D* other);
+	void OnCollisionStay2D(Collider2D* other);
+	void OnCollisionExit2D(Collider2D* other);
 };
 
 
@@ -81,7 +83,7 @@ T* GameObject::AddComponent()
 	m_Component_List.insert(std::pair<std::string, RavelBehaviour*>(typeid(T).name(), newComp));
 	newComp->gameObject = this;
 	newComp->parent = transform;
-	newpComp->transform = Memory()->alloc<Transform>();
+	newComp->transform = Memory()->alloc<Transform>();
 	//newComp->transform = new Transform();
 	newComp->transform->parent = transform;
 	newComp->OnStart();

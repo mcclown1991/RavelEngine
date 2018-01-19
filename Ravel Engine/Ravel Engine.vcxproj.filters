@@ -67,6 +67,9 @@
     <Filter Include="Behaviour">
       <UniqueIdentifier>{05829b7b-58ff-43e2-9f0a-63fcb28fa87b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Systems\Memory System">
+      <UniqueIdentifier>{65fa1431-3144-4861-8786-8cd5bcc04edb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -183,6 +186,9 @@
     <ClInclude Include="Source\RavelBehaviour.h">
       <Filter>Behaviour</Filter>
     </ClInclude>
+    <ClInclude Include="Source\MemoryManager.h">
+      <Filter>Systems\Memory System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\global.cpp">
@@ -274,6 +280,9 @@
     </ClCompile>
     <ClCompile Include="Source\Behaviour.cpp">
       <Filter>Behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MemoryManager.cpp">
+      <Filter>Systems\Memory System</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

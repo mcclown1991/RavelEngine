@@ -5,7 +5,7 @@ class MemoryManager {
 
 	// Memory structure
 private:
-	typedef struct _block {
+	struct _block {
 		struct _block *next;
 		struct _block *prev;
 		size_t size;

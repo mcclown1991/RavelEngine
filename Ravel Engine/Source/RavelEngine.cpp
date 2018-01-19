@@ -59,6 +59,7 @@ void RavelEngine::SystemInit(HINSTANCE hInstance, int nCmdShow) {
 		break;
 	}
 
+	Memory()->AllocateBlock(1024);
 	SCREENHEIGHT = pWindow->getWindowHandle()->Height;
 	SCREENWIDTH = pWindow->getWindowHandle()->Width;
 	pRenderer->Initialise(pWindow->getWindowHandle()->hWnd, pWindow->getWindowHandle()->Width, pWindow->getWindowHandle()->Height, pWindow->getWindowHandle()->Windowed);

@@ -109,6 +109,7 @@
     <ClInclude Include="Source\main.h" />
     <ClInclude Include="Source\Matrix3x3.h" />
     <ClInclude Include="Source\Matrix4x4.h" />
+    <ClInclude Include="Source\MemoryManager.h" />
     <ClInclude Include="Source\OpenGL.h" />
     <ClInclude Include="Source\RavelBehaviour.h" />
     <ClInclude Include="Source\RavelEngine.h" />
@@ -146,6 +147,7 @@
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Matrix3x3.cpp" />
     <ClCompile Include="Source\Matrix4x4.cpp" />
+    <ClCompile Include="Source\MemoryManager.cpp" />
     <ClCompile Include="Source\OpenGL.cpp" />
     <ClCompile Include="Source\RavelEngine.cpp" />
     <ClCompile Include="Source\RavelRect.cpp" />

@@ -49,6 +49,9 @@ MemoryManager::~MemoryManager()
 void MemoryManager::AllocateBlock(size_t block_size)
 {
 	mempool = malloc(block_size);
+	head = CreateBlock(block_size);
+	head->pool = mempool;
+	vtable[head->pool] = head;
 }
 
 MemoryManager::Pool * MemoryManager::alloc(size_t size)

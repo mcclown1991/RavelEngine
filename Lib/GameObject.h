@@ -9,6 +9,7 @@
 #include "Transform.h"
 #include "Sprite2D.h"
 #include "Collider2D.h"
+#include "MemoryManager.h"
 
 #undef SendMessage
 class GameObject : public RavelObject
@@ -69,17 +70,21 @@ private:
 	void OnMouseDown();
 
 	void OnCollisionEnter2D(Collider2D* other);
+	void OnCollisionStay2D(Collider2D* other);
+	void OnCollisionExit2D(Collider2D* other);
 };
 
 
 template <class T>
 T* GameObject::AddComponent()
 {
-	T* newComp = new T();
+	T* newComp = Memory()->alloc<T>();
+	//T* newComp = new T();
 	m_Component_List.insert(std::pair<std::string, RavelBehaviour*>(typeid(T).name(), newComp));
 	newComp->gameObject = this;
 	newComp->parent = transform;
-	newComp->transform = new Transform();
+	newComp->transform = Memory()->alloc<Transform>();
+	//newComp->transform = new Transform();
 	newComp->transform->parent = transform;
 	newComp->OnStart();
 	return newComp;

@@ -1,7 +1,6 @@
 #include "GameObject.h"
 
-GameObject::GameObject() : RavelObject(), transform(
-	Transform()), IsActive(true), m_Component_List()
+GameObject::GameObject() : RavelObject(), transform(new Transform()), IsActive(true), m_Component_List()
 {
 	std::cout << "Gameobject created!" << std::endl;
 
@@ -10,6 +9,8 @@ GameObject::GameObject() : RavelObject(), transform(
 	m_Functionptr["OnMouseDown"] = &GameObject::OnMouseDown;
 
 	m_ColFunctionptr["OnCollisionEnter2D"] = &GameObject::OnCollisionEnter2D;
+	m_ColFunctionptr["OnCollisionStay2D"] = &GameObject::OnCollisionStay2D;
+	m_ColFunctionptr["OnCollisionExit2D"] = &GameObject::OnCollisionExit2D;
 }
 
 GameObject::~GameObject(){
@@ -45,6 +46,20 @@ void GameObject::OnCollisionEnter2D(Collider2D * other)
 {
 	for (auto iter : m_Component_List) {
 		iter.second->OnCollisionEnter2D(other);
+	}
+}
+
+void GameObject::OnCollisionStay2D(Collider2D * other)
+{
+	for (auto iter : m_Component_List) {
+		iter.second->OnCollisionStay2D(other);
+	}
+}
+
+void GameObject::OnCollisionExit2D(Collider2D * other)
+{
+	for (auto iter : m_Component_List) {
+		iter.second->OnCollisionExit2D(other);
 	}
 }
 
