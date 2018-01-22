@@ -8,6 +8,9 @@ class Text : public RavelBehaviour {
 public:
 	Text();
 	virtual ~Text();
+	virtual Text* Clone() {
+		return Memory()->alloc<Text>();
+	}
 
 	virtual void OnStart();
 	virtual void Update();

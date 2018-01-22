@@ -8,6 +8,9 @@ class Transform : public RavelBehaviour {
 public:
 	Transform();
 	virtual ~Transform();
+	virtual Transform* Clone() {
+		return Memory()->alloc<Transform>();
+	}
 
 	virtual void OnStart();
 	virtual void Update();

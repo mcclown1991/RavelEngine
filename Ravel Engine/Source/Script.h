@@ -9,6 +9,9 @@ class Script : public Component {
 public:
 	Script();
 	virtual ~Script();
+	virtual Script* Clone() {
+		return Memory()->alloc<Script>();
+	}
 
 	virtual void OnStart();
 	virtual void Update();

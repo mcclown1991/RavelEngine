@@ -2,6 +2,7 @@
 #define COMPONENT_H
 
 #include <string>
+#include "MemoryManager.h"
 #include "RavelObject.h"
 
 //Data Types for components
@@ -15,6 +16,9 @@ class Component : public RavelObject {
 public:
 	Component();
 	virtual ~Component();
+	virtual Component* Clone() {
+		return Memory()->alloc<Component>();
+	}
 
 	//virtual void OnStart();
 	//virtual void Update();

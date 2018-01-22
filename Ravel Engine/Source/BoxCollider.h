@@ -8,6 +8,9 @@ class BoxCollider : public Collider2D {
 public:
 	BoxCollider();
 	virtual ~BoxCollider();
+	virtual BoxCollider* Clone() {
+		return Memory()->alloc<BoxCollider>();
+	}
 
 	virtual void OnStart();
 	virtual void Update();

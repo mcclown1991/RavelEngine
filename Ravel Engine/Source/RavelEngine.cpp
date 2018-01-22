@@ -71,7 +71,14 @@ void RavelEngine::SystemInit(HINSTANCE hInstance, int nCmdShow) {
 #ifdef _DEBUG
 	std::cout << "Done!" << std::endl;
 	std::cout << "=============================================================" << std::endl;
+	std::cout << "Setting up Component Factory settings.........." << std::endl;
 #endif
+	factory()->Init();
+#ifdef _DEBUG
+	std::cout << "Done!" << std::endl;
+	std::cout << "=============================================================" << std::endl;
+#endif
+
 }
 
 void RavelEngine::SetWindowTitle(std::string const& title) {

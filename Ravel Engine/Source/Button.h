@@ -8,6 +8,9 @@ class Button : public RavelBehaviour {
 public:
 	Button();
 	virtual ~Button();
+	virtual Button* Clone() {
+		return Memory()->alloc<Button>();
+	}
 
 	virtual void OnStart();
 	virtual void Update();
