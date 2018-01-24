@@ -1,7 +1,9 @@
 #pragma once
 
+#include <array>
 #include "RavelBehaviour.h"
 #include "Transform.h"
+#include "RavelRect.h"
 
 class Collider2D : public RavelBehaviour {
 public:
@@ -29,5 +31,6 @@ protected:
 
 public :
 	Circle circle;
-	bool isRect;
+	RavelRect* rect;
+	std::array<int, 4> hashkey;
 };

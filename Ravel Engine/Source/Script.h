@@ -5,7 +5,7 @@
 #include "GameObject.h"
 #include "ScriptManager.h"
 
-class Script : public Component {
+class Script : public RavelBehaviour {
 public:
 	Script();
 	virtual ~Script();

@@ -36,8 +36,5 @@ private:
 	//hgeRect*	_Rect;
 	float		_width;
 	float		_height;
-
-protected:
-	RavelRect*	_rect;
 };
 #endif

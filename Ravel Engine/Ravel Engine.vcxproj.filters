@@ -189,6 +189,9 @@
     <ClInclude Include="Source\MemoryManager.h">
       <Filter>Systems\Memory System</Filter>
     </ClInclude>
+    <ClInclude Include="Source\SpatialHash.h">
+      <Filter>Systems\Collision System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\global.cpp">
@@ -283,6 +286,9 @@
     </ClCompile>
     <ClCompile Include="Source\MemoryManager.cpp">
       <Filter>Systems\Memory System</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SpatialHash.cpp">
+      <Filter>Systems\Collision System</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
