@@ -5,10 +5,20 @@ CollisionManager::CollisionManager()
 {
 }
 
+void CollisionManager::InitCollisionMangaer()
+{
+	_spatialMap = new SpatialHash(10);
+}
+
 sInt32 CollisionManager::AddCollider(Collider2D * col)
 {
 	_colliders.push_back(col);
-	return 0;
+	return _colliders.size() - 1;
+}
+
+void CollisionManager::UpdateCollider(sInt32 colID)
+{
+	_spatialMap->HashCollider(_colliders[colID]);
 }
 
 void CollisionManager::Update()

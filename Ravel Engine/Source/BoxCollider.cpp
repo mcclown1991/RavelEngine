@@ -19,6 +19,7 @@ void BoxCollider::OnStart()
 void BoxCollider::Update()
 {
 	rect->Update(gameObject->transform->right * _width, gameObject->transform->up * _height, gameObject->transform->position);
+	GetCollision()->UpdateCollider(colManagerID);
 }
 
 void BoxCollider::OnDestory()
@@ -37,7 +38,7 @@ void BoxCollider::CreateBoxCollider() {
 		_width = gameObject->transform->hscale;
 		_height = gameObject->transform->vscale;
 	}
-	GetCollision()->AddCollider(this);
+	colManagerID = GetCollision()->AddCollider(this);
 	rect = new RavelRect(Vector2(_width, _height));
 }
 
@@ -45,7 +46,7 @@ void BoxCollider::CreateBoxCollider(float width, float height)
 {
 	_width = width;
 	_height = height;
-	GetCollision()->AddCollider(this);
+	colManagerID = GetCollision()->AddCollider(this);
 	rect = new RavelRect(Vector2(_width, _height));
 }
 

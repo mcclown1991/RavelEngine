@@ -59,7 +59,7 @@ void RavelEngine::SystemInit(HINSTANCE hInstance, int nCmdShow) {
 		break;
 	}
 
-	Memory()->AllocateBlock(1024);
+	
 	SCREENHEIGHT = pWindow->getWindowHandle()->Height;
 	SCREENWIDTH = pWindow->getWindowHandle()->Width;
 	pRenderer->Initialise(pWindow->getWindowHandle()->hWnd, pWindow->getWindowHandle()->Width, pWindow->getWindowHandle()->Height, pWindow->getWindowHandle()->Windowed);
@@ -67,7 +67,18 @@ void RavelEngine::SystemInit(HINSTANCE hInstance, int nCmdShow) {
 
 	ref.m[3] = -SCREENWIDTH >> 1;
 	ref.m[7] = -SCREENHEIGHT >> 1;
-
+#ifdef _DEBUG
+	std::cout << "Done!" << std::endl;
+	std::cout << "=============================================================" << std::endl;
+	std::cout << "Setting up Collision Manager settings.........." << std::endl;
+#endif
+	GetCollision()->InitCollisionMangaer();
+#ifdef _DEBUG
+	std::cout << "Done!" << std::endl;
+	std::cout << "=============================================================" << std::endl;
+	std::cout << "Setting up Memory settings.........." << std::endl;
+#endif
+	Memory()->AllocateBlock(1000000000);
 #ifdef _DEBUG
 	std::cout << "Done!" << std::endl;
 	std::cout << "=============================================================" << std::endl;

@@ -28,6 +28,7 @@ protected:
 		Vector2 Origin;
 		float Radius;
 	};
+	sInt32 colManagerID;
 
 public :
 	Circle circle;

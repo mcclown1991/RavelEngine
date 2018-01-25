@@ -15,10 +15,10 @@ SpatialHash::~SpatialHash()
 void SpatialHash::HashCollider(Collider2D * col)
 {
 	int hash[4];
-	hash[0] = Hash(col->rect->TopLeft);
-	hash[1] = Hash(col->rect->TopRight);
-	hash[2] = Hash(col->rect->BottomLeft);
-	hash[3] = Hash(col->rect->BottomRight);
+	hash[0] = Hash(col->rect->TopLeft());
+	hash[1] = Hash(col->rect->TopRight());
+	hash[2] = Hash(col->rect->BottomLeft());
+	hash[3] = Hash(col->rect->BottomRight());
 	
 	col->hashkey[0] = hash[0];
 	bool uq = true;
@@ -29,23 +29,25 @@ void SpatialHash::HashCollider(Collider2D * col)
 				uq = false;
 		}
 		if (uq) col->hashkey[i] = hash[i];
-		else col->hashkey[i] = -1;
+		else col->hashkey[i] = NULL;
 	}
 
 	//add to map
 	for (int key : col->hashkey) {
 		std::vector<Collider2D*>& bucket = _map[key];
-		if (key != -1)
+		if (key != NULL) {
 			std::vector<Collider2D*>::iterator it = std::find(bucket.begin(), bucket.end(), col);
-		//need to find dups	
-		_map[key].push_back(col);
+			if(it == bucket.end())
+				//need to find dups	
+				_map[key].push_back(col);
+		}
 	}
 }
 
 int SpatialHash::Hash(Vector2 const& point)
 {
-	int x = point.x / _x;
-	int y = point.y / _y;
+	int x = (int)std::ceil(point.x / (float)_x);
+	int y = (int)std::ceil(point.y / (float)_y);
 	int power = 1;
 	if (y != 0) {
 		power = (int)pow(10.0, (double)((int)log10((double)y)) + 1.0);
