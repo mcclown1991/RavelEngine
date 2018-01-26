@@ -1,6 +1,5 @@
 #pragma once
 
-#include <array>
 #include "RavelBehaviour.h"
 #include "Transform.h"
 #include "RavelRect.h"
@@ -33,5 +32,5 @@ protected:
 public :
 	Circle circle;
 	RavelRect* rect;
-	std::array<int, 4> hashkey;
+	size_t hashkey;
 };

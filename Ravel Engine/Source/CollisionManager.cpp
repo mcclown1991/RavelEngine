@@ -18,7 +18,9 @@ sInt32 CollisionManager::AddCollider(Collider2D * col)
 
 void CollisionManager::UpdateCollider(sInt32 colID)
 {
-	_spatialMap->HashCollider(_colliders[colID]);
+	size_t hash = _spatialMap->HashCollider(_colliders[colID]);
+	_spatialMap->InsertColliderWithUpdate(_colliders[colID], hash);
+	_colliders[colID]->hashkey = hash;
 }
 
 void CollisionManager::Update()
@@ -30,9 +32,19 @@ void CollisionManager::Update()
 	for (int i = 0; i < _colliders.size(); ++i) {
 		_colliders[i]->CursorIntersectionTest(mouse);
 
-		for (int j = i + 1; j < _colliders.size(); ++j) {
+		/*for (int j = i + 1; j < _colliders.size(); ++j) {
 			_colliders[i]->IntersectionTest(_colliders[j]);
+		}*/
+
+		//local bucket collision test
+		std::vector<Collider2D*> temp = _spatialMap->GetBucket(i);
+		for (Collider2D* col : temp) {
+			if(_colliders[i] != col)
+				_colliders[i]->IntersectionTest(col);
 		}
+
+
+		//neighbour bucket collision test
 	}
 
 	//for (auto& iter : _colliders) {

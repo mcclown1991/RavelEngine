@@ -10,7 +10,13 @@ public:
 	SpatialHash(int bucketsize_x, int bucketsize_y);
 	~SpatialHash();
 
-	void HashCollider(Collider2D* col);
+	size_t HashCollider(Collider2D* col);
+	void InsertCollider(Collider2D* col);
+	void InsertCollider(Collider2D* col, size_t hash);
+	void InsertColliderWithUpdate(Collider2D* col, size_t new_hash);
+	void RemoveCollider(Collider2D* col);
+
+	std::vector<Collider2D*> const& GetBucket(int key);
 
 private:
 	int _x, _y;

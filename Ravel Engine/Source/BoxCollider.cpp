@@ -38,16 +38,18 @@ void BoxCollider::CreateBoxCollider() {
 		_width = gameObject->transform->hscale;
 		_height = gameObject->transform->vscale;
 	}
-	colManagerID = GetCollision()->AddCollider(this);
+	
 	rect = new RavelRect(Vector2(_width, _height));
+	colManagerID = GetCollision()->AddCollider(this);
 }
 
 void BoxCollider::CreateBoxCollider(float width, float height)
 {
 	_width = width;
 	_height = height;
-	colManagerID = GetCollision()->AddCollider(this);
+	
 	rect = new RavelRect(Vector2(_width, _height));
+	colManagerID = GetCollision()->AddCollider(this);
 }
 
 void BoxCollider::OnMouseOver()

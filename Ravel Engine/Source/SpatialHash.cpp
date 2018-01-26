@@ -12,36 +12,58 @@ SpatialHash::~SpatialHash()
 {
 }
 
-void SpatialHash::HashCollider(Collider2D * col)
+size_t SpatialHash::HashCollider(Collider2D * col)
 {
-	int hash[4];
-	hash[0] = Hash(col->rect->TopLeft());
-	hash[1] = Hash(col->rect->TopRight());
-	hash[2] = Hash(col->rect->BottomLeft());
-	hash[3] = Hash(col->rect->BottomRight());
-	
-	col->hashkey[0] = hash[0];
-	bool uq = true;
-	for (int i = 1; i < 4; ++i) {
-		uq = true;
-		for (int j = 0; j < i; ++j) {
-			if (hash[i] == col->hashkey[j])
-				uq = false;
-		}
-		if (uq) col->hashkey[i] = hash[i];
-		else col->hashkey[i] = NULL;
-	}
+	return Hash(col->transform->position);
+}
 
-	//add to map
-	for (int key : col->hashkey) {
-		std::vector<Collider2D*>& bucket = _map[key];
-		if (key != NULL) {
-			std::vector<Collider2D*>::iterator it = std::find(bucket.begin(), bucket.end(), col);
-			if(it == bucket.end())
-				//need to find dups	
-				_map[key].push_back(col);
-		}
+void SpatialHash::InsertCollider(Collider2D * col)
+{
+	_map[col->hashkey].push_back(col);
+}
+
+void SpatialHash::InsertCollider(Collider2D * col, size_t hash)
+{
+	_map[hash].push_back(col);
+}
+
+void SpatialHash::InsertColliderWithUpdate(Collider2D * col, size_t new_hash)
+{
+	//find old collider in map
+	if (_map.size() == 0) {
+		std::cout << "Map is empty... But I will still insert collider in" << std::endl;
+		InsertCollider(col, new_hash);
+		return;
 	}
+	if (_map.find(col->hashkey) == _map.end()) {
+		std::cout << "Collider does not exist in map, I will insert in instead" << std::endl;
+		InsertCollider(col, new_hash);
+		return;
+	}
+	std::vector<Collider2D*>& bucket = _map[col->hashkey];
+	std::vector<Collider2D*>::iterator it = std::find(bucket.begin(), bucket.end(), col);
+	if (it != bucket.end())
+		bucket.erase(it);
+
+	//Insert at new
+	InsertCollider(col, new_hash);
+
+	//Next thing is pobably to insert the whole collider instead of a position, this might be more accurate but compute expensive thou
+}
+
+void SpatialHash::RemoveCollider(Collider2D * col)
+{
+	if (_map.size() == 0) return;
+	if (_map.find(col->hashkey) == _map.end()) return;
+	std::vector<Collider2D*>& bucket = _map[col->hashkey];
+	std::vector<Collider2D*>::iterator it = std::find(bucket.begin(), bucket.end(), col);
+	if (it != bucket.end())
+		bucket.erase(it);
+}
+
+std::vector<Collider2D*> const& SpatialHash::GetBucket(int key)
+{
+	return _map[key];
 }
 
 int SpatialHash::Hash(Vector2 const& point)
