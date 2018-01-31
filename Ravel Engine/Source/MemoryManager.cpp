@@ -7,6 +7,11 @@ MemoryManager* Memory()
 	return(&s);
 }
 
+std::size_t MemoryManager::Hash(void * address)
+{
+	return (size_t)(address);
+}
+
 MemoryManager::_block * MemoryManager::CreateBlock(size_t size)
 {
 	_block *node = new _block;
@@ -38,7 +43,7 @@ MemoryManager::MemoryManager(size_t block_size)
 	mempool = malloc(block_size);
 	head = CreateBlock(block_size);
 	head->pool = mempool;
-	vtable[head->pool] = head;
+	vtable[Hash(head->pool)] = head;
 }
 
 MemoryManager::~MemoryManager()
@@ -51,7 +56,7 @@ void MemoryManager::AllocateBlock(size_t block_size)
 	mempool = malloc(block_size);
 	head = CreateBlock(block_size);
 	head->pool = mempool;
-	vtable[head->pool] = head;
+	vtable[Hash(head->pool)] = head;
 }
 
 MemoryManager::Pool * MemoryManager::alloc(size_t size)
@@ -82,7 +87,7 @@ MemoryManager::Pool * MemoryManager::alloc(size_t size)
 		seg->next = block;
 		//seg->isFree = false;
 		block->pool = (char*)seg->pool + size;
-		vtable[block->pool] = block;
+		vtable[Hash(block->pool)] = block;
 	}
 
 	seg->isFree = false;
@@ -91,6 +96,24 @@ MemoryManager::Pool * MemoryManager::alloc(size_t size)
 
 void MemoryManager::dealloc(Pool * pool)
 {
-	_block* page = vtable[pool];
+	_block* page = vtable[Hash(pool)];
 	page->isFree = true;
+
+	//do some cleaning
+	//currently block will be lost...
+	//try see if next is free
+	if (page->next->isFree) {
+		page->size += page->next->size;
+		vtable.erase(Hash(page->next->pool));
+		delete page->next;
+	}
+	//try see if parent is free
+	if (page->prev->isFree) {
+		//we combine them
+		page->prev->size += page->size;
+		//remove current address from map
+		vtable.erase(Hash(pool));
+		delete page;
+	}
+	
 }

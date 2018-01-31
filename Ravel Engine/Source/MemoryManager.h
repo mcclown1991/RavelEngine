@@ -1,5 +1,5 @@
 #pragma once
-#include <map>
+#include <unordered_map>
 
 class MemoryManager {
 
@@ -14,7 +14,9 @@ private:
 	};
 
 	void* mempool;
-	std::map<void*, _block*> vtable;
+	std::unordered_map<size_t, _block*> vtable;
+
+	std::size_t Hash(void* address);
 
 	_block* head;
 
@@ -70,7 +72,7 @@ inline T * MemoryManager::alloc()
 		seg->next = block;
 		//seg->isFree = false;
 		block->pool = (char*)seg->pool + size;
-		vtable[block->pool] = block;
+		vtable[Hash(block->pool)] = block;
 	}
 
 	T* obj = new (seg->pool) T();
