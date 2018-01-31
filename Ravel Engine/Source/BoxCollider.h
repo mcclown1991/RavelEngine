@@ -12,9 +12,7 @@ public:
 		return Memory()->alloc<BoxCollider>();
 	}
 
-	virtual void OnStart();
 	virtual void Update();
-	virtual void OnDestory();
 
 	void CreateBoxCollider();
 	void CreateBoxCollider(float width, float height);

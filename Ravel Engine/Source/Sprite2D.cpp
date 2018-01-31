@@ -10,15 +10,11 @@ Sprite2D::~Sprite2D(){
 
 }
 
-void Sprite2D::OnStart(){
-
-}
-
 void Sprite2D::Update(){
 	//m_Sprite->SetScreenPosition(parent->position + transform->position);
 }
 
-void Sprite2D::OnDestory(){
+void Sprite2D::Destory(){
 	//HGE* h = RavelEngine::GetRavelEngine()->GetHGE();
 	//delete m_Sprite;
 	m_Model->OnDestory();

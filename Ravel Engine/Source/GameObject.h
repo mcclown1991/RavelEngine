@@ -12,18 +12,12 @@
 #include "MemoryManager.h"
 
 #undef SendMessage
+class Factory;
 class GameObject : public RavelObject
 {
 public:
 	GameObject();
 	virtual ~GameObject();
-
-	/*void virtual OnStart();
-	void virtual Update();
-	void virtual OnDestory();
-
-	void virtual OnMouseDown();
-	void virtual OnCollisionEnter2D(Collider2D* other);*/
 
 	bool Draw();
 
@@ -35,6 +29,8 @@ public:
 
 	template <class T>
 	T* AddComponent();
+
+	Component* AddComponent(std::string const& tag);
 
 	template <typename T>
 	T* GetComponent();
@@ -74,11 +70,12 @@ private:
 	void OnCollisionExit2D(Collider2D* other);
 };
 
+#include "Factory.h"
 
 template <class T>
 T* GameObject::AddComponent()
 {
-	T* newComp = Memory()->alloc<T>();
+	T* newComp = factory()->CreateComponent<T>();
 	//T* newComp = new T();
 	m_Component_List.insert(std::pair<std::string, RavelBehaviour*>(typeid(T).name(), newComp));
 	newComp->gameObject = this;
@@ -86,7 +83,7 @@ T* GameObject::AddComponent()
 	newComp->transform = Memory()->alloc<Transform>();
 	//newComp->transform = new Transform();
 	newComp->transform->parent = transform;
-	newComp->OnStart();
+	newComp->Start();
 	return newComp;
 }
 

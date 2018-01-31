@@ -12,9 +12,7 @@ public:
 		return Memory()->alloc<Text>();
 	}
 
-	virtual void OnStart();
-	virtual void Update();
-	virtual void OnDestory();
+	virtual void Start();
 
 	void Render();
 

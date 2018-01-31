@@ -18,9 +18,9 @@ Factory::~Factory()
 }
 
 void Factory::Init() {
-	RegisterComponent<Transform>();
-	RegisterComponent<BoxCollider>();
-	RegisterComponent<Sprite2D>();
+	RegisterComponent<Transform>("Transform");
+	RegisterComponent<BoxCollider>("BoxCollider");
+	RegisterComponent<Sprite2D>("Sprite2D");
 }
 
 void Factory::LoadFromFile(const std::string& file)
@@ -48,8 +48,13 @@ Factory::pGOC& Factory::GetGameObject(const std::string& name)
 	return _go[h];
 }
 
-Component * Factory::CreateComponent(std::string const & name)
+std::string const & Factory::ComponentTypeName(std::string const & tag)
 {
-	Component* com = _component[HASH(name)]->Clone();
+	return _componentRegistry[HASH(tag)].second;
+}
+
+Component * Factory::CreateComponent(std::string const & tag)
+{
+	Component* com = _component[HASH(_componentRegistry[HASH(tag)].second)]->Clone();
 	return com;
 }

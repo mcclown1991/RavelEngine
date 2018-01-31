@@ -6,9 +6,8 @@
 #include <memory>
 #include <unordered_map>
 #include "System.h"
-#include "GameObject.h"
 #include "GraphicsManager.h"
-
+#include "GameObject.h"
 
 #undef SendMessage
 class Factory : public System
@@ -18,6 +17,7 @@ private:
 	typedef GameObject goc;
 	std::map<size_t, std::unique_ptr<GameObject> > _go;
 	std::unordered_map<size_t, Component*> _component;
+	std::unordered_map<size_t, std::pair<size_t, std::string>> _componentRegistry;
 
 public:
 
@@ -42,20 +42,37 @@ public:
 	void CreateEmptyObject();
 	pGOC& GetGameObject(const std::string&);
 
+	std::string const& ComponentTypeName(std::string const& tag);
+
 	Component* CreateComponent(std::string const& name);
+	
+	template <typename T>
+	T* CreateComponent();
 
 	template <typename T>
-	void RegisterComponent();
+	void RegisterComponent(std::string const& tag);
 };
 
 Factory* factory();
 
 inline size_t HASH(const std::string& hash) { return std::hash<std::string>()(hash);} 
 
-#endif
+template<typename T>
+T * Factory::CreateComponent()
+{
+	return dynamic_cast<T*>(_component[HASH(typeid(T).name())]->Clone());
+}
 
 template<typename T>
-void Factory::RegisterComponent()
+void Factory::RegisterComponent(std::string const& tag)
 {
-	_component[HASH(typeid(T).name())] = new T();
+	size_t hash = HASH(tag);
+
+	// given a tag -> hashcode, typename
+	_componentRegistry[hash] = std::pair<size_t, std::string>(hash, typeid(T).name());
+
+	// given typename -> maps to component
+	_component[HASH(_componentRegistry[hash].second)] = Memory()->alloc<T>();
 }
+
+#endif

@@ -9,20 +9,12 @@ Text::~Text()
 {
 }
 
-void Text::OnStart()
+void Text::Start()
 {
 	//_large = RavelEngine::GetRavelEngine()->GetFontLarge();
 	//_small = RavelEngine::GetRavelEngine()->GetFontSmall();
 	//_render = _large;
 	GetGraphicsManager()->AddText(this);
-}
-
-void Text::Update()
-{
-}
-
-void Text::OnDestory()
-{
 }
 
 void Text::Render()

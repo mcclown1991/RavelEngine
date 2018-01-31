@@ -20,12 +20,6 @@ public:
 		return Memory()->alloc<Component>();
 	}
 
-	//virtual void OnStart();
-	//virtual void Update();
-	//virtual void OnDestory();
-
-	//virtual void SetActive(bool isactive);
-
 	//variables
 	GameObject* gameObject;
 	std::string tag;

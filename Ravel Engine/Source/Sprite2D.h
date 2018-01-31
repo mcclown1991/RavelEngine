@@ -13,9 +13,8 @@ public:
 		return Memory()->alloc<Sprite2D>();
 	}
 
-	virtual void OnStart();
 	virtual void Update();
-	virtual void OnDestory();
+	virtual void Destory();
 
 	void CreateTexture(std::string filename, float width, float height);
 	void Render();

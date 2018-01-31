@@ -7,18 +7,6 @@ Transform::~Transform(){
 
 }
 
-void Transform::OnStart(){
-	
-}
-
-void Transform::Update(){
-
-}
-
-void Transform::OnDestory(){
-
-}
-
 void Transform::SetPosition(Vector2 position){
 	this->position = position;
 }

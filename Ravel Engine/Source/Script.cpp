@@ -9,15 +9,11 @@ Script::~Script() {
 
 }
 
-void Script::OnStart() {
-	
-}
-
 void Script::Update() {
 	GetScriptManager()->UpdateScript(m_Filename, "Update", m_OwnerID, 0);
 }
 
-void Script::OnDestory() {
+void Script::Destory() {
 	CallEvent("OnDestroy", 0);
 }
 

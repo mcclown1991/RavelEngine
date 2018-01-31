@@ -12,19 +12,10 @@ BoxCollider::~BoxCollider()
 {
 }
 
-void BoxCollider::OnStart()
-{
-}
-
 void BoxCollider::Update()
 {
 	rect->Update(gameObject->transform->right * _width, gameObject->transform->up * _height, gameObject->transform->position);
 	GetCollision()->UpdateCollider(colManagerID);
-}
-
-void BoxCollider::OnDestory()
-{
-	//delete _Rect;
 }
 
 void BoxCollider::CreateBoxCollider() {

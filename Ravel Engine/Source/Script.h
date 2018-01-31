@@ -13,9 +13,8 @@ public:
 		return Memory()->alloc<Script>();
 	}
 
-	virtual void OnStart();
 	virtual void Update();
-	virtual void OnDestory();
+	virtual void Destory();
 
 	void LoadScript(std::string const& filename);
 

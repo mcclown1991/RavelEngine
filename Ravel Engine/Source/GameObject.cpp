@@ -80,6 +80,18 @@ void GameObject::AddParent(Transform* trans)
 	transform->parent = trans;
 }
 
+Component * GameObject::AddComponent(std::string const & tag)
+{
+	Component* newComp = factory()->CreateComponent(tag);
+	m_Component_List.insert(std::pair<std::string, RavelBehaviour*>(factory()->ComponentTypeName(tag), static_cast<RavelBehaviour*>(newComp)));
+	newComp->gameObject = this;
+	newComp->parent = transform;
+	newComp->transform = Memory()->alloc<Transform>();
+	newComp->transform->parent = transform;
+	static_cast<RavelBehaviour*>(newComp)->Start();
+	return newComp;
+}
+
 void GameObject::SendMessage(std::string const & functionName)
 {
 	(this->*m_Functionptr[functionName])();

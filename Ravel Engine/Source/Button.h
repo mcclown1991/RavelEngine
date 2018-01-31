@@ -12,10 +12,6 @@ public:
 		return Memory()->alloc<Button>();
 	}
 
-	virtual void OnStart();
-	virtual void Update();
-	virtual void OnDestory();
-
 	virtual void OnMouseDown();
 
 	void AddLisenter( RavelAction callback );
@@ -40,21 +36,6 @@ Button<T>::Button()
 
 template <class T>
 Button<T>::~Button()
-{
-}
-
-template <class T>
-void Button<T>::OnStart()
-{
-}
-
-template <class T>
-void Button<T>::Update()
-{
-}
-
-template <class T>
-void Button<T>::OnDestory()
 {
 }
 
