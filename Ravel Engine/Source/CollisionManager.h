@@ -11,6 +11,7 @@ public:
 	sInt32 AddCollider(Collider2D* col);
 	void UpdateCollider(sInt32 colID);
 	void Update();
+	void OnExit();
 
 private:
 	//std::vector<std::pair<BoxCollider*, hgeRect*>> _colliders;

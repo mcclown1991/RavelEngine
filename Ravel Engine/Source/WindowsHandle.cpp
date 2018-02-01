@@ -86,6 +86,7 @@ void WindowsHandle::Update()
 		case WM_QUIT:
 		{
 			//QuitGame();
+			RavelEngine::GetRavelEngine()->QuitRaised();
 			break;
 		}
 		}

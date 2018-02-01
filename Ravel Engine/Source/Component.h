@@ -23,7 +23,6 @@ public:
 	//variables
 	GameObject* gameObject;
 	std::string tag;
-	Transform* parent;
 	Transform* transform;
 	bool IsActive;
 	size_t CompID;

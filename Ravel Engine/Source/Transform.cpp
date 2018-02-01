@@ -1,6 +1,6 @@
 #include "Transform.h"
 
-Transform::Transform() : RavelBehaviour(), up(0, 1), right(1, 0), position(0, 0), localEulerAngles(0.f), hscale(1.f), vscale(1.f){
+Transform::Transform() : RavelBehaviour(), up(0, 1), right(1, 0), position(0, 0), localEulerAngles(0.f), hscale(1.f), vscale(1.f), parent(nullptr){
 }
 
 Transform::~Transform(){
@@ -13,7 +13,9 @@ void Transform::SetPosition(Vector2 position){
 
 Vector2 Transform::GetPosition()
 {
-	return parent == nullptr ? position : parent->position + position;
+	if(parent)
+		return parent->position + position;
+	return position;
 }
 
 Matrix3x3 Transform::GetTransforms()
@@ -28,7 +30,9 @@ Matrix3x3 Transform::GetTransforms()
 	transforms.m[2] = position.x * 0.89f;
 	transforms.m[5] = position.y * 0.89f;
 
-	return parent == nullptr ? transforms : parent->GetTransforms() * transforms;
+	if(parent)
+		return parent->GetTransforms() * transforms;
+	return transforms;
 }
 
 Matrix3x3 Transform::GetLocalTransforms() {

@@ -79,10 +79,7 @@ T* GameObject::AddComponent()
 	//T* newComp = new T();
 	m_Component_List.insert(std::pair<std::string, RavelBehaviour*>(typeid(T).name(), newComp));
 	newComp->gameObject = this;
-	newComp->parent = transform;
-	newComp->transform = Memory()->alloc<Transform>();
-	//newComp->transform = new Transform();
-	newComp->transform->parent = transform;
+	newComp->transform = transform;
 	newComp->Start();
 	return newComp;
 }

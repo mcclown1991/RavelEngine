@@ -24,6 +24,7 @@ public:
 	Vector2 position;
 	float localEulerAngles;
 	float hscale, vscale;
+	Transform* parent;
 
 	//Transform Functions
 	void Rotate(float angle);

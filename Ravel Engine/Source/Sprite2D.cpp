@@ -38,9 +38,6 @@ void Sprite2D::Render(){
 
 	//Find Position, Rotation and Scale then transform
 	//assume a reference frome from center of this sprite first
-
-	Vector2 view = parent->GetPosition() + transform->position;
-
 	Matrix4x4 trans = transform->GetTransforms() * m_Model->GetLocalTransforms();
 	//trans = m_Reference_Frame * trans;
 	//Vector2 vertice[4];

@@ -48,7 +48,13 @@ MemoryManager::MemoryManager(size_t block_size)
 
 MemoryManager::~MemoryManager()
 {
-	
+	_block* temp;
+	while (head) {
+		temp = head;
+		head = head->next;
+		delete temp;
+	}
+	free(mempool);
 }
 
 void MemoryManager::AllocateBlock(size_t block_size)
@@ -102,17 +108,24 @@ void MemoryManager::dealloc(Pool * pool)
 	//do some cleaning
 	//currently block will be lost...
 	//try see if next is free
-	if (page->next->isFree) {
+	if ((page->next != nullptr) && page->next->isFree) {
 		page->size += page->next->size;
 		vtable.erase(Hash(page->next->pool));
-		delete page->next;
+		_block* temp = page->next;
+		page->next = page->next->next;
+		if(page->next != nullptr)
+			page->next->prev = page;
+		delete temp;
 	}
 	//try see if parent is free
-	if (page->prev->isFree) {
+	if ((page->prev != nullptr) && page->prev->isFree) {
 		//we combine them
 		page->prev->size += page->size;
 		//remove current address from map
 		vtable.erase(Hash(pool));
+		page->prev->next = page->next;
+		if(page->next != nullptr)
+			page->next->prev = page->prev;
 		delete page;
 	}
 	

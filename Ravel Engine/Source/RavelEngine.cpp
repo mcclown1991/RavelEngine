@@ -213,12 +213,13 @@ void RavelEngine::SystemExit(){
 	
 	//delete fntSmall;
 	//delete fntLarge;
-	factory()->Quit();
+	GetCollision()->OnExit();
+	
 	gsm.GSM_Exit();
 	GetGraphicsManager()->OnExit();
 
 	pRenderer->UnInitialise();
-
+	factory()->Quit();
 	// Now ESC has been pressed or the user
 	// has closed the window by other means.
 
