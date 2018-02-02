@@ -36,6 +36,10 @@ public:
 			iter.second->SendMessage("OnDestory");
 		}
 		_go.clear();
+
+		for (auto& iter : _component) {
+			Memory()->dealloc(iter.second);
+		}
 	}
 	void LoadFromFile(const std::string&);
 	pGOC& CreateGameObject(const std::string&);

@@ -8,13 +8,17 @@ Transform::~Transform(){
 }
 
 void Transform::SetPosition(Vector2 position){
-	this->position = position;
+	this->localposition = position;
+	if (parent)
+		this->position = position + parent->GetTransforms() * localposition;
+	else
+		this->position = position;
 }
 
 Vector2 Transform::GetPosition()
 {
 	if(parent)
-		return parent->position + position;
+		return parent->GetPosition() + position;
 	return position;
 }
 

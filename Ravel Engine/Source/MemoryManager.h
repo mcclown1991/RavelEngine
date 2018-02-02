@@ -1,10 +1,17 @@
 #pragma once
 #include <unordered_map>
+#include <iostream>
 
 class MemoryManager {
 
 	// Memory structure
 private:
+
+	//Profilling used
+	struct Profile {
+		std::vector<std::string> blocks;
+	}profile;
+
 	struct _block {
 		struct _block *next;
 		struct _block *prev;

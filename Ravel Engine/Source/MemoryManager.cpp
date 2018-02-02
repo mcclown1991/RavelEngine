@@ -20,6 +20,9 @@ MemoryManager::_block * MemoryManager::CreateBlock(size_t size)
 	node->size = size;
 	node->isFree = true;
 	node->pool = nullptr;
+
+	profile.blocks.push_back(std::string("Created block"));
+
 	return node;
 }
 
@@ -31,6 +34,9 @@ MemoryManager::_block * MemoryManager::CreateBlock(_block *prev, size_t size)
 	node->size = size;
 	node->isFree = true;
 	node->pool = nullptr;
+
+	profile.blocks.push_back(std::string("Created block"));
+
 	return node;
 }
 
@@ -53,8 +59,13 @@ MemoryManager::~MemoryManager()
 		temp = head;
 		head = head->next;
 		delete temp;
+		profile.blocks.push_back(std::string("Deleted block"));
 	}
 	free(mempool);
+
+	for (auto st : profile.blocks) {
+		std::cout << st.c_str() << std::endl;
+	}
 }
 
 void MemoryManager::AllocateBlock(size_t block_size)
@@ -115,6 +126,8 @@ void MemoryManager::dealloc(Pool * pool)
 		page->next = page->next->next;
 		if(page->next != nullptr)
 			page->next->prev = page;
+
+		profile.blocks.push_back(std::string("Deleted block"));
 		delete temp;
 	}
 	//try see if parent is free
@@ -126,6 +139,8 @@ void MemoryManager::dealloc(Pool * pool)
 		page->prev->next = page->next;
 		if(page->next != nullptr)
 			page->next->prev = page->prev;
+
+		profile.blocks.push_back(std::string("Deleted block"));
 		delete page;
 	}
 	

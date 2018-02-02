@@ -156,133 +156,6 @@ void DirectX11::Initialise(HWND hWnd, unsigned Width, unsigned Height, bool IsWi
 		m_Device->CreateBuffer(&cbbda, NULL, &pAlpha);
 
 		CreateMesh();
-
-		m_SampleIDinUsed = -1;
-
-		{
-			//D3D11_BUFFER_DESC cbbd;
-			//ZeroMemory(&cbbd, sizeof(D3D11_BUFFER_DESC));
-
-			//cbbd.Usage = D3D11_USAGE_DYNAMIC;
-			//cbbd.ByteWidth = sizeof(cbobj);
-			//cbbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-			//cbbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-			//cbbd.MiscFlags = 0;
-			//cbbd.StructureByteStride = 0;
-
-			//hr = dev->CreateBuffer(&cbbd, NULL, &pTransform);
-
-			//D3D11_BUFFER_DESC cbbduv;
-			//ZeroMemory(&cbbduv, sizeof(D3D11_BUFFER_DESC));
-
-			//cbbduv.Usage = D3D11_USAGE_DYNAMIC;
-			//cbbduv.ByteWidth = sizeof(UV);
-			//cbbduv.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-			//cbbduv.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-			//cbbduv.MiscFlags = 0;
-			//cbbduv.StructureByteStride = 4;
-
-			//hr = dev->CreateBuffer(&cbbd, NULL, &pUV);
-
-			//D3D11_RASTERIZER_DESC wfdesc;
-			//ZeroMemory(&wfdesc, sizeof(D3D11_RASTERIZER_DESC));
-			//wfdesc.FillMode = D3D11_FILL_SOLID;
-			//wfdesc.CullMode = D3D11_CULL_FRONT;
-			//wfdesc.MultisampleEnable = true;
-			//wfdesc.AntialiasedLineEnable = true;
-			//hr = dev->CreateRasterizerState(&wfdesc, &CullMode);
-
-			//devcon->RSSetState(CullMode);
-
-			//D3D11_BUFFER_DESC instancebuffer;
-			//ZeroMemory(&instancebuffer, sizeof(D3D11_BUFFER_DESC));
-
-			//instancebuffer.Usage = D3D11_USAGE_DYNAMIC;
-			//instancebuffer.ByteWidth = sizeof(instanceObj) * maxInstanceCount;
-			//instancebuffer.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-			//instancebuffer.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE; //needed for Map/Unmap
-			//instancebuffer.MiscFlags = 0;
-			//instancebuffer.StructureByteStride = 0;
-
-			//hr = dev->CreateBuffer(&instancebuffer, NULL, &pInstanced);
-
-			//D3D11_BUFFER_DESC instbuffer;
-			//ZeroMemory(&instbuffer, sizeof(D3D11_BUFFER_DESC));
-
-			//instbuffer.Usage = D3D11_USAGE_DYNAMIC;
-			//instbuffer.ByteWidth = sizeof(InstObj) * maxInstanceCount;
-			//instbuffer.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-			//instbuffer.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE; //needed for Map/Unmap
-			//instbuffer.MiscFlags = 0;
-			//instbuffer.StructureByteStride = 0;
-
-			//hr = dev->CreateBuffer(&instbuffer, NULL, &pInst);
-
-			//D3D11_BUFFER_DESC cbf;
-			//ZeroMemory(&cbf, sizeof(D3D11_BUFFER_DESC));
-
-			//cbf.Usage = D3D11_USAGE_DYNAMIC;
-			//cbf.ByteWidth = sizeof(Fade);
-			//cbf.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-			//cbf.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-			//cbf.MiscFlags = 0;
-			//cbf.StructureByteStride = 0;
-
-			//hr = dev->CreateBuffer(&cbf, NULL, &pFade);
-
-			// create the input layout object
-			//tex[0] = { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 };
-			//tex[1] = { "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 };
-
-			//line[0] = { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 };
-			//line[1] = { "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 };
-
-			// Data from the vertex buffer
-			//instance[0] = { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 };
-			//instance[1] = { "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 };
-
-			//input_Desc[0] = line;
-			//input_Desc[1] = tex;
-			//input_Desc[2] = instance;
-
-			//CreateMesh();
-			//CreateLine();
-
-			//mobj.camView = XMMatrixIdentity();
-
-			////Create the buffer to send to the cbuffer per frame in effect file
-			//ZeroMemory(&cbbd, sizeof(D3D11_BUFFER_DESC));
-
-			//cbbd.Usage = D3D11_USAGE_DYNAMIC;
-			//cbbd.ByteWidth = sizeof(Light) * 5;
-			//cbbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-			//cbbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-			//cbbd.MiscFlags = 0;
-
-			//hr = dev->CreateBuffer(&cbbd, NULL, &pLight);
-
-			////Create the buffer to send to the cbuffer per frame in effect file
-			//ZeroMemory(&cbbduv, sizeof(D3D11_BUFFER_DESC));
-
-			//cbbduv.Usage = D3D11_USAGE_DYNAMIC;
-			//cbbduv.ByteWidth = sizeof(int) * 4;
-			//cbbduv.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-			//cbbduv.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-			//cbbduv.MiscFlags = 0;
-
-			//hr = dev->CreateBuffer(&cbbduv, NULL, &pLightIndex);
-
-			////Create the buffer to send to the cbuffer per frame in effect file
-			//ZeroMemory(&cbbduv, sizeof(D3D11_BUFFER_DESC));
-
-			//cbbduv.Usage = D3D11_USAGE_DYNAMIC;
-			//cbbduv.ByteWidth = sizeof(XMMATRIX);
-			//cbbduv.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-			//cbbduv.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-			//cbbduv.MiscFlags = 0;
-
-			//hr = dev->CreateBuffer(&cbbduv, NULL, &pMatrix);
-		}
 	}
 
 void DirectX11::UnInitialise() {
@@ -303,7 +176,20 @@ void DirectX11::UnInitialise() {
 	//release com objects
 	pLayTex = nullptr;
 	Transparency = nullptr;
+	CullMode = nullptr;
+	depthStencilView = nullptr;
 	depthStencilBuffer = nullptr;
+
+	//release shaders
+	for (auto elem : pVertexShader) {
+		if(elem)
+			elem->Release();
+	}
+
+	for (auto elem : pFragmentShader) {
+		if (elem)
+			elem->Release();
+	}
 
 	for (auto elem : m_SampleList) {
 		if(elem)
@@ -311,6 +197,11 @@ void DirectX11::UnInitialise() {
 	}
 
 	for (auto elem : m_SampleState) {
+		if (elem)
+			elem->Release();
+	}
+
+	for (auto elem : m_Resource) {
 		if (elem)
 			elem->Release();
 	}
@@ -526,6 +417,7 @@ HRESULT DirectX11::CreateTexture(std::string const& filename, unsigned& sampleID
 	
 	m_SampleList[m_SampleID] = std::move(elem);
 	m_SampleFiles[m_SampleID] = filename;
+	m_Resource[m_SampleID] = std::move(Res);
 
 	if (FAILED(hr))
 	{

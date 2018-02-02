@@ -22,6 +22,7 @@ public:
 	Vector2 up;
 	Vector2 right;
 	Vector2 position;
+	Vector2 localposition;
 	float localEulerAngles;
 	float hscale, vscale;
 	Transform* parent;

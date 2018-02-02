@@ -48,7 +48,7 @@ void RavelEngine::SystemInit(HINSTANCE hInstance, int nCmdShow) {
 #else
 	pWindow->InitWindowHandle(hInstance, nCmdShow, false);
 #endif
-
+	
 	
 	switch (pWindow->getUSER()->renderer_) {
 	case 0:
@@ -220,6 +220,9 @@ void RavelEngine::SystemExit(){
 
 	pRenderer->UnInitialise();
 	factory()->Quit();
+
+	delete pWindow;
+	delete pRenderer;
 	// Now ESC has been pressed or the user
 	// has closed the window by other means.
 

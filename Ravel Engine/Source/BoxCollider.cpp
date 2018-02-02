@@ -18,6 +18,11 @@ void BoxCollider::Update()
 	GetCollision()->UpdateCollider(colManagerID);
 }
 
+void BoxCollider::OnDestory()
+{
+	delete rect;
+}
+
 void BoxCollider::CreateBoxCollider() {
 
 	Sprite2D* sp = gameObject->GetComponent<Sprite2D>();
