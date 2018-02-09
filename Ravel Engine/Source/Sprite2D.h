@@ -14,7 +14,7 @@ public:
 	}
 
 	virtual void Update();
-	virtual void Destory();
+	virtual void OnDestory();
 
 	void CreateTexture(std::string filename, float width, float height);
 	void Render();

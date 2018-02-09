@@ -12,6 +12,8 @@ public:
 		return Memory()->alloc<Transform>();
 	}
 
+	virtual void OnDestory() { this->~Transform(); }
+
 	void SetPosition(Vector2);
 
 	Vector2 GetPosition();

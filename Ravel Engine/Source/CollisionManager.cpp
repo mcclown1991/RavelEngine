@@ -29,7 +29,7 @@ void CollisionManager::Update()
 	Vector2 mouse;
 	GetMousePos(mouse.x, mouse.y);
 
-	for (int i = 0; i < _colliders.size(); ++i) {
+	for (size_t i = 0; i < _colliders.size(); ++i) {
 		_colliders[i]->CursorIntersectionTest(mouse);
 
 		/*for (int j = i + 1; j < _colliders.size(); ++j) {

@@ -13,8 +13,9 @@ void Script::Update() {
 	GetScriptManager()->UpdateScript(m_Filename, "Update", m_OwnerID, 0);
 }
 
-void Script::Destory() {
+void Script::OnDestory() {
 	CallEvent("OnDestroy", 0);
+	this->~Script();
 }
 
 void Script::LoadScript(std::string const& filename) {

@@ -65,8 +65,8 @@ void RavelEngine::SystemInit(HINSTANCE hInstance, int nCmdShow) {
 	pRenderer->Initialise(pWindow->getWindowHandle()->hWnd, pWindow->getWindowHandle()->Width, pWindow->getWindowHandle()->Height, pWindow->getWindowHandle()->Windowed);
 	GetGraphicsManager()->InitialiseGraphicsManager(pRenderer);
 
-	ref.m[3] = -SCREENWIDTH >> 1;
-	ref.m[7] = -SCREENHEIGHT >> 1;
+	ref.m[3] = (float)(-SCREENWIDTH >> 1);
+	ref.m[7] = (float)(-SCREENHEIGHT >> 1);
 #ifdef _DEBUG
 	std::cout << "Done!" << std::endl;
 	std::cout << "=============================================================" << std::endl;
@@ -78,7 +78,7 @@ void RavelEngine::SystemInit(HINSTANCE hInstance, int nCmdShow) {
 	std::cout << "=============================================================" << std::endl;
 	std::cout << "Setting up Memory settings.........." << std::endl;
 #endif
-	Memory()->AllocateBlock(1000000000);
+	Memory()->AllocateBlock(107374182);
 #ifdef _DEBUG
 	std::cout << "Done!" << std::endl;
 	std::cout << "=============================================================" << std::endl;

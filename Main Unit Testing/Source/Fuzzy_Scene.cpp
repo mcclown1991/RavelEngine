@@ -16,19 +16,19 @@ void Fuzzy_Scene::Init()
 	Sprite2D* m_spr = m_Test->AddComponent<Sprite2D>();
 	m_spr->CreateTexture("Background.png", 1280, 720);
 	m_Test->transform->position = Vector2(0, 0);
-	//m_trans = m_Test->transform;
+	m_trans = m_Test->transform;
 
-	//Factory::pGOC& m_Door = factory()->CreateGameObject("Door");
-	//m_spr = m_Door->AddComponent<Sprite2D>();
-	//m_spr->CreateTexture("BlueDoor.png", 32, 64);
-	//m_Door->transform->position = Vector2(-100, 0);
-	//m_trans = m_Door->transform;
-	////Script* m_Script = m_Door->AddComponent<Script>();
-	////m_Script->LoadScript("test.lua");
-	////m_Door->transform->Scale(2);
-	////m_Door->transform->Rotate(45);
-	//BoxCollider* col =  m_Door->AddComponent<BoxCollider>();
-	//col->CreateBoxCollider();
+	Factory::pGOC& m_Door = factory()->CreateGameObject("Door");
+	m_spr = m_Door->AddComponent<Sprite2D>();
+	m_spr->CreateTexture("BlueDoor.png", 32, 64);
+	m_Door->transform->position = Vector2(-100, 0);
+	m_trans = m_Door->transform;
+	//Script* m_Script = m_Door->AddComponent<Script>();
+	//m_Script->LoadScript("test.lua");
+	//m_Door->transform->Scale(2);
+	//m_Door->transform->Rotate(45);
+	BoxCollider* col =  m_Door->AddComponent<BoxCollider>();
+	col->CreateBoxCollider();
 
 	//Factory::pGOC& m_Door1 = factory()->CreateGameObject("Door1");
 	//m_spr = m_Door1->AddComponent<Sprite2D>();
@@ -40,7 +40,7 @@ void Fuzzy_Scene::Init()
 	//col->CreateBoxCollider();
 	
 
-	xb = new XBOXController(1);
+	/*xb = new XBOXController(1);
 	if (xb->Refesh()) std::cout << "Refreshed";
 	if (xb->IsConnected()) std::cout << "XBox controller is connected";
 
@@ -50,7 +50,7 @@ void Fuzzy_Scene::Init()
 	r->CreateTimer(2, &Fuzzy_Scene::Load);
 	r->CreateTimer(2, &Fuzzy_Scene::Load);
 	r->CreateTimer(2, &Fuzzy_Scene::Load);
-	r->CreateTimer(2, &Fuzzy_Scene::Load);
+	r->CreateTimer(2, &Fuzzy_Scene::Load);*/
 }
 
 void Fuzzy_Scene::Load()

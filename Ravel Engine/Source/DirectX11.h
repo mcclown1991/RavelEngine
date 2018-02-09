@@ -31,6 +31,7 @@
 class DirectX11 : public Graphics {
 public:
 	DirectX11();
+	virtual ~DirectX11() {};
 	virtual void Initialise(HWND hWnd, unsigned Width, unsigned Height, bool IsWindowed = false);
 	virtual void UnInitialise();
 

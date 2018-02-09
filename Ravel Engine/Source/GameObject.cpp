@@ -15,6 +15,7 @@ GameObject::GameObject() : RavelObject(), transform(Memory()->alloc<Transform>()
 
 GameObject::~GameObject(){
 	Memory()->dealloc(transform);
+	transform->~Transform();
 }
 
 void GameObject::Update(){

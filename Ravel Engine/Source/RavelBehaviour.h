@@ -5,6 +5,9 @@
 class Collider2D;
 class RavelBehaviour : public Behaviour {
 public:
+	RavelBehaviour() {};
+	virtual ~RavelBehaviour() { std::cout << "Ravel destructor" << std::endl; };
+
 	virtual void Start() {};
 	virtual void Update() {};
 	virtual void FixedUpdate() {};
@@ -28,4 +31,6 @@ public:
 	virtual void OnMouseExit() {};
 	virtual void OnMouseOver() {};
 	virtual void OnMouseUp() {};
+
+	virtual RavelBehaviour* Clone() { return nullptr; }
 };

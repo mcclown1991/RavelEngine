@@ -3,7 +3,7 @@
 #include "GraphicsManager.h"
 
 Sprite2D::Sprite2D() : RavelBehaviour(){
-
+	m_Model = nullptr;
 }
 
 Sprite2D::~Sprite2D(){
@@ -14,16 +14,17 @@ void Sprite2D::Update(){
 	//m_Sprite->SetScreenPosition(parent->position + transform->position);
 }
 
-void Sprite2D::Destory(){
+void Sprite2D::OnDestory(){
 	//HGE* h = RavelEngine::GetRavelEngine()->GetHGE();
 	//delete m_Sprite;
-	m_Model->OnDestory();
-	delete m_Model;
+	if(m_Model)
+		m_Model->~Transform();
+	this->~Sprite2D();
 }
 
 void Sprite2D::CreateTexture(std::string texture, float width, float height){
 	GetGraphicsManager()->Renderer()->CreateTexture(texture, m_SampleID);
-	m_Model = new Transform();
+	m_Model = factory()->CreateComponent<Transform>();
 	m_Model->hscale = width * 0.89f;
 	m_Model->vscale = height * 0.89f;
 	m_UV = Vector2(0.f, 0.f);

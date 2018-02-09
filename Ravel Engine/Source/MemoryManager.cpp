@@ -55,13 +55,16 @@ MemoryManager::MemoryManager(size_t block_size)
 MemoryManager::~MemoryManager()
 {
 	_block* temp;
+	vtable.clear();
 	while (head) {
 		temp = head;
 		head = head->next;
 		delete temp;
+		temp = nullptr;
 		profile.blocks.push_back(std::string("Deleted block"));
 	}
 	free(mempool);
+	
 
 	for (auto st : profile.blocks) {
 		std::cout << st.c_str() << std::endl;

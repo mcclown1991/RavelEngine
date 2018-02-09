@@ -13,8 +13,8 @@ GraphicsManager::GraphicsManager()
 
 void GraphicsManager::InitialiseGraphicsManager(Graphics* render) {
 	renderer = render;
-	renderer->OrthoProjectionMatrix(RavelEngine::GetRavelEngine()->GetScreenWidth(),
-		RavelEngine::GetRavelEngine()->GetScreenHeight());
+	renderer->OrthoProjectionMatrix((float)RavelEngine::GetRavelEngine()->GetScreenWidth(),
+		(float)RavelEngine::GetRavelEngine()->GetScreenHeight());
 }
 
 GraphicsManager* GetGraphicsManager()

@@ -88,7 +88,7 @@ void DirectX11::Initialise(HWND hWnd, unsigned Width, unsigned Height, bool IsWi
 		m_Device->CreateBlendState(&blendDesc, &Transparency);
 
 		// select which primtive type we are using
-		m_DeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+		//m_DeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
 
 		//Describe our Depth/Stencil Buffer
 		D3D11_TEXTURE2D_DESC depthStencilDesc;
@@ -156,6 +156,8 @@ void DirectX11::Initialise(HWND hWnd, unsigned Width, unsigned Height, bool IsWi
 		m_Device->CreateBuffer(&cbbda, NULL, &pAlpha);
 
 		CreateMesh();
+
+		m_SampleIDinUsed = -1;
 	}
 
 void DirectX11::UnInitialise() {
@@ -208,8 +210,8 @@ void DirectX11::UnInitialise() {
 
 	m_SwapChain.Release();
 	m_BackBuffer->Release();
-	m_Device.Release();
 	m_DeviceContext.Release();
+	m_Device.Release();
 
 	if (pDebug != nullptr)
 	{

@@ -16,14 +16,8 @@ public:
 
 	void Render();
 
-	enum Mode {
-		SMALL = 0,
-		LARGE
-	};
-
 	std::string text;
 	int alignment;
-	Mode mode;
 	//DWORD color;
 
 private:

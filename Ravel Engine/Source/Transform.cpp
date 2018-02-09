@@ -4,7 +4,7 @@ Transform::Transform() : RavelBehaviour(), up(0, 1), right(1, 0), position(0, 0)
 }
 
 Transform::~Transform(){
-
+	std::cout << "Transform destructor" << std::endl;
 }
 
 void Transform::SetPosition(Vector2 position){

@@ -14,13 +14,13 @@ BoxCollider::~BoxCollider()
 
 void BoxCollider::Update()
 {
-	rect->Update(gameObject->transform->right * _width, gameObject->transform->up * _height, gameObject->transform->position);
+	rect.Update(gameObject->transform->right * _width, gameObject->transform->up * _height, gameObject->transform->position);
 	GetCollision()->UpdateCollider(colManagerID);
 }
 
 void BoxCollider::OnDestory()
 {
-	delete rect;
+	this->~BoxCollider();
 }
 
 void BoxCollider::CreateBoxCollider() {
@@ -35,7 +35,7 @@ void BoxCollider::CreateBoxCollider() {
 		_height = gameObject->transform->vscale;
 	}
 	
-	rect = new RavelRect(Vector2(_width, _height));
+	rect = RavelRect(Vector2(_width, _height));
 	colManagerID = GetCollision()->AddCollider(this);
 }
 
@@ -44,7 +44,7 @@ void BoxCollider::CreateBoxCollider(float width, float height)
 	_width = width;
 	_height = height;
 	
-	rect = new RavelRect(Vector2(_width, _height));
+	rect = RavelRect(Vector2(_width, _height));
 	colManagerID = GetCollision()->AddCollider(this);
 }
 
@@ -69,7 +69,7 @@ void BoxCollider::OnCollision2D(Collider2D * other)
 
 void BoxCollider::IntersectionTest(Collider2D* other) {
 
-	if (rect->Intersect(static_cast<BoxCollider*>(other)->rect)) {
+	if (rect.Intersect(&(other->rect))) {
 		//gameObject->OnCollisionEnter2D(other);
 		//other->gameObject->OnCollisionEnter2D(this);
 		std::cout << gameObject->name << " :: " << "BoxCollider: OnCollisionEnter()" << "->" << other->gameObject->name << std::endl;
@@ -79,7 +79,7 @@ void BoxCollider::IntersectionTest(Collider2D* other) {
 void BoxCollider::CursorIntersectionTest(Vector2 mouse) {
 	//do position testing remeber mouse position is in screen space
 	//convert mouse to world space
-	if (rect->Intersect(mouse)) {
+	if (rect.Intersect(mouse)) {
 		//gameObject->OnMouseHover();
 		std::cout << gameObject->name << " :: " << "BoxCollider: OnMouseHover()" << std::endl;
 	}

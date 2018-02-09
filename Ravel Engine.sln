@@ -9,24 +9,31 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Main Unit Testing", "Main U
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
 		Debug|Win32 = Debug|Win32
 		Debug|x64 = Debug|x64
+		Release|ARM = Release|ARM
 		Release|Win32 = Release|Win32
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11600F68-DE10-4CBF-9E50-B02EAD67E76B}.Debug|ARM.ActiveCfg = Debug|Win32
 		{11600F68-DE10-4CBF-9E50-B02EAD67E76B}.Debug|Win32.ActiveCfg = Debug|Win32
 		{11600F68-DE10-4CBF-9E50-B02EAD67E76B}.Debug|Win32.Build.0 = Debug|Win32
 		{11600F68-DE10-4CBF-9E50-B02EAD67E76B}.Debug|x64.ActiveCfg = Debug|Win32
+		{11600F68-DE10-4CBF-9E50-B02EAD67E76B}.Debug|x64.Build.0 = Debug|Win32
+		{11600F68-DE10-4CBF-9E50-B02EAD67E76B}.Release|ARM.ActiveCfg = Release|Win32
 		{11600F68-DE10-4CBF-9E50-B02EAD67E76B}.Release|Win32.ActiveCfg = Release|Win32
 		{11600F68-DE10-4CBF-9E50-B02EAD67E76B}.Release|Win32.Build.0 = Release|Win32
 		{11600F68-DE10-4CBF-9E50-B02EAD67E76B}.Release|x64.ActiveCfg = Release|Win32
+		{8F59B8D2-415C-4E27-8EF9-8CD3FD0D8A1E}.Debug|ARM.ActiveCfg = Debug|Win32
 		{8F59B8D2-415C-4E27-8EF9-8CD3FD0D8A1E}.Debug|Win32.ActiveCfg = Debug|Win32
 		{8F59B8D2-415C-4E27-8EF9-8CD3FD0D8A1E}.Debug|Win32.Build.0 = Debug|Win32
 		{8F59B8D2-415C-4E27-8EF9-8CD3FD0D8A1E}.Debug|x64.ActiveCfg = Debug|x64
 		{8F59B8D2-415C-4E27-8EF9-8CD3FD0D8A1E}.Debug|x64.Build.0 = Debug|x64
-		{8F59B8D2-415C-4E27-8EF9-8CD3FD0D8A1E}.Release|Win32.ActiveCfg = Release|Win32
-		{8F59B8D2-415C-4E27-8EF9-8CD3FD0D8A1E}.Release|Win32.Build.0 = Release|Win32
+		{8F59B8D2-415C-4E27-8EF9-8CD3FD0D8A1E}.Release|ARM.ActiveCfg = Release|Win32
+		{8F59B8D2-415C-4E27-8EF9-8CD3FD0D8A1E}.Release|Win32.ActiveCfg = Release|x64
+		{8F59B8D2-415C-4E27-8EF9-8CD3FD0D8A1E}.Release|Win32.Build.0 = Release|x64
 		{8F59B8D2-415C-4E27-8EF9-8CD3FD0D8A1E}.Release|x64.ActiveCfg = Release|x64
 		{8F59B8D2-415C-4E27-8EF9-8CD3FD0D8A1E}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection

@@ -16,7 +16,7 @@ private:
 	
 	typedef GameObject goc;
 	std::map<size_t, std::unique_ptr<GameObject> > _go;
-	std::unordered_map<size_t, Component*> _component;
+	std::unordered_map<size_t, RavelBehaviour*> _component;
 	std::unordered_map<size_t, std::pair<size_t, std::string>> _componentRegistry;
 
 public:
@@ -38,7 +38,7 @@ public:
 		_go.clear();
 
 		for (auto& iter : _component) {
-			Memory()->dealloc(iter.second);
+			iter.second->OnDestory();
 		}
 	}
 	void LoadFromFile(const std::string&);
@@ -48,7 +48,7 @@ public:
 
 	std::string const& ComponentTypeName(std::string const& tag);
 
-	Component* CreateComponent(std::string const& name);
+	RavelBehaviour* CreateComponent(std::string const& name);
 	
 	template <typename T>
 	T* CreateComponent();

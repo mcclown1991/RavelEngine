@@ -53,8 +53,8 @@ std::string const & Factory::ComponentTypeName(std::string const & tag)
 	return _componentRegistry[HASH(tag)].second;
 }
 
-Component * Factory::CreateComponent(std::string const & tag)
+RavelBehaviour * Factory::CreateComponent(std::string const & tag)
 {
-	Component* com = _component[HASH(_componentRegistry[HASH(tag)].second)]->Clone();
+	RavelBehaviour* com = _component[HASH(_componentRegistry[HASH(tag)].second)]->Clone();
 	return com;
 }

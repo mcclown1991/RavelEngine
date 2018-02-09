@@ -5,6 +5,7 @@
 
 class RavelRect {
 public:
+	RavelRect() {};
 	RavelRect(Vector2 dimension);
 	~RavelRect();
 

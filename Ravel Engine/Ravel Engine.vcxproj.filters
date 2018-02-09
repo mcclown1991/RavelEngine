@@ -70,6 +70,12 @@
     <Filter Include="Systems\Memory System">
       <UniqueIdentifier>{65fa1431-3144-4861-8786-8cd5bcc04edb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Systems\Sound System">
+      <UniqueIdentifier>{7e3d2b50-68b1-4bf7-a1c0-838e38dd2640}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Systems\Text System">
+      <UniqueIdentifier>{0a4a2f74-db0b-436e-b406-349ff547f568}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -192,6 +198,9 @@
     <ClInclude Include="Source\SpatialHash.h">
       <Filter>Systems\Collision System</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Font.h">
+      <Filter>Systems\Text System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\global.cpp">
@@ -289,6 +298,9 @@
     </ClCompile>
     <ClCompile Include="Source\SpatialHash.cpp">
       <Filter>Systems\Collision System</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Font.cpp">
+      <Filter>Systems\Text System</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

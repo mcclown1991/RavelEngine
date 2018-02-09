@@ -12,6 +12,7 @@ public:
 		return Memory()->alloc<Button>();
 	}
 
+	virtual void OnDestory() { this->~Button(); }
 	virtual void OnMouseDown();
 
 	void AddLisenter( RavelAction callback );

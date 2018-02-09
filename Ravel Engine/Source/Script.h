@@ -14,7 +14,7 @@ public:
 	}
 
 	virtual void Update();
-	virtual void Destory();
+	virtual void OnDestory();
 
 	void LoadScript(std::string const& filename);
 

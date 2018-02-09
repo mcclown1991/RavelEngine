@@ -1,7 +1,7 @@
 #include "Text.h"
 #include "RavelEngine.h"
 
-Text::Text() : text(), alignment(0), mode(Mode::SMALL)//, color(0xFF000000)
+Text::Text() : text(), alignment(0)//, color(0xFF000000)
 {
 }
 

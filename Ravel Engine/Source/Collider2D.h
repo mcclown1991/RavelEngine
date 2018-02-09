@@ -21,6 +21,6 @@ protected:
 
 public :
 	Circle circle;
-	RavelRect* rect;
+	RavelRect rect;
 	size_t hashkey;
 };

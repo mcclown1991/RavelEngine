@@ -59,6 +59,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -67,6 +68,10 @@
     <PostBuildEvent>
       <Command>Copy "$(ProjectDir)\Source\*.h" "$(SolutionDir)\Lib"</Command>
     </PostBuildEvent>
+    <Lib>
+      <TargetMachine>
+      </TargetMachine>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -98,6 +103,7 @@
     <ClInclude Include="Source\DataType.h" />
     <ClInclude Include="Source\DirectX11.h" />
     <ClInclude Include="Source\Factory.h" />
+    <ClInclude Include="Source\Font.h" />
     <ClInclude Include="Source\GameObject.h" />
     <ClInclude Include="Source\GameState.h" />
     <ClInclude Include="Source\GameStateManager.h" />
@@ -139,6 +145,7 @@
     <ClCompile Include="Source\Component.cpp" />
     <ClCompile Include="Source\DirectX11.cpp" />
     <ClCompile Include="Source\Factory.cpp" />
+    <ClCompile Include="Source\Font.cpp" />
     <ClCompile Include="Source\GameObject.cpp" />
     <ClCompile Include="Source\GameStateManager.cpp" />
     <ClCompile Include="Source\global.cpp" />

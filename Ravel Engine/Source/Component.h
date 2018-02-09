@@ -16,9 +16,7 @@ class Component : public RavelObject {
 public:
 	Component();
 	virtual ~Component();
-	virtual Component* Clone() {
-		return Memory()->alloc<Component>();
-	}
+	virtual Component* Clone() { return nullptr; }
 
 	//variables
 	GameObject* gameObject;
