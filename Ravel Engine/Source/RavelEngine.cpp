@@ -1,6 +1,7 @@
 #include "RavelEngine.h"
 #include "Factory.h"
 #include "CollisionManager.h"
+#include "Font.h"
 
 RavelEngine RavelEngine::m_EngineInstance;
 
@@ -85,6 +86,13 @@ void RavelEngine::SystemInit(HINSTANCE hInstance, int nCmdShow) {
 	std::cout << "Setting up Component Factory settings.........." << std::endl;
 #endif
 	factory()->Init();
+#ifdef _DEBUG
+	std::cout << "Done!" << std::endl;
+	std::cout << "=============================================================" << std::endl;
+	std::cout << "Setting up Component Factory settings.........." << std::endl;
+#endif
+	GetFontManager()->Init();
+	GetFontManager()->AddFont("font1", "font1");
 #ifdef _DEBUG
 	std::cout << "Done!" << std::endl;
 	std::cout << "=============================================================" << std::endl;

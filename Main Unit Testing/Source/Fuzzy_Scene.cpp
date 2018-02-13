@@ -3,6 +3,7 @@
 #include "Timer.h"
 #include "Timer.cpp"
 #include "Script.h"
+#include "Text.h"
 
 Fuzzy_Scene Fuzzy_Scene::_Scene;
 
@@ -29,6 +30,8 @@ void Fuzzy_Scene::Init()
 	//m_Door->transform->Rotate(45);
 	BoxCollider* col =  m_Door->AddComponent<BoxCollider>();
 	col->CreateBoxCollider();
+	Text* tx = m_Door->AddComponent<Text>();
+	tx->_text = "Hello World";
 
 	//Factory::pGOC& m_Door1 = factory()->CreateGameObject("Door1");
 	//m_spr = m_Door1->AddComponent<Sprite2D>();

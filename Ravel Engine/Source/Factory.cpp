@@ -21,6 +21,7 @@ void Factory::Init() {
 	RegisterComponent<Transform>("Transform");
 	RegisterComponent<BoxCollider>("BoxCollider");
 	RegisterComponent<Sprite2D>("Sprite2D");
+	RegisterComponent<Text>("Text");
 }
 
 void Factory::LoadFromFile(const std::string& file)

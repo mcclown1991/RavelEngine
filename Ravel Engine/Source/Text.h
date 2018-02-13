@@ -4,6 +4,7 @@
 #include <string>
 #include "RavelBehaviour.h"
 
+
 class Text : public RavelBehaviour {
 public:
 	Text();
@@ -16,15 +17,13 @@ public:
 
 	void Render();
 
-	std::string text;
-	int alignment;
-	//DWORD color;
+	void SetFontSize(size_t size);
+
+	std::string _text;
+	size_t size;
 
 private:
-	/*hgeFont* _small;
-	hgeFont* _large;
-
-	hgeFont* _render;*/
-	
+	std::string font;
+	Transform* local;
 };
 #endif
