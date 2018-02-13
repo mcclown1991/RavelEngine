@@ -7,7 +7,7 @@
 
 //Data Types for components
 template <typename T>
-using RavelAction = void(T::*)();
+using RavelAction = typename void(T::*)();
 
 class GameObject;
 class Transform;

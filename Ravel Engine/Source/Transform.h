@@ -15,6 +15,7 @@ public:
 	virtual void OnDestory() { this->~Transform(); }
 
 	void SetPosition(Vector2);
+	void SetLocalPosition(Vector2);
 
 	Vector2 GetPosition();
 	Matrix3x3 GetTransforms();

@@ -76,6 +76,9 @@
     <Filter Include="Systems\Text System">
       <UniqueIdentifier>{0a4a2f74-db0b-436e-b406-349ff547f568}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Structures">
+      <UniqueIdentifier>{ec12b70a-aad3-428e-9ef0-683128ef0fe5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -201,6 +204,18 @@
     <ClInclude Include="Source\Font.h">
       <Filter>Systems\Text System</Filter>
     </ClInclude>
+    <ClInclude Include="Source\RectTransform.h">
+      <Filter>Base Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rect.h">
+      <Filter>Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Stuctures.h">
+      <Filter>Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ComponentHeader.h">
+      <Filter>Base Components\Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\global.cpp">
@@ -301,6 +316,12 @@
     </ClCompile>
     <ClCompile Include="Source\Font.cpp">
       <Filter>Systems\Text System</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rect.cpp">
+      <Filter>Structures</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RectTransform.cpp">
+      <Filter>Base Components\Source</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

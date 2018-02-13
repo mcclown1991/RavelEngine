@@ -99,6 +99,7 @@
     <ClInclude Include="Source\Button.h" />
     <ClInclude Include="Source\Collider2D.h" />
     <ClInclude Include="Source\CollisionManager.h" />
+    <ClInclude Include="Source\ComponentHeader.h" />
     <ClInclude Include="Source\Component.h" />
     <ClInclude Include="Source\DataType.h" />
     <ClInclude Include="Source\DirectX11.h" />
@@ -122,6 +123,8 @@
     <ClInclude Include="Source\RavelMath.h" />
     <ClInclude Include="Source\RavelObject.h" />
     <ClInclude Include="Source\RavelRect.h" />
+    <ClInclude Include="Source\Rect.h" />
+    <ClInclude Include="Source\RectTransform.h" />
     <ClInclude Include="Source\Script.h" />
     <ClInclude Include="Source\ScriptManager.h" />
     <ClInclude Include="Source\SpatialHash.h" />
@@ -129,6 +132,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Source\Sprite2D.h" />
+    <ClInclude Include="Source\Stuctures.h" />
     <ClInclude Include="Source\System.h" />
     <ClInclude Include="Source\Text.h" />
     <ClInclude Include="Source\Time.h" />
@@ -159,6 +163,8 @@
     <ClCompile Include="Source\OpenGL.cpp" />
     <ClCompile Include="Source\RavelEngine.cpp" />
     <ClCompile Include="Source\RavelRect.cpp" />
+    <ClCompile Include="Source\Rect.cpp" />
+    <ClCompile Include="Source\RectTransform.cpp" />
     <ClCompile Include="Source\Script.cpp" />
     <ClCompile Include="Source\ScriptFunction.cpp" />
     <ClCompile Include="Source\ScriptManager.cpp" />

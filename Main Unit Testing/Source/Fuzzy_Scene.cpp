@@ -4,6 +4,7 @@
 #include "Timer.cpp"
 #include "Script.h"
 #include "Text.h"
+#include "Button.h"
 
 Fuzzy_Scene Fuzzy_Scene::_Scene;
 
@@ -32,6 +33,9 @@ void Fuzzy_Scene::Init()
 	col->CreateBoxCollider();
 	Text* tx = m_Door->AddComponent<Text>();
 	tx->_text = "Hello World";
+	/*factory()->RegisterComponent<Button<Fuzzy_Scene>>("Button");
+	Button<Fuzzy_Scene>* button = m_Door->AddComponent<Button<Fuzzy_Scene>>();
+	button->AddLisenter(&Fuzzy_Scene::Load);*/
 
 	//Factory::pGOC& m_Door1 = factory()->CreateGameObject("Door1");
 	//m_spr = m_Door1->AddComponent<Sprite2D>();
@@ -58,6 +62,7 @@ void Fuzzy_Scene::Init()
 
 void Fuzzy_Scene::Load()
 {
+	std::cout << "Loado" << std::endl;
 }
 
 void Fuzzy_Scene::Update()

@@ -1,6 +1,5 @@
 #include "Factory.h"
-#include "BoxCollider.h"
-#include "Sprite2D.h"
+#include "ComponentHeader.h"
 #include <typeinfo.h>
 
 Factory* factory()
@@ -19,9 +18,11 @@ Factory::~Factory()
 
 void Factory::Init() {
 	RegisterComponent<Transform>("Transform");
+	RegisterComponent<RectTransform>("RectTransform");
 	RegisterComponent<BoxCollider>("BoxCollider");
 	RegisterComponent<Sprite2D>("Sprite2D");
 	RegisterComponent<Text>("Text");
+	RegisterComponent<Script>("Script");
 }
 
 void Factory::LoadFromFile(const std::string& file)

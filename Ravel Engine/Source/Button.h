@@ -15,7 +15,7 @@ public:
 	virtual void OnDestory() { this->~Button(); }
 	virtual void OnMouseDown();
 
-	void AddLisenter( RavelAction callback );
+	void AddLisenter( RavelAction<T> callback );
 
 	size_t _id;
 	T* obj;
@@ -24,7 +24,7 @@ private:
 	using Callback = void (T::*)(int ID);
 	Callback func;
 
-	RavelAction _Callback;
+	RavelAction<T> _Callback;
 
 public:
 	void BindCallback(Callback functor);
@@ -44,10 +44,11 @@ template <class T>
 void Button<T>::OnMouseDown()
 {
 	(obj->*func)(_id);
+	_Callback();
 }
 
 template<class T>
-inline void Button<T>::AddLisenter(RavelAction callback)
+inline void Button<T>::AddLisenter(RavelAction<T> callback)
 {
 	_Callback = callback;
 }

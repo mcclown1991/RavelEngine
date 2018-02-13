@@ -15,6 +15,11 @@ void Transform::SetPosition(Vector2 position){
 		this->position = position;
 }
 
+void Transform::SetLocalPosition(Vector2 position)
+{
+	this->localposition = position;
+}
+
 Vector2 Transform::GetPosition()
 {
 	if(parent)

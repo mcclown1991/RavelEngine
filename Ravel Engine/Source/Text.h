@@ -3,6 +3,7 @@
 
 #include <string>
 #include "RavelBehaviour.h"
+#include "RectTransform.h"
 
 
 class Text : public RavelBehaviour {
@@ -14,6 +15,7 @@ public:
 	}
 
 	virtual void Start();
+	virtual void OnDestory();
 
 	void Render();
 
@@ -21,9 +23,9 @@ public:
 
 	std::string _text;
 	size_t size;
+	RectTransform* rect;
 
 private:
 	std::string font;
-	Transform* local;
 };
 #endif
