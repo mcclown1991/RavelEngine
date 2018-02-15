@@ -23,8 +23,8 @@ public:
 
 	virtual void OnCollision2D(Collider2D* other);
 
-	virtual void IntersectionTest(Collider2D* other);
-	virtual void CursorIntersectionTest(Vector2 mouse);
+	virtual bool IntersectionTest(Collider2D* other);
+	virtual bool CursorIntersectionTest(Vector2 mouse);
 
 	//delegates
 	typedef void(*FunctionTrigger)();

@@ -15,6 +15,9 @@ public:
 	virtual void OnDestory() { this->~Button(); }
 	virtual void OnMouseDown();
 
+	void Initialise(T* self) {
+		obj = self;
+	}
 	void AddLisenter( RavelAction<T> callback );
 
 	size_t _id;
@@ -31,7 +34,7 @@ public:
 };
 
 template <class T>
-Button<T>::Button()
+Button<T>::Button() : _id(0), obj(nullptr), func(nullptr), _Callback(nullptr)
 {
 }
 
@@ -43,8 +46,9 @@ Button<T>::~Button()
 template <class T>
 void Button<T>::OnMouseDown()
 {
-	(obj->*func)(_id);
-	_Callback();
+	if (!obj) return;
+	//(obj->*func)(_id);
+	(obj->*_Callback)();
 }
 
 template<class T>

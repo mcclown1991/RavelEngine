@@ -83,6 +83,18 @@ bool GetMousePos(int& mX, int& mY)
 	return false;
 }
 
+bool GetMouseButtonDown(int button)
+{
+	switch (button) {
+	case 0:
+		return _ms.message == WM_LBUTTONDOWN ? true : false;
+	case 1:
+		return WM_RBUTTONDOWN ? true : false;
+	case 2:
+		return WM_MBUTTONDOWN ? true : false;
+	}
+}
+
 /** Checks if left mouse button is pressed
 */
 bool OnLClick()

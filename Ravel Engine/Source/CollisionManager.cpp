@@ -30,7 +30,9 @@ void CollisionManager::Update()
 	GetMousePos(mouse.x, mouse.y);
 
 	for (size_t i = 0; i < _colliders.size(); ++i) {
-		_colliders[i]->CursorIntersectionTest(mouse);
+		if (_colliders[i]->CursorIntersectionTest(mouse))
+			if (GetMouseButtonDown(0))
+				_colliders[i]->gameObject->SendMessage("OnMouseDown");
 
 		/*for (int j = i + 1; j < _colliders.size(); ++j) {
 			_colliders[i]->IntersectionTest(_colliders[j]);

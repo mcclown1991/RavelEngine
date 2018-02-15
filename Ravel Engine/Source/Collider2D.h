@@ -9,8 +9,8 @@ public:
 	Collider2D();
 	virtual ~Collider2D();
 
-	virtual void IntersectionTest(Collider2D* other) = 0;
-	virtual void CursorIntersectionTest(Vector2 mouse) = 0;
+	virtual bool IntersectionTest(Collider2D* other) = 0;
+	virtual bool CursorIntersectionTest(Vector2 mouse) = 0;
 
 protected:
 	struct Circle {

@@ -67,20 +67,27 @@ void BoxCollider::OnCollision2D(Collider2D * other)
 	//gameObject->OnCollisionEnter2D(other);
 }
 
-void BoxCollider::IntersectionTest(Collider2D* other) {
+bool BoxCollider::IntersectionTest(Collider2D* other) {
 
 	if (rect.Intersect(&(other->rect))) {
 		//gameObject->OnCollisionEnter2D(other);
 		//other->gameObject->OnCollisionEnter2D(this);
 		std::cout << gameObject->name << " :: " << "BoxCollider: OnCollisionEnter()" << "->" << other->gameObject->name << std::endl;
+		return true;
 	}
+	return false;
 }
 
-void BoxCollider::CursorIntersectionTest(Vector2 mouse) {
+bool BoxCollider::CursorIntersectionTest(Vector2 mouse) {
 	//do position testing remeber mouse position is in screen space
 	//convert mouse to world space
 	if (rect.Intersect(mouse)) {
 		//gameObject->OnMouseHover();
-		std::cout << gameObject->name << " :: " << "BoxCollider: OnMouseHover()" << std::endl;
+		//std::cout << gameObject->name << " :: " << "BoxCollider: OnMouseHover()" << std::endl;
+		if (GetMouseButtonDown(0))
+			std::cout << gameObject->name << " :: " << "BoxCollider: OnMouseDown()" << std::endl;
+
+		return true;
 	}
+	return false;
 }
