@@ -3,7 +3,7 @@
 #include "RavelEngine.h"
 
 
-Text::Text()
+Text::Text() : rect(nullptr)
 {
 }
 
@@ -28,12 +28,10 @@ void Text::OnDestory()
 
 void Text::Render()
 {
-	Vector2 prev(0, 0);
 	Vector2 position = rect->position;
 	for(char ch : _text){
 		FontSystem::font f = GetFontManager()->FetchFont(font, ch);
-		prev = Vector2(f.l, f.h);
-		rect->position.x += prev.x;
+		rect->position.x += rect->hscale;
 		Vector2 uv = Vector2((f.x / f.sz), (f.y / f.sy));
 		Vector2 scale = Vector2((f.l/ f.sz), (f.h / f.sy));
 		rect->hscale = scale.x * size * 10;

@@ -5,6 +5,7 @@
 #include "Script.h"
 #include "Text.h"
 #include "Button.h"
+#include "ComponentHeader.h"
 
 Fuzzy_Scene Fuzzy_Scene::_Scene;
 
@@ -32,6 +33,7 @@ void Fuzzy_Scene::Init()
 	BoxCollider* col =  m_Door->AddComponent<BoxCollider>();
 	col->CreateBoxCollider();
 	Text* tx = m_Door->AddComponent<Text>();
+	tx->SetFontSize(20);
 	tx->_text = "Hello World";
 	factory()->RegisterComponent<Button<Fuzzy_Scene>>("Button");
 	Button<Fuzzy_Scene>* button = m_Door->AddComponent<Button<Fuzzy_Scene>>();
