@@ -226,6 +226,16 @@ DirectX::XMMATRIX Matrix4x4::ToXMMatrix() {
 	return DirectX::XMMATRIX(m);
 }
 
+Matrix4x4 Matrix4x4::TRS(Vector3 const & Translate, float rotation, Vector3 const & scale)
+{
+	return Matrix4x4();
+}
+
+Matrix4x4 Matrix4x4::TRS(Vector3 const & Translate, Vector3 const & rotation, Vector3 const & scale)
+{
+	return Matrix4x4();
+}
+
 ///**************************************************************************/
 ///*!
 //This function creates a translation matrix from x & y

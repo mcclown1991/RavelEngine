@@ -93,6 +93,7 @@ bool GetMouseButtonDown(int button)
 	case 2:
 		return WM_MBUTTONDOWN ? true : false;
 	}
+	return false;
 }
 
 /** Checks if left mouse button is pressed

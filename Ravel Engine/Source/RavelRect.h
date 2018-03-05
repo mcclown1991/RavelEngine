@@ -33,4 +33,9 @@ public:
 	Vector2 BottomRight() {
 		return origin + x;
 	}
+
+private:
+	bool AABB(RavelRect* other);
+	bool OBB(RavelRect* other);
+	float Projection(Vector2 const& v, Vector2 const& p1, Vector2 const& p2);
 };

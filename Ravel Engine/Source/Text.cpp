@@ -16,7 +16,7 @@ void Text::Start()
 	GetGraphicsManager()->AddText(this);
 	font = "font1"; // defualt font
 	rect = factory()->CreateComponent<RectTransform>();
-	size = 10;
+	size = 100;
 }
 
 void Text::OnDestory()
@@ -32,10 +32,10 @@ void Text::Render()
 	for(char ch : _text){
 		FontSystem::font f = GetFontManager()->FetchFont(font, ch);
 		rect->position.x += rect->hscale;
-		Vector2 uv = Vector2((f.x / f.sz), (f.y / f.sy));
-		Vector2 scale = Vector2((f.l/ f.sz), (f.h / f.sy));
-		rect->hscale = scale.x * size * 10;
-		rect->vscale = scale.y * size * 10;
+		Vector2 uv = Vector2(((float)f.x / (float)f.sz), ((float)f.y / (float)f.sy));
+		Vector2 scale = Vector2(((float)f.l/ (float)f.sz), ((float)f.h / (float)f.sy));
+		rect->hscale = scale.x * size;
+		rect->vscale = scale.y * size;
 		GetGraphicsManager()->Renderer()->Render(f.sampleid, rect->GetLocalTransforms(), uv, scale, true, 1);
 	}
 
@@ -44,5 +44,5 @@ void Text::Render()
 
 void Text::SetFontSize(size_t size)
 {
-	this->size = size;
+	this->size = size * 10;
 }

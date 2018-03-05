@@ -175,6 +175,58 @@ Matrix3x3 Matrix3x3::Mtx33Identity()
 	return result;
 }
 
+Matrix3x3 Matrix3x3::TRS(Vector2 const & Translate, float Rotate, Vector2 const & Scale)
+{
+	Matrix3x3 mat;
+	Vector2 right, up;
+	Rotate = (3.14125f / 180.0f) * Rotate;
+	up = Vector2(-sin(Rotate), cos(Rotate));
+	right = Vector2(up.y, -up.x);
+
+	mat.m[0] = right.x * Scale.x;
+	mat.m[1] = up.x * Scale.y;
+	mat.m[3] = right.y * Scale.x;
+	mat.m[4] = up.y * Scale.y;
+
+	mat.m[2] = Translate.x * 0.89f;
+	mat.m[5] = Translate.y * 0.89f;
+
+	return mat;
+}
+
+Matrix3x3 Matrix3x3::TRS(Vector2 const & Translate, Vector2 const & Rotate, Vector2 const & Scale)
+{
+	Matrix3x3 mat;
+
+	float angle = acos(Rotate.Normalized() * Vector2(1, 0));
+
+	Vector2 right, up;
+	angle = (3.14125f / 180.0f) * angle;
+	up = Vector2(-sin(angle), cos(angle));
+	right = Vector2(up.y, -up.x);
+
+	mat.m[0] = right.x * Scale.x;
+	mat.m[1] = up.x * Scale.y;
+	mat.m[3] = right.y * Scale.x;
+	mat.m[4] = up.y * Scale.y;
+
+	mat.m[2] = Translate.x * 0.89f;
+	mat.m[5] = Translate.y * 0.89f;
+	return mat;
+}
+
+Matrix3x3 Matrix3x3::LookAt(Vector2 const & from, Vector2 const & to, Vector2 const & up)
+{
+	// given the to, find the up for to
+	Vector2 u = to - from;
+	Vector2 v(-u.x, u.y);
+
+	//align frame to new frame
+	Matrix3x3 original;
+
+	return Matrix3x3();
+}
+
 ///**************************************************************************/
 ///*!
 //This function creates a translation matrix from x & y

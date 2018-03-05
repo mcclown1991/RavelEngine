@@ -13,7 +13,7 @@
 class FontSystem : public System {
 public:
 	struct font {
-		float sz, sy, x, y, l, h, _x, _y;
+		size_t sz, sy, x, y, l, h, _x, _y;
 		size_t sampleid;
 	};
 

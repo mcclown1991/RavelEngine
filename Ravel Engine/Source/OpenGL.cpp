@@ -77,7 +77,8 @@ unsigned OpenGL::LoadVertexShader(std::string filename, std::string entry, std::
 		VertexShaderStream.close();
 	}
 	else {
-		printf("Impossible to open %s. Are you in the right directory ? Don't forget to read the FAQ !\n", filename);
+		std::cout << "Impossible to open " << filename << ". Are you in the right directory ? Don't forget to read the FAQ !" << std::endl;
+		//printf("Impossible to open %s. Are you in the right directory ? Don't forget to read the FAQ !\n", filename);
 		getchar();
 	}
 
@@ -85,7 +86,8 @@ unsigned OpenGL::LoadVertexShader(std::string filename, std::string entry, std::
 	int InfoLogLength;
 
 	// Compile Vertex Shader
-	printf("Compiling shader : %s\n", filename);
+	std::cout << "Compiling shader : " << filename << std::endl;
+	//printf("Compiling shader : %s\n", filename);
 	char const * VertexSourcePointer = VertexShaderCode.c_str();
 	glShaderSource(VertexShaderID, 1, &VertexSourcePointer, NULL);
 	glCompileShader(VertexShaderID);
@@ -123,7 +125,8 @@ unsigned OpenGL::LoadFragmentShader(std::string filename, std::string entry, std
 	int InfoLogLength;
 
 	// Compile Fragment Shader
-	printf("Compiling shader : %s\n", filename);
+	std::cout << "Compiling shader : " << filename << std::endl;
+	//printf("Compiling shader : %s\n", filename);
 	char const * FragmentSourcePointer = FragmentShaderCode.c_str();
 	glShaderSource(FragmentShaderID, 1, &FragmentSourcePointer, NULL);
 	glCompileShader(FragmentShaderID);

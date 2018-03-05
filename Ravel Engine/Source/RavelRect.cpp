@@ -31,43 +31,14 @@ void RavelRect::Update(Vector2 x, Vector2 y, Vector2 origin) {
 }
 
 bool RavelRect::Intersect(RavelRect* rect) {
-	//transform rect to local coordinates
-	//calculate target origin first
-
-	Vector2 bottom_left = v * rect->BottomLeft();
-
-	//check target origin is withing bounds
-	//std::cout << "Target position: X " << bottom_left.x << ", Y " << bottom_left.y << std::endl;
-
+	
 	//try AABB first
-	//bottom left
-	if (bottom_left.x <= dimension.x && bottom_left.y <= dimension.y && bottom_left.x >= 0 && bottom_left.y >= 0) {
-		// is inside box liao
-		std::cout << "bottom_left collision" << std::endl;
+	if (AABB(rect)) {
 		return true;
 	}
-
-	Vector2 top_left = v * rect->TopLeft();
-
-	if (top_left.x <= dimension.x && top_left.y <= dimension.y && top_left.x >= 0 && top_left.y >= 0) {
-		// is inside box liao
-		std::cout << "top_left collision" << std::endl;
-		return true;
-	}
-
-	Vector2 bottom_right = v * rect->BottomRight();
-
-	if (bottom_right.x <= dimension.x && bottom_right.y <= dimension.y && bottom_right.x >= 0 && bottom_right.y >= 0) {
-		// is inside box liao
-		std::cout << "bottom_right collision" << std::endl;
-		return true;
-	}
-
-	Vector2 top_right = v * rect->TopRight();
-
-	if (top_right.x <= dimension.x && top_right.y <= dimension.y && top_right.x >= 0 && top_right.y >= 0) {
-		// is inside box liao
-		std::cout << "top_right collision" << std::endl;
+	
+	//try obb
+	if (OBB(rect)) {
 		return true;
 	}
 
@@ -83,4 +54,107 @@ bool RavelRect::Intersect(Vector2 const& position) {
 		return true;
 	}
 	return false;
+}
+
+bool RavelRect::AABB(RavelRect * other)
+{
+	Vector2 bottom_left = other->BottomLeft();
+
+	//bottom left
+	if (bottom_left.x <= dimension.x && bottom_left.y <= dimension.y && bottom_left.x >= 0 && bottom_left.y >= 0) {
+		// is inside box liao
+		std::cout << "bottom_left collision" << std::endl;
+		return true;
+	}
+
+	Vector2 top_left = other->TopLeft();
+
+	if (top_left.x <= dimension.x && top_left.y <= dimension.y && top_left.x >= 0 && top_left.y >= 0) {
+		// is inside box liao
+		std::cout << "top_left collision" << std::endl;
+		return true;
+	}
+
+	Vector2 bottom_right = other->BottomRight();
+
+	if (bottom_right.x <= dimension.x && bottom_right.y <= dimension.y && bottom_right.x >= 0 && bottom_right.y >= 0) {
+		// is inside box liao
+		std::cout << "bottom_right collision" << std::endl;
+		return true;
+	}
+
+	Vector2 top_right = other->TopRight();
+
+	if (top_right.x <= dimension.x && top_right.y <= dimension.y && top_right.x >= 0 && top_right.y >= 0) {
+		// is inside box liao
+		std::cout << "top_right collision" << std::endl;
+		return true;
+	}
+
+	return false;
+}
+
+bool RavelRect::OBB(RavelRect * other)
+{
+	// phase 1 : project to self axis 
+	// check for projection direction
+	// x-axis
+	Vector2 top_left = v * other->TopLeft();
+	Vector2 bottom_left = v * other->BottomLeft();
+	Vector2 top_right = v * other->TopRight();
+	Vector2 bottom_right = v * other->BottomRight();
+
+	bool overlap = true;
+	Vector2 v;
+	bool tiltL = false;
+	float result;
+
+	// X = Axis
+	if (top_left.x > bottom_left.x) {
+		//tils to the right project bottom left and top right to x axis
+		result = Projection(Vector2(0, 1), bottom_left, top_right);
+		tiltL = false;
+	}
+	else {
+		result = Projection(Vector2(0, 1), top_left, bottom_right);
+		tiltL = true;
+	}
+
+	// check for separation
+	if (tiltL) {
+		if (top_left.x + result < TopLeft().x || top_left.x > TopRight().x)
+			return false;
+	}
+	else {
+		if (bottom_left.x > TopRight().x || top_right.x + result < TopLeft().x)
+			return false;
+	}
+		
+	// Y Axis
+	if (top_left.y > top_right.y) {
+		//tilt to the right
+		result = Projection(Vector2(1, 0), top_left, bottom_right);
+		tiltL = false;
+	}
+	else {
+		result = Projection(Vector2(1, 0), top_right, bottom_left);
+		tiltL = true;
+	}
+
+	// check for separation
+	if (tiltL) {
+		if (bottom_left.y > TopLeft().y || top_right.y < BottomLeft().y)
+			return false;
+	}
+	else {
+		if (bottom_right.y > TopLeft().y || top_left.y < BottomLeft().y)
+			return false;
+	}
+
+	return true;
+}
+
+float RavelRect::Projection(Vector2 const & v, Vector2 const & p1, Vector2 const & p2)
+{
+	return v * (p2 - p1);
 }
