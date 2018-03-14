@@ -1,6 +1,8 @@
 #include "Sprite2D.h"
 #include "RavelEngine.h"
 #include "GraphicsManager.h"
+#include <rapidjson\document.h>
+#include <rapidjson\istreamwrapper.h>
 
 Sprite2D::Sprite2D() : RavelBehaviour(){
 	m_Model = nullptr;
@@ -8,6 +10,35 @@ Sprite2D::Sprite2D() : RavelBehaviour(){
 
 Sprite2D::~Sprite2D(){
 
+}
+
+void Sprite2D::LoadFromFile(std::string const& file)
+{
+	// do standard loading of component
+	std::ifstream json;
+	json.open(file);
+	rapidjson::IStreamWrapper isw(json);
+	rapidjson::Document doc;
+	doc.ParseStream(isw);
+
+	if (doc.IsObject()) {
+		rapidjson::Value& sprite = doc["Sprite2D"];
+
+		IsActive = sprite["IsActive"].GetBool();
+
+		Vector2 pos;
+		pos.x = sprite["Transform"]["X"].GetFloat();
+		pos.y = sprite["Transform"]["Y"].GetFloat();
+
+		transform->position = pos;
+
+		std::string filepath = sprite["Texture"]["filepath"].GetString();
+		Vector2 sz;
+		sz.x = sprite["Texture"]["X"].GetInt();
+		sz.y = sprite["Texture"]["Y"].GetInt();
+
+		CreateTexture(filepath, sz.x, sz.y);
+	}
 }
 
 void Sprite2D::Update(){

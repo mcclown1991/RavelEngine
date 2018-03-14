@@ -35,6 +35,8 @@ public:
 	DirectX::XMMATRIX ToXMMatrix();
 
 	// Transforms
+	Matrix4x4 TRS(Vector3 const& Translate, float rotation, Vector3 const& scale);
+	Matrix4x4 TRS(Vector3 const& Translate, Vector3 const& rotation, Vector3 const& scale);
 
 
 	float m[16];

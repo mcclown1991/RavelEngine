@@ -98,9 +98,12 @@ public:
 	static Matrix3x3 Mtx33Identity();
 
 	// Transforms
-	
+	Matrix3x3 TRS(Vector2 const& Translate, float Rotate, Vector2 const& Scale);
+	Matrix3x3 TRS(Vector2 const& Translate, Vector2 const& Rotate, Vector2 const& Scale);
+
+	Matrix3x3 LookAt(Vector2 const& from, Vector2 const& to, Vector2 const& up);
 
 	float m[9];
 };
 
-#endif // CS230_MATRIX3X3_H_#pragma once
+#endif 

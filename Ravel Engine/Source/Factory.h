@@ -21,7 +21,7 @@ private:
 
 public:
 
-	typedef std::unique_ptr<GameObject> pGOC;
+	typedef std::unique_ptr<GameObject> pGameObject;
 
 	Factory();
 	virtual ~Factory();
@@ -42,9 +42,9 @@ public:
 		}
 	}
 	void LoadFromFile(const std::string&);
-	pGOC& CreateGameObject(const std::string&);
+	pGameObject& CreateGameObject(const std::string&);
 	void CreateEmptyObject();
-	pGOC& GetGameObject(const std::string&);
+	pGameObject& GetGameObject(const std::string&);
 
 	std::string const& ComponentTypeName(std::string const& tag);
 

@@ -1,5 +1,7 @@
 #include "Factory.h"
 #include "ComponentHeader.h"
+#include "rapidjson/document.h"
+#include <rapidjson\istreamwrapper.h>
 #include <typeinfo.h>
 
 Factory* factory()
@@ -26,10 +28,68 @@ void Factory::Init() {
 }
 
 void Factory::LoadFromFile(const std::string& file)
-{ 
+{
+	std::ifstream json;
+	json.open(file);
+	rapidjson::IStreamWrapper isw(json);
+	rapidjson::Document doc;
+	doc.ParseStream(isw);
+
+	if (doc.IsObject()) {
+		
+		rapidjson::Value& gameobject = doc["GameObject"];
+
+		std::string name = gameobject["name"].GetString();
+		pGameObject& m_Obj = CreateGameObject(name);
+
+		m_Obj->IsActive = gameobject["IsActive"].GetBool();
+
+		Vector2 pos;
+		pos.x = gameobject["Transform"]["X"].GetFloat();
+		pos.y = gameobject["Transform"]["Y"].GetFloat();
+
+		m_Obj->transform->position = pos;
+
+		// components
+		rapidjson::SizeType size = gameobject["Components"].MemberCount();
+		for (rapidjson::Value::ConstMemberIterator it = gameobject["Components"].MemberBegin(); it != gameobject["Components"].MemberEnd(); ++it) {
+			Component* comp = m_Obj->AddComponent(it->value["typename"].GetString());
+			comp->LoadFromFile(it->value["metafile"].GetString());
+		}
+	}
+
+	//// start reading serialized data
+	//std::ifstream data;
+	//data.open(file + ".raveldata");
+
+	//if (data.is_open()) {
+	//	std::string line;
+	//	// data file layout
+	//	// start with gameobject
+	//	std::string::iterator iter;
+	//	std::getline(data, line);
+	//	// create gameobject
+	//	pGameObject& m_Obj = CreateGameObject(line);
+
+	//	// gameobject's transform information
+
+
+	//	// next is component count
+	//	std::getline(data, line);
+	//	int count;
+	//	count = std::stoi(line);
+
+	//	for (int i = 0; i < count; ++i) {
+	//		// create components
+	//		std::getline(data, line);
+	//		//find <inside>
+	//		std::string comp = line.substr(1, line.size() - 2);
+	//		Component* component = m_Obj->AddComponent(comp);
+	//	}
+	//}
 }
 
-Factory::pGOC& Factory::CreateGameObject(const std::string& name)
+Factory::pGameObject& Factory::CreateGameObject(const std::string& name)
 {
 	int id = HASH(name);
 	//_go[id] = std::unique_ptr<GameObject>();
@@ -44,7 +104,7 @@ void Factory::CreateEmptyObject()
 	_go[HASH(_empty)] = std::make_unique<GameObject>();
 }
 
-Factory::pGOC& Factory::GetGameObject(const std::string& name)
+Factory::pGameObject& Factory::GetGameObject(const std::string& name)
 {
 	size_t h = HASH(name);
 	return _go[h];

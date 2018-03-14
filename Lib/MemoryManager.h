@@ -1,10 +1,17 @@
 #pragma once
-#include <map>
+#include <unordered_map>
+#include <iostream>
 
 class MemoryManager {
 
 	// Memory structure
 private:
+
+	//Profilling used
+	struct Profile {
+		std::vector<std::string> blocks;
+	}profile;
+
 	struct _block {
 		struct _block *next;
 		struct _block *prev;
@@ -14,7 +21,9 @@ private:
 	};
 
 	void* mempool;
-	std::map<void*, _block*> vtable;
+	std::unordered_map<size_t, _block*> vtable;
+
+	std::size_t Hash(void* address);
 
 	_block* head;
 
@@ -70,7 +79,7 @@ inline T * MemoryManager::alloc()
 		seg->next = block;
 		//seg->isFree = false;
 		block->pool = (char*)seg->pool + size;
-		vtable[block->pool] = block;
+		vtable[Hash(block->pool)] = block;
 	}
 
 	T* obj = new (seg->pool) T();

@@ -1,0 +1,17 @@
+{
+	"GameObject" : 
+	{
+		"name" : "testJson",
+		"IsActive" : true,
+		"Transform" : {
+			"X" : 0.0,
+			"Y" : 0.0
+		},
+		"Components" : {
+			"0" : {
+				"typename" : "Sprite2D",
+				"metafile" : "testJson_sprite2D.raveldata"
+			}
+		}
+	}
+}

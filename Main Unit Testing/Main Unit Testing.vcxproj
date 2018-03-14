@@ -71,7 +71,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)LUA\include;$(SolutionDir)DirectXTK\Inc;$(SolutionDir)Lib;$(SolutionDir)opengl\glfw-3.2.bin.WIN32\include;$(SolutionDir)opengl\glew-2.0.0\include;.\hge181\include;$(IncludePath);$(SolutionDir)opengl\glm</IncludePath>
+    <IncludePath>$(SolutionDir)rapidjson\include;$(SolutionDir)LUA\include;$(SolutionDir)DirectXTK\Inc;$(SolutionDir)Lib;$(SolutionDir)opengl\glfw-3.2.bin.WIN32\include;$(SolutionDir)opengl\glew-2.0.0\include;.\hge181\include;$(IncludePath);$(SolutionDir)opengl\glm</IncludePath>
     <LibraryPath>$(SolutionDir)LUA\lib;$(SolutionDir)DirectXTK;$(SolutionDir)Lib;$(SolutionDir)opengl\glew-2.0.0\lib\Release\Win32;$(SolutionDir)opengl\glfw-3.2.bin.WIN32\lib-vc2015;.\hge181\lib\vc;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

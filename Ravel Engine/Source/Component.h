@@ -17,6 +17,7 @@ public:
 	Component();
 	virtual ~Component();
 	virtual Component* Clone() { return nullptr; }
+	virtual void LoadFromFile(std::string const& stream) {}
 
 	//variables
 	GameObject* gameObject;

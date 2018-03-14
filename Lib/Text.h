@@ -3,33 +3,29 @@
 
 #include <string>
 #include "RavelBehaviour.h"
+#include "RectTransform.h"
+
 
 class Text : public RavelBehaviour {
 public:
 	Text();
 	virtual ~Text();
+	virtual Text* Clone() {
+		return Memory()->alloc<Text>();
+	}
 
-	virtual void OnStart();
-	virtual void Update();
+	virtual void Start();
 	virtual void OnDestory();
 
 	void Render();
 
-	enum Mode {
-		SMALL = 0,
-		LARGE
-	};
+	void SetFontSize(size_t size);
 
-	std::string text;
-	int alignment;
-	Mode mode;
-	//DWORD color;
+	std::string _text;
+	size_t size;
+	RectTransform* rect;
 
 private:
-	/*hgeFont* _small;
-	hgeFont* _large;
-
-	hgeFont* _render;*/
-	
+	std::string font;
 };
 #endif

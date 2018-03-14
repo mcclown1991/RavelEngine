@@ -8,10 +8,9 @@ class LinePrimitive : public RavelBehaviour{
 public :
 	LinePrimitive();
 	virtual ~LinePrimitive();
-
-	virtual void OnStart();
-	virtual void Update();
-	virtual void OnDestory();
+	virtual LinePrimitive* Clone() {
+		return Memory()->alloc<LinePrimitive>();
+	}
 
 	void Initialise(float x0, float y0, float x1, float y1);
 	void Draw();

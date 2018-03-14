@@ -8,8 +8,10 @@ class BoxCollider : public Collider2D {
 public:
 	BoxCollider();
 	virtual ~BoxCollider();
+	virtual BoxCollider* Clone() {
+		return Memory()->alloc<BoxCollider>();
+	}
 
-	virtual void OnStart();
 	virtual void Update();
 	virtual void OnDestory();
 
@@ -21,8 +23,8 @@ public:
 
 	virtual void OnCollision2D(Collider2D* other);
 
-	virtual void IntersectionTest(Collider2D* other);
-	virtual void CursorIntersectionTest(Vector2 mouse);
+	virtual bool IntersectionTest(Collider2D* other);
+	virtual bool CursorIntersectionTest(Vector2 mouse);
 
 	//delegates
 	typedef void(*FunctionTrigger)();
@@ -33,8 +35,5 @@ private:
 	//hgeRect*	_Rect;
 	float		_width;
 	float		_height;
-
-protected:
-	RavelRect*	_rect;
 };
 #endif

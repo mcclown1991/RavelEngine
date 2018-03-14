@@ -9,8 +9,11 @@ class Sprite2D : public RavelBehaviour{
 public:
 	Sprite2D();
 	virtual ~Sprite2D();
+	virtual Sprite2D* Clone() {
+		return Memory()->alloc<Sprite2D>();
+	}
+	virtual void LoadFromFile(std::string const& stream);
 
-	virtual void OnStart();
 	virtual void Update();
 	virtual void OnDestory();
 

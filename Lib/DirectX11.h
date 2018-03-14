@@ -31,6 +31,7 @@
 class DirectX11 : public Graphics {
 public:
 	DirectX11();
+	virtual ~DirectX11() {};
 	virtual void Initialise(HWND hWnd, unsigned Width, unsigned Height, bool IsWindowed = false);
 	virtual void UnInitialise();
 
@@ -99,6 +100,7 @@ private:
 
 	std::array<ID3D11ShaderResourceView*, 1024> m_SampleList;
 	std::array<ID3D11SamplerState*, 1024> m_SampleState;
+	std::array<ID3D11Resource*, 1024> m_Resource;
 
 	unsigned m_SampleIDinUsed;
 

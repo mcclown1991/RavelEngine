@@ -17,6 +17,7 @@ public:
 	};
 
 	Graphics() {};
+	virtual ~Graphics() {};
 	virtual void Initialise(HWND hWnd, unsigned Width, unsigned Height, bool IsWindowed = false) = 0;
 	virtual void UnInitialise() = 0;
 

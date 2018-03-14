@@ -2,11 +2,12 @@
 #define COMPONENT_H
 
 #include <string>
+#include "MemoryManager.h"
 #include "RavelObject.h"
 
 //Data Types for components
 template <typename T>
-using RavelAction = void(T::*)();
+using RavelAction = typename void(T::*)();
 
 class GameObject;
 class Transform;
@@ -15,17 +16,12 @@ class Component : public RavelObject {
 public:
 	Component();
 	virtual ~Component();
-
-	//virtual void OnStart();
-	//virtual void Update();
-	//virtual void OnDestory();
-
-	//virtual void SetActive(bool isactive);
+	virtual Component* Clone() { return nullptr; }
+	virtual void LoadFromFile(std::string const& stream) {}
 
 	//variables
 	GameObject* gameObject;
 	std::string tag;
-	Transform* parent;
 	Transform* transform;
 	bool IsActive;
 	size_t CompID;

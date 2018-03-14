@@ -44,7 +44,7 @@
     <OutDir>$(SolutionDir)Lib\</OutDir>
     <IntDir>.\Debug\</IntDir>
     <TargetName>Ravel Engine Debug v0.2a</TargetName>
-    <IncludePath>$(SolutionDir)LUA\include;$(SolutionDir)DirectXTK\Inc;$(SolutionDir)opengl\glfw-3.2.bin.WIN32\include;$(SolutionDir)opengl\glew-2.0.0\include;.\hge181\include;$(IncludePath);$(SolutionDir)opengl\glm;$(DXSDK_DIR)Lib\Include</IncludePath>
+    <IncludePath>$(SolutionDir)rapidjson\include;$(SolutionDir)LUA\include;$(SolutionDir)DirectXTK\Inc;$(SolutionDir)opengl\glfw-3.2.bin.WIN32\include;$(SolutionDir)opengl\glew-2.0.0\include;.\hge181\include;$(IncludePath);$(SolutionDir)opengl\glm;$(DXSDK_DIR)Lib\Include</IncludePath>
     <LibraryPath>$(SolutionDir)LUA\lib;$(SolutionDir)DirectXTK;$(SolutionDir)opengl\glew-2.0.0\lib\Release\Win32;$(SolutionDir)opengl\glfw-3.2.bin.WIN32\lib-vc2015;.\hge181\lib\vc;$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

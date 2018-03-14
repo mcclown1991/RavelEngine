@@ -8,14 +8,17 @@ class Button : public RavelBehaviour {
 public:
 	Button();
 	virtual ~Button();
+	virtual Button* Clone() {
+		return Memory()->alloc<Button>();
+	}
 
-	virtual void OnStart();
-	virtual void Update();
-	virtual void OnDestory();
-
+	virtual void OnDestory() { this->~Button(); }
 	virtual void OnMouseDown();
 
-	void AddLisenter( RavelAction callback );
+	void Initialise(T* self) {
+		obj = self;
+	}
+	void AddLisenter( RavelAction<T> callback );
 
 	size_t _id;
 	T* obj;
@@ -24,14 +27,14 @@ private:
 	using Callback = void (T::*)(int ID);
 	Callback func;
 
-	RavelAction _Callback;
+	RavelAction<T> _Callback;
 
 public:
 	void BindCallback(Callback functor);
 };
 
 template <class T>
-Button<T>::Button()
+Button<T>::Button() : _id(0), obj(nullptr), func(nullptr), _Callback(nullptr)
 {
 }
 
@@ -41,28 +44,15 @@ Button<T>::~Button()
 }
 
 template <class T>
-void Button<T>::OnStart()
-{
-}
-
-template <class T>
-void Button<T>::Update()
-{
-}
-
-template <class T>
-void Button<T>::OnDestory()
-{
-}
-
-template <class T>
 void Button<T>::OnMouseDown()
 {
-	(obj->*func)(_id);
+	if (!obj) return;
+	//(obj->*func)(_id);
+	(obj->*_Callback)();
 }
 
 template<class T>
-inline void Button<T>::AddLisenter(RavelAction callback)
+inline void Button<T>::AddLisenter(RavelAction<T> callback)
 {
 	_Callback = callback;
 }
