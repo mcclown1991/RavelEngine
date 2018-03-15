@@ -12,7 +12,14 @@ void Fuzzy_Scene::Init()
 	GetGraphicsManager()->SetFragmentShader("Shaders\\Fragments");
 	GetGraphicsManager()->LinkProgram();
 
+	// register all custom components first before loading all prefabs
+	factory()->RegisterComponent<Button<Fuzzy_Scene>>("Button<Fuzzy_Scene>");
+
 	factory()->LoadFromFile("gameobject.raveldata");
+	Factory::pGameObject& obj = factory()->GetGameObject("testJson");
+	Button<Fuzzy_Scene>* button = obj->GetComponent<Button<Fuzzy_Scene>>();
+	button->Initialise(this);
+	button->AddLisenter(&Fuzzy_Scene::Load);
 
 	//Factory::pGameObject& m_Test = factory()->CreateGameObject("Test");
 	//Sprite2D* m_spr = dynamic_cast<Sprite2D*>(m_Test->AddComponent("Sprite2D"));

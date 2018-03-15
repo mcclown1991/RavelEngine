@@ -1,8 +1,6 @@
 #include "Sprite2D.h"
 #include "RavelEngine.h"
 #include "GraphicsManager.h"
-#include <rapidjson\document.h>
-#include <rapidjson\istreamwrapper.h>
 
 Sprite2D::Sprite2D() : RavelBehaviour(){
 	m_Model = nullptr;

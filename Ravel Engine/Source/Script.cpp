@@ -9,6 +9,26 @@ Script::~Script() {
 
 }
 
+void Script::LoadFromFile(std::string const & file)
+{
+	// do standard loading of component
+	std::ifstream json;
+	json.open(file);
+	rapidjson::IStreamWrapper isw(json);
+	rapidjson::Document doc;
+	doc.ParseStream(isw);
+
+	if (doc.IsObject()) {
+		rapidjson::Value& root = doc["Script"];
+
+		IsActive = root["IsActive"].GetBool();
+
+		std::string path = root["Script path"].GetString();
+
+		LoadScript(path);
+	}
+}
+
 void Script::Update() {
 	GetScriptManager()->UpdateScript(m_Filename, "Update", m_OwnerID, 0);
 }

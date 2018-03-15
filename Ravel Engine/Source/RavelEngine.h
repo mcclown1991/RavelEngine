@@ -9,6 +9,9 @@
 #include <iostream>
 #include <fstream>
 
+#include <rapidjson\document.h>
+#include <rapidjson\istreamwrapper.h>
+
 #include "DataType.h"
 #include "GameState.h"
 #include "Matrix3x3.h"

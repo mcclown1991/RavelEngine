@@ -117,6 +117,8 @@ std::string const & Factory::ComponentTypeName(std::string const & tag)
 
 RavelBehaviour * Factory::CreateComponent(std::string const & tag)
 {
+	std::cout << "Creating Component " << tag << " from factory" << std::endl;
 	RavelBehaviour* com = _component[HASH(_componentRegistry[HASH(tag)].second)]->Clone();
+	std::cout << tag << " created" << std::endl;
 	return com;
 }

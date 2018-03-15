@@ -12,6 +12,33 @@ BoxCollider::~BoxCollider()
 {
 }
 
+void BoxCollider::LoadFromFile(std::string const & file)
+{
+	// do standard loading of component
+	std::ifstream json;
+	json.open(file);
+	rapidjson::IStreamWrapper isw(json);
+	rapidjson::Document doc;
+	doc.ParseStream(isw);
+
+	if (doc.IsObject()) {
+		rapidjson::Value& boxcol = doc["BoxCollider"];
+
+		IsActive = boxcol["IsActive"].GetBool();
+
+		Vector2 pos;
+		pos.x = boxcol["Transform"]["X"].GetFloat();
+		pos.y = boxcol["Transform"]["Y"].GetFloat();
+
+		transform->position = pos;
+
+		pos.x = boxcol["Transform"]["SX"].GetFloat();
+		pos.y = boxcol["Transform"]["SY"].GetFloat();
+
+		CreateBoxCollider(pos.x, pos.y);
+	}
+}
+
 void BoxCollider::Update()
 {
 	rect.Update(gameObject->transform->right * _width, gameObject->transform->up * _height, gameObject->transform->position);

@@ -11,6 +11,28 @@ Text::~Text()
 {
 }
 
+void Text::LoadFromFile(std::string const & file)
+{
+	// do standard loading of component
+	std::ifstream json;
+	json.open(file);
+	rapidjson::IStreamWrapper isw(json);
+	rapidjson::Document doc;
+	doc.ParseStream(isw);
+
+	if (doc.IsObject()) {
+		rapidjson::Value& text = doc["Text"];
+
+		IsActive = text["IsActive"].GetBool();
+
+		Vector2 pos;
+		pos.x = text["Transform"]["X"].GetFloat();
+		pos.y = text["Transform"]["Y"].GetFloat();
+
+		SetFontSize(text["Font Size"].GetInt64());
+	}
+}
+
 void Text::Start()
 {
 	GetGraphicsManager()->AddText(this);
