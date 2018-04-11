@@ -27,11 +27,12 @@ void SceneManager::LoadScene(int sceneIndex)
 {
 	//Unload current scene
 	if(m_currentScene != nullptr)
-		m_currentScene->Free();
+		m_currentScene->second->Free();
 
-	m_currentScene = _scenelist[sceneIndex];
-	m_currentScene->Init();
-	m_currentScene->Load();
+	m_currentScene->first = sceneIndex;
+	m_currentScene->second = _scenelist[sceneIndex];
+	m_currentScene->second->Init();
+	m_currentScene->second->Load();
 }
 
 void SceneManager::AddScene(Scene* scene)

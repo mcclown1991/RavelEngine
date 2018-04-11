@@ -13,11 +13,15 @@ public:
 	void LoadScene(int sceneIndex);
 	void AddScene(Scene* scene);
 
+	unsigned GetLoadedSceneIndex() { return m_currentScene->first; }
+
 	template <typename T>
 	void AddScene();
 private:
-	Scene* m_currentScene;
-	Scene* m_NextScene;
+	typedef std::pair<unsigned, Scene* > SceneBlock;
+
+	SceneBlock* m_currentScene;
+	SceneBlock* m_NextScene;
 	std::map <unsigned int, Scene* > _scenelist;
 };
 
