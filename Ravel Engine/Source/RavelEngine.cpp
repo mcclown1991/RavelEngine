@@ -89,15 +89,21 @@ void RavelEngine::SystemInit(HINSTANCE hInstance, int nCmdShow) {
 #ifdef _DEBUG
 	std::cout << "Done!" << std::endl;
 	std::cout << "=============================================================" << std::endl;
-	std::cout << "Setting up Component Factory settings.........." << std::endl;
+	std::cout << "Setting up Font Engine settings.........." << std::endl;
 #endif
 	GetFontManager()->Init();
 	GetFontManager()->AddFont("font1", "font1");
 #ifdef _DEBUG
 	std::cout << "Done!" << std::endl;
 	std::cout << "=============================================================" << std::endl;
+	std::cout << "Loading Scene Data.........." << std::endl;
 #endif
+	SceneManagement()->Init();
 
+#ifdef _DEBUG
+	std::cout << "Done!" << std::endl;
+	std::cout << "=============================================================" << std::endl;
+#endif
 }
 
 void RavelEngine::SetWindowTitle(std::string const& title) {
@@ -160,15 +166,15 @@ bool RavelEngine::Update() {
 	if (pWindow->getFPS() <= 60.f && pWindow->getFPS() > 1.f) {
 		pWindow->Update();
 
-		if (RavelEngine::GetRavelEngine()->IsResetQueried()) {
+		if (IsResetQueried()) {
 			factory()->Quit();
 			GetGraphicsManager()->OnExit();
-			RavelEngine::GetRavelEngine()->GetStateManager()->ResetState();
+			//RavelEngine::GetRavelEngine()->GetStateManager()->ResetState();
 		}
 
 		factory()->Update();
 		GetCollision()->Update();
-		GetStateManager()->StateUpdate();
+		//GetStateManager()->StateUpdate();
 		GetGraphicsManager()->Render();
 		GetTime()->deltaTime = dt;
 	}
@@ -177,7 +183,7 @@ bool RavelEngine::Update() {
 	return true;
 }
 
-void RavelEngine::SystemRun(GameState* State, std::string& errormsg){
+void RavelEngine::SystemRun(std::string& errormsg){
 	// Tries to initiate HGE with the states set.
 	// If something goes wrong, "false" is returned
 	// and more specific description of what have
@@ -209,9 +215,11 @@ void RavelEngine::SystemRun(GameState* State, std::string& errormsg){
 
 	//SystemExit();
 
-	gsm.GSM_Init();
+	/*gsm.GSM_Init();
 	gsm.GSM_NextState(State);
-	gsm.ChangeState();
+	gsm.ChangeState();*/
+	SceneManagement()->LoadScene(0);
+
 	while (!_quit) {
 		Update();
 	}
@@ -223,7 +231,7 @@ void RavelEngine::SystemExit(){
 	//delete fntLarge;
 	GetCollision()->OnExit();
 	
-	gsm.GSM_Exit();
+	//gsm.GSM_Exit();
 	GetGraphicsManager()->OnExit();
 
 	pRenderer->UnInitialise();

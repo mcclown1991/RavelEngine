@@ -13,6 +13,7 @@ public:
 		return Memory()->alloc<Sprite2D>();
 	}
 	virtual void LoadFromFile(std::string const& file);
+	virtual void Serialise();
 
 	virtual void Update();
 	virtual void OnDestory();

@@ -30,6 +30,9 @@
     <ClCompile Include="Source\CountDown.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\TestScene.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Fuzzy_Scene.h">
@@ -39,6 +42,9 @@
       <Filter>Resource Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\CountDown.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TestScene.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
   </ItemGroup>

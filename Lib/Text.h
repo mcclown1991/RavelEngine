@@ -14,6 +14,8 @@ public:
 		return Memory()->alloc<Text>();
 	}
 
+	virtual void LoadFromFile(std::string const& file);
+
 	virtual void Start();
 	virtual void OnDestory();
 

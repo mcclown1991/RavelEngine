@@ -1,6 +1,8 @@
 #include "Sprite2D.h"
 #include "RavelEngine.h"
 #include "GraphicsManager.h"
+#include <rapidjson\stringbuffer.h>
+#include <rapidjson\writer.h>
 
 Sprite2D::Sprite2D() : RavelBehaviour(){
 	m_Model = nullptr;
@@ -32,11 +34,53 @@ void Sprite2D::LoadFromFile(std::string const& file)
 
 		std::string filepath = sprite["Texture"]["filepath"].GetString();
 		Vector2 sz;
-		sz.x = sprite["Texture"]["X"].GetInt();
-		sz.y = sprite["Texture"]["Y"].GetInt();
+		sz.x = sprite["Texture"]["X"].GetFloat();
+		sz.y = sprite["Texture"]["Y"].GetFloat();
 
 		CreateTexture(filepath, sz.x, sz.y);
 	}
+}
+
+void Sprite2D::Serialise()
+{
+	rapidjson::Document doc;
+	doc.SetObject();
+	rapidjson::Document::AllocatorType& allocator = doc.GetAllocator();
+
+	rapidjson::Value root(rapidjson::kObjectType);
+
+	rapidjson::Value base(rapidjson::kObjectType);
+	base.AddMember("IsActive", IsActive, allocator);
+
+	rapidjson::Value trans(rapidjson::kObjectType);
+	rapidjson::Value tex(rapidjson::kObjectType);
+
+	rapidjson::Value pos(rapidjson::kObjectType);
+	pos.AddMember("X", transform->position.x, allocator);
+	pos.AddMember("Y", transform->position.y, allocator);
+
+	trans.AddMember("Transform", pos, allocator);
+
+	rapidjson::Value sz(rapidjson::kObjectType);
+	sz.AddMember("X", m_Model->hscale / 0.89f, allocator);
+	sz.AddMember("Y", m_Model->vscale / 0.89f, allocator);
+
+	tex.AddMember("Texture", sz, allocator);
+
+	root.AddMember("Sprite2D", base, allocator);
+	root.AddMember("Sprite2D", trans, allocator);
+	root.AddMember("Sprite2D", tex, allocator);
+
+	rapidjson::StringBuffer strbuf;
+	rapidjson::Writer<rapidjson::StringBuffer> writer(strbuf);
+	doc.Accept(writer);
+
+	std::string filename(gameObject->name + "_sprite2Dcustom.raveldata");
+	std::ofstream out(filename, std::ofstream::out);
+
+	out << doc.GetString();
+
+	out.close();
 }
 
 void Sprite2D::Update(){

@@ -79,6 +79,9 @@
     <Filter Include="Structures">
       <UniqueIdentifier>{ec12b70a-aad3-428e-9ef0-683128ef0fe5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Systems\Scene Management">
+      <UniqueIdentifier>{9d991945-cb45-4b2c-8354-ccdd8624cfaf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -216,6 +219,12 @@
     <ClInclude Include="Source\ComponentHeader.h">
       <Filter>Base Components\Headers</Filter>
     </ClInclude>
+    <ClInclude Include="Source\SceneManager.h">
+      <Filter>Systems\Scene Management</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene.h">
+      <Filter>Systems\Scene Management</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\global.cpp">
@@ -322,6 +331,9 @@
     </ClCompile>
     <ClCompile Include="Source\RectTransform.cpp">
       <Filter>Base Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SceneManager.cpp">
+      <Filter>Systems\Scene Management</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

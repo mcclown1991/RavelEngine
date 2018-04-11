@@ -7,3 +7,4 @@
 #include "Sprite2D.h"
 #include "Text.h"
 #include "LinePrimitive.h"
+#include "Script.h"

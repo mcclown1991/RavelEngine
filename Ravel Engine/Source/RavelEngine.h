@@ -13,18 +13,20 @@
 #include <rapidjson\istreamwrapper.h>
 
 #include "DataType.h"
-#include "GameState.h"
 #include "Matrix3x3.h"
 #include "WindowsHandle.h"
 #include "DirectX11.h"
 #include "OpenGL.h"
 #include "Time.h"
 
+#include "Scene.h"
+#include "SceneManager.h"
+
 class RavelEngine{
 public:
 	void SystemInit(HINSTANCE hInstance, int nCmdShow);
 	void SystemInit(sInt32 Width, sInt32 Height, bool IsWindowed, std::string Title, bool ShowMouse);
-	void SystemRun(GameState* State, std::string& errormsg);
+	void SystemRun(std::string& errormsg);
 	void SystemExit();
 	void QuitRaised();
 
@@ -43,7 +45,7 @@ public:
 	static RavelEngine* GetRavelEngine(){ return &m_EngineInstance; }
 
 	//HGE* GetHGE() { return hge; }
-	GameStateManager* GetStateManager() { return &gsm; }
+	//GameStateManager* GetStateManager() { return &gsm; }
 	//hgeFont* GetFontSmall() { return fntSmall; }
 	//hgeFont* GetFontLarge() { return fntLarge; }
 
@@ -71,7 +73,7 @@ private:
 	//HGE*				hge = 0;
 	//hgeFont*			fntSmall;
 	//hgeFont*			fntLarge;
-	GameStateManager	gsm;
+	//GameStateManager	gsm;
 	WindowsHandle*		pWindow;
 	Graphics*			pRenderer;
 

@@ -12,6 +12,8 @@ public:
 		return Memory()->alloc<Button>();
 	}
 
+	virtual void LoadFromFile(std::string const& file);
+
 	virtual void OnDestory() { this->~Button(); }
 	virtual void OnMouseDown();
 
@@ -41,6 +43,29 @@ Button<T>::Button() : _id(0), obj(nullptr), func(nullptr), _Callback(nullptr)
 template <class T>
 Button<T>::~Button()
 {
+}
+
+template<class T>
+inline void Button<T>::LoadFromFile(std::string const & file)
+{
+	// do standard loading of component
+	std::ifstream json;
+	json.open(file);
+	rapidjson::IStreamWrapper isw(json);
+	rapidjson::Document doc;
+	doc.ParseStream(isw);
+
+	if(doc.IsObject()) {
+		rapidjson::Value& root = doc["Button"];
+
+		IsActive = root["IsActive"].GetBool();
+
+		Vector2 pos;
+		pos.x = root["Transform"]["X"].GetFloat();
+		pos.y = root["Transform"]["Y"].GetFloat();
+
+		transform->position = pos;
+	}
 }
 
 template <class T>

@@ -125,6 +125,8 @@
     <ClInclude Include="Source\RavelRect.h" />
     <ClInclude Include="Source\Rect.h" />
     <ClInclude Include="Source\RectTransform.h" />
+    <ClInclude Include="Source\Scene.h" />
+    <ClInclude Include="Source\SceneManager.h" />
     <ClInclude Include="Source\Script.h" />
     <ClInclude Include="Source\ScriptManager.h" />
     <ClInclude Include="Source\SpatialHash.h" />
@@ -165,6 +167,7 @@
     <ClCompile Include="Source\RavelRect.cpp" />
     <ClCompile Include="Source\Rect.cpp" />
     <ClCompile Include="Source\RectTransform.cpp" />
+    <ClCompile Include="Source\SceneManager.cpp" />
     <ClCompile Include="Source\Script.cpp" />
     <ClCompile Include="Source\ScriptFunction.cpp" />
     <ClCompile Include="Source\ScriptManager.cpp" />

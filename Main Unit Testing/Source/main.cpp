@@ -1,9 +1,13 @@
 #include <Windows.h>
 #include <RavelEngine.h>
-#include "Fuzzy_Scene.h"
+#include "TestScene.h"
 
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR, int) {
 	RavelEngine::GetRavelEngine()->SystemInit(hInst, true);
-	RavelEngine::GetRavelEngine()->SystemRun(Fuzzy_Scene::Instance(), std::string());
+
+	//Initialise all scenes here or have a loading scene to load
+	SceneManagement()->AddScene<Scene1>();
+
+	RavelEngine::GetRavelEngine()->SystemRun(std::string());
 	RavelEngine::GetRavelEngine()->SystemExit();
 }

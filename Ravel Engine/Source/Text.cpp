@@ -29,8 +29,11 @@ void Text::LoadFromFile(std::string const & file)
 		pos.x = text["Transform"]["X"].GetFloat();
 		pos.y = text["Transform"]["Y"].GetFloat();
 
-		SetFontSize(text["Font Size"].GetInt64());
+		SetFontSize(text["Font Size"].GetInt());
 	}
+
+	isw.Flush();
+	json.close();
 }
 
 void Text::Start()

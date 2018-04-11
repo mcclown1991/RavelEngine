@@ -12,7 +12,8 @@ public:
 	virtual Sprite2D* Clone() {
 		return Memory()->alloc<Sprite2D>();
 	}
-	virtual void LoadFromFile(std::string const& stream);
+	virtual void LoadFromFile(std::string const& file);
+	virtual void Serialise();
 
 	virtual void Update();
 	virtual void OnDestory();

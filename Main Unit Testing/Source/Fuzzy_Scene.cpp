@@ -72,7 +72,7 @@ void Fuzzy_Scene::Init()
 
 void Fuzzy_Scene::Load()
 {
-	std::cout << "Loado" << std::endl;
+	
 }
 
 void Fuzzy_Scene::Update()
@@ -111,7 +111,9 @@ void Fuzzy_Scene::Update()
 
 void Fuzzy_Scene::Free()
 {
-
+	Factory::pGameObject& obj = factory()->GetGameObject("testJson");
+	Sprite2D* spr = obj->GetComponent<Sprite2D>();
+	spr->Serialise();
 }
 
 void Fuzzy_Scene::Unload()
@@ -132,5 +134,5 @@ void Fuzzy_Scene::ChangeState(GameStateManager * gsm, uInt32 btnType)
 
 void Fuzzy_Scene::End(bool hit)
 {
-
+	
 }

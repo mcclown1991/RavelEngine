@@ -13,6 +13,8 @@ public:
 		return Memory()->alloc<Script>();
 	}
 
+	virtual void LoadFromFile(std::string const& file);
+
 	virtual void Update();
 	virtual void OnDestory();
 

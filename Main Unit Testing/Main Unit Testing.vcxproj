@@ -155,11 +155,13 @@
     <ClCompile Include="Source\CountDown.cpp" />
     <ClCompile Include="Source\Fuzzy_Scene.cpp" />
     <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\TestScene.cpp" />
     <ClCompile Include="Source\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\CountDown.h" />
     <ClInclude Include="Source\Fuzzy_Scene.h" />
+    <ClInclude Include="Source\TestScene.h" />
     <ClInclude Include="Source\Timer.h" />
   </ItemGroup>
   <ItemGroup>

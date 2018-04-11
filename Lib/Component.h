@@ -18,6 +18,7 @@ public:
 	virtual ~Component();
 	virtual Component* Clone() { return nullptr; }
 	virtual void LoadFromFile(std::string const& stream) {}
+	virtual void Serialise(){}
 
 	//variables
 	GameObject* gameObject;

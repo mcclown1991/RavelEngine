@@ -27,6 +27,9 @@ void Script::LoadFromFile(std::string const & file)
 
 		LoadScript(path);
 	}
+
+	isw.Flush();
+	json.close();
 }
 
 void Script::Update() {

@@ -12,6 +12,8 @@ public:
 		return Memory()->alloc<BoxCollider>();
 	}
 
+	virtual void LoadFromFile(std::string const& file);
+
 	virtual void Update();
 	virtual void OnDestory();
 
