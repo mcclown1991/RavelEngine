@@ -41,10 +41,11 @@ public:
 			iter.second->OnDestory();
 		}
 	}
-	void LoadFromFile(const std::string&);
+	size_t LoadFromFile(const std::string&);
 	pGameObject& CreateGameObject(const std::string&);
 	void CreateEmptyObject();
 	pGameObject& GetGameObject(const std::string&);
+	pGameObject& GetGameObject(size_t instanceID);
 
 	std::string const& ComponentTypeName(std::string const& tag);
 

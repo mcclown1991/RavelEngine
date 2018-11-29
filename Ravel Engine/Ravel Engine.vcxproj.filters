@@ -82,6 +82,9 @@
     <Filter Include="Systems\Scene Management">
       <UniqueIdentifier>{9d991945-cb45-4b2c-8354-ccdd8624cfaf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Systems\Navigation">
+      <UniqueIdentifier>{810141a1-d0b3-42d1-99c0-d2977e97aff0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -225,6 +228,27 @@
     <ClInclude Include="Source\Scene.h">
       <Filter>Systems\Scene Management</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Canvas.h">
+      <Filter>Base Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AudioManager.h">
+      <Filter>Systems\Sound System</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AudioMixer.h">
+      <Filter>Base Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AudioClip.h">
+      <Filter>Base Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AudioSource.h">
+      <Filter>Base Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\NavMesh.h">
+      <Filter>Systems\Navigation</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\NavMeshBoundVolume.h">
+      <Filter>Base Components\Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\global.cpp">
@@ -334,6 +358,27 @@
     </ClCompile>
     <ClCompile Include="Source\SceneManager.cpp">
       <Filter>Systems\Scene Management</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Canvas.cpp">
+      <Filter>Base Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AudioManager.cpp">
+      <Filter>Systems\Sound System</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AudioMixer.cpp">
+      <Filter>Base Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AudioClip.cpp">
+      <Filter>Base Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AudioSource.cpp">
+      <Filter>Base Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\NavMeshBoundVolume.cpp">
+      <Filter>Base Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\NavMesh.cpp">
+      <Filter>Systems\Navigation</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,5 +1,6 @@
 #include "RavelEngine.h"
 #include "Factory.h"
+#include "AudioManager.h"
 #include "CollisionManager.h"
 #include "Font.h"
 
@@ -99,6 +100,8 @@ void RavelEngine::SystemInit(HINSTANCE hInstance, int nCmdShow) {
 	std::cout << "Loading Scene Data.........." << std::endl;
 #endif
 	SceneManagement()->Init();
+
+	AudioManagement()->Init();
 
 #ifdef _DEBUG
 	std::cout << "Done!" << std::endl;
@@ -235,7 +238,10 @@ void RavelEngine::SystemExit(){
 	GetGraphicsManager()->OnExit();
 
 	pRenderer->UnInitialise();
+
+	SceneManagement()->OnExit();
 	factory()->Quit();
+	AudioManagement()->Destory();
 
 	delete pWindow;
 	delete pRenderer;

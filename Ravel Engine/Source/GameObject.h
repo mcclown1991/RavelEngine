@@ -19,6 +19,8 @@ public:
 	GameObject();
 	virtual ~GameObject();
 
+	virtual GameObject* Clone() { return nullptr; }
+
 	bool Draw();
 
 	void SetActive(bool isactive);

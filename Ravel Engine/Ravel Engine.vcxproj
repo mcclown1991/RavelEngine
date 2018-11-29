@@ -44,8 +44,8 @@
     <OutDir>$(SolutionDir)Lib\</OutDir>
     <IntDir>.\Debug\</IntDir>
     <TargetName>Ravel Engine Debug v0.2a</TargetName>
-    <IncludePath>$(SolutionDir)rapidjson\include;$(SolutionDir)LUA\include;$(SolutionDir)DirectXTK\Inc;$(SolutionDir)opengl\glfw-3.2.bin.WIN32\include;$(SolutionDir)opengl\glew-2.0.0\include;.\hge181\include;$(IncludePath);$(SolutionDir)opengl\glm;$(DXSDK_DIR)Lib\Include</IncludePath>
-    <LibraryPath>$(SolutionDir)LUA\lib;$(SolutionDir)DirectXTK;$(SolutionDir)opengl\glew-2.0.0\lib\Release\Win32;$(SolutionDir)opengl\glfw-3.2.bin.WIN32\lib-vc2015;.\hge181\lib\vc;$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)fmod\include;$(SolutionDir)rapidjson\include;$(SolutionDir)LUA\include;$(SolutionDir)DirectXTK\Inc;$(SolutionDir)opengl\glfw-3.2.bin.WIN32\include;$(SolutionDir)opengl\glew-2.0.0\include;.\hge181\include;$(IncludePath);$(SolutionDir)opengl\glm;$(DXSDK_DIR)Lib\Include</IncludePath>
+    <LibraryPath>$(SolutionDir)fmod\lib;$(SolutionDir)LUA\lib;$(SolutionDir)DirectXTK;$(SolutionDir)opengl\glew-2.0.0\lib\Release\Win32;$(SolutionDir)opengl\glfw-3.2.bin.WIN32\lib-vc2015;.\hge181\lib\vc;$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -94,9 +94,14 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\AudioClip.h" />
+    <ClInclude Include="Source\AudioManager.h" />
+    <ClInclude Include="Source\AudioMixer.h" />
+    <ClInclude Include="Source\AudioSource.h" />
     <ClInclude Include="Source\Behaviour.h" />
     <ClInclude Include="Source\BoxCollider.h" />
     <ClInclude Include="Source\Button.h" />
+    <ClInclude Include="Source\Canvas.h" />
     <ClInclude Include="Source\Collider2D.h" />
     <ClInclude Include="Source\CollisionManager.h" />
     <ClInclude Include="Source\ComponentHeader.h" />
@@ -117,6 +122,8 @@
     <ClInclude Include="Source\Matrix3x3.h" />
     <ClInclude Include="Source\Matrix4x4.h" />
     <ClInclude Include="Source\MemoryManager.h" />
+    <ClInclude Include="Source\NavMesh.h" />
+    <ClInclude Include="Source\NavMeshBoundVolume.h" />
     <ClInclude Include="Source\OpenGL.h" />
     <ClInclude Include="Source\RavelBehaviour.h" />
     <ClInclude Include="Source\RavelEngine.h" />
@@ -144,8 +151,13 @@
     <ClInclude Include="Source\WindowsHandle.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\AudioClip.cpp" />
+    <ClCompile Include="Source\AudioManager.cpp" />
+    <ClCompile Include="Source\AudioMixer.cpp" />
+    <ClCompile Include="Source\AudioSource.cpp" />
     <ClCompile Include="Source\Behaviour.cpp" />
     <ClCompile Include="Source\BoxCollider.cpp" />
+    <ClCompile Include="Source\Canvas.cpp" />
     <ClCompile Include="Source\Collider2D.cpp" />
     <ClCompile Include="Source\CollisionManager.cpp" />
     <ClCompile Include="Source\Component.cpp" />
@@ -162,6 +174,8 @@
     <ClCompile Include="Source\Matrix3x3.cpp" />
     <ClCompile Include="Source\Matrix4x4.cpp" />
     <ClCompile Include="Source\MemoryManager.cpp" />
+    <ClCompile Include="Source\NavMesh.cpp" />
+    <ClCompile Include="Source\NavMeshBoundVolume.cpp" />
     <ClCompile Include="Source\OpenGL.cpp" />
     <ClCompile Include="Source\RavelEngine.cpp" />
     <ClCompile Include="Source\RavelRect.cpp" />

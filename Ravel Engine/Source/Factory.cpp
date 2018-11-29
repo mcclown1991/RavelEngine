@@ -25,9 +25,13 @@ void Factory::Init() {
 	RegisterComponent<Sprite2D>("Sprite2D");
 	RegisterComponent<Text>("Text");
 	RegisterComponent<Script>("Script");
+	RegisterComponent<Canvas>("Canvas");
+	RegisterComponent<AudioSource>("AudioSource");
+	RegisterComponent<AudioMixer>("AudioMixer");
+	RegisterComponent<NavMeshBoundVolume>("NavMeshBoundVolume");
 }
 
-void Factory::LoadFromFile(const std::string& file)
+size_t Factory::LoadFromFile(const std::string& file)
 {
 	std::ifstream json;
 	json.open(file);
@@ -56,45 +60,19 @@ void Factory::LoadFromFile(const std::string& file)
 			Component* comp = m_Obj->AddComponent(it->value["typename"].GetString());
 			comp->LoadFromFile(it->value["metafile"].GetString());
 		}
+
+		return m_Obj->GetInstanceID();
 	}
-
-	//// start reading serialized data
-	//std::ifstream data;
-	//data.open(file + ".raveldata");
-
-	//if (data.is_open()) {
-	//	std::string line;
-	//	// data file layout
-	//	// start with gameobject
-	//	std::string::iterator iter;
-	//	std::getline(data, line);
-	//	// create gameobject
-	//	pGameObject& m_Obj = CreateGameObject(line);
-
-	//	// gameobject's transform information
-
-
-	//	// next is component count
-	//	std::getline(data, line);
-	//	int count;
-	//	count = std::stoi(line);
-
-	//	for (int i = 0; i < count; ++i) {
-	//		// create components
-	//		std::getline(data, line);
-	//		//find <inside>
-	//		std::string comp = line.substr(1, line.size() - 2);
-	//		Component* component = m_Obj->AddComponent(comp);
-	//	}
-	//}
+	return -1;
 }
 
 Factory::pGameObject& Factory::CreateGameObject(const std::string& name)
 {
-	int id = HASH(name);
-	//_go[id] = std::unique_ptr<GameObject>();
-	_go[id] = std::make_unique<GameObject>();
-	_go[id]->name = name;
+	
+	pGameObject obj = std::make_unique<GameObject>();
+	obj->Instantiate(name);
+	size_t id = obj->GetInstanceID();
+	_go[id] = std::move(obj);
 	return _go[id];
 }
 
@@ -108,6 +86,10 @@ Factory::pGameObject& Factory::GetGameObject(const std::string& name)
 {
 	size_t h = HASH(name);
 	return _go[h];
+}
+
+Factory::pGameObject& Factory::GetGameObject(size_t instanceID) {
+	return _go[instanceID];
 }
 
 std::string const & Factory::ComponentTypeName(std::string const & tag)

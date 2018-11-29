@@ -9,19 +9,22 @@ public:
 	SceneManager();
 	void Init();
 	void Update();
-	void LoadScene(Scene* scene);
-	void LoadScene(int sceneIndex);
+	void LoadScene(unsigned int sceneIndex);
 	void AddScene(Scene* scene);
 
-	unsigned GetLoadedSceneIndex() { return m_currentScene->first; }
+	unsigned GetLoadedSceneIndex() { return m_currentScene.first; }
 
 	template <typename T>
 	void AddScene();
+
+	void OnExit();
+
+	std::vector<size_t> GetSceneObjects();
 private:
 	typedef std::pair<unsigned, Scene* > SceneBlock;
 
-	SceneBlock* m_currentScene;
-	SceneBlock* m_NextScene;
+	SceneBlock m_currentScene;
+	SceneBlock m_NextScene;
 	std::map <unsigned int, Scene* > _scenelist;
 };
 

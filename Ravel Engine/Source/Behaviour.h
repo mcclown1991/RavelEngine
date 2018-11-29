@@ -17,6 +17,8 @@ public:
 	template <typename T>
 	std::vector<T*> GetComponentInChildren(bool includeInactive);
 
+	virtual Behaviour* Clone() { return nullptr; }
+
 	//Variables
 	bool enabled;
 	bool isActiveAndEnabled;
