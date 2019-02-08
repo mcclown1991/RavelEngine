@@ -28,6 +28,8 @@ public:
 	virtual bool IntersectionTest(Collider2D* other);
 	virtual bool CursorIntersectionTest(Vector2 mouse);
 
+	virtual void UpdateColliderDimension(float, float);
+
 	//delegates
 	typedef void(*FunctionTrigger)();
 

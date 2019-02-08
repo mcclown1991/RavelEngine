@@ -19,7 +19,7 @@ public:
 	virtual void Load() {
 		// load scene file
 		std::ifstream json;
-		json.open(_path + _sceneName + ".scene");
+		json.open("GameData\\" + _path + _sceneName + ".scene");
 		rapidjson::IStreamWrapper isw(json);
 		rapidjson::Document doc;
 		doc.ParseStream(isw);
@@ -36,10 +36,24 @@ public:
 				_sceneObjects.push_back(id);
 			}
 		}
+		else {
+			std::cout << "Failed to load scene " << "GameData\\" + _path + _sceneName + ".scene" << std::endl;
+			std::cout << "Error  : " << doc.GetParseError() << '\n'
+				<< "Offset : " << doc.GetErrorOffset() << '\n';
+
+		}
 	}
 
+	void Reset() { _sceneObjects.clear(); }
 	virtual std::vector<size_t> GetSceneObjects() {
 		return _sceneObjects;
+	}
+
+#undef SendMessage
+	virtual void Start() {
+		for (size_t id : _sceneObjects) {
+			factory()->GetGameObject(id)->SendMessage("Start");
+		}
 	}
 
 protected:

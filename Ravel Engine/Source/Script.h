@@ -4,6 +4,7 @@
 #include "Component.h"
 #include "GameObject.h"
 #include "ScriptManager.h"
+#include "RavelEngine.h"
 
 class Script : public RavelBehaviour {
 public:

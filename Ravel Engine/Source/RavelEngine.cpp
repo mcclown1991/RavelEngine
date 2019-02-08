@@ -3,6 +3,7 @@
 #include "AudioManager.h"
 #include "CollisionManager.h"
 #include "Font.h"
+#include "Input.h"
 
 RavelEngine RavelEngine::m_EngineInstance;
 
@@ -37,13 +38,13 @@ void RavelEngine::SystemInit(HINSTANCE hInstance, int nCmdShow) {
 #endif
 
 #ifdef _DEBUG
-	CommandPrompt();
+	//CommandPrompt();
 
 	std::cout << "=============================================================\n";
 	std::cout << "	Initialising Ravel Engine\n";
 	std::cout << "=============================================================" << std::endl;
 	std::cout << "Setting up Window settings.........." << std::endl;
-	pWindow->InitWindowHandle(hInstance, nCmdShow, true);
+	pWindow->InitWindowHandle(hInstance, nCmdShow, false);
 	std::cout << "Done!" << std::endl;
 	std::cout << "=============================================================" << std::endl;
 	std::cout << "Setting up Rendering Engine.........." << std::endl;
@@ -167,19 +168,27 @@ bool RavelEngine::Update() {
 	pWindow->StartFrame();
 
 	if (pWindow->getFPS() <= 60.f && pWindow->getFPS() > 1.f) {
+		StartKeyTrap();
 		pWindow->Update();
 
 		if (IsResetQueried()) {
-			factory()->Quit();
+  			factory()->Quit();
+			GetGraphicsManager()->OnExit();
+			GetCollision()->ClearState();
 			GetGraphicsManager()->OnExit();
 			//RavelEngine::GetRavelEngine()->GetStateManager()->ResetState();
+			SceneManagement()->LoadScene();
 		}
+		else {
 
-		factory()->Update();
-		GetCollision()->Update();
-		//GetStateManager()->StateUpdate();
-		GetGraphicsManager()->Render();
-		GetTime()->deltaTime = dt;
+			factory()->Update();
+			//GetStateManager()->StateUpdate();
+			GetGraphicsManager()->Render();
+			GetCollision()->Update();
+			GetTime()->deltaTime = 0.01666f;
+			SceneManagement()->Update();
+		}
+		StopKeyTrap();
 	}
 
 	pWindow->EndFrame();

@@ -192,9 +192,6 @@
     <ClInclude Include="Source\Collider2D.h">
       <Filter>Base Components\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Time.h">
-      <Filter>Systems\Time</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Behaviour.h">
       <Filter>Behaviour</Filter>
     </ClInclude>
@@ -248,6 +245,9 @@
     </ClInclude>
     <ClInclude Include="Source\NavMeshBoundVolume.h">
       <Filter>Base Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RavelTime.h">
+      <Filter>Systems\Time</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -335,9 +335,6 @@
     <ClCompile Include="Source\Collider2D.cpp">
       <Filter>Base Components\Source</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Time.cpp">
-      <Filter>Systems\Time</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Behaviour.cpp">
       <Filter>Behaviour</Filter>
     </ClCompile>
@@ -379,6 +376,9 @@
     </ClCompile>
     <ClCompile Include="Source\NavMesh.cpp">
       <Filter>Systems\Navigation</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RavelTime.cpp">
+      <Filter>Systems\Time</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -4,7 +4,6 @@ Transform::Transform() : RavelBehaviour(), up(0, 1), right(1, 0), position(0, 0)
 }
 
 Transform::~Transform(){
-	std::cout << "Transform destructor" << std::endl;
 }
 
 void Transform::SetPosition(Vector2 position){
@@ -18,12 +17,14 @@ void Transform::SetPosition(Vector2 position){
 void Transform::SetLocalPosition(Vector2 position)
 {
 	this->localposition = position;
+	if (!parent)
+		this->position = position;
 }
 
 Vector2 Transform::GetPosition()
 {
 	if(parent)
-		return parent->GetPosition() + position;
+		return parent->GetPosition() + localposition;
 	return position;
 }
 

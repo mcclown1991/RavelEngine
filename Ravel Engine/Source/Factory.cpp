@@ -29,9 +29,10 @@ void Factory::Init() {
 	RegisterComponent<AudioSource>("AudioSource");
 	RegisterComponent<AudioMixer>("AudioMixer");
 	RegisterComponent<NavMeshBoundVolume>("NavMeshBoundVolume");
+	RegisterComponent<LinePrimitive>("LinePrimitive");
 }
 
-size_t Factory::LoadFromFile(const std::string& file)
+size_t Factory::LoadFromFile(std::string const&  file)
 {
 	std::ifstream json;
 	json.open(file);
@@ -45,6 +46,8 @@ size_t Factory::LoadFromFile(const std::string& file)
 
 		std::string name = gameobject["name"].GetString();
 		pGameObject& m_Obj = CreateGameObject(name);
+
+		m_Obj->Tag = gameobject["Tag"].GetString();
 
 		m_Obj->IsActive = gameobject["IsActive"].GetBool();
 
@@ -63,13 +66,23 @@ size_t Factory::LoadFromFile(const std::string& file)
 
 		return m_Obj->GetInstanceID();
 	}
+	else {
+		std::cout << "GameObject failed to load  --> " << file << std::endl;
+	}
 	return -1;
 }
 
-Factory::pGameObject& Factory::CreateGameObject(const std::string& name)
+Factory::pGameObject& Factory::CreateGameObject(std::string& name)
 {
 	
 	pGameObject obj = std::make_unique<GameObject>();
+	if (_refcount.count(name) == 1) {
+		//name is a repeat
+		size_t count = _refcount[name]++;
+		name += ("_copy" + std::to_string(count));
+	}
+	else
+		_refcount[name] = 1;
 	obj->Instantiate(name);
 	size_t id = obj->GetInstanceID();
 	_go[id] = std::move(obj);

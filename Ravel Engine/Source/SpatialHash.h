@@ -15,6 +15,7 @@ public:
 	void InsertCollider(Collider2D* col, size_t hash);
 	void InsertColliderWithUpdate(Collider2D* col, size_t new_hash);
 	void RemoveCollider(Collider2D* col);
+	void ClearHash();
 
 	std::vector<Collider2D*> const& GetBucket(int key);
 

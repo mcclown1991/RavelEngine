@@ -18,7 +18,6 @@ void RavelRect::Update(Vector2 x, Vector2 y, Vector2 origin) {
 	this->x = x;
 	this->y = y;
 
-
 	float dx = -nX * this->origin;
 	float dy = -nY * this->origin;
 
@@ -46,11 +45,9 @@ bool RavelRect::Intersect(RavelRect* rect) {
 }
 
 bool RavelRect::Intersect(Vector2 const& position) {
-	Vector2 target_origin = v * position;
+	//Vector2 target_origin = v * position;
 
-	//std::cout << "Target position: X " << target_origin.x << ", Y " << target_origin.y << std::endl;
-
-	if (target_origin.x <= dimension.x && target_origin.y <= dimension.y && target_origin.x >= -dimension.x && target_origin.y >= -dimension.y) {
+	if (position.x <= BottomRight().x && position.y <= TopLeft().y && position.x >= BottomLeft().x && position.y >= BottomLeft().y) {
 		return true;
 	}
 	return false;
@@ -58,38 +55,44 @@ bool RavelRect::Intersect(Vector2 const& position) {
 
 bool RavelRect::AABB(RavelRect * other)
 {
-	Vector2 bottom_left = other->BottomLeft();
-
-	//bottom left
-	if (bottom_left.x <= dimension.x && bottom_left.y <= dimension.y && bottom_left.x >= 0 && bottom_left.y >= 0) {
-		// is inside box liao
-		std::cout << "bottom_left collision" << std::endl;
+	if (BottomLeft().x < other->BottomRight().x &&
+		BottomRight().x > other->BottomLeft().x &&
+		BottomLeft().y < other->TopLeft().y &&
+		TopLeft().y > other->BottomLeft().y)
 		return true;
-	}
+	else
+		return false;
 
-	Vector2 top_left = other->TopLeft();
+	////bottom left
+	//if (bottom_left.x <= dimension.x && bottom_left.y <= dimension.y && bottom_left.x >= 0 && bottom_left.y >= 0) {
+	//	// is inside box liao
+	//	std::cout << "bottom_left collision" << std::endl;
+	//	return true;
+	//}
 
-	if (top_left.x <= dimension.x && top_left.y <= dimension.y && top_left.x >= 0 && top_left.y >= 0) {
-		// is inside box liao
-		std::cout << "top_left collision" << std::endl;
-		return true;
-	}
+	//Vector2 top_left = other->TopLeft();
 
-	Vector2 bottom_right = other->BottomRight();
+	//if (top_left.x <= dimension.x && top_left.y <= dimension.y && top_left.x >= 0 && top_left.y >= 0) {
+	//	// is inside box liao
+	//	std::cout << "top_left collision" << std::endl;
+	//	return true;
+	//}
 
-	if (bottom_right.x <= dimension.x && bottom_right.y <= dimension.y && bottom_right.x >= 0 && bottom_right.y >= 0) {
-		// is inside box liao
-		std::cout << "bottom_right collision" << std::endl;
-		return true;
-	}
+	//Vector2 bottom_right = other->BottomRight();
 
-	Vector2 top_right = other->TopRight();
+	//if (bottom_right.x <= dimension.x && bottom_right.y <= dimension.y && bottom_right.x >= 0 && bottom_right.y >= 0) {
+	//	// is inside box liao
+	//	std::cout << "bottom_right collision" << std::endl;
+	//	return true;
+	//}
 
-	if (top_right.x <= dimension.x && top_right.y <= dimension.y && top_right.x >= 0 && top_right.y >= 0) {
-		// is inside box liao
-		std::cout << "top_right collision" << std::endl;
-		return true;
-	}
+	//Vector2 top_right = other->TopRight();
+
+	//if (top_right.x <= dimension.x && top_right.y <= dimension.y && top_right.x >= 0 && top_right.y >= 0) {
+	//	// is inside box liao
+	//	std::cout << "top_right collision" << std::endl;
+	//	return true;
+	//}
 
 	return false;
 }

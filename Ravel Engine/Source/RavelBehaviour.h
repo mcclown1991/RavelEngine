@@ -6,7 +6,7 @@ class Collider2D;
 class RavelBehaviour : public Behaviour {
 public:
 	RavelBehaviour() {};
-	virtual ~RavelBehaviour() { std::cout << "Ravel destructor" << std::endl; };
+	virtual ~RavelBehaviour() { /*std::cout << "Ravel destructor" << std::endl;*/ };
 
 	virtual void Start() {};
 	virtual void Update() {};

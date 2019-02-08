@@ -76,13 +76,13 @@ bool GraphicsManager::Render()
 
 	std::for_each(spriteList.begin(), spriteList.end(), [](Sprite2D* _sprite)
 	{
-		if (_sprite->IsActive)
+		if (_sprite->gameObject->IsActive)
 		_sprite->Render();
 	});
 
 	std::for_each(textList.begin(), textList.end(), [](Text* _text)
 	{
-		if (_text->IsActive)
+		if (_text->gameObject->IsActive)
 			_text->Render();
 	});
 
@@ -108,7 +108,7 @@ void GraphicsManager::OnExit()
 	//_Textures.clear();
 
 	spriteList.clear();
-	//textList.clear();
+	textList.clear();
 	lineList.clear();
 }
 

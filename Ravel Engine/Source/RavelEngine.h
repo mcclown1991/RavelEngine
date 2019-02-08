@@ -11,13 +11,17 @@
 
 #include <rapidjson\document.h>
 #include <rapidjson\istreamwrapper.h>
+#include <rapidjson\ostreamwrapper.h>
+#include <rapidjson\prettywriter.h>
+#include <rapidjson\writer.h>
+#include <rapidjson\stringbuffer.h>
 
 #include "DataType.h"
 #include "Matrix3x3.h"
 #include "WindowsHandle.h"
 #include "DirectX11.h"
 #include "OpenGL.h"
-#include "Time.h"
+#include "RavelTime.h"
 
 #include "Scene.h"
 #include "SceneManager.h"

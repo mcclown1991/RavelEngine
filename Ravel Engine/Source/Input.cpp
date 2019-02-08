@@ -21,6 +21,18 @@ void SetMessage(const MSG& ms)
 	}
 }
 
+void StartKeyTrap() {
+	traps.clear();
+	//traps[0] = 0x00;
+}
+
+void StopKeyTrap() {
+	for (WORD i : traps) {
+		msg[i] = 0x00;
+	}
+	SetKeyboardState(msg);
+}
+
 /** Takes in the key desired to check if it is being pressed
 *
 * @param data	WM code for the key
@@ -30,8 +42,9 @@ bool OnKeyPress(WORD data)
 	//& with bit 30
 	if ((msg[data] & 0x80))
 	{
-		msg[data] = 0x00;
-		SetKeyboardState(msg);
+		/*msg[data] = 0x00;
+		SetKeyboardState(msg);*/
+		traps.push_back(data);
 		return true;
 	}
 
@@ -136,7 +149,7 @@ void GetMousePos(float& x, float& y) {
 		Vector2 position(static_cast<float>(p.x), static_cast<float>(p.y));
 		position = RavelEngine::GetRavelEngine()->ScenceTransform() * position;
 		x = position.x;
-		y = position.y;
+		y = -position.y;
 		//std::cout << "X: " << x << "  Y: " << y << std::endl;
 	}
 }

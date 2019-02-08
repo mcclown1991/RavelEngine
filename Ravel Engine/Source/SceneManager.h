@@ -7,9 +7,11 @@
 class SceneManager {
 public:
 	SceneManager();
+	~SceneManager() {};
 	void Init();
 	void Update();
 	void LoadScene(unsigned int sceneIndex);
+	void LoadScene();
 	void AddScene(Scene* scene);
 
 	unsigned GetLoadedSceneIndex() { return m_currentScene.first; }
@@ -18,6 +20,7 @@ public:
 	void AddScene();
 
 	void OnExit();
+	void Restart();
 
 	std::vector<size_t> GetSceneObjects();
 private:

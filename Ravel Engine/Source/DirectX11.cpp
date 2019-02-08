@@ -30,7 +30,7 @@ void DirectX11::Initialise(HWND hWnd, unsigned Width, unsigned Height, bool IsWi
 		//isFullScreen = !Windowed;
 
 		// create a device, device context and swap chain using the information in the scd struct
-		D3D11CreateDeviceAndSwapChain(NULL,
+		HRESULT r = D3D11CreateDeviceAndSwapChain(NULL,
 			D3D_DRIVER_TYPE_HARDWARE,
 			NULL,
 			D3D11_CREATE_DEVICE_DEBUG,
@@ -306,7 +306,7 @@ void DirectX11::LinkProgram() {
 }
 
 void DirectX11::StartFrame() {
-	float color[4] = { 255.f, 0.f, 0.f, 1.f };
+	float color[4] = { 0.f, 0.f, 0.f, 1.f };
 	m_DeviceContext->ClearRenderTargetView(m_BackBuffer, color);
 
 	m_DeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);

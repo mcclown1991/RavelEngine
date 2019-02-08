@@ -1,5 +1,5 @@
-#ifndef TIME_H
-#define TIME_H
+#ifndef RAVELTIME_H
+#define RAVELTIME_H
 
 #include "RavelEngine.h"
 

@@ -4,6 +4,7 @@ GameObject::GameObject() : RavelObject(), transform(Memory()->alloc<Transform>()
 {
 	std::cout << "Gameobject created!" << std::endl;
 
+	m_Functionptr["Start"] = &GameObject::Start;
 	m_Functionptr["Update"] = &GameObject::Update;
 	m_Functionptr["OnDestory"] = &GameObject::OnDestory;
 	m_Functionptr["OnMouseDown"] = &GameObject::OnMouseDown;
@@ -16,6 +17,13 @@ GameObject::GameObject() : RavelObject(), transform(Memory()->alloc<Transform>()
 GameObject::~GameObject(){
 	Memory()->dealloc(transform);
 	transform->~Transform();
+}
+
+void GameObject::Start()
+{
+	for (auto iter : m_Component_List) {
+		iter.second->Start();
+	}
 }
 
 void GameObject::Update(){
@@ -85,7 +93,7 @@ Component * GameObject::AddComponent(std::string const & tag)
 	newComp->gameObject = this;
 	newComp->transform = Memory()->alloc<Transform>();
 	newComp->transform->parent = transform;
-	static_cast<RavelBehaviour*>(newComp)->Start();
+	static_cast<RavelBehaviour*>(newComp)->OnEnable();
 	return newComp;
 }
 

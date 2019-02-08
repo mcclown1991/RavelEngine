@@ -1,5 +1,4 @@
 #include "Script.h"
-#include "Time.h"
 
 Script::Script() {
 

@@ -61,6 +61,11 @@ void SpatialHash::RemoveCollider(Collider2D * col)
 		bucket.erase(it);
 }
 
+void SpatialHash::ClearHash()
+{
+	_map.clear();
+}
+
 std::vector<Collider2D*> const& SpatialHash::GetBucket(int key)
 {
 	return _map[key];

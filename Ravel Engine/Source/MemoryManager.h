@@ -64,6 +64,7 @@ inline T * MemoryManager::alloc()
 				found = true;
 				break;
 			}
+			seg = seg->next;
 		}
 		else
 			seg = seg->next;

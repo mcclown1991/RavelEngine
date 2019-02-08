@@ -7,6 +7,7 @@
 #include <windowsx.h>
 #include <xinput.h>
 #include <bitset>
+#include <vector>
 #include "RavelMath.h"
 #include "RavelEngine.h"
 
@@ -15,6 +16,7 @@
 static BYTE		msg[256];
 static MSG		_ms;
 static HWND		hwnd;
+static std::vector<WORD> traps;
 
 //Defines list
 #define RK_ESC			0x1B
@@ -73,6 +75,8 @@ static HWND		hwnd;
 
 void		InitInput(HWND hWnd);
 void		SetMessage(const MSG&);
+void		StartKeyTrap();
+void		StopKeyTrap();
 //=========================================================================
 //=========================================================================
 /** Takes in the key desired to check if it is being pressed

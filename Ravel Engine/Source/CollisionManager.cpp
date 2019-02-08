@@ -30,21 +30,25 @@ void CollisionManager::Update()
 	GetMousePos(mouse.x, mouse.y);
 
 	for (size_t i = 0; i < _colliders.size(); ++i) {
-		if (_colliders[i]->CursorIntersectionTest(mouse))
-			if (GetMouseButtonDown(0))
-				_colliders[i]->gameObject->SendMessage("OnMouseDown");
+		if (_colliders[i]->gameObject->IsActive) {
+			if (_colliders[i]->CursorIntersectionTest(mouse))
+				if (GetMouseButtonDown(0))
+					_colliders[i]->gameObject->SendMessage("OnMouseDown");
 
-		/*for (int j = i + 1; j < _colliders.size(); ++j) {
-			_colliders[i]->IntersectionTest(_colliders[j]);
-		}*/
+			/*for (int j = i + 1; j < _colliders.size(); ++j) {
+				_colliders[i]->IntersectionTest(_colliders[j]);
+			}*/
 
-		//local bucket collision test
-		std::vector<Collider2D*> temp = _spatialMap->GetBucket(i);
-		for (Collider2D* col : temp) {
-			if(_colliders[i] != col)
-				_colliders[i]->IntersectionTest(col);
+			//local bucket collision test
+			std::vector<Collider2D*> temp = _spatialMap->GetBucket(i);
+			for (Collider2D* col : temp) {
+				if (_colliders[i] != col && col->gameObject->IsActive)
+					if (_colliders[i]->IntersectionTest(col)) {
+						_colliders[i]->gameObject->SendMessage("OnCollisionEnter2D", col);
+						col->gameObject->SendMessage("OnCollisionEnter2D", _colliders[i]);
+					}
+			}
 		}
-
 
 		//neighbour bucket collision test
 	}
@@ -54,6 +58,12 @@ void CollisionManager::OnExit()
 {
 	delete _spatialMap;
 	_colliders.clear();
+}
+
+void CollisionManager::ClearState()
+{
+	_colliders.clear();
+	_spatialMap->ClearHash();
 }
 
 CollisionManager * GetCollision()

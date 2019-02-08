@@ -49,6 +49,7 @@ public:
 
 	Transform* transform;
 	bool IsActive;
+	std::string Tag;
 
 private:
 	struct COMPARATOR {
@@ -63,6 +64,7 @@ private:
 	std::map<std::string, void (GameObject::*)(Collider2D*)> m_ColFunctionptr;
 
 	// private functions for updating
+	void Start();
 	void Update();
 	void OnDestory();
 	void OnMouseDown();
@@ -81,8 +83,9 @@ T* GameObject::AddComponent()
 	//T* newComp = new T();
 	m_Component_List.insert(std::pair<std::string, RavelBehaviour*>(typeid(T).name(), newComp));
 	newComp->gameObject = this;
-	newComp->transform = transform;
-	newComp->Start();
+	newComp->transform = Memory()->alloc<Transform>();
+	newComp->transform->parent = transform;
+	newComp->OnEnable();
 	return newComp;
 }
 

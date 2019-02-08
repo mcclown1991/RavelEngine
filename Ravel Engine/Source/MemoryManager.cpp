@@ -56,6 +56,8 @@ MemoryManager::~MemoryManager()
 {
 	_block* temp;
 	vtable.clear();
+	
+
 	while (head) {
 		temp = head;
 		head = head->next;
@@ -63,11 +65,11 @@ MemoryManager::~MemoryManager()
 		temp = nullptr;
 		profile.blocks.push_back(std::string("Deleted block"));
 	}
-	free(mempool);
 	
+	free(mempool);
 
 	for (auto st : profile.blocks) {
-		std::cout << st.c_str() << std::endl;
+		//std::cout << st.c_str() << std::endl;
 	}
 }
 
@@ -131,7 +133,6 @@ void MemoryManager::dealloc(Pool * pool)
 			page->next->prev = page;
 
 		profile.blocks.push_back(std::string("Deleted block"));
-		delete temp;
 	}
 	//try see if parent is free
 	if ((page->prev != nullptr) && page->prev->isFree) {
@@ -144,7 +145,5 @@ void MemoryManager::dealloc(Pool * pool)
 			page->next->prev = page->prev;
 
 		profile.blocks.push_back(std::string("Deleted block"));
-		delete page;
 	}
-	
 }

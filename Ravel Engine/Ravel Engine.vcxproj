@@ -14,13 +14,13 @@
     <ProjectGuid>{11600F68-DE10-4CBF-9E50-B02EAD67E76B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>RavelEngine</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -144,7 +144,7 @@
     <ClInclude Include="Source\Stuctures.h" />
     <ClInclude Include="Source\System.h" />
     <ClInclude Include="Source\Text.h" />
-    <ClInclude Include="Source\Time.h" />
+    <ClInclude Include="Source\RavelTime.h" />
     <ClInclude Include="Source\Transform.h" />
     <ClInclude Include="Source\Vector2.h" />
     <ClInclude Include="Source\Vector3.h" />
@@ -191,7 +191,7 @@
     </ClCompile>
     <ClCompile Include="Source\Sprite2D.cpp" />
     <ClCompile Include="Source\Text.cpp" />
-    <ClCompile Include="Source\Time.cpp" />
+    <ClCompile Include="Source\RavelTime.cpp" />
     <ClCompile Include="Source\Transform.cpp" />
     <ClCompile Include="Source\Vector2.cpp" />
     <ClCompile Include="Source\Vector3.cpp" />

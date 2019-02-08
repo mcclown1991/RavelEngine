@@ -118,3 +118,9 @@ bool BoxCollider::CursorIntersectionTest(Vector2 mouse) {
 	}
 	return false;
 }
+
+void BoxCollider::UpdateColliderDimension(float width, float height)
+{
+	_width = width;
+	_height = height;
+}

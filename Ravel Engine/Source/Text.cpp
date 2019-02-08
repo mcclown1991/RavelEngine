@@ -29,11 +29,9 @@ void Text::LoadFromFile(std::string const & file)
 		pos.x = text["Transform"]["X"].GetFloat();
 		pos.y = text["Transform"]["Y"].GetFloat();
 
-		SetFontSize(text["Font Size"].GetInt());
+		SetFontSize(text["FontSize"].GetInt());
+		_text = text["Text"].GetString();
 	}
-
-	isw.Flush();
-	json.close();
 }
 
 void Text::Start()
@@ -41,7 +39,7 @@ void Text::Start()
 	GetGraphicsManager()->AddText(this);
 	font = "font1"; // defualt font
 	rect = factory()->CreateComponent<RectTransform>();
-	size = 100;
+	size = size < 0 ? 100 : size;
 }
 
 void Text::OnDestory()
@@ -53,7 +51,7 @@ void Text::OnDestory()
 
 void Text::Render()
 {
-	Vector2 position = rect->position;
+	Vector2 position = transform->GetPosition();
 	for(char ch : _text){
 		FontSystem::font f = GetFontManager()->FetchFont(font, ch);
 		rect->position.x += rect->hscale;

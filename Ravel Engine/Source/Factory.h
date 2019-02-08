@@ -18,6 +18,7 @@ private:
 	std::map<size_t, std::unique_ptr<GameObject> > _go;
 	std::unordered_map<size_t, RavelBehaviour*> _component;
 	std::unordered_map<size_t, std::pair<size_t, std::string>> _componentRegistry;
+	std::map<std::string, size_t> _refcount;
 
 public:
 
@@ -36,13 +37,10 @@ public:
 			iter.second->SendMessage("OnDestory");
 		}
 		_go.clear();
-
-		for (auto& iter : _component) {
-			iter.second->OnDestory();
-		}
+		_refcount.clear();
 	}
-	size_t LoadFromFile(const std::string&);
-	pGameObject& CreateGameObject(const std::string&);
+	size_t LoadFromFile(std::string const&);
+	pGameObject& CreateGameObject(std::string&);
 	void CreateEmptyObject();
 	pGameObject& GetGameObject(const std::string&);
 	pGameObject& GetGameObject(size_t instanceID);
