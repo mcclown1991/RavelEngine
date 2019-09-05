@@ -13,6 +13,7 @@ public:
 	void Update();
 	void OnExit();
 	void ClearState();
+	std::vector<Collider2D*> GetCollisionObjects();
 
 private:
 	//std::vector<std::pair<BoxCollider*, hgeRect*>> _colliders;

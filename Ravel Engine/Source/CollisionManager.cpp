@@ -66,6 +66,10 @@ void CollisionManager::ClearState()
 	_spatialMap->ClearHash();
 }
 
+std::vector<Collider2D*> CollisionManager::GetCollisionObjects() {
+	return _colliders;
+}
+
 CollisionManager * GetCollision()
 {
 	static CollisionManager s;
