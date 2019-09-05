@@ -12,6 +12,7 @@ public:
 	void UpdateCollider(sInt32 colID);
 	void Update();
 	void OnExit();
+	std::vector<Collider2D*> GetCollisionObjects();
 
 private:
 	//std::vector<std::pair<BoxCollider*, hgeRect*>> _colliders;

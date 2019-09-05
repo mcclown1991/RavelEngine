@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -14,19 +14,19 @@
     <ProjectGuid>{11600F68-DE10-4CBF-9E50-B02EAD67E76B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>RavelEngine</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -44,8 +44,8 @@
     <OutDir>$(SolutionDir)Lib\</OutDir>
     <IntDir>.\Debug\</IntDir>
     <TargetName>Ravel Engine Debug v0.2a</TargetName>
-    <IncludePath>$(SolutionDir)fmod\include;$(SolutionDir)rapidjson\include;$(SolutionDir)LUA\include;$(SolutionDir)DirectXTK\Inc;$(SolutionDir)opengl\glfw-3.2.bin.WIN32\include;$(SolutionDir)opengl\glew-2.0.0\include;.\hge181\include;$(IncludePath);$(SolutionDir)opengl\glm;$(DXSDK_DIR)Lib\Include</IncludePath>
-    <LibraryPath>$(SolutionDir)fmod\lib;$(SolutionDir)LUA\lib;$(SolutionDir)DirectXTK;$(SolutionDir)opengl\glew-2.0.0\lib\Release\Win32;$(SolutionDir)opengl\glfw-3.2.bin.WIN32\lib-vc2015;.\hge181\lib\vc;$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)fmod\include;$(SolutionDir)rapidjson\include;$(SolutionDir)LUA\include;$(SolutionDir)DirectXTK\Inc;$(SolutionDir)opengl\glfw-3.2.bin.WIN32\include;$(SolutionDir)opengl\glew-2.0.0\include;$(IncludePath);$(SolutionDir)opengl\glm;$(DXSDK_DIR)Lib\Include</IncludePath>
+    <LibraryPath>$(SolutionDir)fmod\lib;$(SolutionDir)LUA\lib;$(SolutionDir)DirectXTK;$(SolutionDir)opengl\glew-2.0.0\lib\Release\Win32;$(SolutionDir)opengl\glfw-3.2.bin.WIN32\lib-vc2015;$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

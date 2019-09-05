@@ -14,6 +14,8 @@ public :
 	virtual void OnDestory() { this->~NavMeshBoundVolume(); }
 
 	void SetBounds(unsigned width, unsigned height);
+	unsigned GetWidth() const { return width; }
+	unsigned GetHeight() const { return height; }
 
 private:
 	unsigned width, height;

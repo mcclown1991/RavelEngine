@@ -56,6 +56,10 @@ void CollisionManager::OnExit()
 	_colliders.clear();
 }
 
+std::vector<Collider2D*> CollisionManager::GetCollisionObjects() {
+	return _colliders;
+}
+
 CollisionManager * GetCollision()
 {
 	static CollisionManager s;
