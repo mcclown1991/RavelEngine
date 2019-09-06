@@ -18,6 +18,9 @@ void FontSystem::Update()
 
 void FontSystem::Quit()
 {
+	samples.clear();
+	fontdb.clear();
+	fonts.clear();
 }
 
 void FontSystem::AddFont(std::string const & filename, std::string const& identifier)

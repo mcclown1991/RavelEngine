@@ -52,16 +52,16 @@ public:
 
 	void Init() {}
 
-	bool InitConfigure(HINSTANCE hInstance, int nCmdShow);
+	bool InitConfigure(HINSTANCE hInstance);
 	bool InitWindow(HINSTANCE hInstance, int nCmdShow);
-	bool InitWindow(HWND hWnd, int nCmdShow);
+	bool InitWindow(HWND hWnd);
 
 	float getLastFrameTime();
 	float getFPS();
 	void SetWindowTitle(char* title);
 
-	void InitWindowHandle(HINSTANCE hInstance, int nCmdShow, bool console = false);
-	void InitWindowHandle(HWND hWnd, int nCmdShow, bool console = false);
+	void InitWindowHandle(HINSTANCE hInstance, int nCmdShow = 0);
+	void InitWindowHandle(HWND hWnd, bool console = false);
 
 	void Update();
 

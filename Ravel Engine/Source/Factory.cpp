@@ -64,6 +64,8 @@ size_t Factory::LoadFromFile(std::string const&  file)
 			comp->LoadFromFile(it->value["metafile"].GetString());
 		}
 
+		json.close();
+
 		return m_Obj->GetInstanceID();
 	}
 	else {

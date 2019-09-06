@@ -9,12 +9,16 @@ public:
 	Button();
 	virtual ~Button();
 	virtual Button* Clone() {
-		return Memory()->alloc<Button>();
+		return Memory()->alloc<Button<T>>();
 	}
 
 	virtual void LoadFromFile(std::string const& file);
 
-	virtual void OnDestory() { this->~Button(); }
+	virtual void OnDestory() { 
+		_Callback = nullptr;
+		obj = nullptr; // release pointer to reference
+		this->~Button<T>(); 
+	}
 	virtual void OnMouseDown();
 
 	void Initialise(T* self) {
@@ -66,6 +70,8 @@ inline void Button<T>::LoadFromFile(std::string const & file)
 
 		transform->position = pos;
 	}
+
+	json.close();
 }
 
 template <class T>

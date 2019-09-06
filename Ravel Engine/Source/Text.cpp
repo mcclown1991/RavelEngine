@@ -32,6 +32,8 @@ void Text::LoadFromFile(std::string const & file)
 		SetFontSize(text["FontSize"].GetInt());
 		_text = text["Text"].GetString();
 	}
+
+	json.close();
 }
 
 void Text::Start()

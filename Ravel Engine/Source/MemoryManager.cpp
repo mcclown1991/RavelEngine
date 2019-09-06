@@ -67,6 +67,7 @@ MemoryManager::~MemoryManager()
 	}
 	
 	free(mempool);
+	mempool = nullptr;
 
 	for (auto st : profile.blocks) {
 		//std::cout << st.c_str() << std::endl;
@@ -83,6 +84,9 @@ void MemoryManager::AllocateBlock(size_t block_size)
 
 MemoryManager::Pool * MemoryManager::alloc(size_t size)
 {
+#ifdef _DEBUG
+	std::cout << "MEMORY MANAGER : Allocating " << size << "bytes" << std::endl;
+#endif
 	// search for free blocks
 	_block* seg = head;
 	bool found = false;
@@ -118,20 +122,28 @@ MemoryManager::Pool * MemoryManager::alloc(size_t size)
 
 void MemoryManager::dealloc(Pool * pool)
 {
+
+	size_t tableId = Hash(pool);
 	_block* page = vtable[Hash(pool)];
 	page->isFree = true;
+
+#ifdef _DEBUG
+	std::cout << "MEMORY MANAGER : Deallocating " << page->size << "bytes" << std::endl;
+#endif
 
 	//do some cleaning
 	//currently block will be lost...
 	//try see if next is free
 	if ((page->next != nullptr) && page->next->isFree) {
 		page->size += page->next->size;
-		vtable.erase(Hash(page->next->pool));
+		vtable.erase(tableId);
 		_block* temp = page->next;
-		page->next = page->next->next;
-		if(page->next != nullptr)
+		if (page->next->next != nullptr) {
+			page->next = page->next->next;
 			page->next->prev = page;
-
+			delete temp;
+		}
+	
 		profile.blocks.push_back(std::string("Deleted block"));
 	}
 	//try see if parent is free
@@ -139,10 +151,12 @@ void MemoryManager::dealloc(Pool * pool)
 		//we combine them
 		page->prev->size += page->size;
 		//remove current address from map
-		vtable.erase(Hash(pool));
+		vtable.erase(tableId);
 		page->prev->next = page->next;
-		if(page->next != nullptr)
+		if (page->next != nullptr) {
 			page->next->prev = page->prev;
+			delete page;
+		}
 
 		profile.blocks.push_back(std::string("Deleted block"));
 	}

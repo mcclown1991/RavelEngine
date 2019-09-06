@@ -38,18 +38,18 @@ void RavelEngine::SystemInit(HINSTANCE hInstance, int nCmdShow) {
 #endif
 
 #ifdef _DEBUG
-	//CommandPrompt();
+	CommandPrompt();
 
 	std::cout << "=============================================================\n";
 	std::cout << "	Initialising Ravel Engine\n";
 	std::cout << "=============================================================" << std::endl;
 	std::cout << "Setting up Window settings.........." << std::endl;
-	pWindow->InitWindowHandle(hInstance, nCmdShow, false);
+	pWindow->InitWindowHandle(hInstance, nCmdShow);
 	std::cout << "Done!" << std::endl;
 	std::cout << "=============================================================" << std::endl;
 	std::cout << "Setting up Rendering Engine.........." << std::endl;
 #else
-	pWindow->InitWindowHandle(hInstance, nCmdShow, false);
+	pWindow->InitWindowHandle(hInstance, nCmdShow);
 #endif
 	
 	
@@ -251,6 +251,7 @@ void RavelEngine::SystemExit(){
 	SceneManagement()->OnExit();
 	factory()->Quit();
 	AudioManagement()->Destory();
+	GetFontManager()->Quit();
 
 	delete pWindow;
 	delete pRenderer;

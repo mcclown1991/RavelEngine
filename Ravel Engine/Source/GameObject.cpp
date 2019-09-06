@@ -15,8 +15,7 @@ GameObject::GameObject() : RavelObject(), transform(Memory()->alloc<Transform>()
 }
 
 GameObject::~GameObject(){
-	Memory()->dealloc(transform);
-	transform->~Transform();
+	
 }
 
 void GameObject::Start()
@@ -39,6 +38,9 @@ void GameObject::OnDestory(){
 		Memory()->dealloc(iter.second);
 	}
 	m_Component_List.clear();
+
+	Memory()->dealloc(transform);
+	transform->~Transform();
 }
 
 void GameObject::OnMouseDown()

@@ -35,9 +35,17 @@ public:
 	void Quit(){
 		for (auto& iter : _go){
 			iter.second->SendMessage("OnDestory");
+
 		}
 		_go.clear();
 		_refcount.clear();
+
+		for (auto& iter : _component) {
+			iter.second->OnDestory();
+			Memory()->dealloc(iter.second);
+		}
+		_component.clear();
+		_componentRegistry.clear();
 	}
 	size_t LoadFromFile(std::string const&);
 	pGameObject& CreateGameObject(std::string&);

@@ -26,7 +26,6 @@ void SceneManager::LoadScene() {
 	//Unload current scene
 	if (m_currentScene.second != nullptr) {
 		m_currentScene.second->Free();
-		m_currentScene.second->Reset();
 	}
 
 	if (_scenelist.size() == 0) return;

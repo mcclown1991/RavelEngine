@@ -22,6 +22,8 @@ void ShowCMD()
 	// allocate a console for this app
 	AllocConsole();
 
+	freopen_s(&fp, "CONOUT$", "w", stdout);
+
 	// set the screen buffer to be big enough to let us scroll text
 	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &coninfo);
 
@@ -202,9 +204,8 @@ bool WindowsHandle::InitWindow(HINSTANCE hInstance, int nCmdShow)
 	return true;
 }
 
-bool WindowsHandle::InitWindow(HWND hWnd, int nCmdShow)
+bool WindowsHandle::InitWindow(HWND hWnd)
 {
-	UNREFERENCED_PARAMETER(nCmdShow);
 	gw.hWnd = hWnd;
 
 	gw.hInst = reinterpret_cast<HINSTANCE>(GetWindowLong(hWnd, GWL_HINSTANCE));
@@ -222,7 +223,7 @@ bool WindowsHandle::InitWindow(HWND hWnd, int nCmdShow)
 	return true;
 }
 
-bool WindowsHandle::InitConfigure(HINSTANCE hInstance, int nCmdShow)
+bool WindowsHandle::InitConfigure(HINSTANCE hInstance)
 {
 	std::ifstream myReadFile;
 	myReadFile.open("config.cfg");
@@ -367,7 +368,7 @@ bool WindowsHandle::InitConfigure(HINSTANCE hInstance, int nCmdShow)
 		CloseHandle(ProcessInfo.hThread);
 		CloseHandle(ProcessInfo.hProcess);
 
-		InitConfigure(hInstance, nCmdShow);
+		InitConfigure(hInstance);
 	}
 	myReadFile.close();
 
@@ -401,14 +402,14 @@ void WindowsHandle::SetWindowTitle(char* title)
 	SetWindowText(gw.hWnd, wString);
 }
 
-void WindowsHandle::InitWindowHandle(HINSTANCE hInstance, int nCmdShow, bool console)
+void WindowsHandle::InitWindowHandle(HINSTANCE hInstance, int nCmdShow)
 {
 	//D3D = wasFull = false;
 
-	if (console)
-		ShowCMD();
+	//if (nCmdShow)
+	//	ShowCMD();
 
-	InitConfigure(hInstance, nCmdShow);
+	InitConfigure(hInstance);
 
 	InitWindow(hInstance, nCmdShow);
 
@@ -424,14 +425,14 @@ void WindowsHandle::InitWindowHandle(HINSTANCE hInstance, int nCmdShow, bool con
 	//D3D = true;
 }
 
-void WindowsHandle::InitWindowHandle(HWND hWnd, int nCmdShow, bool console)
+void WindowsHandle::InitWindowHandle(HWND hWnd, bool console)
 {
-	if (console)
-		ShowCMD();
+	//if (console)
+	//	ShowCMD();
 
-	InitConfigure(reinterpret_cast<HINSTANCE>(GetWindowLong(hWnd, GWL_HINSTANCE)), nCmdShow);
+	InitConfigure(reinterpret_cast<HINSTANCE>(GetWindowLong(hWnd, GWL_HINSTANCE)));
 
-	InitWindow(hWnd, nCmdShow);
+	InitWindow(hWnd);
 
 	//if (user.renderer_ == DIRECTX11)
 	//{

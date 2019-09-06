@@ -8,14 +8,19 @@
 #include <vector>
 
 #include "Factory.h"
-
+#undef SendMessage
 class Scene {
 public:
 	Scene() {};
-	virtual ~Scene() {};
+	virtual ~Scene() { _sceneObjects.clear(); };
 	virtual void Init() = 0;
 	virtual void Update() = 0;
-	virtual void Free() = 0;
+	virtual void Free() { 
+		for (size_t id : _sceneObjects) {
+			factory()->GetGameObject(id)->SendMessage("OnDestory");
+		}
+		this->~Scene(); 
+	};
 	virtual void Load() {
 		// load scene file
 		std::ifstream json;
@@ -33,7 +38,8 @@ public:
 			for (unsigned i = 0; i < child; ++i) {
 				// load gameobject
 				size_t id = factory()->LoadFromFile(root[std::to_string(i).c_str()].GetString());
-				_sceneObjects.push_back(id);
+				if(id > 0)
+					_sceneObjects.push_back(id);
 			}
 		}
 		else {
@@ -42,6 +48,8 @@ public:
 				<< "Offset : " << doc.GetErrorOffset() << '\n';
 
 		}
+
+		json.close();
 	}
 
 	void Reset() { _sceneObjects.clear(); }
@@ -49,7 +57,6 @@ public:
 		return _sceneObjects;
 	}
 
-#undef SendMessage
 	virtual void Start() {
 		for (size_t id : _sceneObjects) {
 			factory()->GetGameObject(id)->SendMessage("Start");

@@ -9,6 +9,10 @@ LinePrimitive::~LinePrimitive(){
 
 }
 
+void LinePrimitive::OnDestory() {
+	this->~LinePrimitive();
+}
+
 void LinePrimitive::Initialise(float x0, float y0, float x1, float y1){
 	_x0 = x0;
 	_x1 = x1;

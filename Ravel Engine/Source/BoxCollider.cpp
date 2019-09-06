@@ -37,6 +37,8 @@ void BoxCollider::LoadFromFile(std::string const & file)
 
 		CreateBoxCollider(pos.x, pos.y);
 	}
+
+	json.close();
 }
 
 void BoxCollider::Update()

@@ -39,6 +39,8 @@ void Sprite2D::LoadFromFile(std::string const& file)
 
 		CreateTexture(filepath, sz.x, sz.y);
 	}
+
+	json.close();
 }
 
 void Sprite2D::Serialise()
@@ -92,6 +94,7 @@ void Sprite2D::OnDestory(){
 	//delete m_Sprite;
 	if(m_Model)
 		m_Model->~Transform();
+	Memory()->dealloc(this);
 	this->~Sprite2D();
 }
 
