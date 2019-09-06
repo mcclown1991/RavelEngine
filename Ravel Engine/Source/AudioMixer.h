@@ -15,7 +15,10 @@ public:
 	}
 
 	virtual void LoadFromFile(std::string const& filename);
-	virtual void OnDestory() { this->~AudioMixer(); }
+	virtual void OnDestory() { 
+		Memory()->dealloc(this); 
+		this->~AudioMixer(); 
+	}
 
 	unsigned CreateGroup(std::string const& name);
 private:

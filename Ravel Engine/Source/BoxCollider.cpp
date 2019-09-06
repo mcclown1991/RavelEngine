@@ -49,6 +49,7 @@ void BoxCollider::Update()
 
 void BoxCollider::OnDestory()
 {
+	Memory()->dealloc(this);
 	this->~BoxCollider();
 }
 

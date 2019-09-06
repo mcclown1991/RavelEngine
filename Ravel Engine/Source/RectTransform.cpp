@@ -14,5 +14,6 @@ void RectTransform::Start()
 
 void RectTransform::OnDestory()
 {
+	Memory()->dealloc(this);
 	this->~RectTransform();
 }

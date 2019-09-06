@@ -35,7 +35,6 @@ void GameObject::OnDestory(){
 
 	for (auto iter : m_Component_List){
 		iter.second->OnDestory();
-		Memory()->dealloc(iter.second);
 	}
 	m_Component_List.clear();
 

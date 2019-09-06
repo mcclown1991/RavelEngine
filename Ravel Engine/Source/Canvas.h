@@ -12,7 +12,10 @@ public:
 
 	virtual void LoadFromFile(std::string const& file);
 
-	virtual void OnDestory() { this->~Canvas(); }
+	virtual void OnDestory() { 
+		Memory()->dealloc(this); 
+		this->~Canvas(); 
+	}
 	
 
 };

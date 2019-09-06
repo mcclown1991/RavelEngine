@@ -36,6 +36,7 @@ void Script::Update() {
 
 void Script::OnDestory() {
 	CallEvent("OnDestroy", 0);
+	Memory()->dealloc(this);
 	this->~Script();
 }
 

@@ -48,6 +48,7 @@ void Text::OnDestory()
 {
 	if (rect)
 		rect->OnDestory();
+	Memory()->dealloc(this);
 	this->~Text();
 }
 
