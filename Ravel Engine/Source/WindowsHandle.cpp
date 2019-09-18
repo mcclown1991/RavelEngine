@@ -7,6 +7,9 @@
 #include "WindowsHandle.h"
 #include "Input.h"
 
+using namespace Ravel;
+using namespace Core;
+
 WindowsHandle* WINDOW = nullptr;
 static const float FRAME_CAP = 60.0f;
 

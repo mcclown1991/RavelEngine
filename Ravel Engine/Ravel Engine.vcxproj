@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -26,7 +26,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -44,8 +44,8 @@
     <OutDir>$(SolutionDir)Lib\</OutDir>
     <IntDir>.\Debug\</IntDir>
     <TargetName>Ravel Engine Debug v0.2a</TargetName>
-    <IncludePath>$(SolutionDir)fmod\include;$(SolutionDir)rapidjson\include;$(SolutionDir)LUA\include;$(SolutionDir)DirectXTK\Inc;$(SolutionDir)opengl\glfw-3.2.bin.WIN32\include;$(SolutionDir)opengl\glew-2.0.0\include;.\hge181\include;$(IncludePath);$(SolutionDir)opengl\glm;$(DXSDK_DIR)Lib\Include</IncludePath>
-    <LibraryPath>$(SolutionDir)fmod\lib;$(SolutionDir)LUA\lib;$(SolutionDir)DirectXTK;$(SolutionDir)opengl\glew-2.0.0\lib\Release\Win32;$(SolutionDir)opengl\glfw-3.2.bin.WIN32\lib-vc2015;.\hge181\lib\vc;$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)fmod\include;$(SolutionDir)rapidjson\include;$(SolutionDir)LUA\include;$(SolutionDir)DirectXTK\Inc;$(SolutionDir)opengl\glfw-3.2.bin.WIN32\include;$(SolutionDir)opengl\glew-2.0.0\include;$(IncludePath);$(SolutionDir)opengl\glm;$(DXSDK_DIR)Lib\Include</IncludePath>
+    <LibraryPath>$(SolutionDir)fmod\lib;$(SolutionDir)LUA\lib;$(SolutionDir)DirectXTK;$(SolutionDir)opengl\glew-2.0.0\lib\Release\Win32;$(SolutionDir)opengl\glfw-3.2.bin.WIN32\lib-vc2015;$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -66,7 +66,7 @@
       </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>Copy "$(ProjectDir)\Source\*.h" "$(SolutionDir)\Lib"</Command>
+      <Command>xcopy "$(ProjectDir)\Source\*.*" "$(SolutionDir)\Lib" /Y /I /E</Command>
     </PostBuildEvent>
     <Lib>
       <TargetMachine>
@@ -94,6 +94,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\AI\Blackboard.h" />
     <ClInclude Include="Source\AudioClip.h" />
     <ClInclude Include="Source\AudioManager.h" />
     <ClInclude Include="Source\AudioMixer.h" />
@@ -130,6 +131,7 @@
     <ClInclude Include="Source\RavelMath.h" />
     <ClInclude Include="Source\RavelObject.h" />
     <ClInclude Include="Source\RavelRect.h" />
+    <ClInclude Include="Source\RavelTime.h" />
     <ClInclude Include="Source\Rect.h" />
     <ClInclude Include="Source\RectTransform.h" />
     <ClInclude Include="Source\Scene.h" />
@@ -144,8 +146,8 @@
     <ClInclude Include="Source\Stuctures.h" />
     <ClInclude Include="Source\System.h" />
     <ClInclude Include="Source\Text.h" />
-    <ClInclude Include="Source\RavelTime.h" />
     <ClInclude Include="Source\Transform.h" />
+    <ClInclude Include="Source\types.h" />
     <ClInclude Include="Source\Vector2.h" />
     <ClInclude Include="Source\Vector3.h" />
     <ClInclude Include="Source\WindowsHandle.h" />
@@ -179,6 +181,7 @@
     <ClCompile Include="Source\OpenGL.cpp" />
     <ClCompile Include="Source\RavelEngine.cpp" />
     <ClCompile Include="Source\RavelRect.cpp" />
+    <ClCompile Include="Source\RavelTime.cpp" />
     <ClCompile Include="Source\Rect.cpp" />
     <ClCompile Include="Source\RectTransform.cpp" />
     <ClCompile Include="Source\SceneManager.cpp" />
@@ -191,7 +194,6 @@
     </ClCompile>
     <ClCompile Include="Source\Sprite2D.cpp" />
     <ClCompile Include="Source\Text.cpp" />
-    <ClCompile Include="Source\RavelTime.cpp" />
     <ClCompile Include="Source\Transform.cpp" />
     <ClCompile Include="Source\Vector2.cpp" />
     <ClCompile Include="Source\Vector3.cpp" />

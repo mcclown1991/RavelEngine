@@ -147,7 +147,7 @@ void GetMousePos(float& x, float& y) {
 	GetCursorPos(&p);
 	if (ScreenToClient(hwnd, &p)) {
 		Vector2 position(static_cast<float>(p.x), static_cast<float>(p.y));
-		position = RavelEngine::GetRavelEngine()->ScenceTransform() * position;
+		position = Ravel::Core::RavelEngine::GetRavelEngine()->ScenceTransform() * position;
 		x = position.x;
 		y = -position.y;
 		//std::cout << "X: " << x << "  Y: " << y << std::endl;

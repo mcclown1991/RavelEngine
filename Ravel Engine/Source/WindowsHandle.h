@@ -7,71 +7,74 @@
 
 #include "System.h"
 
-class WindowsHandle : public System {
-private:
-	struct GAMEWINDOW
-	{
-		HWND hWnd;
-		HINSTANCE hInst;
-		int Width, Height;
-		bool Windowed;
-		float fps;
+namespace Ravel {
+	namespace Core {
+		class WindowsHandle : public System {
+		private:
+			struct GAMEWINDOW
+			{
+				HWND hWnd;
+				HINSTANCE hInst;
+				int Width, Height;
+				bool Windowed;
+				float fps;
 
-		GAMEWINDOW() : hWnd(nullptr), hInst(nullptr), Width(0), Height(0), Windowed(true), fps(1000.0f)
-		{
-		}
-	};
+				GAMEWINDOW() : hWnd(nullptr), hInst(nullptr), Width(0), Height(0), Windowed(true), fps(1000.0f)
+				{
+				}
+			};
 
-	enum RENDERER { DIRECTX11, OPENGL };
+			enum RENDERER { DIRECTX11, OPENGL };
 
-	struct USERPREF
-	{
-		bool fullscreen_;
-		unsigned int renderer_;
-		bool xbox_;
-	};
+			struct USERPREF
+			{
+				bool fullscreen_;
+				unsigned int renderer_;
+				bool xbox_;
+			};
 
-	USERPREF user;
-	LONGLONG _frames, _current, _last, _thisD;
-	float _fps;
-	float _freq;
+			USERPREF user;
+			LONGLONG _frames, _current, _last, _thisD;
+			float _fps;
+			float _freq;
 
-	// Create a message
-	MSG msg;
-	MSG defltultMsg;
-	PBYTE key;
-	GAMEWINDOW gw;
+			// Create a message
+			MSG msg;
+			MSG defltultMsg;
+			PBYTE key;
+			GAMEWINDOW gw;
 
-	LARGE_INTEGER time;
-	LARGE_INTEGER freq;
+			LARGE_INTEGER time;
+			LARGE_INTEGER freq;
 
-	bool isFullScreen;
+			bool isFullScreen;
 
-public:
-	WindowsHandle() : System() {	}
+		public:
+			WindowsHandle() : System() {	}
 
-	void Init() {}
+			void Init() {}
 
-	bool InitConfigure(HINSTANCE hInstance);
-	bool InitWindow(HINSTANCE hInstance, int nCmdShow);
-	bool InitWindow(HWND hWnd);
+			bool InitConfigure(HINSTANCE hInstance);
+			bool InitWindow(HINSTANCE hInstance, int nCmdShow);
+			bool InitWindow(HWND hWnd);
 
-	float getLastFrameTime();
-	float getFPS();
-	void SetWindowTitle(char* title);
+			float getLastFrameTime();
+			float getFPS();
+			void SetWindowTitle(char* title);
 
-	void InitWindowHandle(HINSTANCE hInstance, int nCmdShow = 0);
-	void InitWindowHandle(HWND hWnd, bool console = false);
+			void InitWindowHandle(HINSTANCE hInstance, int nCmdShow = 0);
+			void InitWindowHandle(HWND hWnd, bool console = false);
 
-	void Update();
+			void Update();
 
-	GAMEWINDOW* getWindowHandle();
-	USERPREF* getUSER();
+			GAMEWINDOW* getWindowHandle();
+			USERPREF* getUSER();
 
-	void StartFrame();
-	void EndFrame();
-};
-
+			void StartFrame();
+			void EndFrame();
+		};
+	}
+}
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 #endif

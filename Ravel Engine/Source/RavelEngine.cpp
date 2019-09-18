@@ -5,6 +5,9 @@
 #include "Font.h"
 #include "Input.h"
 
+using namespace Ravel;
+using namespace Ravel::Core;
+
 RavelEngine RavelEngine::m_EngineInstance;
 
 RavelEngine::RavelEngine(){
