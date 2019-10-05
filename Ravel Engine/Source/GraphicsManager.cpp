@@ -1,11 +1,9 @@
 #include "GraphicsManager.h"
 #include "RavelEngine.h"
 
-using namespace Ravel;
-
 GraphicsManager::GraphicsManager()
 {
-	sInt32 height = Core::RavelEngine::GetRavelEngine()->GetScreenHeight();
+	sInt32 height = RavelEngine::GetRavelEngine()->GetScreenHeight();
 	_viewTransform.Mtx33Identity();
 	_viewTransform.m[4] = -1;
 	_viewTransform.m[5] = (float)height;
@@ -15,8 +13,8 @@ GraphicsManager::GraphicsManager()
 
 void GraphicsManager::InitialiseGraphicsManager(Graphics* render) {
 	renderer = render;
-	renderer->OrthoProjectionMatrix((float)Core::RavelEngine::GetRavelEngine()->GetScreenWidth(),
-		(float)Core::RavelEngine::GetRavelEngine()->GetScreenHeight());
+	renderer->OrthoProjectionMatrix((float)RavelEngine::GetRavelEngine()->GetScreenWidth(),
+		(float)RavelEngine::GetRavelEngine()->GetScreenHeight());
 }
 
 GraphicsManager* GetGraphicsManager()

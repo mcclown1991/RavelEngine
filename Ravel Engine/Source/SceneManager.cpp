@@ -1,8 +1,6 @@
 #include "SceneManager.h"
 #include "RavelEngine.h"
 
-using namespace Ravel;
-
 SceneManager * SceneManagement()
 {
 	static SceneManager s;
@@ -60,7 +58,7 @@ void SceneManager::OnExit()
 void SceneManager::Restart()
 {
 	m_currentScene.second->Reset();
-	Core::RavelEngine::GetRavelEngine()->ResetScene();
+	RavelEngine::GetRavelEngine()->ResetScene();
 }
 
 std::vector<size_t> SceneManager::GetSceneObjects()

@@ -3,6 +3,7 @@
 
 #include <string>
 #include <functional>
+#include "DataType.h"
 
 class RavelObject{
 public:
