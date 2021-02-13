@@ -2,7 +2,7 @@
 #include "ComponentHeader.h"
 #include "rapidjson/document.h"
 #include <rapidjson\istreamwrapper.h>
-#include <typeinfo.h>
+#include <typeinfo>
 
 Factory* factory()
 {

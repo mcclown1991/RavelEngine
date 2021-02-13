@@ -4,7 +4,9 @@
 #include <string>
 #include <algorithm>
 #include <map>
-#include <typeinfo.h>
+#include <typeinfo>
+#include <string>
+#include <string_view>
 #include "RavelObject.h"
 #include "Transform.h"
 #include "Sprite2D.h"
@@ -60,8 +62,8 @@ private:
 
 	std::multimap<std::string, RavelBehaviour* > m_Component_List;
 
-	std::map<std::string, void (GameObject::*)()> m_Functionptr;
-	std::map<std::string, void (GameObject::*)(Collider2D*)> m_ColFunctionptr;
+	std::map<std::string_view, void (GameObject::*)()> m_Functionptr;
+	std::map<std::string_view, void (GameObject::*)(Collider2D*)> m_ColFunctionptr;
 
 	// private functions for updating
 	void Start();

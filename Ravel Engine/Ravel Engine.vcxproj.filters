@@ -88,6 +88,9 @@
     <Filter Include="Systems\AI">
       <UniqueIdentifier>{32ae4b84-853b-4573-b3ef-e082a1220ff4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Controller">
+      <UniqueIdentifier>{d9dbd6f6-b77c-43b9-af90-e281a5012a3d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -258,6 +261,15 @@
     <ClInclude Include="Source\AI\Blackboard.h">
       <Filter>Systems\AI</Filter>
     </ClInclude>
+    <ClInclude Include="Source\AI\BehaviourTree.h">
+      <Filter>Systems\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AI\BTNode.h">
+      <Filter>Systems\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Controller\Controller.h">
+      <Filter>Controller</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\global.cpp">
@@ -388,6 +400,12 @@
     </ClCompile>
     <ClCompile Include="Source\RavelTime.cpp">
       <Filter>Systems\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AI\Blackboard.cpp">
+      <Filter>Systems\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AI\BTNode.cpp">
+      <Filter>Systems\AI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

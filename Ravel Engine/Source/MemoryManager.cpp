@@ -124,7 +124,7 @@ void MemoryManager::dealloc(Pool * pool)
 {
 
 	size_t tableId = Hash(pool);
-	_block* page = vtable[Hash(pool)];
+	_block* page = vtable[tableId];
 	page->isFree = true;
 
 #ifdef _DEBUG
