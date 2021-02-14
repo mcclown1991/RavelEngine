@@ -2,12 +2,13 @@
 #define RAVELOBJECT_H
 
 #include <string>
+#include <string_view>
 #include <functional>
 #include "DataType.h"
 
 class RavelObject{
 public:
-	RavelObject() {};
+	RavelObject() : Hash(std::hash<std::string_view>()), instanceID(0) {};
 	virtual ~RavelObject() {};
 
 	virtual std::size_t GetInstanceID() {
@@ -24,7 +25,7 @@ public:
 	std::string name;
 
 private:
-	std::hash<std::string> Hash;
+	std::hash<std::string_view> Hash;
 	size_t instanceID;
 
 };

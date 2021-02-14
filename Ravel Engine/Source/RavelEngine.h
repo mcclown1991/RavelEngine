@@ -2,6 +2,7 @@
 #define RAVELENGINE_H
 
 #include <string>
+#include <string_view>
 #include <windows.h>
 #include <stdio.h>
 #include <fcntl.h>

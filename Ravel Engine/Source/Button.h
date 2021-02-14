@@ -17,7 +17,6 @@ public:
 	virtual void OnDestory() { 
 		_Callback = nullptr;
 		obj = nullptr; // release pointer to reference
-		Memory()->dealloc(this);
 		this->~Button<T>(); 
 	}
 	virtual void OnMouseDown();

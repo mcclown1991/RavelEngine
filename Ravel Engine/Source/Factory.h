@@ -35,7 +35,6 @@ public:
 	void Quit(){
 		for (auto& iter : _go){
 			iter.second->SendMessage("OnDestory");
-
 		}
 		_go.clear();
 		_refcount.clear();
@@ -61,7 +60,7 @@ public:
 	T* CreateComponent();
 
 	template <typename T>
-	void RegisterComponent(std::string const& tag);
+	constexpr void RegisterComponent(std::string const& tag);
 };
 
 Factory* factory();
@@ -75,7 +74,7 @@ T * Factory::CreateComponent()
 }
 
 template<typename T>
-void Factory::RegisterComponent(std::string const& tag)
+constexpr void Factory::RegisterComponent(std::string const& tag)
 {
 	size_t hash = HASH(tag);
 

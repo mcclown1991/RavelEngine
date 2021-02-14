@@ -12,10 +12,7 @@ public:
 		return Memory()->alloc<Transform>();
 	}
 
-	virtual void OnDestory() { 
-		Memory()->dealloc(this);
-		this->~Transform(); 
-	}
+	virtual void OnDestory();
 
 	void SetPosition(Vector2);
 	void SetLocalPosition(Vector2);

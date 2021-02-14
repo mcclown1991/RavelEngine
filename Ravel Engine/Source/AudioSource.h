@@ -12,10 +12,7 @@ public:
 	}
 
 	virtual void LoadFromFile(std::string const& filename);
-	virtual void OnDestory() { 
-		Memory()->dealloc(this); 
-		this->~AudioSource();
-	}
+	virtual void OnDestory();
 
 	AudioClip* _Clip;
 	AudioMixer* _Mixer;

@@ -10,7 +10,6 @@ LinePrimitive::~LinePrimitive(){
 }
 
 void LinePrimitive::OnDestory() {
-	Memory()->dealloc(this);
 	this->~LinePrimitive();
 }
 

@@ -1,19 +1,14 @@
 #include "RectTransform.h"
 
-RectTransform::RectTransform()
-{
+RectTransform::RectTransform() : Transform() {
 }
 
-RectTransform::~RectTransform()
-{
+RectTransform::~RectTransform() {
 }
 
-void RectTransform::Start()
-{
+void RectTransform::Start() {
 }
 
-void RectTransform::OnDestory()
-{
-	Memory()->dealloc(this);
+void RectTransform::OnDestory() {
 	this->~RectTransform();
 }

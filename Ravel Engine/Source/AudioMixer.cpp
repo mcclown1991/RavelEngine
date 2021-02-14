@@ -1,13 +1,11 @@
 #include "AudioMixer.h"
 
-AudioMixer::AudioMixer()
-{
+AudioMixer::AudioMixer() : RavelBehaviour(), _Master(nullptr), _Channels(std::vector<FMOD::ChannelGroup*>()) {
 	_Master = nullptr;
 	AudioManagement()->CreateGroup("Master", _Master);
 }
 
-AudioMixer::~AudioMixer()
-{
+AudioMixer::~AudioMixer() {
 	_Master->release();
 	if(_Channels.size() != 0)
 	for (FMOD::ChannelGroup* iter : _Channels) {
@@ -15,12 +13,14 @@ AudioMixer::~AudioMixer()
 	}
 }
 
-void AudioMixer::LoadFromFile(std::string const & filename)
-{
+void AudioMixer::LoadFromFile(std::string const & filename) {
 }
 
-unsigned AudioMixer::CreateGroup(std::string const& name)
-{
+void AudioMixer::OnDestory() {
+	this->~AudioMixer();
+}
+
+unsigned AudioMixer::CreateGroup(std::string const& name) {
 	FMOD::ChannelGroup* channel = nullptr;
 	if (AudioManagement()->CreateGroup(name, channel)) {
 		_Channels.push_back(channel);

@@ -11,10 +11,7 @@ public:
 	}
 
 	virtual void LoadFromFile(std::string const& filename);
-	virtual void OnDestory() { 
-		Memory()->dealloc(this);
-		this->~AudioClip(); 
-	}
+	virtual void OnDestory();
 
 	void LoadAudioClip(std::string const& file, bool loadToMemory = false);
 

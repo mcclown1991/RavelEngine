@@ -56,6 +56,9 @@ inline T * MemoryManager::alloc()
 	_block* seg = head;
 	bool found = false;
 	size_t size = sizeof(T);
+#ifdef _DEBUG
+	std::cout << "MEMORY MANAGER : Allocating " << size << "bytes" << std::endl;
+#endif
 	while (seg) {
 		if (seg->isFree) {
 			// block is free, check block size

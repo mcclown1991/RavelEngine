@@ -4,7 +4,7 @@
 #include <rapidjson\stringbuffer.h>
 #include <rapidjson\writer.h>
 
-Sprite2D::Sprite2D() : RavelBehaviour(){
+Sprite2D::Sprite2D() : RavelBehaviour() {
 	m_Model = nullptr;
 }
 
@@ -12,8 +12,7 @@ Sprite2D::~Sprite2D(){
 
 }
 
-void Sprite2D::LoadFromFile(std::string const& file)
-{
+void Sprite2D::LoadFromFile(std::string const& file) {
 	// do standard loading of component
 	std::ifstream json;
 	json.open(file);
@@ -43,8 +42,7 @@ void Sprite2D::LoadFromFile(std::string const& file)
 	json.close();
 }
 
-void Sprite2D::Serialise()
-{
+void Sprite2D::Serialise() {
 	rapidjson::Document doc;
 	doc.SetObject();
 	rapidjson::Document::AllocatorType& allocator = doc.GetAllocator();
@@ -85,20 +83,19 @@ void Sprite2D::Serialise()
 	out.close();
 }
 
-void Sprite2D::Update(){
+void Sprite2D::Update() {
 	//m_Sprite->SetScreenPosition(parent->position + transform->position);
 }
 
-void Sprite2D::OnDestory(){
+void Sprite2D::OnDestory() {
 	//HGE* h = RavelEngine::GetRavelEngine()->GetHGE();
 	//delete m_Sprite;
 	if(m_Model)
 		m_Model->~Transform();
-	Memory()->dealloc(this);
 	this->~Sprite2D();
 }
 
-void Sprite2D::CreateTexture(std::string texture, float width, float height){
+void Sprite2D::CreateTexture(std::string texture, float width, float height) {
 	GetGraphicsManager()->Renderer()->CreateTexture(texture, m_SampleID);
 	m_Model = factory()->CreateComponent<Transform>();
 	m_Model->hscale = width * 0.89f;
@@ -111,7 +108,7 @@ void Sprite2D::CreateTexture(std::string texture, float width, float height){
 	GetGraphicsManager()->AddSprite(this);
 }
 
-void Sprite2D::Render(){
+void Sprite2D::Render() {
 
 	//Find Position, Rotation and Scale then transform
 	//assume a reference frome from center of this sprite first

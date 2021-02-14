@@ -11,10 +11,7 @@ public :
 	}
 
 	virtual void LoadFromFile(std::string const& filename);
-	virtual void OnDestory() { 
-		Memory()->dealloc(this); 
-		this->~NavMeshBoundVolume(); 
-	}
+	virtual void OnDestory();
 
 	void SetBounds(unsigned width, unsigned height);
 	unsigned GetWidth() const { return width; }

@@ -13,7 +13,7 @@ void Fuzzy_Scene::Init()
 	GetGraphicsManager()->LinkProgram();
 
 	// register all custom components first before loading all prefabs
-	factory()->RegisterComponent<Button<Fuzzy_Scene>>("Button<Fuzzy_Scene>");
+	//factory()->RegisterComponent<Button<Fuzzy_Scene>>("Button<Fuzzy_Scene>");
 
 	factory()->LoadFromFile("gameobject.raveldata");
 	Factory::pGameObject& obj = factory()->GetGameObject("testJson");

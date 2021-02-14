@@ -1,13 +1,14 @@
 #include "Canvas.h"
 
-Canvas::Canvas()
-{
+Canvas::Canvas() : RavelBehaviour() {
 }
 
-Canvas::~Canvas()
-{
+Canvas::~Canvas() {
 }
 
-void Canvas::LoadFromFile(std::string const & file)
-{
+void Canvas::LoadFromFile(std::string const & file) {
+}
+
+void Canvas::OnDestory() {
+	this->~Canvas();
 }

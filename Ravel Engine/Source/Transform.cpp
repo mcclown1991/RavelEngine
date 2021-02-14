@@ -6,7 +6,11 @@ Transform::Transform() : RavelBehaviour(), up(0, 1), right(1, 0), position(0, 0)
 Transform::~Transform(){
 }
 
-void Transform::SetPosition(Vector2 position){
+void Transform::OnDestory() {
+	this->~Transform();
+}
+
+void Transform::SetPosition(Vector2 position) {
 	this->localposition = position;
 	if (parent)
 		this->position = position + parent->GetTransforms() * localposition;
@@ -14,22 +18,19 @@ void Transform::SetPosition(Vector2 position){
 		this->position = position;
 }
 
-void Transform::SetLocalPosition(Vector2 position)
-{
+void Transform::SetLocalPosition(Vector2 position) {
 	this->localposition = position;
 	if (!parent)
 		this->position = position;
 }
 
-Vector2 Transform::GetPosition()
-{
+Vector2 Transform::GetPosition() {
 	if(parent)
 		return parent->GetPosition() + localposition;
 	return position;
 }
 
-Matrix3x3 Transform::GetTransforms()
-{
+Matrix3x3 Transform::GetTransforms() {
 	Matrix3x3 transforms;
 
 	transforms.m[0] = right.x * hscale;
@@ -59,16 +60,14 @@ Matrix3x3 Transform::GetLocalTransforms() {
 	return transforms;
 }
 
-void Transform::Rotate(float angle)
-{
+void Transform::Rotate(float angle) {
 	angle = (3.14125f / 180.0f) * angle;
 	localEulerAngles += angle;
 	up = Vector2(-sin(localEulerAngles), cos(localEulerAngles));
 	right = Vector2(up.y, -up.x);
 }
 
-void Transform::Scale(float scale)
-{
+void Transform::Scale(float scale) {
 	this->hscale = scale;
 	this->vscale = scale;
 }

@@ -37,7 +37,7 @@ public:
 
 			for (unsigned i = 0; i < child; ++i) {
 				// load gameobject
-				size_t id = factory()->LoadFromFile(root[std::to_string(i).c_str()].GetString());
+				size_t id = factory()->LoadFromFile("GameData\\" + std::string(root[std::to_string(i).c_str()].GetString()));
 				if(id > 0)
 					_sceneObjects.push_back(id);
 			}

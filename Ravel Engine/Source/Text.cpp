@@ -3,16 +3,14 @@
 #include "RavelEngine.h"
 
 
-Text::Text() : rect(nullptr)
+Text::Text() : RavelBehaviour(), rect(nullptr)
 {
 }
 
-Text::~Text()
-{
+Text::~Text() {
 }
 
-void Text::LoadFromFile(std::string const & file)
-{
+void Text::LoadFromFile(std::string const & file) {
 	// do standard loading of component
 	std::ifstream json;
 	json.open(file);
@@ -36,24 +34,20 @@ void Text::LoadFromFile(std::string const & file)
 	json.close();
 }
 
-void Text::Start()
-{
+void Text::Start() {
 	GetGraphicsManager()->AddText(this);
 	font = "font1"; // defualt font
 	rect = factory()->CreateComponent<RectTransform>();
 	size = size < 0 ? 100 : size;
 }
 
-void Text::OnDestory()
-{
+void Text::OnDestory() {
 	if (rect)
 		rect->OnDestory();
-	Memory()->dealloc(this);
 	this->~Text();
 }
 
-void Text::Render()
-{
+void Text::Render() {
 	Vector2 position = transform->GetPosition();
 	for(char ch : _text){
 		FontSystem::font f = GetFontManager()->FetchFont(font, ch);
@@ -68,7 +62,6 @@ void Text::Render()
 	rect->SetPosition(position);
 }
 
-void Text::SetFontSize(size_t size)
-{
+void Text::SetFontSize(size_t size) {
 	this->size = size * 10;
 }

@@ -23,11 +23,12 @@ public:
 
 	template<typename T>
 	void CallEvent(const std::string name, const T t_id) {
-		GetScriptManager()->CallEvent(m_Filename, name, m_OwnerID, t_id);
+		if(m_Filename.data())
+			GetScriptManager()->CallEvent(m_Filename.data(), name, m_OwnerID, t_id);
 	}
 
 private:
-	std::string m_Filename;
+	std::string_view m_Filename;
 	std::size_t m_OwnerID;
 };
 
