@@ -1,0 +1,15 @@
+{
+	"Sprite2D" : 
+	{
+		"IsActive" : true,
+		"Transform" : {
+			"X" : 0.0,
+			"Y" : 0.0
+		},
+		"Texture" : {
+			"filepath" : "Background.png",
+			"X" : 1280,
+			"Y" : 720
+		}
+	}
+}

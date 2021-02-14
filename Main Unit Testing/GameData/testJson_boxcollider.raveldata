@@ -1,0 +1,12 @@
+{
+	"BoxCollider" : 
+	{
+		"IsActive" : true,
+		"Transform" : {
+			"X" : 0.0,
+			"Y" : 0.0,
+			"SX" : 1280,
+			"SY" : 720
+		}
+	}
+}
