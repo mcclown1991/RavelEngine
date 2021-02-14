@@ -2,6 +2,7 @@
 #include "../types.h"
 
 #include <map>
+#include <string>
 
 namespace Ravel {
 	namespace AI {

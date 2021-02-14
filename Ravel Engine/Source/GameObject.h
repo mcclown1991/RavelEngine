@@ -4,7 +4,7 @@
 #include <string>
 #include <algorithm>
 #include <map>
-#include <typeinfo.h>
+#include <typeinfo>
 #include "RavelObject.h"
 #include "Transform.h"
 #include "Sprite2D.h"
