@@ -407,5 +407,8 @@
     <ClCompile Include="Source\AI\BTNode.cpp">
       <Filter>Systems\AI</Filter>
     </ClCompile>
+    <ClCompile Include="Source\AI\BehaviourTree.cpp">
+      <Filter>Systems\AI</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

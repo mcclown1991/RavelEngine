@@ -8,6 +8,7 @@ public:
 	~BehaviourTree();
 
 	void AddConnection(BTComposite* composite);
+	void AddBlackBoard(Blackboard* blackboard);
 
 private:
 	BTNode * root;

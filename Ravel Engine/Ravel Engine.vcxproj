@@ -157,6 +157,7 @@
     <ClInclude Include="Source\WindowsHandle.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\AI\BehaviourTree.cpp" />
     <ClCompile Include="Source\AI\Blackboard.cpp" />
     <ClCompile Include="Source\AI\BTNode.cpp" />
     <ClCompile Include="Source\AudioClip.cpp" />
