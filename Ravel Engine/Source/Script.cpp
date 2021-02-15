@@ -23,7 +23,7 @@ void Script::LoadFromFile(std::string const & file) {
 
 		std::string path = root["Script path"].GetString();
 
-		LoadScript(path);
+		LoadScript(RavelEngine::getGameDataPath().data() + path);
 	}
 
 	json.close();

@@ -5,6 +5,7 @@
 #include <string_view>
 #include <functional>
 #include "DataType.h"
+#include "MemoryManager.h"
 
 class RavelObject{
 public:

@@ -3,6 +3,7 @@
 
 #include <queue>
 
+#undef min
 
 Navigation * Navigator()
 {

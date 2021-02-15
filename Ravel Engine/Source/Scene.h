@@ -8,7 +8,10 @@
 #include <vector>
 
 #include "Factory.h"
+#include "RavelEngine.h"
+
 #undef SendMessage
+
 class Scene {
 public:
 	Scene() {};
@@ -24,7 +27,7 @@ public:
 	virtual void Load() {
 		// load scene file
 		std::ifstream json;
-		json.open("GameData\\" + _path + _sceneName + ".scene");
+		json.open(RavelEngine::getGameDataPath().data() + _path + _sceneName + ".scene");
 		rapidjson::IStreamWrapper isw(json);
 		rapidjson::Document doc;
 		doc.ParseStream(isw);
@@ -37,13 +40,13 @@ public:
 
 			for (unsigned i = 0; i < child; ++i) {
 				// load gameobject
-				size_t id = factory()->LoadFromFile("GameData\\" + std::string(root[std::to_string(i).c_str()].GetString()));
+				size_t id = factory()->LoadFromFile(RavelEngine::getGameDataPath().data() + std::string(root[std::to_string(i).c_str()].GetString()));
 				if(id > 0)
 					_sceneObjects.push_back(id);
 			}
 		}
 		else {
-			std::cout << "Failed to load scene " << "GameData\\" + _path + _sceneName + ".scene" << std::endl;
+			std::cout << "Failed to load scene " << RavelEngine::getGameDataPath().data() + _path + _sceneName + ".scene" << std::endl;
 			std::cout << "Error  : " << doc.GetParseError() << '\n'
 				<< "Offset : " << doc.GetErrorOffset() << '\n';
 

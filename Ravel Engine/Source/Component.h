@@ -2,7 +2,6 @@
 #define COMPONENT_H
 
 #include <string>
-#include "MemoryManager.h"
 #include "RavelObject.h"
 
 //Data Types for components

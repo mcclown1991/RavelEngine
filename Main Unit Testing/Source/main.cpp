@@ -1,5 +1,6 @@
 #include <Windows.h>
 #include <RavelEngine.h>
+#include <SceneManager.h>
 #include "TestScene.h"
 
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR, int) {

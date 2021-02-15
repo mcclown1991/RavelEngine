@@ -96,7 +96,7 @@ void Sprite2D::OnDestory() {
 }
 
 void Sprite2D::CreateTexture(std::string texture, float width, float height) {
-	GetGraphicsManager()->Renderer()->CreateTexture(texture, m_SampleID);
+	GetGraphicsManager()->Renderer()->CreateTexture(RavelEngine::getGameDataPath().data() + texture, m_SampleID);
 	m_Model = factory()->CreateComponent<Transform>();
 	m_Model->hscale = width * 0.89f;
 	m_Model->vscale = height * 0.89f;

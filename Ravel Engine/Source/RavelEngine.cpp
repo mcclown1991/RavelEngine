@@ -4,6 +4,8 @@
 #include "CollisionManager.h"
 #include "Font.h"
 #include "Input.h"
+#include "Scene.h"
+#include "SceneManager.h"
 
 RavelEngine RavelEngine::m_EngineInstance;
 

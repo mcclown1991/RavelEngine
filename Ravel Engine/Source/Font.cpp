@@ -1,4 +1,5 @@
 #include "Font.h"
+#include "RavelEngine.h"
 
 FontSystem::FontSystem() : System()
 {
@@ -26,7 +27,7 @@ void FontSystem::Quit()
 void FontSystem::AddFont(std::string const & filename, std::string const& identifier)
 {
 	size_t sampleid{};
-	GetGraphicsManager()->Renderer()->CreateTexture(filename + ".png", sampleid);
+	GetGraphicsManager()->Renderer()->CreateTexture(RavelEngine::getGameDataPath().data() + filename + ".png", sampleid);
 	size_t id = HASH(identifier);
 
 	if (fonts.count(identifier) != 0) return;
@@ -34,7 +35,7 @@ void FontSystem::AddFont(std::string const & filename, std::string const& identi
 	fonts[identifier] = id;
 	
 	//load meta data comes in id(u, v)
-	std::ifstream file(filename + ".meta", std::ifstream::in);
+	std::ifstream file(RavelEngine::getGameDataPath().data() + filename + ".meta", std::ifstream::in);
 	if (!file.is_open()) {
 		std::cout << "Failed to open font meta file" << std::endl;
 		return;

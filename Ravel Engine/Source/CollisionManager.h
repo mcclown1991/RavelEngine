@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <algorithm>
+#include "GameObject.h"
 #include "Collider2D.h"
 #include "SpatialHash.h"
 

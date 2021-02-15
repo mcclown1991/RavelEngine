@@ -24,8 +24,6 @@
 #include "OpenGL.h"
 #include "RavelTime.h"
 
-#include "Scene.h"
-#include "SceneManager.h"
 
 class RavelEngine{
 public:
@@ -49,11 +47,6 @@ public:
 
 	static RavelEngine* GetRavelEngine(){ return &m_EngineInstance; }
 
-	//HGE* GetHGE() { return hge; }
-	//GameStateManager* GetStateManager() { return &gsm; }
-	//hgeFont* GetFontSmall() { return fntSmall; }
-	//hgeFont* GetFontLarge() { return fntLarge; }
-
 	sInt32 const& GetScreenWidth() const{
 		return SCREENWIDTH;
 	}
@@ -65,6 +58,10 @@ public:
 
 	Matrix4x4 ScenceTransform() const;
 
+	static constexpr std::string_view getGameDataPath() noexcept {
+		return GAMEDATA_PATH;
+	}
+
 private:
 	RavelEngine();
 	~RavelEngine();
@@ -75,10 +72,6 @@ private:
 
 	static RavelEngine m_EngineInstance;
 
-	//HGE*				hge = 0;
-	//hgeFont*			fntSmall;
-	//hgeFont*			fntLarge;
-	//GameStateManager	gsm;
 	WindowsHandle*		pWindow;
 	Graphics*			pRenderer;
 
@@ -90,6 +83,8 @@ private:
 	bool _quit = false;
 
 	Matrix4x4 ref;
+
+	static constexpr std::string_view GAMEDATA_PATH = "GameData\\";
 };
 
 #endif
