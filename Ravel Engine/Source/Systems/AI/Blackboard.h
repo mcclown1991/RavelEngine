@@ -1,10 +1,10 @@
 #pragma once
-#include "../types.h"
+#include "types.h"
 
 #include <map>
 #include <string>
 #include <string_view>
-#include "../MemoryManager.h"
+#include "MemoryManager.h"
 
 class Blackboard {
 public:
@@ -29,6 +29,7 @@ public:
 	void SetValueAsInt(std::string_view keyName, int value);
 	void SetValueAsFloat(std::string_view keyName, float value);
 	void SetValueAsDouble(std::string_view keyName, double value);
+	void SetValueAsString(std::string_view keyName, std::string_view value);
 
 	template<class DataType>
 	void SetValue(std::string_view keyName, DataType value);
@@ -45,6 +46,7 @@ UserObject Blackboard::GetValueAsObject(std::string_view keyName) {
 	auto* object = dynamic_cast<Object<UserObject>*>(m_Keys[keyID]);
 	if(object)
 		return object->data();
+	return nullptr;
 }
 
 template <class UserObject>
@@ -53,6 +55,14 @@ void Blackboard::SetValueAsObject(std::string_view keyName, UserObject* value) {
 }
 
 template<class DataType>
-void SetValue(std::string_view keyName, DataType value) {
+void Blackboard::SetValue(std::string_view keyName, DataType value) {
 	m_Keys[keyName] = Memory()->alloc<DataType>();
+}
+
+template<class DataType>
+DataType Blackboard::GetValue(std::string_view keyName) {
+	auto* object = dynamic_cast<Object<DataType>*>(m_Keys[keyID]);
+	if (object)
+		return object->data();
+	return nullptr;
 }

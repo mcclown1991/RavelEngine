@@ -10,6 +10,9 @@ template<class T>
 class Object : public BaseObject {
 public:
 	Object() {};
+	Object(T const& val) {
+		this->val = val;
+	}
 	~Object() {};
 
 	T data() const { return val; }

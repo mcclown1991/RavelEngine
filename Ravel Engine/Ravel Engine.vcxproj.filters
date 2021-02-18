@@ -96,319 +96,298 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\DataType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\global.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\main.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BoxCollider.h">
+    <ClInclude Include="Source\Base Components\AudioClip.h">
       <Filter>Base Components\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Component.h">
+    <ClInclude Include="Source\Base Components\AudioMixer.h">
       <Filter>Base Components\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Source\LinePrimitive.h">
+    <ClInclude Include="Source\Base Components\AudioSource.h">
       <Filter>Base Components\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Source\RavelObject.h">
+    <ClInclude Include="Source\Base Components\BoxCollider.h">
       <Filter>Base Components\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Sprite2D.h">
+    <ClInclude Include="Source\Base Components\Button.h">
       <Filter>Base Components\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Text.h">
+    <ClInclude Include="Source\Base Components\Canvas.h">
       <Filter>Base Components\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Transform.h">
+    <ClInclude Include="Source\Base Components\Collider2D.h">
       <Filter>Base Components\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameObject.h">
-      <Filter>Game Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GameStateManager.h">
-      <Filter>Game State Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GameState.h">
-      <Filter>Game State Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Matrix3x3.h">
-      <Filter>Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\sprite.h">
-      <Filter>Sprite</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\RavelEngine.h">
-      <Filter>Systems\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GraphicsManager.h">
-      <Filter>Systems\Graphics System</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Factory.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\System.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Button.h">
+    <ClInclude Include="Source\Base Components\Component.h">
       <Filter>Base Components\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Vector2.h">
-      <Filter>Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\CollisionManager.h">
-      <Filter>Systems\Collision System</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\OpenGL.h">
-      <Filter>Systems\Graphics System\OpenGL</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\WindowsHandle.h">
-      <Filter>Systems\Window</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\DirectX11.h">
-      <Filter>Systems\Graphics System\DirectX 11</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GraphicsAPI.h">
-      <Filter>Systems\Graphics System</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Input.h">
-      <Filter>Systems\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\RavelMath.h">
-      <Filter>Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Vector3.h">
-      <Filter>Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Matrix4x4.h">
-      <Filter>Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ScriptManager.h">
-      <Filter>Systems\Scripting</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Script.h">
+    <ClInclude Include="Source\Base Components\ComponentHeader.h">
       <Filter>Base Components\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Source\RavelRect.h">
-      <Filter>Systems\Collision System</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Collider2D.h">
+    <ClInclude Include="Source\Base Components\LinePrimitive.h">
       <Filter>Base Components\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Behaviour.h">
+    <ClInclude Include="Source\Base Components\RavelObject.h">
+      <Filter>Base Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Base Components\RectTransform.h">
+      <Filter>Base Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Base Components\Script.h">
+      <Filter>Base Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Base Components\Sprite2D.h">
+      <Filter>Base Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Base Components\Text.h">
+      <Filter>Base Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Base Components\Transform.h">
+      <Filter>Base Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Behaviour\Behaviour.h">
       <Filter>Behaviour</Filter>
     </ClInclude>
-    <ClInclude Include="Source\RavelBehaviour.h">
+    <ClInclude Include="Source\Behaviour\RavelBehaviour.h">
       <Filter>Behaviour</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\MemoryManager.h">
-      <Filter>Systems\Memory System</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\SpatialHash.h">
-      <Filter>Systems\Collision System</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Font.h">
-      <Filter>Systems\Text System</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\RectTransform.h">
-      <Filter>Base Components\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Rect.h">
-      <Filter>Structures</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Stuctures.h">
-      <Filter>Structures</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ComponentHeader.h">
-      <Filter>Base Components\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\SceneManager.h">
-      <Filter>Systems\Scene Management</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Scene.h">
-      <Filter>Systems\Scene Management</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Canvas.h">
-      <Filter>Base Components\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\AudioManager.h">
-      <Filter>Systems\Sound System</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\AudioMixer.h">
-      <Filter>Base Components\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\AudioClip.h">
-      <Filter>Base Components\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\AudioSource.h">
-      <Filter>Base Components\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\NavMesh.h">
-      <Filter>Systems\Navigation</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\NavMeshBoundVolume.h">
-      <Filter>Base Components\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\RavelTime.h">
-      <Filter>Systems\Time</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\types.h">
-      <Filter>Structures</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\AI\Blackboard.h">
-      <Filter>Systems\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\AI\BehaviourTree.h">
-      <Filter>Systems\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\AI\BTNode.h">
-      <Filter>Systems\AI</Filter>
     </ClInclude>
     <ClInclude Include="Source\Controller\Controller.h">
       <Filter>Controller</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Game Object\GameObject.h">
+      <Filter>Game Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game State Manager\GameState.h">
+      <Filter>Game State Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game State Manager\GameStateManager.h">
+      <Filter>Game State Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Math\Matrix3x3.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Math\Matrix4x4.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Math\RavelMath.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Math\Vector2.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Math\Vector3.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Structures\Rect.h">
+      <Filter>Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Structures\Stuctures.h">
+      <Filter>Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Structures\types.h">
+      <Filter>Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\Factory.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\System.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\AI\BehaviourTree.h">
+      <Filter>Systems\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\AI\Blackboard.h">
+      <Filter>Systems\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\AI\BTNode.h">
+      <Filter>Systems\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\Collision System\CollisionManager.h">
+      <Filter>Systems\Collision System</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\Collision System\RavelRect.h">
+      <Filter>Systems\Collision System</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\Collision System\SpatialHash.h">
+      <Filter>Systems\Collision System</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\Core\RavelEngine.h">
+      <Filter>Systems\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\Graphics System\DirectX 11\DirectX11.h">
+      <Filter>Systems\Graphics System\DirectX 11</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\Graphics System\OpenGL\OpenGL.h">
+      <Filter>Systems\Graphics System\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\Graphics System\GraphicsAPI.h">
+      <Filter>Systems\Graphics System</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\Graphics System\GraphicsManager.h">
+      <Filter>Systems\Graphics System</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\Input\Input.h">
+      <Filter>Systems\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\Memory System\MemoryManager.h">
+      <Filter>Systems\Memory System</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\Navigation\NavMesh.h">
+      <Filter>Systems\Navigation</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Base Components\NavMeshBoundVolume.h">
+      <Filter>Base Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\Scene Management\Scene.h">
+      <Filter>Systems\Scene Management</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\Scene Management\SceneManager.h">
+      <Filter>Systems\Scene Management</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\Scripting\ScriptManager.h">
+      <Filter>Systems\Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\Sound System\AudioManager.h">
+      <Filter>Systems\Sound System</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\Text System\Font.h">
+      <Filter>Systems\Text System</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\Time\RavelTime.h">
+      <Filter>Systems\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\Window\WindowsHandle.h">
+      <Filter>Systems\Window</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\global.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\BoxCollider.cpp">
+    <ClCompile Include="Source\Base Components\AudioClip.cpp">
       <Filter>Base Components\Source</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Component.cpp">
+    <ClCompile Include="Source\Base Components\AudioMixer.cpp">
       <Filter>Base Components\Source</Filter>
     </ClCompile>
-    <ClCompile Include="Source\LinePrimitive.cpp">
+    <ClCompile Include="Source\Base Components\AudioSource.cpp">
       <Filter>Base Components\Source</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Sprite2D.cpp">
+    <ClCompile Include="Source\Base Components\BoxCollider.cpp">
       <Filter>Base Components\Source</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Text.cpp">
+    <ClCompile Include="Source\Base Components\Canvas.cpp">
       <Filter>Base Components\Source</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Transform.cpp">
+    <ClCompile Include="Source\Base Components\Collider2D.cpp">
       <Filter>Base Components\Source</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameObject.cpp">
-      <Filter>Game Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GameStateManager.cpp">
-      <Filter>Game State Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Matrix3x3.cpp">
-      <Filter>Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\sprite.cpp">
-      <Filter>Sprite</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\RavelEngine.cpp">
-      <Filter>Systems\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GraphicsManager.cpp">
-      <Filter>Systems\Graphics System</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Factory.cpp">
-      <Filter>Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Vector2.cpp">
-      <Filter>Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\CollisionManager.cpp">
-      <Filter>Systems\Collision System</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\OpenGL.cpp">
-      <Filter>Systems\Graphics System\OpenGL</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\WindowsHandle.cpp">
-      <Filter>Systems\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\DirectX11.cpp">
-      <Filter>Systems\Graphics System\DirectX 11</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Input.cpp">
-      <Filter>Systems\Input</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Matrix4x4.cpp">
-      <Filter>Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Vector3.cpp">
-      <Filter>Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ScriptManager.cpp">
-      <Filter>Systems\Scripting</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ScriptFunction.cpp">
-      <Filter>Systems\Scripting</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Script.cpp">
+    <ClCompile Include="Source\Base Components\Component.cpp">
       <Filter>Base Components\Source</Filter>
     </ClCompile>
-    <ClCompile Include="Source\RavelRect.cpp">
-      <Filter>Systems\Collision System</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Collider2D.cpp">
+    <ClCompile Include="Source\Base Components\LinePrimitive.cpp">
       <Filter>Base Components\Source</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Behaviour.cpp">
+    <ClCompile Include="Source\Base Components\RectTransform.cpp">
+      <Filter>Base Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Base Components\Script.cpp">
+      <Filter>Base Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Base Components\Sprite2D.cpp">
+      <Filter>Base Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Base Components\Text.cpp">
+      <Filter>Base Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Base Components\Transform.cpp">
+      <Filter>Base Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Behaviour\Behaviour.cpp">
       <Filter>Behaviour</Filter>
     </ClCompile>
-    <ClCompile Include="Source\MemoryManager.cpp">
-      <Filter>Systems\Memory System</Filter>
+    <ClCompile Include="Source\Game Object\GameObject.cpp">
+      <Filter>Game Object</Filter>
     </ClCompile>
-    <ClCompile Include="Source\SpatialHash.cpp">
-      <Filter>Systems\Collision System</Filter>
+    <ClCompile Include="Source\Game State Manager\GameStateManager.cpp">
+      <Filter>Game State Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Font.cpp">
-      <Filter>Systems\Text System</Filter>
+    <ClCompile Include="Source\Math\Matrix3x3.cpp">
+      <Filter>Math</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Rect.cpp">
+    <ClCompile Include="Source\Math\Matrix4x4.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Math\Vector2.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Math\Vector3.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Structures\Rect.cpp">
       <Filter>Structures</Filter>
     </ClCompile>
-    <ClCompile Include="Source\RectTransform.cpp">
-      <Filter>Base Components\Source</Filter>
+    <ClCompile Include="Source\Systems\Factory.cpp">
+      <Filter>Systems</Filter>
     </ClCompile>
-    <ClCompile Include="Source\SceneManager.cpp">
-      <Filter>Systems\Scene Management</Filter>
+    <ClCompile Include="Source\Systems\AI\BehaviourTree.cpp">
+      <Filter>Systems\AI</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Canvas.cpp">
-      <Filter>Base Components\Source</Filter>
+    <ClCompile Include="Source\Systems\AI\Blackboard.cpp">
+      <Filter>Systems\AI</Filter>
     </ClCompile>
-    <ClCompile Include="Source\AudioManager.cpp">
-      <Filter>Systems\Sound System</Filter>
+    <ClCompile Include="Source\Systems\AI\BTNode.cpp">
+      <Filter>Systems\AI</Filter>
     </ClCompile>
-    <ClCompile Include="Source\AudioMixer.cpp">
-      <Filter>Base Components\Source</Filter>
+    <ClCompile Include="Source\Systems\Collision System\CollisionManager.cpp">
+      <Filter>Systems\Collision System</Filter>
     </ClCompile>
-    <ClCompile Include="Source\AudioClip.cpp">
-      <Filter>Base Components\Source</Filter>
+    <ClCompile Include="Source\Systems\Collision System\RavelRect.cpp">
+      <Filter>Systems\Collision System</Filter>
     </ClCompile>
-    <ClCompile Include="Source\AudioSource.cpp">
-      <Filter>Base Components\Source</Filter>
+    <ClCompile Include="Source\Systems\Collision System\SpatialHash.cpp">
+      <Filter>Systems\Collision System</Filter>
     </ClCompile>
-    <ClCompile Include="Source\NavMeshBoundVolume.cpp">
-      <Filter>Base Components\Source</Filter>
+    <ClCompile Include="Source\Systems\Core\RavelEngine.cpp">
+      <Filter>Systems\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Source\NavMesh.cpp">
+    <ClCompile Include="Source\Systems\Graphics System\DirectX 11\DirectX11.cpp">
+      <Filter>Systems\Graphics System\DirectX 11</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\Graphics System\OpenGL\OpenGL.cpp">
+      <Filter>Systems\Graphics System\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\Graphics System\GraphicsManager.cpp">
+      <Filter>Systems\Graphics System</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\Input\Input.cpp">
+      <Filter>Systems\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\Memory System\MemoryManager.cpp">
+      <Filter>Systems\Memory System</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\Navigation\NavMesh.cpp">
       <Filter>Systems\Navigation</Filter>
     </ClCompile>
-    <ClCompile Include="Source\RavelTime.cpp">
+    <ClCompile Include="Source\Base Components\NavMeshBoundVolume.cpp">
+      <Filter>Base Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\Scene Management\SceneManager.cpp">
+      <Filter>Systems\Scene Management</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\Scripting\ScriptFunction.cpp">
+      <Filter>Systems\Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\Scripting\ScriptManager.cpp">
+      <Filter>Systems\Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\Sound System\AudioManager.cpp">
+      <Filter>Systems\Sound System</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\Text System\Font.cpp">
+      <Filter>Systems\Text System</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\Time\RavelTime.cpp">
       <Filter>Systems\Time</Filter>
     </ClCompile>
-    <ClCompile Include="Source\AI\Blackboard.cpp">
-      <Filter>Systems\AI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\AI\BTNode.cpp">
-      <Filter>Systems\AI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\AI\BehaviourTree.cpp">
-      <Filter>Systems\AI</Filter>
+    <ClCompile Include="Source\Systems\Window\WindowsHandle.cpp">
+      <Filter>Systems\Window</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
