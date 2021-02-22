@@ -91,6 +91,9 @@
     <Filter Include="Controller">
       <UniqueIdentifier>{d9dbd6f6-b77c-43b9-af90-e281a5012a3d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Systems\AI\Task">
+      <UniqueIdentifier>{b6866ccb-3459-4c25-a1bf-0c8dd9ee2739}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -258,6 +261,9 @@
     <ClInclude Include="Source\Systems\Window\WindowsHandle.h">
       <Filter>Systems\Window</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\AI\Task\PrintTask.h">
+      <Filter>Systems\AI\Task</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Base Components\AudioClip.cpp">
@@ -388,6 +394,9 @@
     </ClCompile>
     <ClCompile Include="Source\Systems\Window\WindowsHandle.cpp">
       <Filter>Systems\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\AI\Task\PrintTask.cpp">
+      <Filter>Systems\AI\Task</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

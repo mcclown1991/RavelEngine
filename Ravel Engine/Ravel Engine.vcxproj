@@ -130,6 +130,7 @@
     <ClInclude Include="Source\Systems\AI\BehaviourTree.h" />
     <ClInclude Include="Source\Systems\AI\Blackboard.h" />
     <ClInclude Include="Source\Systems\AI\BTNode.h" />
+    <ClInclude Include="Source\Systems\AI\Task\PrintTask.h" />
     <ClInclude Include="Source\Systems\Collision System\CollisionManager.h" />
     <ClInclude Include="Source\Systems\Collision System\RavelRect.h" />
     <ClInclude Include="Source\Systems\Collision System\SpatialHash.h" />
@@ -177,6 +178,7 @@
     <ClCompile Include="Source\Systems\AI\BehaviourTree.cpp" />
     <ClCompile Include="Source\Systems\AI\Blackboard.cpp" />
     <ClCompile Include="Source\Systems\AI\BTNode.cpp" />
+    <ClCompile Include="Source\Systems\AI\Task\PrintTask.cpp" />
     <ClCompile Include="Source\Systems\Collision System\CollisionManager.cpp" />
     <ClCompile Include="Source\Systems\Collision System\RavelRect.cpp" />
     <ClCompile Include="Source\Systems\Collision System\SpatialHash.cpp" />

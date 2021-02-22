@@ -1,0 +1,15 @@
+{
+	"Sprite2D" : 
+	{
+		"IsActive" : true,
+		"Transform" : {
+			"X" : 0.0,
+			"Y" : 0.0
+		},
+		"Texture" : {
+			"filepath" : "BlueDoor.png",
+			"X" : 32,
+			"Y" : 64
+		}
+	}
+}

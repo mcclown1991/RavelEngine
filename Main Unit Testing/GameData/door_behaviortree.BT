@@ -1,0 +1,22 @@
+{
+	"Nodes" : 
+	{
+		"IsActive" : true,
+		"Nodes" : {
+			"node" : "Sequence",
+			"name" : "Root"
+			"Connection" : [
+				"1" : {
+					"node" : "PrintTask",
+					"name" : "Test A"
+				},
+				"2" : {
+					"node" : "PrintTask",
+					"name" : "Test B"
+				}
+			]
+			
+			
+		}
+	}
+}

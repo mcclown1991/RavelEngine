@@ -1,0 +1,7 @@
+{
+	"Script" : 
+	{
+		"IsActive" : true,
+		"Script path" : "test.lua"
+	}
+}

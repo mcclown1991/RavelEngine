@@ -1,8 +1,16 @@
 #pragma once
-#include "..\RavelObject.h"
+#include "RavelBehaviour.h"
 
 namespace Ravel {
-	class Controller : public RavelObject {
+	class Controller : public RavelBehaviour {
+	public:
+		Controller();
+		virtual ~Controller();
+		virtual Controller* Clone() {
+			return Memory()->alloc<Controller>();
+		}
 
+		virtual void OnDestory();
+		
 	};
 }

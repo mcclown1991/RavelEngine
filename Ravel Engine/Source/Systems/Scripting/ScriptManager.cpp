@@ -55,7 +55,6 @@ bool ScriptManager::LoadScript(const std::string script)
 
 bool ScriptManager::UpdateScript(std::string script, const std::string luaevent, std::size_t me, float dt)
 {
-	//script = "Resources/Script/" + script;
 	if (script.empty())
 	{
 		std::cout << "LUA ERROR: Calling event " << luaevent << " on an object that does not exist\n";

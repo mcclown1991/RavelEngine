@@ -1,12 +1,12 @@
 #include "BTNode.h"
 
-BTDecorator::BTDecorator(std::string name) : BTNode(name) {
+BTDecorator::BTDecorator() : BTNode() {
 }
 
-BTServices::BTServices(std::string name) : BTNode(name) {
+BTServices::BTServices() : BTNode() {
 }
 
-BTComposite::BTComposite(std::string name) : BTNode(name) {
+BTComposite::BTComposite() : BTNode() {
 }
 
 void BTComposite::AddChildNode(BTComposite * child) {
@@ -21,10 +21,10 @@ void BTComposite::AddService(BTServices * service) {
 	services.push_back(service);
 }
 
-BTTask::BTTask(std::string name) : BTComposite(name) {
+BTTask::BTTask() : BTComposite() {
 }
 
-BTSelector::BTSelector(std::string name) : BTComposite(name) {
+BTSelector::BTSelector() : BTComposite() {
 
 }
 
@@ -49,7 +49,7 @@ bool BTSelector::Execute()
 	return result;
 }
 
-BTSequence::BTSequence(std::string name) : BTComposite(name) {
+BTSequence::BTSequence() : BTComposite() {
 }
 
 BTSequence::~BTSequence()

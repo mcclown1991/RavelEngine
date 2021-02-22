@@ -1,0 +1,26 @@
+{
+	"GameObject" : 
+	{
+		"name" : "door",
+		"IsActive" : true,
+		"Tag" : "",
+		"Transform" : {
+			"X" : 0.0,
+			"Y" : 0.0
+		},
+		"Components" : {
+			"0" : {
+				"typename" : "Sprite2D",
+				"metafile" : "door_sprite2D.raveldata"
+			},
+			"1" : {
+				"typename" : "BoxCollider",
+				"metafile" : "door_boxcollider.raveldata"
+			},
+			"2" : {
+				"typename" : "Script",
+				"metafile" : "door_script.raveldata"
+			}
+		}
+	}
+}

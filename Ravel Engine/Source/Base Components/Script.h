@@ -28,7 +28,7 @@ public:
 	}
 
 private:
-	std::string_view m_Filename;
+	std::string m_Filename;
 	std::size_t m_OwnerID;
 };
 

@@ -34,7 +34,6 @@ public:
 private:
 	lua_State* luaState;
 	std::list<std::string> loaded_;
-	std::string current_Script;
 	std::vector<std::pair<std::string, LuaFunction>> luaFunc;
 
 public:

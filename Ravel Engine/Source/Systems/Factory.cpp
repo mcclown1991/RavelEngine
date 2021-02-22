@@ -4,6 +4,8 @@
 #include <rapidjson\istreamwrapper.h>
 #include <typeinfo>
 
+#include "Task/PrintTask.h"
+
 Factory* factory()
 {
 	static Factory s;
@@ -30,6 +32,11 @@ void Factory::Init() {
 	RegisterComponent<AudioMixer>("AudioMixer");
 	RegisterComponent<NavMeshBoundVolume>("NavMeshBoundVolume");
 	RegisterComponent<LinePrimitive>("LinePrimitive");
+	RegisterComponent<BehaviourTree>("BehaviourTree");
+
+	RegisterBTNode<BTSelector>("Selector");
+	RegisterBTNode<BTSequence>("Sequence");
+	RegisterBTNode<BTPrintTask>("PrintTask");
 }
 
 size_t Factory::LoadFromFile(std::string const&  file)
@@ -118,4 +125,9 @@ RavelBehaviour * Factory::CreateComponent(std::string const & tag)
 	RavelBehaviour* com = _component[HASH(_componentRegistry[HASH(tag)].second)]->Clone();
 	std::cout << tag << " created" << std::endl;
 	return com;
+}
+
+BTNode* Factory::CreateBTNode(std::string const& name) {
+	auto* node = _btNode[HASH(_btNodeRegistry[HASH(name)].second)]->Clone();
+	return node;
 }

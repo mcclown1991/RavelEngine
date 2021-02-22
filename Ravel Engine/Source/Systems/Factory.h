@@ -8,6 +8,7 @@
 #include "System.h"
 #include "GraphicsManager.h"
 #include "GameObject.h"
+#include "BTNode.h"
 
 #undef SendMessage
 class Factory : public System
@@ -19,6 +20,9 @@ private:
 	std::unordered_map<size_t, RavelBehaviour*> _component;
 	std::unordered_map<size_t, std::pair<size_t, std::string>> _componentRegistry;
 	std::map<std::string, size_t> _refcount;
+
+	std::unordered_map<size_t, BTNode*> _btNode;
+	std::unordered_map<size_t, std::pair<size_t, std::string>> _btNodeRegistry;
 
 public:
 
@@ -55,12 +59,20 @@ public:
 	std::string const& ComponentTypeName(std::string const& tag);
 
 	RavelBehaviour* CreateComponent(std::string const& name);
+
+	BTNode* CreateBTNode(std::string const& name);
 	
 	template <typename T>
 	T* CreateComponent();
 
 	template <typename T>
+	T* CreateBTNode();
+
+	template <typename T>
 	constexpr void RegisterComponent(std::string const& tag);
+
+	template <typename T>
+	constexpr void RegisterBTNode(std::string const& tag);
 };
 
 Factory* factory();
@@ -73,6 +85,12 @@ T * Factory::CreateComponent()
 	return dynamic_cast<T*>(_component[HASH(typeid(T).name())]->Clone());
 }
 
+template <typename T>
+T* Factory::CreateBTNode() {
+	return dynamic_cast<T*>(_btNode[HASH(typeid(T).name())]->Clone());
+}
+
+
 template<typename T>
 constexpr void Factory::RegisterComponent(std::string const& tag)
 {
@@ -83,6 +101,15 @@ constexpr void Factory::RegisterComponent(std::string const& tag)
 
 	// given typename -> maps to component
 	_component[HASH(_componentRegistry[hash].second)] = Memory()->alloc<T>();
+}
+
+template <typename T>
+constexpr void Factory::RegisterBTNode(std::string const& tag) {
+	size_t hash = HASH(tag);
+
+	_btNodeRegistry[hash] = std::pair(hash, typeid(T).name());
+
+	_btNode[HASH(_btNodeRegistry[hash].second)] = Memory()->alloc<T>();
 }
 
 #endif
