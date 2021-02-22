@@ -6,6 +6,7 @@
 #include "Input.h"
 #include "Scene.h"
 #include "SceneManager.h"
+#include "ScriptManager.h"
 
 RavelEngine RavelEngine::m_EngineInstance;
 
@@ -233,6 +234,7 @@ void RavelEngine::SystemRun(std::string& errormsg){
 	gsm.GSM_NextState(State);
 	gsm.ChangeState();*/
 	SceneManagement()->LoadScene(0);
+	GetScriptManager()->RegisterLUAFunction();
 
 	while (!_quit) {
 		Update();
@@ -254,6 +256,7 @@ void RavelEngine::SystemExit(){
 	factory()->Quit();
 	AudioManagement()->Destory();
 	GetFontManager()->Quit();
+	GetScriptManager()->Quit();
 
 	delete pWindow;
 	delete pRenderer;

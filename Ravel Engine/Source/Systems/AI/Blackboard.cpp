@@ -8,7 +8,7 @@ bool Blackboard::GetValueAsBool(std::string_view keyName) {
 }
 
 int Blackboard::GetValueAsInt(std::string_view keyName) {
-	auto* object = dynamic_cast<Object<int>*>(m_Keys[keyName]);
+	auto* object = dynamic_cast<Object<int>*>(m_Keys[keyName.data()]);
 	if (object)
 		return object->data();
 	return int();
@@ -44,7 +44,7 @@ void Blackboard::SetValueAsBool(std::string_view keyName, bool value) {
 void Blackboard::SetValueAsInt(std::string_view keyName, int value) {
 	auto* data = Memory()->alloc<Object<int>>();
 	data->set(value);
-	m_Keys[keyName] = data;
+	m_Keys[keyName.data()] = data;
 }
 
 void Blackboard::SetValueAsFloat(std::string_view keyName, float value) {

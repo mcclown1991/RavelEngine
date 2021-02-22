@@ -34,9 +34,9 @@ void Factory::Init() {
 	RegisterComponent<LinePrimitive>("LinePrimitive");
 	RegisterComponent<BehaviourTree>("BehaviourTree");
 
-	RegisterBTNode<BTSelector>("Selector");
-	RegisterBTNode<BTSequence>("Sequence");
-	RegisterBTNode<BTPrintTask>("PrintTask");
+	//RegisterBTNode<BTSelector>("Selector"); --> memory leaking
+	//RegisterBTNode<BTSequence>("Sequence");
+	//RegisterBTNode<BTPrintTask>("PrintTask");
 }
 
 size_t Factory::LoadFromFile(std::string const&  file)

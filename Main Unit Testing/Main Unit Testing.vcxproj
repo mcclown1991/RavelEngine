@@ -100,6 +100,13 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>DirectXTK.lib;Ravel Engine Debug v0.2a.lib;lua5.1.lib;opengl32.lib;glew32.lib;glfw3dll.lib;XINPUT9_1_0.lib;fmodex_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(SolutionDir)$(ProjectName)\GameData\*.*" "$(SolutionDir)$(Configuration)\GameData" /Y /I /E</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

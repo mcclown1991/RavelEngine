@@ -104,10 +104,15 @@ void ScriptManager::Reset()
 	lua_close(luaState);
 	luaState = lua_open();
 	luaL_openlibs(luaState);
-	loaded_.clear();
+	
 	RegisterFunctions(luaState);
 }
 
 void ScriptManager::AddFunction(std::string const& FunctionName, LuaFunction FunctionPointer) {
 	luaFunc.push_back(std::make_pair(FunctionName, FunctionPointer));
+}
+
+void ScriptManager::Quit() {
+	lua_close(luaState);
+	loaded_.clear();
 }

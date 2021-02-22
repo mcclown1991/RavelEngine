@@ -30,6 +30,7 @@ public:
 	void Reset();
 	void AddFunction(std::string const& FunctionName, LuaFunction FunctionPointer);
 	void RegisterLUAFunction();
+	void Quit();
 
 private:
 	lua_State* luaState;

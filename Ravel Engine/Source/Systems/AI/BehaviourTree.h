@@ -15,11 +15,17 @@ public:
 		return Memory()->alloc<BehaviourTree>();
 	}
 
+	void OnDestory();
+
 	void AddConnection(BTComposite* composite);
 	void AddBlackBoard(Blackboard* blackboard);
 	void LoadFromFile(std::string const& file);
 
 	bool ExecuteTask(std::string_view task);
+
+	Blackboard* GetBlackboard() const {
+		return blackboard;
+	}
 
 private:
 	BTNode * root;

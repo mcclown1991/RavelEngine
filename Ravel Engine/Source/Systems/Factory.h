@@ -49,6 +49,13 @@ public:
 		}
 		_component.clear();
 		_componentRegistry.clear();
+
+		for (auto& iter : _btNode) {
+			iter.second->~BTNode();
+			Memory()->dealloc(iter.second);
+		}
+		_btNode.clear();
+		_btNodeRegistry.clear();
 	}
 	size_t LoadFromFile(std::string const&);
 	pGameObject& CreateGameObject(std::string&);
