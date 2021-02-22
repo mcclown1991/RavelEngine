@@ -18,8 +18,8 @@
 				"metafile" : "door_boxcollider.raveldata"
 			},
 			"2" : {
-				"typename" : "Script",
-				"metafile" : "door_script.raveldata"
+				"typename" : "BehaviourTree",
+				"metafile" : "door_behaviortree.BT"
 			}
 		}
 	}

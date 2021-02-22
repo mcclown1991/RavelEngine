@@ -2,21 +2,35 @@
 	"Nodes" : 
 	{
 		"IsActive" : true,
+		"name" : "root",
 		"Nodes" : {
 			"node" : "Sequence",
-			"name" : "Root"
+			"name" : "Root",
 			"Connection" : [
-				"1" : {
-					"node" : "PrintTask",
-					"name" : "Test A"
+				{
+					"node" : "Sequence",
+					"name" : "S1",
+					"Connection" : [
+						{
+							"node" : "PrintTask",
+							"name" : "Test A1"
+						},
+						{
+							"node" : "PrintTask",
+							"name" : "Test A2"
+						}
+					]
 				},
-				"2" : {
+				{
 					"node" : "PrintTask",
 					"name" : "Test B"
 				}
 			]
-			
-			
 		}
+	},
+	"Script" : 
+	{
+		"IsActive" : true,
+		"Script path" : "test_BTAsset.lua"
 	}
 }
