@@ -51,7 +51,7 @@ Vector2 Vector2::Normalized() const
 
 Vector2 Vector2::Normalize()
 {
-	*this/Length();
+	*this = *this/Length();
 	return *this;
 }
 

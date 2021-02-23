@@ -5,6 +5,7 @@
 #include <typeinfo>
 
 #include "Task/PrintTask.h"
+#include "Task/Tasks.h"
 
 Factory* factory()
 {
@@ -34,9 +35,10 @@ void Factory::Init() {
 	RegisterComponent<LinePrimitive>("LinePrimitive");
 	RegisterComponent<BehaviourTree>("BehaviourTree");
 
-	//RegisterBTNode<BTSelector>("Selector"); --> memory leaking
-	//RegisterBTNode<BTSequence>("Sequence");
-	//RegisterBTNode<BTPrintTask>("PrintTask");
+	RegisterBTNode<BTSelector>("Selector");
+	RegisterBTNode<BTSequence>("Sequence");
+	RegisterBTNode<BTPrintTask>("PrintTask");
+	RegisterBTNode<BTMoveToTask>("MoveTo");
 }
 
 size_t Factory::LoadFromFile(std::string const&  file)

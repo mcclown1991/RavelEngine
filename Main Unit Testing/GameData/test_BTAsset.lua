@@ -13,6 +13,15 @@ function test_BTAsset.Update(me, delta)
 end
 
 function test_BTAsset.PrintTask(me, data)
-	number = GetValueAsInt(me, "testKey");
+	number = GetValueAsInt(me, "test");
 	DebugLog("BTAsset Task print", number);
+end
+
+function test_BTAsset.PrintTaskB(me, delta)
+	number = GetValueAsBool(me, "test1");
+	DebugLog("BTAsset Task print", number);
+end
+
+function test_BTAsset.MoveTo(me, delta)
+	MoveTo(me, "target", "speed");
 end

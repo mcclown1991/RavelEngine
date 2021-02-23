@@ -23,4 +23,5 @@ void Scene1::Update()
 
 void Scene1::Free()
 {
+	
 }

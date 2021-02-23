@@ -8,22 +8,8 @@
 			"name" : "Root",
 			"Connection" : [
 				{
-					"node" : "Sequence",
-					"name" : "S1",
-					"Connection" : [
-						{
-							"node" : "PrintTask",
-							"name" : "Test A1"
-						},
-						{
-							"node" : "PrintTask",
-							"name" : "Test A2"
-						}
-					]
-				},
-				{
-					"node" : "PrintTask",
-					"name" : "Test B"
+					"node" : "MoveTo",
+					"name" : "MoveTo"
 				}
 			]
 		}
@@ -32,5 +18,17 @@
 	{
 		"IsActive" : true,
 		"Script path" : "test_BTAsset.lua"
-	}
+	},
+	"Blackboard" : [
+		{
+			"key" : "target",
+			"type" : "GameObject",
+			"data" : "target"
+		},
+		{
+			"key" : "speed",
+			"type" : "float",
+			"data" : 2
+		}
+	]
 }

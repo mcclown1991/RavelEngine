@@ -16,6 +16,15 @@ BehaviourTree::~BehaviourTree() {
 }
 
 void BehaviourTree::OnDestory() {
+	if (blackboard)
+		blackboard->~Blackboard();
+	if(!nodes.empty()) {
+		for (auto node : nodes) {
+			Memory()->dealloc(node);
+			node->~BTNode();
+		}
+	}
+
 	this->~BehaviourTree();
 }
 
@@ -44,6 +53,7 @@ void BehaviourTree::LoadFromFile(std::string const& file) {
 			head->SetNodeName(root["name"].GetString());
 			head->SetParent(this);
 			AddConnection(head);
+			nodes.push_back(head);
 			if (connections.HasMember("Connection") && connections["Connection"].IsArray()) {
 				rapidjson::Value& arr = connections["Connection"];
 				LoadFromFile(head, arr);
@@ -54,10 +64,10 @@ void BehaviourTree::LoadFromFile(std::string const& file) {
 		comp->LoadFromFile(file);
 		definitions = dynamic_cast<Script*>(comp);
 
-		if (doc.HasMember("BlackBoard")) {
+		if (doc.HasMember("Blackboard")) {
 			auto* bb = Memory()->alloc<Blackboard>();
 			AddBlackBoard(bb);
-			rapidjson::Value& bb_json = doc["BlackBoard"];
+			rapidjson::Value& bb_json = doc["Blackboard"];
 			for (rapidjson::Value::ConstValueIterator it = bb_json.Begin(); it != bb_json.End(); ++it) {
 				const rapidjson::Value& obj = *it;
 				std::string_view key = obj["key"].GetString();
@@ -66,14 +76,25 @@ void BehaviourTree::LoadFromFile(std::string const& file) {
 					bb->SetValueAsInt(key, obj["data"].GetInt());
 				}
 				else if (type.data() == "bool"sv) {
-
+					bb->SetValueAsBool(key, obj["data"].GetBool());
 				}
-				
+				else if(type.data() == "float"sv) {
+					bb->SetValueAsFloat(key, obj["data"].GetFloat());
+				}
+				else if(type.data() == "GameObject"sv) {
+					// need a way to delay this process
+					bb->SetValueAsString(key, std::string_view{ obj["data"].GetString() });
+				}
+				else if(type.data() == "string"sv) {
+					bb->SetValueAsString(key, obj["data"].GetString());
+				}
+				else if(type.data() == "double"sv) {
+					bb->SetValueAsDouble(key, obj["data"].GetDouble());
+				}
+				// advance types not implemented
 			}
 		}
 	}
-
-	root->Execute();
 }
 
 void BehaviourTree::LoadFromFile(BTComposite* parent, rapidjson::Value const& json) {
@@ -83,6 +104,7 @@ void BehaviourTree::LoadFromFile(BTComposite* parent, rapidjson::Value const& js
 		parent->AddChildNode(node);
 		node->SetNodeName(obj["name"].GetString());
 		node->SetParent(this);
+		nodes.push_back(node);
 		if (obj.HasMember("Connection") && obj["Connection"].IsArray()) {
 			rapidjson::Value const& arr = obj["Connection"];
 			LoadFromFile(node, arr);
@@ -108,9 +130,81 @@ void BehaviourTree::InitScriptFunctions() {
 		auto* bt = gameObject->GetComponent<BehaviourTree>();
 		if (!bt || !bt->GetBlackboard())
 			return 0;
-		int number = bt->GetBlackboard()->GetValueAsInt(key);
+		int value = bt->GetBlackboard()->GetValueAsInt(key);
 
-		lua_pushnumber(L, number);
+		lua_pushnumber(L, value);
+
+		return 1;
+	});
+
+	GetScriptManager()->AddFunction("GetValueAsBool", [](lua_State* L)->int {
+		size_t id = luaL_checklong(L, -2);
+		std::string key = luaL_checkstring(L, -1);
+		lua_pop(L, 2);
+
+		auto& gameObject = factory()->GetGameObject(id);
+		if (!gameObject)
+			return 0;
+		auto* bt = gameObject->GetComponent<BehaviourTree>();
+		if (!bt || !bt->GetBlackboard())
+			return 0;
+		bool value = bt->GetBlackboard()->GetValueAsBool(key);
+
+		lua_pushboolean(L, value);
+
+		return 1;
+	});
+
+	GetScriptManager()->AddFunction("GetValueAsFloat", [](lua_State* L)->int {
+		size_t id = luaL_checklong(L, -2);
+		std::string key = luaL_checkstring(L, -1);
+		lua_pop(L, 2);
+
+		auto& gameObject = factory()->GetGameObject(id);
+		if (!gameObject)
+			return 0;
+		auto* bt = gameObject->GetComponent<BehaviourTree>();
+		if (!bt || !bt->GetBlackboard())
+			return 0;
+		float value = bt->GetBlackboard()->GetValueAsFloat(key);
+
+		lua_pushnumber(L, value);
+
+		return 1;
+	});
+
+	GetScriptManager()->AddFunction("GetValueAsDouble", [](lua_State* L)->int {
+		size_t id = luaL_checklong(L, -2);
+		std::string key = luaL_checkstring(L, -1);
+		lua_pop(L, 2);
+
+		auto& gameObject = factory()->GetGameObject(id);
+		if (!gameObject)
+			return 0;
+		auto* bt = gameObject->GetComponent<BehaviourTree>();
+		if (!bt || !bt->GetBlackboard())
+			return 0;
+		double value = bt->GetBlackboard()->GetValueAsDouble(key);
+
+		lua_pushnumber(L, value);
+
+		return 1;
+	});
+
+	GetScriptManager()->AddFunction("GetValueAsString", [](lua_State* L)->int {
+		size_t id = luaL_checklong(L, -2);
+		std::string key = luaL_checkstring(L, -1);
+		lua_pop(L, 2);
+
+		auto& gameObject = factory()->GetGameObject(id);
+		if (!gameObject)
+			return 0;
+		auto* bt = gameObject->GetComponent<BehaviourTree>();
+		if (!bt || !bt->GetBlackboard())
+			return 0;
+		std::string value = bt->GetBlackboard()->GetValueAsString(key);
+
+		lua_pushstring(L, value.c_str());
 
 		return 1;
 	});

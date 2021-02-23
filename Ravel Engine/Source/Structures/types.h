@@ -4,6 +4,7 @@ class BaseObject {
 public:
 	BaseObject() {};
 	virtual ~BaseObject() {};
+	virtual void OnDestory() {};
 };
 
 template<class T>
@@ -15,6 +16,10 @@ public:
 	}
 	~Object() {};
 
+	virtual void OnDestory() {
+		this->~Object();
+	}
+	
 	T data() const { return val; }
 	void set(T const& value) { val = value; }
 

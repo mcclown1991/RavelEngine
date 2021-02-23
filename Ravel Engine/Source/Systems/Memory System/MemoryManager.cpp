@@ -61,6 +61,12 @@ MemoryManager::~MemoryManager()
 	while (head) {
 		temp = head;
 		head = head->next;
+#ifdef _DEBUG
+		std::stringstream address;
+		address << temp->pool;
+		std::string log{ std::string{"Memory::Deleting address "} + address.str() };
+		RLogger()->DebugLog(std::string_view{ log });
+#endif
 		delete temp;
 		temp = nullptr;
 		profile.blocks.push_back(std::string("Deleted block"));
@@ -145,6 +151,12 @@ void MemoryManager::dealloc(Pool * pool)
 		}
 	
 		profile.blocks.push_back(std::string("Deleted block"));
+#ifdef _DEBUG
+		std::stringstream address;
+		address << &page->pool;
+		std::string log{ std::string{"Memory::Deleting address "} + address.str() };
+		RLogger()->DebugLog(std::string_view{ log });
+#endif
 	}
 	//try see if parent is free
 	if ((page->prev != nullptr) && page->prev->isFree) {
@@ -152,6 +164,12 @@ void MemoryManager::dealloc(Pool * pool)
 		page->prev->size += page->size;
 		//remove current address from map
 		vtable.erase(tableId);
+#ifdef _DEBUG
+		std::stringstream address;
+		address << &page->pool;
+		std::string log{ std::string{"Memory::Deleting address "} + address.str() };
+		RLogger()->DebugLog(std::string_view{ log });
+#endif
 		page->prev->next = page->next;
 		if (page->next != nullptr) {
 			page->next->prev = page->prev;
@@ -159,5 +177,7 @@ void MemoryManager::dealloc(Pool * pool)
 		}
 
 		profile.blocks.push_back(std::string("Deleted block"));
+
+
 	}
 }

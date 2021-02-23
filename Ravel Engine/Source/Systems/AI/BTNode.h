@@ -4,12 +4,13 @@
 #include <string>
 
 #include "MemoryManager.h"
+#include "RavelObject.h"
 
 class BehaviourTree;
 
-class BTNode {
+class BTNode : public RavelObject {
 public:
-	BTNode() : name(std::string()) {};
+	BTNode() : nodeName(std::string()) {};
 	~BTNode() {};
 
 	virtual BTNode* Clone() {
@@ -21,7 +22,7 @@ public:
 	};
 
 	virtual void SetNodeName(std::string_view name) {
-		this->name = name.data();
+		nodeName = name.data();
 	}
 
 	virtual void SetParent(BehaviourTree* node) {
@@ -30,7 +31,7 @@ public:
 
 protected:
 	BehaviourTree* parent;
-	std::string name;
+	std::string nodeName;
 
 private:
 	BTNode * next;

@@ -1,6 +1,11 @@
 #pragma once
 #include <unordered_map>
 #include <iostream>
+#include <sstream>
+
+#include <string_view>
+#include "RavelLogger.h"
+using namespace std::string_view_literals;
 
 class MemoryManager {
 
@@ -58,6 +63,9 @@ inline T * MemoryManager::alloc()
 	size_t size = sizeof(T);
 #ifdef _DEBUG
 	std::cout << "MEMORY MANAGER : Allocating " << size << "bytes" << std::endl;
+	std::string typeName = typeid(T).name();
+	std::string log{ std::string{"Memory::Creating block of type "} + typeid(T).name() };
+	
 #endif
 	while (seg) {
 		if (seg->isFree) {
@@ -87,6 +95,13 @@ inline T * MemoryManager::alloc()
 	}
 
 	T* obj = new (seg->pool) T();
+
+#ifdef _DEBUG
+	std::stringstream address;
+	address << &seg->pool;
+	log.append(std::string{ std::string{ " address : " }  + address.str()});
+	RLogger()->DebugLog(std::string_view{ log });
+#endif
 
 	seg->isFree = false;
 	return obj;

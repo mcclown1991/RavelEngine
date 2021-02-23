@@ -11,6 +11,6 @@ BTPrintTask::~BTPrintTask() {
 }
 
 bool BTPrintTask::Execute() {
-	parent->ExecuteTask("PrintTask");
+	parent->ExecuteTask(nodeName);
 	return true;
 }

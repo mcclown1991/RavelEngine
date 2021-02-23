@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
@@ -93,6 +89,9 @@
     </Filter>
     <Filter Include="Systems\AI\Task">
       <UniqueIdentifier>{b6866ccb-3459-4c25-a1bf-0c8dd9ee2739}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Systems\Debug">
+      <UniqueIdentifier>{31d818b5-9a04-4f27-8fc3-1eb09d02e668}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -264,6 +263,12 @@
     <ClInclude Include="Source\Systems\AI\Task\PrintTask.h">
       <Filter>Systems\AI\Task</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\Debug\RavelLogger.h">
+      <Filter>Systems\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\AI\Task\Tasks.h">
+      <Filter>Systems\AI\Task</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Base Components\AudioClip.cpp">
@@ -397,6 +402,12 @@
     </ClCompile>
     <ClCompile Include="Source\Systems\AI\Task\PrintTask.cpp">
       <Filter>Systems\AI\Task</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\AI\Task\Tasks.cpp">
+      <Filter>Systems\AI\Task</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\Debug\RavelLogger.cpp">
+      <Filter>Systems\Debug</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -22,6 +22,7 @@ public:
 		for (size_t id : _sceneObjects) {
 			factory()->GetGameObject(id)->SendMessage("OnDestory");
 		}
+		Memory()->dealloc(this);
 		this->~Scene(); 
 	};
 	virtual void Load() {

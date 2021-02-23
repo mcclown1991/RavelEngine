@@ -15,6 +15,10 @@ public:
 		return Memory()->alloc<BehaviourTree>();
 	}
 
+	void Update() override {
+		if(root)
+			root->Execute();
+	}
 	void OnDestory();
 
 	void AddConnection(BTComposite* composite);
@@ -31,6 +35,7 @@ private:
 	BTNode * root;
 	Blackboard* blackboard;
 	Script* definitions;
+	std::vector<BTNode*> nodes;
 	
 	void LoadFromFile(BTComposite* parent, rapidjson::Value const& json);
 	void InitScriptFunctions();

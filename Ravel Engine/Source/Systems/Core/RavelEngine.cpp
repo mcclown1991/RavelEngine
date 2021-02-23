@@ -7,6 +7,7 @@
 #include "Scene.h"
 #include "SceneManager.h"
 #include "ScriptManager.h"
+#include "RavelLogger.h"
 
 RavelEngine RavelEngine::m_EngineInstance;
 
@@ -54,7 +55,8 @@ void RavelEngine::SystemInit(HINSTANCE hInstance, int nCmdShow) {
 #else
 	pWindow->InitWindowHandle(hInstance, nCmdShow);
 #endif
-	
+
+	RLogger()->StartLogger();
 	
 	switch (pWindow->getUSER()->renderer_) {
 	case 0:
@@ -258,6 +260,8 @@ void RavelEngine::SystemExit(){
 	GetFontManager()->Quit();
 	GetScriptManager()->Quit();
 
+	RLogger()->StopLogger();
+	
 	delete pWindow;
 	delete pRenderer;
 	// Now ESC has been pressed or the user

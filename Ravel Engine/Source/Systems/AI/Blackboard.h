@@ -4,12 +4,13 @@
 #include <map>
 #include <string>
 #include <string_view>
+#include <optional>
 #include "MemoryManager.h"
 
 class Blackboard {
 public:
 	Blackboard() {};
-	~Blackboard() {};
+	~Blackboard();
 
 	// getter
 	bool GetValueAsBool(std::string_view keyName);
@@ -22,7 +23,7 @@ public:
 	DataType GetValue(std::string_view keyName);
 
 	template<class UserObject>
-	UserObject GetValueAsObject(std::string_view keyName);
+	std::optional<UserObject> GetValueAsObject(std::string_view keyName);
 
 	// setter
 	void SetValueAsBool(std::string_view keyName, bool value);
@@ -38,30 +39,38 @@ public:
 	void SetValueAsObject(std::string_view keyName, UserObject* value);
 
 private:
-	std::map<std::string_view, BaseObject*> m_Keys;
+	std::map<std::string, BaseObject*> m_Keys;
 };
 
 template<class UserObject>
-UserObject Blackboard::GetValueAsObject(std::string_view keyName) {
-	auto* object = dynamic_cast<Object<UserObject>*>(m_Keys[keyID]);
+std::optional<UserObject> Blackboard::GetValueAsObject(std::string_view keyName) {
+	if (!m_Keys.count(keyName.data()))
+		return std::optional<UserObject>();
+	auto* object = dynamic_cast<Object<UserObject>*>(m_Keys[keyName]);
 	if(object)
-		return object->data();
-	return nullptr;
+		return std::optional<UserObject>(object->data());
+	return std::optional<UserObject>();
 }
 
 template <class UserObject>
 void Blackboard::SetValueAsObject(std::string_view keyName, UserObject* value) {
-	m_keys[keyName] = value;
+	auto* data = Memory()->alloc<Object<UserObject>>();
+	data->set(value);
+	m_Keys[keyName.data()] = data;
 }
 
 template<class DataType>
 void Blackboard::SetValue(std::string_view keyName, DataType value) {
-	m_Keys[keyName] = Memory()->alloc<DataType>();
+	auto* data = Memory()->alloc<Object<DataType>>();
+	data->set(value);
+	m_Keys[keyName.data()] = data;
 }
 
 template<class DataType>
 DataType Blackboard::GetValue(std::string_view keyName) {
-	auto* object = dynamic_cast<Object<DataType>*>(m_Keys[keyID]);
+	if (!m_Keys.count(keyName.data()))
+		return nullptr;
+	auto* object = dynamic_cast<Object<DataType>*>(m_Keys[keyName]);
 	if (object)
 		return object->data();
 	return nullptr;

@@ -56,7 +56,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)Source;$(ProjectDir)Source\Behaviour;$(ProjectDir)Source\Base Components;$(ProjectDir)Source\Controller;$(ProjectDir)Source\Game Object;$(ProjectDir)Source\Game State Manager;$(ProjectDir)Source\Math;$(ProjectDir)Source\Structures;$(ProjectDir)Source\Systems;$(ProjectDir)Source\Systems\AI;$(ProjectDir)Source\Systems\Collision System;$(ProjectDir)Source\Systems\Core;$(ProjectDir)Source\Systems\Graphics System;$(ProjectDir)Source\Systems\Graphics System\DirectX 11;$(ProjectDir)Source\Systems\Graphics System\OpenGL;$(ProjectDir)Source\Systems\Input;$(ProjectDir)Source\Systems\Memory System;$(ProjectDir)Source\Systems\Navigation;$(ProjectDir)Source\Systems\Scene Management;$(ProjectDir)Source\Systems\Scripting;$(ProjectDir)Source\Systems\Sound System;$(ProjectDir)Source\Systems\Text System;$(ProjectDir)Source\Systems\Time;$(ProjectDir)Source\Systems\Window</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Source;$(ProjectDir)Source\Behaviour;$(ProjectDir)Source\Base Components;$(ProjectDir)Source\Controller;$(ProjectDir)Source\Game Object;$(ProjectDir)Source\Game State Manager;$(ProjectDir)Source\Math;$(ProjectDir)Source\Structures;$(ProjectDir)Source\Systems;$(ProjectDir)Source\Systems\AI;$(ProjectDir)Source\Systems\Collision System;$(ProjectDir)Source\Systems\Core;$(ProjectDir)Source\Systems\Graphics System;$(ProjectDir)Source\Systems\Graphics System\DirectX 11;$(ProjectDir)Source\Systems\Graphics System\OpenGL;$(ProjectDir)Source\Systems\Input;$(ProjectDir)Source\Systems\Memory System;$(ProjectDir)Source\Systems\Navigation;$(ProjectDir)Source\Systems\Scene Management;$(ProjectDir)Source\Systems\Scripting;$(ProjectDir)Source\Systems\Sound System;$(ProjectDir)Source\Systems\Text System;$(ProjectDir)Source\Systems\Time;$(ProjectDir)Source\Systems\Window;$(ProjectDir)Source\Systems\Debug</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -131,10 +131,12 @@
     <ClInclude Include="Source\Systems\AI\Blackboard.h" />
     <ClInclude Include="Source\Systems\AI\BTNode.h" />
     <ClInclude Include="Source\Systems\AI\Task\PrintTask.h" />
+    <ClInclude Include="Source\Systems\AI\Task\Tasks.h" />
     <ClInclude Include="Source\Systems\Collision System\CollisionManager.h" />
     <ClInclude Include="Source\Systems\Collision System\RavelRect.h" />
     <ClInclude Include="Source\Systems\Collision System\SpatialHash.h" />
     <ClInclude Include="Source\Systems\Core\RavelEngine.h" />
+    <ClInclude Include="Source\Systems\Debug\RavelLogger.h" />
     <ClInclude Include="Source\Systems\Factory.h" />
     <ClInclude Include="Source\Systems\Graphics System\DirectX 11\DirectX11.h" />
     <ClInclude Include="Source\Systems\Graphics System\GraphicsAPI.h" />
@@ -179,10 +181,12 @@
     <ClCompile Include="Source\Systems\AI\Blackboard.cpp" />
     <ClCompile Include="Source\Systems\AI\BTNode.cpp" />
     <ClCompile Include="Source\Systems\AI\Task\PrintTask.cpp" />
+    <ClCompile Include="Source\Systems\AI\Task\Tasks.cpp" />
     <ClCompile Include="Source\Systems\Collision System\CollisionManager.cpp" />
     <ClCompile Include="Source\Systems\Collision System\RavelRect.cpp" />
     <ClCompile Include="Source\Systems\Collision System\SpatialHash.cpp" />
     <ClCompile Include="Source\Systems\Core\RavelEngine.cpp" />
+    <ClCompile Include="Source\Systems\Debug\RavelLogger.cpp" />
     <ClCompile Include="Source\Systems\Factory.cpp" />
     <ClCompile Include="Source\Systems\Graphics System\DirectX 11\DirectX11.cpp" />
     <ClCompile Include="Source\Systems\Graphics System\GraphicsManager.cpp" />
