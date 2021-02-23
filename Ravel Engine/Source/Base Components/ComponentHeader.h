@@ -12,3 +12,4 @@
 #include "AudioMixer.h"
 #include "NavMeshBoundVolume.h"
 #include "BehaviourTree.h"
+#include "PlayerController.h"

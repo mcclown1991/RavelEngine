@@ -269,6 +269,9 @@
     <ClInclude Include="Source\Systems\AI\Task\Tasks.h">
       <Filter>Systems\AI\Task</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Controller\PlayerController.h">
+      <Filter>Controller</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Base Components\AudioClip.cpp">
@@ -408,6 +411,12 @@
     </ClCompile>
     <ClCompile Include="Source\Systems\Debug\RavelLogger.cpp">
       <Filter>Systems\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Controller\Controller.cpp">
+      <Filter>Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Controller\PlayerController.cpp">
+      <Filter>Controller</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

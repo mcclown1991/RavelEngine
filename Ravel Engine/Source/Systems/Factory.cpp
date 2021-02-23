@@ -34,6 +34,7 @@ void Factory::Init() {
 	RegisterComponent<NavMeshBoundVolume>("NavMeshBoundVolume");
 	RegisterComponent<LinePrimitive>("LinePrimitive");
 	RegisterComponent<BehaviourTree>("BehaviourTree");
+	RegisterComponent<PlayerController>("PlayerController");
 
 	RegisterBTNode<BTSelector>("Selector");
 	RegisterBTNode<BTSequence>("Sequence");

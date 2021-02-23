@@ -116,6 +116,7 @@
     <ClInclude Include="Source\Behaviour\Behaviour.h" />
     <ClInclude Include="Source\Behaviour\RavelBehaviour.h" />
     <ClInclude Include="Source\Controller\Controller.h" />
+    <ClInclude Include="Source\Controller\PlayerController.h" />
     <ClInclude Include="Source\Game Object\GameObject.h" />
     <ClInclude Include="Source\Game State Manager\GameState.h" />
     <ClInclude Include="Source\Game State Manager\GameStateManager.h" />
@@ -136,7 +137,9 @@
     <ClInclude Include="Source\Systems\Collision System\RavelRect.h" />
     <ClInclude Include="Source\Systems\Collision System\SpatialHash.h" />
     <ClInclude Include="Source\Systems\Core\RavelEngine.h" />
-    <ClInclude Include="Source\Systems\Debug\RavelLogger.h" />
+    <ClInclude Include="Source\Systems\Debug\RavelLogger.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Source\Systems\Factory.h" />
     <ClInclude Include="Source\Systems\Graphics System\DirectX 11\DirectX11.h" />
     <ClInclude Include="Source\Systems\Graphics System\GraphicsAPI.h" />
@@ -170,6 +173,8 @@
     <ClCompile Include="Source\Base Components\Text.cpp" />
     <ClCompile Include="Source\Base Components\Transform.cpp" />
     <ClCompile Include="Source\Behaviour\Behaviour.cpp" />
+    <ClCompile Include="Source\Controller\Controller.cpp" />
+    <ClCompile Include="Source\Controller\PlayerController.cpp" />
     <ClCompile Include="Source\Game Object\GameObject.cpp" />
     <ClCompile Include="Source\Game State Manager\GameStateManager.cpp" />
     <ClCompile Include="Source\Math\Matrix3x3.cpp" />
@@ -186,7 +191,9 @@
     <ClCompile Include="Source\Systems\Collision System\RavelRect.cpp" />
     <ClCompile Include="Source\Systems\Collision System\SpatialHash.cpp" />
     <ClCompile Include="Source\Systems\Core\RavelEngine.cpp" />
-    <ClCompile Include="Source\Systems\Debug\RavelLogger.cpp" />
+    <ClCompile Include="Source\Systems\Debug\RavelLogger.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Source\Systems\Factory.cpp" />
     <ClCompile Include="Source\Systems\Graphics System\DirectX 11\DirectX11.cpp" />
     <ClCompile Include="Source\Systems\Graphics System\GraphicsManager.cpp" />

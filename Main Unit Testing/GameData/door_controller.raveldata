@@ -1,0 +1,7 @@
+{
+	"PlayerController" : 
+	{
+		"IsActive" : true,
+		"Movement Speed" : 2
+	}
+}

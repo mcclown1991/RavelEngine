@@ -18,8 +18,8 @@
 				"metafile" : "door_boxcollider.raveldata"
 			},
 			"2" : {
-				"typename" : "BehaviourTree",
-				"metafile" : "door_behaviortree.BT"
+				"typename" : "PlayerController",
+				"metafile" : "door_controller.raveldata"
 			}
 		}
 	}
