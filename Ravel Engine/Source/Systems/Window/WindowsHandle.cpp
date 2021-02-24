@@ -421,7 +421,7 @@ void WindowsHandle::InitWindowHandle(HINSTANCE hInstance, int nCmdShow)
 		//DirectX9::InitDirect3D(gw.hWnd, gw.Windowed, gw.Width, gw.Height);
 
 	////InitXAudio();
-	InitInput(gw.hWnd);
+	//InitInput(gw.hWnd);
 	//D3D = true;
 }
 
