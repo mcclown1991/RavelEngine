@@ -29,9 +29,16 @@ public:
 		parent = node;
 	}
 
+	virtual void SetResult(bool result) {
+		this->result = result;
+	}
+
 protected:
+	virtual void AssignRunningNode();
+
 	BehaviourTree* parent;
 	std::string nodeName;
+	bool result;
 
 private:
 	BTNode * next;

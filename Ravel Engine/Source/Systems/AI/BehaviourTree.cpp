@@ -215,3 +215,11 @@ void BehaviourTree::InitScriptFunctions() {
 		return 1;
 	});
 }
+
+void BehaviourTree::AssignRunningNode(BTNode* node) {
+	runningNode = node;
+}
+
+BTNode* BehaviourTree::GetRunningNode() const {
+	return runningNode;
+}

@@ -1,4 +1,9 @@
 #include "BTNode.h"
+#include "BehaviourTree.h"
+
+void BTNode::AssignRunningNode() {
+	parent->AssignRunningNode(this);
+}
 
 BTDecorator::BTDecorator() : BTNode() {
 }
@@ -34,6 +39,7 @@ BTSelector::~BTSelector()
 
 bool BTSelector::Execute()
 {
+	AssignRunningNode();
 	for (BTServices* service : services) {
 		service->Execute();
 	}
@@ -58,6 +64,7 @@ BTSequence::~BTSequence()
 
 bool BTSequence::Execute()
 {
+	AssignRunningNode();
 	for (BTServices* service : services) {
 		service->Execute();
 	}

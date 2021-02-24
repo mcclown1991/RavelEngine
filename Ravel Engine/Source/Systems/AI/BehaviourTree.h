@@ -28,6 +28,9 @@ public:
 
 	bool ExecuteTask(std::string_view task);
 
+	void AssignRunningNode(BTNode* node);
+	BTNode* GetRunningNode() const;
+
 	Blackboard* GetBlackboard() const {
 		return blackboard;
 	}
@@ -37,6 +40,7 @@ private:
 	Blackboard* blackboard;
 	Script* definitions;
 	std::vector<BTNode*> nodes;
+	BTNode* runningNode;
 	
 	void LoadFromFile(BTComposite* parent, rapidjson::Value const& json);
 	void InitScriptFunctions();

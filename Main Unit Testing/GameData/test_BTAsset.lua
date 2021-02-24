@@ -23,5 +23,5 @@ function test_BTAsset.PrintTaskB(me, delta)
 end
 
 function test_BTAsset.MoveTo(me, delta)
-	MoveTo(me, "target");
+	MoveTo(me, "target", 2);
 end
