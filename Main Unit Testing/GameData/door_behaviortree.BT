@@ -23,12 +23,7 @@
 		{
 			"key" : "target",
 			"type" : "GameObject",
-			"data" : "target"
-		},
-		{
-			"key" : "speed",
-			"type" : "float",
-			"data" : 2
+			"data" : "door"
 		}
 	]
 }

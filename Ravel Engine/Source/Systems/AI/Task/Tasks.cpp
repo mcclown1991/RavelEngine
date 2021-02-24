@@ -5,9 +5,8 @@
 
 BTMoveToTask::BTMoveToTask() {
 	GetScriptManager()->AddFunction("MoveTo", [](lua_State* L) {
-		size_t id = luaL_checklong(L, -3);
-		std::string targetkey = luaL_checkstring(L, -2);
-		std::string speedkey = luaL_checkstring(L, -1);
+		size_t id = luaL_checklong(L, -2);
+		std::string targetkey = luaL_checkstring(L, -1);
 
 		auto& gameObject = factory()->GetGameObject(id);
 		if (!gameObject)
@@ -18,18 +17,12 @@ BTMoveToTask::BTMoveToTask() {
 		//auto object = bt->GetBlackboard()->GetValueAsObject<size_t>(targetkey);
 		//size_t targetId = object.value();
 		std::string targetId = bt->GetBlackboard()->GetValueAsString(targetkey);
-		float speed = bt->GetBlackboard()->GetValueAsFloat(speedkey);
 		auto& target = factory()->GetGameObject(targetId);
 
 		// Move logic
-		auto* transform = gameObject->transform;
-		auto* targetTransform = target->transform;
-
-		auto direction = targetTransform->position - transform->position;
-		direction.Normalize();
-
-		transform->SetPosition(transform->position + (direction * speed));
-		
+		auto vector = target->transform->position - gameObject->transform->position;
+		auto* controller = gameObject->GetComponent<AIController>();
+		controller->PushMoveRequest(vector.Normalized());
 		return 0;
 	});
 }

@@ -1,7 +1,7 @@
 {
 	"Scene":
 	{
-		"Object" : 2,
+		"Object" : 3,
 		"0" : "gameobject.raveldata",
 		"1" : "door.raveldata",
 		"2" : "target.raveldata"

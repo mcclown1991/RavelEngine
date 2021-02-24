@@ -115,6 +115,7 @@
     <ClInclude Include="Source\Base Components\Transform.h" />
     <ClInclude Include="Source\Behaviour\Behaviour.h" />
     <ClInclude Include="Source\Behaviour\RavelBehaviour.h" />
+    <ClInclude Include="Source\Controller\AIController.h" />
     <ClInclude Include="Source\Controller\Controller.h" />
     <ClInclude Include="Source\Controller\PlayerController.h" />
     <ClInclude Include="Source\Game Object\GameObject.h" />
@@ -173,6 +174,7 @@
     <ClCompile Include="Source\Base Components\Text.cpp" />
     <ClCompile Include="Source\Base Components\Transform.cpp" />
     <ClCompile Include="Source\Behaviour\Behaviour.cpp" />
+    <ClCompile Include="Source\Controller\AIController.cpp" />
     <ClCompile Include="Source\Controller\Controller.cpp" />
     <ClCompile Include="Source\Controller\PlayerController.cpp" />
     <ClCompile Include="Source\Game Object\GameObject.cpp" />

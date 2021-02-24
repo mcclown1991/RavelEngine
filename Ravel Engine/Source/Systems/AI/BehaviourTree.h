@@ -3,6 +3,7 @@
 #include "Blackboard.h"
 #include "Behaviour/RavelBehaviour.h"
 #include "RavelEngine.h"
+#include "AIController.h"
 
 class Script;
 

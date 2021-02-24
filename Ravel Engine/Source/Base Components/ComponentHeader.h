@@ -13,3 +13,4 @@
 #include "NavMeshBoundVolume.h"
 #include "BehaviourTree.h"
 #include "PlayerController.h"
+#include "AIController.h"

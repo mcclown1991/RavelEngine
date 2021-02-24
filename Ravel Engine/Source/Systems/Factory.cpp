@@ -35,6 +35,7 @@ void Factory::Init() {
 	RegisterComponent<LinePrimitive>("LinePrimitive");
 	RegisterComponent<BehaviourTree>("BehaviourTree");
 	RegisterComponent<PlayerController>("PlayerController");
+	RegisterComponent<AIController>("AIController");
 
 	RegisterBTNode<BTSelector>("Selector");
 	RegisterBTNode<BTSequence>("Sequence");
@@ -66,6 +67,7 @@ size_t Factory::LoadFromFile(std::string const&  file)
 		pos.y = gameobject["Transform"]["Y"].GetFloat();
 
 		m_Obj->transform->position = pos;
+		m_Obj->transform->gameObject = m_Obj.get();
 
 		// components
 		rapidjson::SizeType size = gameobject["Components"].MemberCount();
@@ -86,7 +88,6 @@ size_t Factory::LoadFromFile(std::string const&  file)
 
 Factory::pGameObject& Factory::CreateGameObject(std::string& name)
 {
-	
 	pGameObject obj = std::make_unique<GameObject>();
 	if (_refcount.count(name) == 1) {
 		//name is a repeat

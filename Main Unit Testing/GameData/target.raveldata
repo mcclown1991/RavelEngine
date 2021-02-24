@@ -16,6 +16,14 @@
 			"1" : {
 				"typename" : "BoxCollider",
 				"metafile" : "door_boxcollider.raveldata"
+			},
+			"2" : {
+				"typename" : "BehaviourTree",
+				"metafile" : "door_behaviortree.BT"
+			},
+			"3" : {
+				"typename" : "AIController",
+				"metafile" : "door_aicontroller.raveldata"
 			}
 		}
 	}

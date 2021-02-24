@@ -4,6 +4,7 @@
 #include "Factory.h"
 #include "Script.h"
 
+
 using namespace std::string_view_literals;
 
 BehaviourTree::BehaviourTree() {
@@ -95,6 +96,11 @@ void BehaviourTree::LoadFromFile(std::string const& file) {
 			}
 		}
 	}
+
+	// check if AIController exist
+	auto* controller = gameObject->GetComponent<AIController>();
+	if (controller)
+		controller->AttachBehaviourTree(this);
 }
 
 void BehaviourTree::LoadFromFile(BTComposite* parent, rapidjson::Value const& json) {
