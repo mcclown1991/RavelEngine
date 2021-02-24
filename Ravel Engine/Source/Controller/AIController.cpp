@@ -11,7 +11,7 @@ AIController::~AIController() {
 }
 
 void AIController::OnDestory() {
-
+	this->~AIController();
 }
 
 void AIController::Start() {

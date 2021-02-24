@@ -11,7 +11,7 @@ PlayerController::~PlayerController() {
 }
 
 void PlayerController::OnDestory() {
-
+	this->~PlayerController();
 }
 
 void PlayerController::Start() {
