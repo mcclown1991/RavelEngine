@@ -71,6 +71,10 @@ static std::vector<WORD> traps;
 
 #define RK_LCTRL		0xA2
 
+constexpr auto RK_MOUSE_LEFT = WM_LBUTTONDOWN;
+constexpr auto RK_MOUSE_RIGHT = WM_RBUTTONDOWN;
+constexpr auto RK_MOUSE_MIDDLE = WM_MBUTTONDOWN;
+
 
 void		InitInput(HWND hWnd);
 void		SetMessage(const MSG&);

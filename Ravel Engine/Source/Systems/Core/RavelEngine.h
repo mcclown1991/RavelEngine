@@ -24,6 +24,7 @@
 #include "OpenGL.h"
 #include "RavelTime.h"
 
+using namespace std::string_view_literals;
 
 class RavelEngine{
 public:
@@ -84,7 +85,7 @@ private:
 
 	Matrix4x4 ref;
 
-	static constexpr std::string_view GAMEDATA_PATH = "GameData\\";
+	static constexpr std::string_view GAMEDATA_PATH = "GameData\\"sv;
 };
 
 #endif

@@ -1,0 +1,25 @@
+{
+	"InputManager" : 
+	{
+		"Horizontal" : 
+		{
+			"description" : "",
+			"negative" : "left",
+			"positive" : "right",
+			"alternate negative" : "a",
+			"alternate positive" : "d",
+			"invert" : false,
+			"type" : "KEY_OR_MOUSE"
+		},
+		"Vertical" : 
+		{
+			"description" : "",
+			"negative" : "down",
+			"positive" : "up",
+			"alternate negative" : "s",
+			"alternate positive" : "w",
+			"invert" : false,
+			"type" : "KEY_OR_MOUSE"
+		}	
+	}
+}

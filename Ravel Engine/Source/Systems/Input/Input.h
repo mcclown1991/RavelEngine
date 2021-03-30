@@ -4,6 +4,26 @@
 
 #include "RawInput.h"
 
+
+class InputBinding {
+	// attributes
+public:
+	enum class Type : byte {
+		KEY_OR_MOUSE_BUTTON = 1 << 1,
+		MOUSE_MOVEMENT,
+		JOYSTICK_AXIS
+	};
+	
+	std::string name;
+	std::string description;
+	WORD negative;
+	WORD positive;
+	WORD alt_negative;
+	WORD alt_positive;
+	bool invert;
+	Type type;
+};
+
 class Input {
 public:
 	Input();
@@ -16,7 +36,9 @@ public:
 
 private:
 	static XBOXController* controller;
-	static std::map<std::string, std::pair<WORD, WORD>> keyboard;
+	static std::map<std::string, InputBinding*> keyboard;
+
+	std::map<std::string, WORD> stringToKeyDefines;
 };
 
 Input* GetInput();
