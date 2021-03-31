@@ -16,6 +16,14 @@ void PlayerController::OnDestory() {
 
 void PlayerController::Start() {
 	Controller::Start();
+
+	GetInput()->BindAxis("MoveForward", [this](float scale) {
+		pawn->SetPosition(pawn->position + pawn->up * scale * movement_speed);
+	});
+
+	GetInput()->BindAxis("MoveVertical", [this](float scale) {
+		pawn->SetPosition(pawn->position + pawn->right * scale * movement_speed);
+	});
 }
 
 void PlayerController::LoadFromFile(std::string const& file) {
@@ -39,8 +47,9 @@ void PlayerController::LoadFromFile(std::string const& file) {
 
 void PlayerController::Update() {
 	// trap keys
-	float delta = Input::GetAxis("Horizontal") * movement_speed;
+	/*float delta = Input::GetAxis("Horizontal") * movement_speed;
 	pawn->SetPosition(pawn->position + pawn->right * delta);
 	delta = Input::GetAxis("Vertical") * movement_speed;
-	pawn->SetPosition(pawn->position + pawn->up * delta);
+	pawn->SetPosition(pawn->position + pawn->up * delta);*/
+	
 }

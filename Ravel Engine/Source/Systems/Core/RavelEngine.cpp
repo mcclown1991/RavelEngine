@@ -193,6 +193,7 @@ bool RavelEngine::Update() {
 			GetCollision()->Update();
 			GetTime()->deltaTime = 0.01666f;
 			SceneManagement()->Update();
+			GetInput()->Update();
 		}
 		StopKeyTrap();
 	}

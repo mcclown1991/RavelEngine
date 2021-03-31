@@ -1,28 +1,9 @@
 #pragma once
 
 #include <map>
+#include <vector>
 
 #include "RawInput.h"
-
-
-class InputBinding {
-	// attributes
-public:
-	enum class Type : byte {
-		KEY_OR_MOUSE_BUTTON = 1 << 1,
-		MOUSE_MOVEMENT,
-		JOYSTICK_AXIS
-	};
-	
-	std::string name;
-	std::string description;
-	WORD negative;
-	WORD positive;
-	WORD alt_negative;
-	WORD alt_positive;
-	bool invert;
-	Type type;
-};
 
 class Input {
 public:
@@ -30,13 +11,18 @@ public:
 	~Input();
 
 	void InitializeInput(HWND hWnd);
-	static float GetAxis(std::string_view axisName);
-	static float GetRawAxis(std::string_view axisName);
-	static bool GetButton(std::string_view buttonName);
+	void Update();
+
+	void BindAxis(std::string_view axis, std::function<void(float)> const& function);
+	void BlindAction(std::string_view action, std::function<void()> const& function);
 
 private:
 	static XBOXController* controller;
-	static std::map<std::string, InputBinding*> keyboard;
+
+	std::map<std::string, std::vector<std::pair<Keystroke, float>>> axisMapping;
+	std::map<std::string, std::vector<std::pair<Keystroke, std::bitset<4>>>> actionMapping;
+
+	std::vector<std::pair<std::string, std::function<void(float)>>> axisFunction;
 
 	std::map<std::string, WORD> stringToKeyDefines;
 };

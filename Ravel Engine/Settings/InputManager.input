@@ -1,25 +1,44 @@
 {
-	"InputManager" : 
-	{
-		"Horizontal" : 
-		{
-			"description" : "",
-			"negative" : "left",
-			"positive" : "right",
-			"alternate negative" : "a",
-			"alternate positive" : "d",
-			"invert" : false,
-			"type" : "KEY_OR_MOUSE"
+	"Axis" : {
+		"MoveForward" : {
+			"binding" : [
+				{
+					"key" : "up",
+					"scale" : 1
+				},
+				{
+					"key" : "w",
+					"scale" : 1
+				},
+				{
+					"key" : "down",
+					"scale" : -1
+				},
+				{
+					"key" : "s",
+					"scale" : -1
+				}
+			]
 		},
-		"Vertical" : 
-		{
-			"description" : "",
-			"negative" : "down",
-			"positive" : "up",
-			"alternate negative" : "s",
-			"alternate positive" : "w",
-			"invert" : false,
-			"type" : "KEY_OR_MOUSE"
-		}	
+		"MoveVertical" : {
+			"binding" : [
+				{
+					"key" : "right",
+					"scale" : 1
+				},
+				{
+					"key" : "d",
+					"scale" : 1
+				},
+				{
+					"key" : "left",
+					"scale" : -1
+				},
+				{
+					"key" : "a",
+					"scale" : -1
+				}
+			]
+		}
 	}
 }

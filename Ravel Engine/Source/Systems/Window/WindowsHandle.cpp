@@ -253,7 +253,7 @@ bool WindowsHandle::InitConfigure(HINSTANCE hInstance)
 			user.fullscreen_ = false;
 			std::cout << "Fullscreen = False" << std::endl;
 		}
-		temp.empty();
+		temp.clear();
 		gw.Windowed = !user.fullscreen_;
 		std::getline(myReadFile, temp);
 		{
@@ -280,7 +280,7 @@ bool WindowsHandle::InitConfigure(HINSTANCE hInstance)
 			std::cout << "Renderer = OpenGL" << std::endl;
 		}
 
-		temp.empty();
+		temp.clear();
 
 		std::getline(myReadFile, temp);
 		{

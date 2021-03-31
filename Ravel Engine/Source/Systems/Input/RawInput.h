@@ -75,6 +75,10 @@ constexpr auto RK_MOUSE_LEFT = WM_LBUTTONDOWN;
 constexpr auto RK_MOUSE_RIGHT = WM_RBUTTONDOWN;
 constexpr auto RK_MOUSE_MIDDLE = WM_MBUTTONDOWN;
 
+typedef WORD Keystroke;
+
+constexpr Keystroke UP = RK_UP;
+
 
 void		InitInput(HWND hWnd);
 void		SetMessage(const MSG&);

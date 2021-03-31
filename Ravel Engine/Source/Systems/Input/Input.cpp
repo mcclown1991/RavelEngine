@@ -2,11 +2,11 @@
 #include "MemoryManager.h"
 
 #include <string>
+#include <algorithm>
 
 using namespace std::string_literals;
 
 XBOXController* Input::controller = nullptr;
-std::map<std::string, InputBinding*> Input::keyboard = std::map<std::string, InputBinding*>();
 
 Input* GetInput() {
 	static Input s;
@@ -18,22 +18,22 @@ Input::Input() {
 
 Input::~Input() {
 	controller->~XBOXController();
-	for(auto const& elem : keyboard) {
-		elem.second->~InputBinding();
-		Memory()->dealloc(elem.second);
-	}
 }
 
 void Input::InitializeInput(HWND hWnd) {
 	InitInput(hWnd);
-	stringToKeyDefines.emplace("left"s, RK_LEFT);
-	stringToKeyDefines.emplace("right"s, RK_RIGHT);
-	stringToKeyDefines.emplace("up"s, RK_UP);
-	stringToKeyDefines.emplace("down"s, RK_DOWN);
-	stringToKeyDefines.emplace("w"s, RK_W);
-	stringToKeyDefines.emplace("a"s, RK_A);
-	stringToKeyDefines.emplace("s"s, RK_S);
-	stringToKeyDefines.emplace("d"s, RK_D);
+
+	stringToKeyDefines = {
+		{"left"s, RK_LEFT},
+		{"right"s, RK_RIGHT},
+		{"up"s, RK_UP},
+		{"down"s, RK_DOWN},
+		{"w"s, RK_W},
+		{"a"s, RK_A},
+		{"s"s, RK_S},
+		{"d"s, RK_D}
+	};
+	
 	controller = Memory()->alloc<XBOXController>();
 
 	std::ifstream json;
@@ -43,53 +43,40 @@ void Input::InitializeInput(HWND hWnd) {
 	doc.ParseStream(isw);
 
 	if (doc.IsObject()) {
-		rapidjson::Value& input = doc["InputManager"];
-		for(rapidjson::Value::ConstMemberIterator it = input.MemberBegin(); it != input.MemberEnd(); ++it) {
-			auto* inputBind = Memory()->alloc<InputBinding>();
-			inputBind->description = it->value["description"].GetString();
-			auto strContainer = it->value["negative"].GetString();
-			auto keyBind = stringToKeyDefines.at(strContainer);
-			inputBind->negative = keyBind;
-			strContainer = it->value["positive"].GetString();
-			keyBind = stringToKeyDefines.at(strContainer);
-			inputBind->positive = keyBind;
-			strContainer = it->value["alternate positive"].GetString();
-			keyBind = stringToKeyDefines.at(strContainer);
-			inputBind->alt_positive = keyBind;
-			strContainer = it->value["alternate negative"].GetString();
-			keyBind = stringToKeyDefines.at(strContainer);
-			inputBind->alt_negative = keyBind;
-			inputBind->invert = it->value["invert"].GetBool();
-			//type need conversion
-			keyboard.emplace(std::pair(it->name.GetString(), inputBind));
+		rapidjson::Value& axis = doc["Axis"];
+		for (rapidjson::Value::ConstMemberIterator it = axis.MemberBegin(); it != axis.MemberEnd(); ++it) {
+			auto const& name = it->name.GetString();
+			auto& binding = it->value["binding"];
+			for (rapidjson::Value::ConstValueIterator itr = binding.Begin(); itr != binding.End(); ++itr) {
+				auto const& key = itr->GetObjectW();
+				auto const& keystroke = stringToKeyDefines.at(key["key"].GetString());
+				axisMapping[name].push_back(std::pair(keystroke, key["scale"].GetFloat()));
+			}
 		}
 	}
 
 	json.close();
 }
 
-float Input::GetAxis(std::string_view axisName) {
-	float result = 0;
-	if (controller->IsConnected()) {
-
-	}
-	else {
-		if (keyboard.count(axisName.data())) {
-			auto& inputBind = keyboard[axisName.data()];
-			auto const leftValue = OnKeyHold(inputBind->negative);
-			auto const rightValue = OnKeyHold(inputBind->positive);
-			if (leftValue) result += -1;
-			if (rightValue) result += 1;
-
+void Input::Update() {
+	for(auto const& [axis, function] : axisFunction) {
+		if (!axisMapping.count(axis))
+			continue;
+		auto const& axisInfo = axisMapping.at(axis);
+		float total_scale = 0;
+		for(auto const& [keystroke, scale] : axisInfo) {
+			if(OnKeyHold(keystroke)) {
+				function(scale);
+				total_scale += scale;
+			}
 		}
 	}
-	return result;
 }
 
-float Input::GetRawAxis(std::string_view axisName) {
-	return 0;
+void Input::BindAxis(std::string_view axis, std::function<void(float)> const& function) {
+	axisFunction.emplace_back(std::pair(axis.data(), function));
 }
 
-bool Input::GetButton(std::string_view buttonName) {
-	return false;
+void Input::BlindAction(std::string_view action, std::function<void()> const& function) {
+	
 }
