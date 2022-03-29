@@ -54,11 +54,11 @@ public:
 	std::string Tag;
 
 private:
-	struct COMPARATOR {
+	/*struct COMPARATOR {
 		bool operator()(Component const& l, Component const& r) {
 			return l.CompID < r.CompID;
 		}
-	};
+	};*/
 
 	std::multimap<std::string, RavelBehaviour* > m_Component_List;
 

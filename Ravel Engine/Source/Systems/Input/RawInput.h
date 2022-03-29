@@ -7,6 +7,7 @@
 #include <xinput.h>
 #include <bitset>
 #include <vector>
+#include <map>
 #include "RavelMath.h"
 #include "RavelEngine.h"
 
@@ -69,7 +70,11 @@ static std::vector<WORD> traps;
 #define RK_Y			0x59
 #define RK_Z			0x5A
 
+#define RK_LSHIFT		0xA0
+#define RK_RSHIFT		0xA1
 #define RK_LCTRL		0xA2
+#define RK_RCTRL		0xA3
+
 
 constexpr auto RK_MOUSE_LEFT = WM_LBUTTONDOWN;
 constexpr auto RK_MOUSE_RIGHT = WM_RBUTTONDOWN;
@@ -78,6 +83,12 @@ constexpr auto RK_MOUSE_MIDDLE = WM_MBUTTONDOWN;
 typedef WORD Keystroke;
 
 constexpr Keystroke UP = RK_UP;
+
+// XBOX controller defines
+constexpr Keystroke RC_L_STICK_X = 0x01;
+constexpr Keystroke RC_L_STICK_Y = 0x02;
+constexpr Keystroke RC_R_STICK_X = 0x03;
+constexpr Keystroke RC_R_STICK_Y = 0x04;
 
 
 void		InitInput(HWND hWnd);
@@ -159,7 +170,10 @@ public:
 	//=========================================================================
 	/** Set up XBOX360 controller
 	*/
-	XBOXController() : deadzoneX(0.3f), deadzoneY(0.3f) {};
+	XBOXController() : deadzoneX(0.3f), deadzoneY(0.3f) {
+		keys[RC_L_STICK_X] = &leftStickX;
+		keys[RC_L_STICK_Y] = &leftStickY;
+	};
 	XBOXController(int playerNumber);
 	~XBOXController() {}
 
@@ -193,10 +207,17 @@ public:
 	const Vector2 LeftStickVector();
 	const Vector2 RightStickVector();
 
-	float leftStickX;
-	float leftStickY;
-	float rightStickX;
-	float rightStickY;
-	float leftTrigger;
-	float rightTrigger;
+	const float LeftStickXAxis() const;
+	const float LeftStickYAxis() const;
+
+	const float GetAxis(Keystroke axis) const;
+
+	float leftStickX = 0.f;
+	float leftStickY = 0.f;
+	float rightStickX = 0.f;
+	float rightStickY = 0.f;
+	float leftTrigger = 0.f;
+	float rightTrigger = 0.f;
+
+	std::map<Keystroke, float*> keys;
 };

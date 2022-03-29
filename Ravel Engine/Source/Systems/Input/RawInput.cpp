@@ -326,3 +326,18 @@ const Vector2 XBOXController::RightStickVector()
 
 	return r;
 }
+
+const float XBOXController::LeftStickXAxis() const {
+	return leftStickX;
+}
+
+const float XBOXController::LeftStickYAxis() const {
+	return leftStickY;
+}
+
+const float XBOXController::GetAxis(Keystroke axis) const {
+	if(keys.count(axis)) {
+		return *keys.at(axis);
+	}
+	return 0.f;
+}

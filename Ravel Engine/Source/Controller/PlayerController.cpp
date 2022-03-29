@@ -11,17 +11,20 @@ PlayerController::~PlayerController() {
 }
 
 void PlayerController::OnDestory() {
+	GetInput()->UnbindAxis("MoveForward", GetInstanceID());
+	GetInput()->UnbindAxis("MoveVertical", GetInstanceID());
+	
 	this->~PlayerController();
 }
 
 void PlayerController::Start() {
 	Controller::Start();
 
-	GetInput()->BindAxis("MoveForward", [this](float scale) {
+	GetInput()->BindAxis("MoveForward", GetInstanceID(), [this](float scale) {
 		pawn->SetPosition(pawn->position + pawn->up * scale * movement_speed);
 	});
 
-	GetInput()->BindAxis("MoveVertical", [this](float scale) {
+	GetInput()->BindAxis("MoveVertical", GetInstanceID(), [this](float scale) {
 		pawn->SetPosition(pawn->position + pawn->right * scale * movement_speed);
 	});
 }
