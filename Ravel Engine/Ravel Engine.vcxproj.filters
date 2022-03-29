@@ -275,6 +275,9 @@
     <ClInclude Include="Source\Controller\AIController.h">
       <Filter>Controller</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\Input\RawInput.h">
+      <Filter>Systems\Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Base Components\AudioClip.cpp">
@@ -423,6 +426,9 @@
     </ClCompile>
     <ClCompile Include="Source\Controller\AIController.cpp">
       <Filter>Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\Input\RawInput.cpp">
+      <Filter>Systems\Input</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

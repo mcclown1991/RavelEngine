@@ -108,6 +108,7 @@ void RavelEngine::SystemInit(HINSTANCE hInstance, int nCmdShow) {
 	SceneManagement()->Init();
 
 	AudioManagement()->Init();
+	GetInput()->InitializeInput(GetWindowHandle());
 
 #ifdef _DEBUG
 	std::cout << "Done!" << std::endl;
@@ -192,6 +193,7 @@ bool RavelEngine::Update() {
 			GetCollision()->Update();
 			GetTime()->deltaTime = 0.01666f;
 			SceneManagement()->Update();
+			GetInput()->Update();
 		}
 		StopKeyTrap();
 	}

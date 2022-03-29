@@ -11,11 +11,22 @@ PlayerController::~PlayerController() {
 }
 
 void PlayerController::OnDestory() {
+	GetInput()->UnbindAxis("MoveForward", GetInstanceID());
+	GetInput()->UnbindAxis("MoveVertical", GetInstanceID());
+	
 	this->~PlayerController();
 }
 
 void PlayerController::Start() {
 	Controller::Start();
+
+	GetInput()->BindAxis("MoveForward", GetInstanceID(), [this](float scale) {
+		pawn->SetPosition(pawn->position + pawn->up * scale * movement_speed);
+	});
+
+	GetInput()->BindAxis("MoveVertical", GetInstanceID(), [this](float scale) {
+		pawn->SetPosition(pawn->position + pawn->right * scale * movement_speed);
+	});
 }
 
 void PlayerController::LoadFromFile(std::string const& file) {
@@ -39,16 +50,9 @@ void PlayerController::LoadFromFile(std::string const& file) {
 
 void PlayerController::Update() {
 	// trap keys
-	if (OnKeyHold(VK_LEFT)) {
-		pawn->SetPosition(pawn->position + pawn->right * -movement_speed);
-	}
-	if (OnKeyHold(VK_RIGHT)) {
-		pawn->SetPosition(pawn->position + pawn->right * movement_speed);
-	}
-	if (OnKeyHold(VK_UP)) {
-		pawn->SetPosition(pawn->position + pawn->up * movement_speed);
-	}
-	if (OnKeyHold(VK_DOWN)) {
-		pawn->SetPosition(pawn->position + pawn->up * -movement_speed);
-	}
+	/*float delta = Input::GetAxis("Horizontal") * movement_speed;
+	pawn->SetPosition(pawn->position + pawn->right * delta);
+	delta = Input::GetAxis("Vertical") * movement_speed;
+	pawn->SetPosition(pawn->position + pawn->up * delta);*/
+	
 }

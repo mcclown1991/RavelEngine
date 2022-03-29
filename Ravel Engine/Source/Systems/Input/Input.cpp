@@ -1,323 +1,163 @@
 #include "Input.h"
-#include <iostream>
+#include "MemoryManager.h"
+
+#include <string>
 #include <algorithm>
 
-void InitInput(HWND hWnd)
-{
-	for (int i = 0; i < 256; i++) {
-		msg[i] = 0x00;
-	}
-	hwnd = hWnd;
+using namespace std::string_literals;
+
+XBOXController* Input::controller = nullptr;
+
+Input* GetInput() {
+	static Input s;
+	return(&s);
 }
 
-void SetMessage(const MSG& ms)
-{
-	BOOL er = GetKeyboardState(msg);
-	_ms = ms;
-	DWORD error = GetLastError();
-	if (!er)
-	{
-		std::cout << error << std::endl;
-	}
+Input::Input() {
 }
 
-void StartKeyTrap() {
-	traps.clear();
-	//traps[0] = 0x00;
+Input::~Input() {
+	controller->~XBOXController();
 }
 
-void StopKeyTrap() {
-	for (WORD i : traps) {
-		msg[i] = 0x00;
-	}
-	SetKeyboardState(msg);
-}
+void Input::InitializeInput(HWND hWnd) {
+	InitInput(hWnd);
 
-/** Takes in the key desired to check if it is being pressed
-*
-* @param data	WM code for the key
-*/
-bool OnKeyPress(WORD data)
-{
-	//& with bit 30
-	if ((msg[data] & 0x80))
-	{
-		/*msg[data] = 0x00;
-		SetKeyboardState(msg);*/
-		traps.push_back(data);
-		return true;
-	}
+	stringToKeyDefines = {
+		{"left"s, RK_LEFT},
+		{"right"s, RK_RIGHT},
+		{"up"s, RK_UP},
+		{"down"s, RK_DOWN},
 
-	return false;
-}
+		{"a"s, RK_A},
+		{"b"s, RK_B},
+		{"c"s, RK_C},
+		{"d"s, RK_D},
+		{"e"s, RK_E},
+		{"f"s, RK_F},
+		{"g"s, RK_G},
+		{"h"s, RK_H},
+		{"i"s, RK_I},
+		{"j"s, RK_J},
+		{"k"s, RK_K},
+		{"l"s, RK_L},
+		{"m"s, RK_M},
+		{"n"s, RK_N},
+		{"o"s, RK_O},
+		{"p"s, RK_P},
+		{"q"s, RK_Q},
+		{"r"s, RK_R},
+		{"s"s, RK_S},
+		{"t"s, RK_T},
+		{"u"s, RK_U},
+		{"v"s, RK_V},
+		{"w"s, RK_W},
+		{"x"s, RK_X},
+		{"y"s, RK_Y},
+		{"z"s, RK_Z},
 
-/** Takes in the key desired to check if it is being released
-*
-* @param data	WM code for the key
-*/
-bool OnKeyRelease(WORD data)
-{
-	if (~(msg[data] & 0x80))
-	{
-		return true;
-	}
-	return false;
-}
+		{"escape"s, RK_ESC},
+		{"space"s, RK_SPACE},
+		{"page up"s, RK_PAGEUP},
+		{"page down"s, RK_PAGEDOWN},
+		{"end"s, RK_END},
+		{"home"s, RK_HOME},
+		{"return"s, RK_RETURN},
 
-/** Takes in the key desired to check if it is being pressed
-*
-* @param data	WM code for the key
-*/
-bool OnKeyHold(WORD data)
-{
-	if (msg[data] & 0x80)
-	{
-		return true;
-	}
+		{"left shift"s, RK_RETURN},
+		{"right shift"s, RK_RETURN},
+		{"left control"s, RK_RETURN},
+		{"right control"s, RK_RETURN},
 
-	return false;
-}
+		{"Gamepad Left Thumbstick Y-Axis", RC_L_STICK_Y},
+		{"Gamepad Left Thumbstick X-Axis", RC_L_STICK_X}
+	};
 
-/** Takes in two ints to store mouse X and Y locations
-*
-* @param mX X location
-* @param mY Y location
-*/
-bool GetMousePos(int& mX, int& mY)
-{
-	UNREFERENCED_PARAMETER(mX);
-	UNREFERENCED_PARAMETER(mY);
-	/*if (msg.message == WM_MOUSEMOVE)
-	{
-	mX = GET_X_LPARAM(msg.lParam);
-	mY = GET_Y_LPARAM(msg.lParam);
-	return true;
-	}*/
-	return false;
-}
+	controller = Memory()->alloc<XBOXController>();
 
-bool GetMouseButtonDown(int button)
-{
-	switch (button) {
-	case 0:
-		return _ms.message == WM_LBUTTONDOWN ? true : false;
-	case 1:
-		return WM_RBUTTONDOWN ? true : false;
-	case 2:
-		return WM_MBUTTONDOWN ? true : false;
-	}
-	return false;
-}
+	std::ifstream json;
+	json.open("InputManager.input");
+	rapidjson::IStreamWrapper isw(json);
+	rapidjson::Document doc;
+	doc.ParseStream(isw);
 
-/** Checks if left mouse button is pressed
-*/
-bool OnLClick()
-{
-	if (_ms.message == WM_LBUTTONDOWN)
-	{
-		return true;
-	}
-	return false;
-}
-
-/** Checks if right mouse button is pressed
-*/
-bool OnRClick()
-{
-	if (_ms.message == WM_RBUTTONDOWN)
-	{
-		return true;
-	}
-	return false;
-}
-
-/** Checks if mouse wheel is moved
-*/
-bool OnWheelMove()
-{
-	/*if (msg.message == WM_MOUSEWHEEL)
-	{
-	return true;
-	}*/
-	return false;
-}
-
-void GetMousePos(float& x, float& y) {
-	POINT p;
-	GetCursorPos(&p);
-	if (ScreenToClient(hwnd, &p)) {
-		Vector2 position(static_cast<float>(p.x), static_cast<float>(p.y));
-		position = RavelEngine::GetRavelEngine()->ScenceTransform() * position;
-		x = position.x;
-		y = -position.y;
-		//std::cout << "X: " << x << "  Y: " << y << std::endl;
-	}
-}
-
-XBOXController::XBOXController(int playerNumber) : deadzoneX(0.3f), deadzoneY(0.3f)
-{
-	// Set the Controller Number
-	_controllerNum = playerNumber - 1;
-}
-
-XINPUT_STATE XBOXController::GetState()
-{
-	// Zeroise the state
-	ZeroMemory(&_controllerState, sizeof(XINPUT_STATE));
-
-	// Get the state
-	XInputGetState(_controllerNum, &_controllerState);
-
-	return _controllerState;
-}
-
-bool XBOXController::IsConnected()
-{
-	// Zeroise the state
-	ZeroMemory(&_controllerState, sizeof(XINPUT_STATE));
-
-	// Get the state
-	DWORD Result = XInputGetState(_controllerNum, &_controllerState);
-
-	if (Result == ERROR_SUCCESS)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
-
-void XBOXController::Vibrate(int leftVal, int rightVal)
-{
-	// Create a Vibraton State
-	XINPUT_VIBRATION Vibration;
-
-	// Zeroise the Vibration
-	ZeroMemory(&Vibration, sizeof(XINPUT_VIBRATION));
-
-	// Set the Vibration Values
-	Vibration.wLeftMotorSpeed = (WORD)leftVal;
-	Vibration.wRightMotorSpeed = (WORD)rightVal;
-
-	// Vibrate the controller
-	XInputSetState(_controllerNum, &Vibration);
-}
-
-bool XBOXController::Refesh()
-{
-	if (_controllerNum != -1)
-	{
-		ZeroMemory(&_controllerState, sizeof(XINPUT_STATE));
-		if (XInputGetState(_controllerNum, &_controllerState) != ERROR_SUCCESS)
-		{
-			_controllerNum = -1;
-			return false;
+	if (doc.IsObject()) {
+		rapidjson::Value& axis = doc["Axis"];
+		for (rapidjson::Value::ConstMemberIterator it = axis.MemberBegin(); it != axis.MemberEnd(); ++it) {
+			auto const& name = it->name.GetString();
+			auto& binding = it->value["binding"];
+			for (rapidjson::Value::ConstValueIterator itr = binding.Begin(); itr != binding.End(); ++itr) {
+				auto const& key = itr->GetObjectW();
+						
+				if (stringToKeyDefines.count(key["key"].GetString())) {
+					auto const& keystroke = stringToKeyDefines.at(key["key"].GetString());
+					axisMapping[name].push_back(std::pair(keystroke, key["scale"].GetFloat()));
+				}
+			}
 		}
-
-#if (_MSC_VER == 1800)	//For VS2013 only
-		float normLX = fmaxf(-1, (float)_controllerState.Gamepad.sThumbLX / 32767);
-		float normLY = fmaxf(-1, (float)_controllerState.Gamepad.sThumbLY / 32767);
-
-		leftStickX = (abs(normLX) < deadzoneX ? 0 : (abs(normLX) - deadzoneX) * (normLX / abs(normLX)));
-		leftStickY = (abs(normLY) < deadzoneY ? 0 : (abs(normLY) - deadzoneY) * (normLY / abs(normLY)));
-
-		if (deadzoneX > 0) leftStickX *= 1 / (1 - deadzoneX);
-		if (deadzoneY > 0) leftStickY *= 1 / (1 - deadzoneY);
-
-		float normRX = fmaxf(-1, (float)_controllerState.Gamepad.sThumbRX / 32767);
-		float normRY = fmaxf(-1, (float)_controllerState.Gamepad.sThumbRY / 32767);
-
-		rightStickX = (abs(normRX) < deadzoneX ? 0 : (abs(normRX) - deadzoneX) * (normRX / abs(normRX)));
-		rightStickY = (abs(normRY) < deadzoneY ? 0 : (abs(normRY) - deadzoneY) * (normRY / abs(normRY)));
-
-		if (deadzoneX > 0) rightStickX *= 1 / (1 - deadzoneX);
-		if (deadzoneY > 0) rightStickY *= 1 / (1 - deadzoneY);
-
-		leftTrigger = (float)_controllerState.Gamepad.bLeftTrigger / 255;
-		rightTrigger = (float)_controllerState.Gamepad.bRightTrigger / 255;
-
-#else	//Any older VS versions
-		float normLX = std::max(-1.f, (float)_controllerState.Gamepad.sThumbLX / 32767);
-		float normLY = std::max(-1.f, (float)_controllerState.Gamepad.sThumbLY / 32767);
-
-		leftStickX = (abs(normLX) < deadzoneX ? 0 : (abs(normLX) - deadzoneX) * (normLX / abs(normLX)));
-		leftStickY = (abs(normLY) < deadzoneY ? 0 : (abs(normLY) - deadzoneY) * (normLY / abs(normLY)));
-
-		if (deadzoneX > 0) leftStickX *= 1 / (1 - deadzoneX);
-		if (deadzoneY > 0) leftStickY *= 1 / (1 - deadzoneY);
-
-		float normRY = std::max(-1.f, (float)_controllerState.Gamepad.sThumbRY / 32767);
-		float normRX = std::max(-1.f, (float)_controllerState.Gamepad.sThumbRX / 32767);
-								  
-		rightStickX = (abs(normRX) < deadzoneX ? 0 : (abs(normRX) - deadzoneX) * (normRX / abs(normRX)));
-		rightStickY = (abs(normRY) < deadzoneY ? 0 : (abs(normRY) - deadzoneY) * (normRY / abs(normRY)));
-
-		if (deadzoneX > 0) rightStickX *= 1 / (1 - deadzoneX);
-		if (deadzoneY > 0) rightStickY *= 1 / (1 - deadzoneY);
-
-		leftTrigger = (float)_controllerState.Gamepad.bLeftTrigger / 255;
-		rightTrigger = (float)_controllerState.Gamepad.bRightTrigger / 255;
-#endif
-
-		return true;
 	}
-	return false;
+
+	json.close();
 }
 
-bool XBOXController::IsPressed(WORD button)
-{
-	return (_controllerState.Gamepad.wButtons & button) != 0;
-}
-
-const float XBOXController::LeftStickAngle()
-{
-	Vector2 r(leftStickX, leftStickY);
-	r.Normalize();
-
-	float angle = atan2(r.x, r.y);
-
-	//check for NaN
-	if (angle != angle)
-		return false;
-
-	return angle;
-}
-
-const float XBOXController::RightStickAngle()
-{
-	Vector2 r(rightStickX, rightStickY);
-
-	if (r.SqLenght() < 0.64f)
-	{
-		return false;
+void Input::Update() {
+	for (auto const& [id, axisVector] : axisFunction) {
+		for (auto const& [axis, function] : axisVector) {
+			if (!axisMapping.count(axis))
+				continue;
+			auto const& axisInfo = axisMapping.at(axis);
+			float total_scale = 0;
+			for (auto const& [keystroke, scale] : axisInfo) {
+				if (keystroke < 0x10) {
+					// gamepad
+					total_scale = controller->GetAxis(keystroke);
+					function(total_scale * scale);
+				}
+				else {
+					if (OnKeyHold(keystroke)) {
+						function(scale);
+					}
+				}
+			}
+		}
 	}
-	r.Normalize();
 
-	float angle = atan2(r.x, r.y);
-
-	//check for NaN
-	if (angle != angle)
-		angle = 0;
-
-	std::cout << "magnitude: " << angle << std::endl;
-
-	return angle;
+	for(auto const& [id, actionsVector] : actionFunction) {
+		for(auto const& [action, function] : actionsVector) {
+			if (!actionMapping.count(action))
+				continue;
+			auto const& actionInfo = actionMapping.at(action);
+			for(auto const& keystroke : actionInfo) {
+				if (OnKeyHold(keystroke) || controller->IsPressed(keystroke)) {
+					function();
+				}
+			}
+		}
+	}
 }
 
-const Vector2 XBOXController::LeftStickVector()
-{
-	Vector2 r(leftStickX, leftStickY);
-	//r.normalize();
-
-	return r;
+void Input::BindAxis(std::string_view axis, size_t instance, std::function<void(float)> const& function) {
+	if (!axisFunction.count(instance))
+		axisFunction[instance] = std::vector<std::pair<std::string, std::function<void(float)>>>();
+	axisFunction[instance].emplace_back(std::pair(axis.data(), function));
 }
 
-const Vector2 XBOXController::RightStickVector()
-{
-	Vector2 r(rightStickX, rightStickY);
-	//r.normalize();
+void Input::BlindAction(std::string_view action, size_t instance, std::function<void()> const& function) {
+	if (!actionFunction.count(instance))
+		actionFunction[instance] = std::vector<std::pair<std::string, std::function<void()>>>();
+	actionFunction[instance].emplace_back(std::pair(action.data(), function));
+}
 
-	return r;
+void Input::UnbindAxis(std::string_view axis, size_t instance) {
+	if(axisFunction.count(instance)) {
+		axisFunction[instance].clear();
+		axisFunction.erase(instance);
+	}
+}
+
+void Input::UnBindAction(std::string_view action, size_t instance) {
+	if (actionFunction.count(instance)) {
+		actionFunction[instance].clear();
+		actionFunction.erase(instance);
+	}
 }

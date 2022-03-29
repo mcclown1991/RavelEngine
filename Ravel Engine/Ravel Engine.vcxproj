@@ -68,7 +68,8 @@
       </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>xcopy "$(ProjectDir)\Source\*.*" "$(SolutionDir)\Lib" /Y /I /E</Command>
+      <Command>xcopy "$(ProjectDir)\Source\*.*" "$(SolutionDir)\Lib" /Y /I /E
+xcopy "$(ProjectDir)\Settings\*.*" "$(SolutionDir)\Debug" /Y /I /E</Command>
     </PostBuildEvent>
     <Lib>
       <TargetMachine>
@@ -147,6 +148,7 @@
     <ClInclude Include="Source\Systems\Graphics System\GraphicsManager.h" />
     <ClInclude Include="Source\Systems\Graphics System\OpenGL\OpenGL.h" />
     <ClInclude Include="Source\Systems\Input\Input.h" />
+    <ClInclude Include="Source\Systems\Input\RawInput.h" />
     <ClInclude Include="Source\Systems\Memory System\MemoryManager.h" />
     <ClInclude Include="Source\Systems\Navigation\NavMesh.h" />
     <ClInclude Include="Source\Systems\Scene Management\Scene.h" />
@@ -201,6 +203,7 @@
     <ClCompile Include="Source\Systems\Graphics System\GraphicsManager.cpp" />
     <ClCompile Include="Source\Systems\Graphics System\OpenGL\OpenGL.cpp" />
     <ClCompile Include="Source\Systems\Input\Input.cpp" />
+    <ClCompile Include="Source\Systems\Input\RawInput.cpp" />
     <ClCompile Include="Source\Systems\Memory System\MemoryManager.cpp" />
     <ClCompile Include="Source\Systems\Navigation\NavMesh.cpp" />
     <ClCompile Include="Source\Systems\Scene Management\SceneManager.cpp" />
