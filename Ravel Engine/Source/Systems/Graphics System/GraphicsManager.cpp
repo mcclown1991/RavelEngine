@@ -72,6 +72,8 @@ bool GraphicsManager::ClearSprite()
 
 bool GraphicsManager::Render()
 {
+	if (!renderer->CheckCondition())
+		return false;
 	renderer->StartFrame();
 
 	std::for_each(spriteList.begin(), spriteList.end(), [](Sprite2D* _sprite)
@@ -132,4 +134,8 @@ HRESULT GraphicsManager::SetFragmentShader(std::string const& file) {
 
 void GraphicsManager::LinkProgram() {
 	renderer->LinkProgram();
+}
+
+void GraphicsManager::SetMainCamera(std::shared_ptr<Camera>& main_camera) {
+	renderer->SetMainCamera(main_camera);
 }

@@ -28,8 +28,6 @@
 #include <vector>
 #include <array>
 
-#include "Camera.h"
-
 
 class DirectX11 : public Graphics {
 public:
@@ -58,6 +56,7 @@ public:
 	virtual HRESULT Render(unsigned sampleID, Matrix4x4 transform, Vector2 uv, Vector2 UVscale, bool blend, float alpha);
 	virtual void SetBackgroundColor(Color const& color);
 	virtual void SetMainCamera(std::shared_ptr<Camera>& camera);
+	virtual bool CheckCondition();
 
 private:
 
@@ -110,7 +109,6 @@ private:
 	unsigned m_SampleIDinUsed;
 	float m_Color[4];
 
-	std::shared_ptr<Camera> render_camera;
 };
 
 #endif

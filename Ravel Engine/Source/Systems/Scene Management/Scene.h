@@ -67,6 +67,14 @@ public:
 		}
 	}
 
+	void InternalInit() {
+		auto& obj = factory()->CreateGameObject("Main Camera");
+		obj->AddComponent("Camera");
+		_sceneObjects.push_back(obj->GetInstanceID());
+		auto cam = std::shared_ptr<Camera>(obj->GetComponent<Camera>());
+		GetGraphicsManager()->SetMainCamera(cam);
+	}
+
 protected:
 	std::string _path;
 	std::string _sceneName;

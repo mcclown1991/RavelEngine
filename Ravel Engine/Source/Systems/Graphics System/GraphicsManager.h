@@ -4,6 +4,8 @@
 #include <list>
 #include <map>
 #include <algorithm>
+
+#include "Camera.h"
 #include "DataType.h"
 #include "Matrix3x3.h"
 #include "Sprite2D.h"
@@ -41,6 +43,8 @@ public:
 	HRESULT SetVertexShader(std::string const& file);
 	HRESULT SetFragmentShader(std::string const& file);
 	void LinkProgram();
+
+	void SetMainCamera(std::shared_ptr<Camera>& main_camera);
 
 	Graphics* Renderer() { return renderer; }
 

@@ -35,6 +35,9 @@ public:
 	virtual HRESULT CreateTexture(std::string const& filename, unsigned& sampleID);
 
 	virtual HRESULT Render(unsigned sampleID, Matrix4x4 transform, Vector2 uv, Vector2 UVscale, bool blend, float alpha);
+	virtual void SetBackgroundColor(Color const& color) {};
+	virtual void SetMainCamera(std::shared_ptr<Camera>& camera) {};
+	virtual bool CheckCondition() { return true; };
 
 private:
 	HDC hDC;

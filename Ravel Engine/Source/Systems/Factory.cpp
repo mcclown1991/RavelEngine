@@ -87,17 +87,18 @@ size_t Factory::LoadFromFile(std::string const&  file)
 	return -1;
 }
 
-Factory::pGameObject& Factory::CreateGameObject(std::string& name)
+Factory::pGameObject& Factory::CreateGameObject(std::string_view name)
 {
 	pGameObject obj = std::make_unique<GameObject>();
-	if (_refcount.count(name) == 1) {
+	std::string name_c = name.data();
+	if (_refcount.count(name.data()) == 1) {
 		//name is a repeat
-		size_t count = _refcount[name]++;
-		name += ("_copy" + std::to_string(count));
+		size_t count = _refcount[name.data()]++;
+		name_c += ("_copy" + std::to_string(count));
 	}
 	else
-		_refcount[name] = 1;
-	obj->Instantiate(name);
+		_refcount[name.data()] = 1;
+	obj->Instantiate(name_c);
 	size_t id = obj->GetInstanceID();
 	_go[id] = std::move(obj);
 	return _go[id];

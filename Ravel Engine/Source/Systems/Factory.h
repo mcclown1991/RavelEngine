@@ -58,7 +58,7 @@ public:
 		_btNodeRegistry.clear();
 	}
 	size_t LoadFromFile(std::string const&);
-	pGameObject& CreateGameObject(std::string&);
+	pGameObject& CreateGameObject(std::string_view);
 	void CreateEmptyObject();
 	pGameObject& GetGameObject(const std::string&);
 	pGameObject& GetGameObject(size_t instanceID);

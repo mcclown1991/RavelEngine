@@ -545,3 +545,7 @@ void DirectX11::SetBackgroundColor(Color const& color) {
 void DirectX11::SetMainCamera(std::shared_ptr<Camera>& camera) {
 	render_camera = camera;
 }
+
+bool DirectX11::CheckCondition() {
+	return render_camera != nullptr;
+}

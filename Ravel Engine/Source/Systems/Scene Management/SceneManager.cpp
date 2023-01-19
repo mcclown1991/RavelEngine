@@ -32,6 +32,7 @@ void SceneManager::LoadScene() {
 
 	m_currentScene.first = m_NextScene.first;
 	m_currentScene.second = m_NextScene.second;
+	m_currentScene.second->InternalInit();
 	m_currentScene.second->Init();
 	m_currentScene.second->Load();
 	m_currentScene.second->Start();
