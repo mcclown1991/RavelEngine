@@ -36,6 +36,7 @@ void Factory::Init() {
 	RegisterComponent<BehaviourTree>("BehaviourTree");
 	RegisterComponent<PlayerController>("PlayerController");
 	RegisterComponent<AIController>("AIController");
+	RegisterComponent<Camera>("Camera");
 
 	RegisterBTNode<BTSelector>("Selector");
 	RegisterBTNode<BTSequence>("Sequence");

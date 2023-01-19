@@ -24,8 +24,11 @@
 
 #include "GraphicsAPI.h"
 #include "RavelMath.h"
+#include "Color.h"
 #include <vector>
 #include <array>
+
+#include "Camera.h"
 
 
 class DirectX11 : public Graphics {
@@ -53,6 +56,8 @@ public:
 	virtual HRESULT CreateTexture(std::string const& filename, unsigned& sampleID);
 
 	virtual HRESULT Render(unsigned sampleID, Matrix4x4 transform, Vector2 uv, Vector2 UVscale, bool blend, float alpha);
+	virtual void SetBackgroundColor(Color const& color);
+	virtual void SetMainCamera(std::shared_ptr<Camera>& camera);
 
 private:
 
@@ -103,7 +108,9 @@ private:
 	std::array<ID3D11Resource*, 1024> m_Resource;
 
 	unsigned m_SampleIDinUsed;
+	float m_Color[4];
 
+	std::shared_ptr<Camera> render_camera;
 };
 
 #endif

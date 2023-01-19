@@ -96,6 +96,7 @@ public:
 	Vector2  operator * (const Vector2 &rhs) const;
 
 	static Matrix3x3 Mtx33Identity();
+	Matrix3x3 Transpose();
 
 	// Transforms
 	Matrix3x3 TRS(Vector2 const& Translate, float Rotate, Vector2 const& Scale);

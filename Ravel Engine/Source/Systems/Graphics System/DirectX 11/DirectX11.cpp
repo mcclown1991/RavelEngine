@@ -306,8 +306,7 @@ void DirectX11::LinkProgram() {
 }
 
 void DirectX11::StartFrame() {
-	float color[4] = { 0.f, 0.f, 0.f, 1.f };
-	m_DeviceContext->ClearRenderTargetView(m_BackBuffer, color);
+	m_DeviceContext->ClearRenderTargetView(m_BackBuffer, m_Color);
 
 	m_DeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
 	m_DeviceContext->IASetInputLayout(pLayTex);
@@ -470,6 +469,8 @@ HRESULT DirectX11::Render(unsigned sampleID, Matrix4x4 transform, Vector2 uv, Ve
 
 	HRESULT hr;
 
+	transform *= render_camera->GetRenderPosition();
+
 	hr = m_DeviceContext->Map(pTransform, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
 	if (FAILED(hr))
 		return hr;
@@ -531,4 +532,16 @@ HRESULT DirectX11::Render(unsigned sampleID, Matrix4x4 transform, Vector2 uv, Ve
 	++m_DrawCount;
 
 	return S_OK;
+}
+
+void DirectX11::SetBackgroundColor(Color const& color) {
+	// set R
+	m_Color[0] = color.r / 255;
+	m_Color[1] = color.g / 255;
+	m_Color[2] = color.b / 255;
+	m_Color[3] = color.a / 255;
+}
+
+void DirectX11::SetMainCamera(std::shared_ptr<Camera>& camera) {
+	render_camera = camera;
 }

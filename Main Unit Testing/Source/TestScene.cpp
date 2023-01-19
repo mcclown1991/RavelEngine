@@ -2,6 +2,7 @@
 #include <ComponentHeader.h>
 #include <AI/BehaviourTree.h>
 
+class Camera;
 using namespace std::string_view_literals;
 
 void Scene1::Init()

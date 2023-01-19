@@ -227,6 +227,21 @@ Matrix3x3 Matrix3x3::LookAt(Vector2 const & from, Vector2 const & to, Vector2 co
 	return Matrix3x3();
 }
 
+Matrix3x3 Matrix3x3::Transpose() {
+	Matrix3x3 mat;
+	
+	for (int a = 0; a < 3; a++)
+	{
+		for (int b = 0; b < 3; b++)
+		{
+			mat.m[b * 3 + a] = m[a * 3 + b];
+		}
+	}
+
+	return mat;
+}
+
+
 ///**************************************************************************/
 ///*!
 //This function creates a translation matrix from x & y

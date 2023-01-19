@@ -278,6 +278,12 @@
     <ClInclude Include="Source\Systems\Input\RawInput.h">
       <Filter>Systems\Input</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Base Components\Camera.h">
+      <Filter>Base Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Structures\Color.h">
+      <Filter>Structures</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Base Components\AudioClip.cpp">

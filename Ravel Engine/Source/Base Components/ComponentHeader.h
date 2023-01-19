@@ -14,3 +14,4 @@
 #include "BehaviourTree.h"
 #include "PlayerController.h"
 #include "AIController.h"
+#include "Camera.h"

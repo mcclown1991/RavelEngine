@@ -102,6 +102,7 @@ xcopy "$(ProjectDir)\Settings\*.*" "$(SolutionDir)\Debug" /Y /I /E</Command>
     <ClInclude Include="Source\Base Components\AudioSource.h" />
     <ClInclude Include="Source\Base Components\BoxCollider.h" />
     <ClInclude Include="Source\Base Components\Button.h" />
+    <ClInclude Include="Source\Base Components\Camera.h" />
     <ClInclude Include="Source\Base Components\Canvas.h" />
     <ClInclude Include="Source\Base Components\Collider2D.h" />
     <ClInclude Include="Source\Base Components\Component.h" />
@@ -127,6 +128,7 @@ xcopy "$(ProjectDir)\Settings\*.*" "$(SolutionDir)\Debug" /Y /I /E</Command>
     <ClInclude Include="Source\Math\RavelMath.h" />
     <ClInclude Include="Source\Math\Vector2.h" />
     <ClInclude Include="Source\Math\Vector3.h" />
+    <ClInclude Include="Source\Structures\Color.h" />
     <ClInclude Include="Source\Structures\Rect.h" />
     <ClInclude Include="Source\Structures\Stuctures.h" />
     <ClInclude Include="Source\Structures\types.h" />

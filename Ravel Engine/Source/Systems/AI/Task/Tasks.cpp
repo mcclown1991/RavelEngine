@@ -37,10 +37,15 @@ BTMoveToTask::~BTMoveToTask() {
 	
 }
 
+void BTMoveToTask::SetBlackboardKey(std::string_view keyName) {
+	//parent->GetBlackboard()->SetValue(keyName);
+}
+
+
 bool BTMoveToTask::Execute() {
 	AssignRunningNode();
 	// execute move to key
-	parent->ExecuteTask(nodeName);
+	result = parent->ExecuteTask(nodeName);
 	std::cout << "result : " << (result ? "true" : "false") << std::endl;
 	return result;
 }
