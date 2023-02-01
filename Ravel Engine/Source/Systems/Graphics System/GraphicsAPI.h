@@ -43,7 +43,7 @@ public:
 
 	virtual HRESULT Render(unsigned sampleID, Matrix4x4 transform, Vector2 uv, Vector2 UVscale, bool blend, float alpha) = 0;
 	virtual void SetBackgroundColor(Color const& color) = 0;
-	virtual void SetMainCamera(std::shared_ptr<Camera>& camera) = 0;
+	virtual void SetMainCamera(Camera* camera) = 0;
 	virtual bool CheckCondition() = 0;
 
 protected:
@@ -51,7 +51,7 @@ protected:
 	unsigned m_SampleID;
 	std::array<std::string, 1024> m_SampleFiles;
 
-	std::shared_ptr<Camera> render_camera;
+	Camera* render_camera;
 
 	//debugging used
 	unsigned m_DrawCount;

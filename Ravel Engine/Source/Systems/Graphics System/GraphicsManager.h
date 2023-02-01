@@ -44,7 +44,7 @@ public:
 	HRESULT SetFragmentShader(std::string const& file);
 	void LinkProgram();
 
-	void SetMainCamera(std::shared_ptr<Camera>& main_camera);
+	void SetMainCamera(Camera* main_camera);
 
 	Graphics* Renderer() { return renderer; }
 

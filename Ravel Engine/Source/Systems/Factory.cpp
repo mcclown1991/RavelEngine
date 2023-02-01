@@ -74,7 +74,8 @@ size_t Factory::LoadFromFile(std::string const&  file)
 		rapidjson::SizeType size = gameobject["Components"].MemberCount();
 		for (rapidjson::Value::ConstMemberIterator it = gameobject["Components"].MemberBegin(); it != gameobject["Components"].MemberEnd(); ++it) {
 			Component* comp = m_Obj->AddComponent(it->value["typename"].GetString());
-			comp->LoadFromFile(RavelEngine::getGameDataPath().data() + std::string(it->value["metafile"].GetString()));
+			if(it->value.HasMember("metafile"))
+				comp->LoadFromFile(RavelEngine::getGameDataPath().data() + std::string(it->value["metafile"].GetString()));
 		}
 
 		json.close();

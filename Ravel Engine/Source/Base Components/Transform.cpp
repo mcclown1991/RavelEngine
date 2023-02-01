@@ -1,6 +1,6 @@
 #include "Transform.h"
 
-Transform::Transform() : RavelBehaviour(), up(0, 1), right(1, 0), position(0, 0), localEulerAngles(0.f), hscale(1.f), vscale(1.f), parent(nullptr){
+Transform::Transform() : RavelBehaviour(), up(0, 1, 1), right(1, 0, 1), position(0, 0, 1), localEulerAngles(0.f), hscale(1.f), vscale(1.f), parent(nullptr){
 }
 
 Transform::~Transform(){
@@ -10,25 +10,28 @@ void Transform::OnDestory() {
 	this->~Transform();
 }
 
-void Transform::SetPosition(Vector2 position) {
-	this->localposition = position;
-	if (parent)
-		this->position = position + parent->GetTransforms() * localposition;
-	else
-		this->position = position;
+void Transform::SetPosition(Vector3 const& position) {
+	this->position = position;
 }
 
-void Transform::SetLocalPosition(Vector2 position) {
-	this->localposition = position;
+void Transform::SetLocalPosition(Vector3 const& position) {
 	if (!parent)
 		this->position = position;
+	this->localposition = position;
 }
 
-Vector2 Transform::GetPosition() {
+Vector3 Transform::GetPosition() {
 	if(parent)
 		return parent->GetPosition() + localposition;
 	return position;
 }
+
+Vector3 Transform::GetLocalPosition() {
+	if (!parent)
+		return position;
+	return localposition;
+}
+
 
 Matrix3x3 Transform::GetTransforms() {
 	Matrix3x3 transforms;
@@ -38,11 +41,10 @@ Matrix3x3 Transform::GetTransforms() {
 	transforms.m[3] = right.y * hscale;
 	transforms.m[4] = up.y * vscale;
 
-	transforms.m[2] = position.x * 0.89f;
-	transforms.m[5] = position.y * 0.89f;
+	auto pos = GetPosition();
+	transforms.m[2] = pos.x /** 0.89f*/;
+	transforms.m[5] = pos.y /** 0.89f*/;
 
-	if(parent)
-		return parent->GetTransforms() * transforms;
 	return transforms;
 }
 
@@ -54,8 +56,8 @@ Matrix3x3 Transform::GetLocalTransforms() {
 	transforms.m[3] = right.y * hscale;
 	transforms.m[4] = up.y * vscale;
 
-	transforms.m[2] = position.x * 0.89f;
-	transforms.m[5] = position.y * 0.89f;
+	transforms.m[2] = localposition.x;
+	transforms.m[5] = localposition.y;
 
 	return transforms;
 }

@@ -3,6 +3,7 @@
 
 #include "RavelBehaviour.h"
 #include "Matrix3x3.h"
+#include "Vector3.h"
 
 class Transform : public RavelBehaviour {
 public:
@@ -14,18 +15,19 @@ public:
 
 	virtual void OnDestory();
 
-	void SetPosition(Vector2);
-	void SetLocalPosition(Vector2);
+	void SetPosition(Vector3 const&);
+	void SetLocalPosition(Vector3 const&);
 
-	Vector2 GetPosition();
+	Vector3 GetPosition();
+	Vector3 GetLocalPosition();
 	Matrix3x3 GetTransforms();
 	Matrix3x3 GetLocalTransforms();
 
 	//Public Functions
-	Vector2 up;
-	Vector2 right;
-	Vector2 position;
-	Vector2 localposition;
+	Vector3 up;
+	Vector3 right;
+	Vector3 position;
+	Vector3 localposition;
 	float localEulerAngles;
 	float hscale, vscale;
 	Transform* parent;

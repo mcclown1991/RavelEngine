@@ -1,7 +1,7 @@
 {
 	"GameObject" : 
 	{
-		"name" : "background",
+		"name" : "camera",
 		"IsActive" : true,
 		"Tag" : "",
 		"Transform" : {
@@ -10,10 +10,6 @@
 		},
 		"Components" : {
 			"0" : {
-				"typename" : "Sprite2D",
-				"metafile" : "testJson_sprite2D.raveldata"
-			},
-			"1" : {
 				"typename" : "FollowCam"
 			}
 		}

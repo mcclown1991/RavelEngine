@@ -16,6 +16,7 @@ void Scene1::Init()
 
 	// register all custom components first before loading all prefabs
 	factory()->RegisterComponent<Button<Scene1>>("Button<Fuzzy_Scene>");
+	factory()->RegisterComponent<FollowCam>("FollowCam");
 }
 
 void Scene1::Update()
@@ -24,5 +25,5 @@ void Scene1::Update()
 
 void Scene1::Free()
 {
-	
+	Scene::Free();
 }

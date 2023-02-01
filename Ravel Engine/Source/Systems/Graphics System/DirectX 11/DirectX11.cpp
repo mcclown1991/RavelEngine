@@ -470,6 +470,7 @@ HRESULT DirectX11::Render(unsigned sampleID, Matrix4x4 transform, Vector2 uv, Ve
 	HRESULT hr;
 
 	transform *= render_camera->GetRenderPosition();
+	std::cout << "Camera : " << render_camera->transform->position.x << std::endl;
 
 	hr = m_DeviceContext->Map(pTransform, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
 	if (FAILED(hr))
@@ -542,7 +543,7 @@ void DirectX11::SetBackgroundColor(Color const& color) {
 	m_Color[3] = color.a / 255;
 }
 
-void DirectX11::SetMainCamera(std::shared_ptr<Camera>& camera) {
+void DirectX11::SetMainCamera(Camera* camera) {
 	render_camera = camera;
 }
 

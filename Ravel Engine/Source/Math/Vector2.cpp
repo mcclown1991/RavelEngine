@@ -1,10 +1,14 @@
 #include "Vector2.h"
+#include "Vector3.h"
 
 Vector2::Vector2() : x(0.f), y(0.f) {}
 
 Vector2::Vector2(float32 X, float32 Y) : x(X), y(Y){}
 
 Vector2::Vector2(Vector2 const& r) : x(r.x), y(r.y) {}
+
+Vector2::Vector2(Vector3 const& r) : x(r.x), y(r.y) {}
+
 
 Vector2 Vector2::operator-() const{
 	return Vector2(-x, -y);

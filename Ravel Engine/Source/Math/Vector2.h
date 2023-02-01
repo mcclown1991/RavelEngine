@@ -3,11 +3,15 @@
 #include "DataType.h"
 #include <directxmath.h>
 
+class Vector3;
+
 class Vector2 {
 public:
 	Vector2();
 	Vector2(float32 X, float32 Y);
 	Vector2(Vector2 const& r);
+	// Conversion constructor
+	Vector2(Vector3 const& r);
 
 	/// Operators
 	Vector2 operator-() const;

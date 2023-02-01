@@ -14,9 +14,14 @@ public:
 	}
 
 	Matrix3x3 GetRenderPosition() {
-		return transform->GetTransforms().Transpose();
+		auto mat = transform->GetTransforms();
+		mat.m[2] *= -1;
+		mat.m[5] *= -1;
+		return mat;
 	}
 
+	virtual void Start() override {};
+	
 	RavelRect size;
 	Color background;
 };

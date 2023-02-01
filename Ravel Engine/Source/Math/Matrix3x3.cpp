@@ -188,8 +188,8 @@ Matrix3x3 Matrix3x3::TRS(Vector2 const & Translate, float Rotate, Vector2 const 
 	mat.m[3] = right.y * Scale.x;
 	mat.m[4] = up.y * Scale.y;
 
-	mat.m[2] = Translate.x * 0.89f;
-	mat.m[5] = Translate.y * 0.89f;
+	mat.m[2] = Translate.x;
+	mat.m[5] = Translate.y;
 
 	return mat;
 }
@@ -210,8 +210,8 @@ Matrix3x3 Matrix3x3::TRS(Vector2 const & Translate, Vector2 const & Rotate, Vect
 	mat.m[3] = right.y * Scale.x;
 	mat.m[4] = up.y * Scale.y;
 
-	mat.m[2] = Translate.x * 0.89f;
-	mat.m[5] = Translate.y * 0.89f;
+	mat.m[2] = Translate.x;
+	mat.m[5] = Translate.y;
 	return mat;
 }
 

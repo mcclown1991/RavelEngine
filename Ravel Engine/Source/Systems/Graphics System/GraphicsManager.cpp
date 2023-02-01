@@ -136,6 +136,6 @@ void GraphicsManager::LinkProgram() {
 	renderer->LinkProgram();
 }
 
-void GraphicsManager::SetMainCamera(std::shared_ptr<Camera>& main_camera) {
+void GraphicsManager::SetMainCamera(Camera* main_camera) {
 	renderer->SetMainCamera(main_camera);
 }
