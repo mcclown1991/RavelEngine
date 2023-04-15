@@ -57,6 +57,9 @@ public:
 		_btNode.clear();
 		_btNodeRegistry.clear();
 	}
+	virtual void RemoveGameObject(size_t id) {
+		_go.erase(id);
+	}
 	size_t LoadFromFile(std::string const&);
 	pGameObject& CreateGameObject(std::string_view);
 	void CreateEmptyObject();

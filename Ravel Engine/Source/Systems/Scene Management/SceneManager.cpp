@@ -52,7 +52,7 @@ void SceneManager::AddScene(Scene* scene)
 void SceneManager::OnExit()
 {
 	for (auto& iter : _scenelist) {
-		iter.second->~Scene();
+		iter.second->Free();
 	}
 }
 

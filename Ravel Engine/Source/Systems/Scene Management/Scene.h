@@ -21,6 +21,7 @@ public:
 	virtual void Free() { 
 		for (size_t id : _sceneObjects) {
 			factory()->GetGameObject(id)->SendMessage("OnDestory");
+			factory()->RemoveGameObject(id);
 		}
 		Memory()->dealloc(this);
 		this->~Scene(); 
