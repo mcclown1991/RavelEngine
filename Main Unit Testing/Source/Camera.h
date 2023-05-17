@@ -8,4 +8,5 @@ public:
 	~FollowCam();
 	FollowCam* Clone();
 	void Start() override;
+	void OnDestory() override;
 };

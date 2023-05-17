@@ -14,6 +14,11 @@ FollowCam* FollowCam::Clone() {
 	return Memory()->alloc<FollowCam>();
 }
 
+void FollowCam::OnDestory() {
+	this->~FollowCam();
+}
+
+
 void FollowCam::Start() {
 	auto pawn =factory()->GetGameObject("Main Camera")->GetComponent<Camera>()->transform;
 	
