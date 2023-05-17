@@ -93,6 +93,9 @@
     <Filter Include="Systems\Debug">
       <UniqueIdentifier>{31d818b5-9a04-4f27-8fc3-1eb09d02e668}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Systems\Networking">
+      <UniqueIdentifier>{8bd672c4-fd97-4aa7-bd51-0c1ceacffc43}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -278,6 +281,9 @@
     <ClInclude Include="Source\Systems\Input\RawInput.h">
       <Filter>Systems\Input</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\Networking\UDPSock.h">
+      <Filter>Systems\Networking</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Base Components\AudioClip.cpp">
@@ -429,6 +435,9 @@
     </ClCompile>
     <ClCompile Include="Source\Systems\Input\RawInput.cpp">
       <Filter>Systems\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\Networking\UDPSock.cpp">
+      <Filter>Systems\Networking</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

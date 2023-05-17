@@ -56,7 +56,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)Source;$(ProjectDir)Source\Behaviour;$(ProjectDir)Source\Base Components;$(ProjectDir)Source\Controller;$(ProjectDir)Source\Game Object;$(ProjectDir)Source\Game State Manager;$(ProjectDir)Source\Math;$(ProjectDir)Source\Structures;$(ProjectDir)Source\Systems;$(ProjectDir)Source\Systems\AI;$(ProjectDir)Source\Systems\Collision System;$(ProjectDir)Source\Systems\Core;$(ProjectDir)Source\Systems\Graphics System;$(ProjectDir)Source\Systems\Graphics System\DirectX 11;$(ProjectDir)Source\Systems\Graphics System\OpenGL;$(ProjectDir)Source\Systems\Input;$(ProjectDir)Source\Systems\Memory System;$(ProjectDir)Source\Systems\Navigation;$(ProjectDir)Source\Systems\Scene Management;$(ProjectDir)Source\Systems\Scripting;$(ProjectDir)Source\Systems\Sound System;$(ProjectDir)Source\Systems\Text System;$(ProjectDir)Source\Systems\Time;$(ProjectDir)Source\Systems\Window;$(ProjectDir)Source\Systems\Debug</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Source;$(ProjectDir)Source\Behaviour;$(ProjectDir)Source\Base Components;$(ProjectDir)Source\Controller;$(ProjectDir)Source\Game Object;$(ProjectDir)Source\Game State Manager;$(ProjectDir)Source\Math;$(ProjectDir)Source\Structures;$(ProjectDir)Source\Systems;$(ProjectDir)Source\Systems\AI;$(ProjectDir)Source\Systems\Collision System;$(ProjectDir)Source\Systems\Core;$(ProjectDir)Source\Systems\Graphics System;$(ProjectDir)Source\Systems\Graphics System\DirectX 11;$(ProjectDir)Source\Systems\Graphics System\OpenGL;$(ProjectDir)Source\Systems\Input;$(ProjectDir)Source\Systems\Memory System;$(ProjectDir)Source\Systems\Navigation;$(ProjectDir)Source\Systems\Scene Management;$(ProjectDir)Source\Systems\Scripting;$(ProjectDir)Source\Systems\Sound System;$(ProjectDir)Source\Systems\Text System;$(ProjectDir)Source\Systems\Time;$(ProjectDir)Source\Systems\Window;$(ProjectDir)Source\Systems\Debug;$(ProjectDir)Source\Systems\Networking</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -151,6 +151,7 @@ xcopy "$(ProjectDir)\Settings\*.*" "$(SolutionDir)\Debug" /Y /I /E</Command>
     <ClInclude Include="Source\Systems\Input\RawInput.h" />
     <ClInclude Include="Source\Systems\Memory System\MemoryManager.h" />
     <ClInclude Include="Source\Systems\Navigation\NavMesh.h" />
+    <ClInclude Include="Source\Systems\Networking\UDPSock.h" />
     <ClInclude Include="Source\Systems\Scene Management\Scene.h" />
     <ClInclude Include="Source\Systems\Scene Management\SceneManager.h" />
     <ClInclude Include="Source\Systems\Scripting\ScriptManager.h" />
@@ -206,6 +207,7 @@ xcopy "$(ProjectDir)\Settings\*.*" "$(SolutionDir)\Debug" /Y /I /E</Command>
     <ClCompile Include="Source\Systems\Input\RawInput.cpp" />
     <ClCompile Include="Source\Systems\Memory System\MemoryManager.cpp" />
     <ClCompile Include="Source\Systems\Navigation\NavMesh.cpp" />
+    <ClCompile Include="Source\Systems\Networking\UDPSock.cpp" />
     <ClCompile Include="Source\Systems\Scene Management\SceneManager.cpp" />
     <ClCompile Include="Source\Systems\Scripting\ScriptFunction.cpp" />
     <ClCompile Include="Source\Systems\Scripting\ScriptManager.cpp" />

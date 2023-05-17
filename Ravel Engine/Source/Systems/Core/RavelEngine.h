@@ -3,7 +3,10 @@
 
 #include <string>
 #include <string_view>
+
+#define WIN32_LEAN_AND_MEAN
 #include <windows.h>
+
 #include <stdio.h>
 #include <fcntl.h>
 #include <io.h>
@@ -25,6 +28,7 @@
 #include "RavelTime.h"
 
 using namespace std::string_view_literals;
+
 
 class RavelEngine{
 public:

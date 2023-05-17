@@ -8,6 +8,7 @@
 #include "SceneManager.h"
 #include "ScriptManager.h"
 #include "RavelLogger.h"
+#include "UDPSock.h"
 
 RavelEngine RavelEngine::m_EngineInstance;
 
@@ -110,6 +111,8 @@ void RavelEngine::SystemInit(HINSTANCE hInstance, int nCmdShow) {
 	AudioManagement()->Init();
 	GetInput()->InitializeInput(GetWindowHandle());
 
+	GetUDP()->BindListeningSocket();
+
 #ifdef _DEBUG
 	std::cout << "Done!" << std::endl;
 	std::cout << "=============================================================" << std::endl;
@@ -194,6 +197,7 @@ bool RavelEngine::Update() {
 			GetTime()->deltaTime = 0.01666f;
 			SceneManagement()->Update();
 			GetInput()->Update();
+			GetUDP()->RecievePacket();
 		}
 		StopKeyTrap();
 	}
@@ -263,6 +267,8 @@ void RavelEngine::SystemExit(){
 	GetScriptManager()->Quit();
 
 	RLogger()->StopLogger();
+
+	GetUDP()->UnbindListeningSocket();
 	
 	delete pWindow;
 	delete pRenderer;
