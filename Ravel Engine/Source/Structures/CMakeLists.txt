@@ -1,0 +1,7 @@
+set(HEADER_FILES_STRUCTURE "${CMAKE_CURRENT_LIST_DIR}/header/Rect.h"
+				"${CMAKE_CURRENT_LIST_DIR}/header/Stuctures.h"
+				"${CMAKE_CURRENT_LIST_DIR}/header/types.h"
+				PARENT_SCOPE)
+				
+set(SOURCE_FILES_STRUCTURE "${CMAKE_CURRENT_LIST_DIR}/Rect.cpp"
+				PARENT_SCOPE)

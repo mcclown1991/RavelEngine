@@ -1,4 +1,4 @@
-#include "Behaviour.h"
+#include "Behaviour/header/Behaviour.h"
 
 Behaviour::Behaviour()
 {

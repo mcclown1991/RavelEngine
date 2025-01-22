@@ -1,0 +1,6 @@
+set(HEADER_FILES_SYSTEM_SCRIPT "${CMAKE_CURRENT_LIST_DIR}/header/ScriptManager.h"
+				PARENT_SCOPE)
+				
+set(SOURCE_FILES_SYSTEM_SCRIPT "${CMAKE_CURRENT_LIST_DIR}/ScriptManager.cpp"
+						"${CMAKE_CURRENT_LIST_DIR}/ScriptFunction.cpp"
+						PARENT_SCOPE)

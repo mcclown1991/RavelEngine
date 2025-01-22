@@ -1,7 +1,7 @@
 #pragma once
 #include "BTNode.h"
 #include "Blackboard.h"
-#include "Behaviour/RavelBehaviour.h"
+#include "RavelBehaviour.h"
 #include "RavelEngine.h"
 #include "AIController.h"
 

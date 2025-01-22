@@ -20,7 +20,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -53,7 +53,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(ProjectDir)Source;$(ProjectDir)Source\Behaviour;$(ProjectDir)Source\Base Components;$(ProjectDir)Source\Controller;$(ProjectDir)Source\Game Object;$(ProjectDir)Source\Game State Manager;$(ProjectDir)Source\Math;$(ProjectDir)Source\Structures;$(ProjectDir)Source\Systems;$(ProjectDir)Source\Systems\AI;$(ProjectDir)Source\Systems\Collision System;$(ProjectDir)Source\Systems\Core;$(ProjectDir)Source\Systems\Graphics System;$(ProjectDir)Source\Systems\Graphics System\DirectX 11;$(ProjectDir)Source\Systems\Graphics System\OpenGL;$(ProjectDir)Source\Systems\Input;$(ProjectDir)Source\Systems\Memory System;$(ProjectDir)Source\Systems\Navigation;$(ProjectDir)Source\Systems\Scene Management;$(ProjectDir)Source\Systems\Scripting;$(ProjectDir)Source\Systems\Sound System;$(ProjectDir)Source\Systems\Text System;$(ProjectDir)Source\Systems\Time;$(ProjectDir)Source\Systems\Window;$(ProjectDir)Source\Systems\Debug</AdditionalIncludeDirectories>

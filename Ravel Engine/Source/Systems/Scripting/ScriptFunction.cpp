@@ -28,9 +28,9 @@ int DebugLog(lua_State * L)
 
 #ifdef _DEBUG
 	std::cout << msg << " " << arg << std::endl;
-#else
-	UNREFERENCED_PARAMETER(msg);
-	UNREFERENCED_PARAMETER(arg);
+//#else
+	//UNREFERENCED_PARAMETER(msg);
+	//UNREFERENCED_PARAMETER(arg);
 #endif
 	return 0;
 }

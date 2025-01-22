@@ -1,0 +1,6 @@
+set(HEADER_FILES_SYSTEM_SCENE "${CMAKE_CURRENT_LIST_DIR}/header/Scene.h"
+							"${CMAKE_CURRENT_LIST_DIR}/header/SceneManager.h"
+							PARENT_SCOPE)
+				
+set(SOURCE_FILES_SYSTEM_SCENE "${CMAKE_CURRENT_LIST_DIR}/SceneManager.cpp"
+							PARENT_SCOPE)

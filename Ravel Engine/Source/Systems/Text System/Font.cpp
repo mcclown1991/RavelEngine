@@ -26,7 +26,7 @@ void FontSystem::Quit()
 
 void FontSystem::AddFont(std::string const & filename, std::string const& identifier)
 {
-	size_t sampleid{};
+	unsigned int sampleid{};
 	GetGraphicsManager()->Renderer()->CreateTexture(RavelEngine::getGameDataPath().data() + filename + ".png", sampleid);
 	size_t id = HASH(identifier);
 

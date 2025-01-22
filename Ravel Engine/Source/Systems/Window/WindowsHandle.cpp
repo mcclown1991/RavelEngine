@@ -208,7 +208,7 @@ bool WindowsHandle::InitWindow(HWND hWnd)
 {
 	gw.hWnd = hWnd;
 
-	gw.hInst = reinterpret_cast<HINSTANCE>(GetWindowLong(hWnd, GWL_HINSTANCE));
+	gw.hInst = reinterpret_cast<HINSTANCE>(GetWindowLong(hWnd, GWLP_HINSTANCE));
 
 	_frames = 0;
 	_current = 0;
@@ -430,7 +430,7 @@ void WindowsHandle::InitWindowHandle(HWND hWnd, bool console)
 	//if (console)
 	//	ShowCMD();
 
-	InitConfigure(reinterpret_cast<HINSTANCE>(GetWindowLong(hWnd, GWL_HINSTANCE)));
+	InitConfigure(reinterpret_cast<HINSTANCE>(GetWindowLong(hWnd, GWLP_HINSTANCE)));
 
 	InitWindow(hWnd);
 

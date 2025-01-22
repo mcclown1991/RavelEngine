@@ -4,8 +4,7 @@
 #include <rapidjson\istreamwrapper.h>
 #include <typeinfo>
 
-#include "Task/PrintTask.h"
-#include "Task/Tasks.h"
+
 
 Factory* factory()
 {
@@ -29,8 +28,8 @@ void Factory::Init() {
 	RegisterComponent<Text>("Text");
 	RegisterComponent<Script>("Script");
 	RegisterComponent<Canvas>("Canvas");
-	RegisterComponent<AudioSource>("AudioSource");
-	RegisterComponent<AudioMixer>("AudioMixer");
+	//RegisterComponent<AudioSource>("AudioSource");
+	//RegisterComponent<AudioMixer>("AudioMixer");
 	RegisterComponent<NavMeshBoundVolume>("NavMeshBoundVolume");
 	RegisterComponent<LinePrimitive>("LinePrimitive");
 	RegisterComponent<BehaviourTree>("BehaviourTree");
@@ -39,8 +38,8 @@ void Factory::Init() {
 
 	RegisterBTNode<BTSelector>("Selector");
 	RegisterBTNode<BTSequence>("Sequence");
-	RegisterBTNode<BTPrintTask>("PrintTask");
-	RegisterBTNode<BTMoveToTask>("MoveTo");
+	//RegisterBTNode<BTPrintTask>("PrintTask");
+	//RegisterBTNode<BTMoveToTask>("MoveTo");
 }
 
 size_t Factory::LoadFromFile(std::string const&  file)

@@ -2,7 +2,7 @@
 #define SPRITE2D_H
 
 #include "RavelBehaviour.h"
-#include "sprite.h"
+//#include "sprite.h"
 #include "Transform.h"
 
 class Sprite2D : public RavelBehaviour{

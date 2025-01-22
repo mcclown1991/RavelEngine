@@ -1,6 +1,6 @@
 #include "RavelEngine.h"
 #include "Factory.h"
-#include "AudioManager.h"
+//#include "AudioManager.h"
 #include "CollisionManager.h"
 #include "Font.h"
 #include "Input.h"
@@ -107,7 +107,7 @@ void RavelEngine::SystemInit(HINSTANCE hInstance, int nCmdShow) {
 #endif
 	SceneManagement()->Init();
 
-	AudioManagement()->Init();
+	//AudioManagement()->Init();
 	GetInput()->InitializeInput(GetWindowHandle());
 
 #ifdef _DEBUG
@@ -258,7 +258,7 @@ void RavelEngine::SystemExit(){
 
 	SceneManagement()->OnExit();
 	factory()->Quit();
-	AudioManagement()->Destory();
+	//AudioManagement()->Destory();
 	GetFontManager()->Quit();
 	GetScriptManager()->Quit();
 

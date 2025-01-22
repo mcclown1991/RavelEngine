@@ -126,7 +126,7 @@ bool BehaviourTree::ExecuteTask(std::string_view task) {
 
 void BehaviourTree::InitScriptFunctions() {
 	GetScriptManager()->AddFunction("GetValueAsInt", [](lua_State* L)->int {
-		size_t id = luaL_checklong(L, -2);
+		size_t id = luaL_checkinteger(L, -2);
 		std::string key = luaL_checkstring(L, -1);
 		lua_pop(L, 2);
 
@@ -144,7 +144,7 @@ void BehaviourTree::InitScriptFunctions() {
 	});
 
 	GetScriptManager()->AddFunction("GetValueAsBool", [](lua_State* L)->int {
-		size_t id = luaL_checklong(L, -2);
+		size_t id = luaL_checkinteger(L, -2);
 		std::string key = luaL_checkstring(L, -1);
 		lua_pop(L, 2);
 
@@ -162,7 +162,7 @@ void BehaviourTree::InitScriptFunctions() {
 	});
 
 	GetScriptManager()->AddFunction("GetValueAsFloat", [](lua_State* L)->int {
-		size_t id = luaL_checklong(L, -2);
+		size_t id = luaL_checkinteger(L, -2);
 		std::string key = luaL_checkstring(L, -1);
 		lua_pop(L, 2);
 
@@ -180,7 +180,7 @@ void BehaviourTree::InitScriptFunctions() {
 	});
 
 	GetScriptManager()->AddFunction("GetValueAsDouble", [](lua_State* L)->int {
-		size_t id = luaL_checklong(L, -2);
+		size_t id = luaL_checkinteger(L, -2);
 		std::string key = luaL_checkstring(L, -1);
 		lua_pop(L, 2);
 
@@ -198,7 +198,7 @@ void BehaviourTree::InitScriptFunctions() {
 	});
 
 	GetScriptManager()->AddFunction("GetValueAsString", [](lua_State* L)->int {
-		size_t id = luaL_checklong(L, -2);
+		size_t id = luaL_checkinteger(L, -2);
 		std::string key = luaL_checkstring(L, -1);
 		lua_pop(L, 2);
 

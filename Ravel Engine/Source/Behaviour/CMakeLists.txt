@@ -1,0 +1,6 @@
+set(HEADER_FILES_BEHAVIOUR "${CMAKE_CURRENT_LIST_DIR}/header/Behaviour.h"
+				"${CMAKE_CURRENT_LIST_DIR}/header/RavelBehaviour.h"
+				PARENT_SCOPE)
+				
+set(SOURCE_FILES_BEHAVIOUR "${CMAKE_CURRENT_LIST_DIR}/Behaviour.cpp"
+				PARENT_SCOPE)

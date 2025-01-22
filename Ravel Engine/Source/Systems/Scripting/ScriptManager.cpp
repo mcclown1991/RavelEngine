@@ -14,7 +14,8 @@ ScriptManager* GetScriptManager()
 ScriptManager::ScriptManager()
 {
 	/* initialize Lua */
-	luaState = lua_open();
+	//luaState = lua_open();
+	luaState = luaL_newstate();
 
 	/* load Lua base libraries */
 	luaL_openlibs(luaState);
@@ -96,13 +97,14 @@ bool ScriptManager::UpdateScript(std::string script, const std::string luaevent,
 
 void ScriptManager::Resume()
 {
-	lua_resume(luaState, 0);
+	//lua_resume(luaState, 0);
 }
 
 void ScriptManager::Reset()
 {
 	lua_close(luaState);
-	luaState = lua_open();
+	//luaState = lua_open();
+	luaState = luaL_newstate();
 	luaL_openlibs(luaState);
 	
 	RegisterFunctions(luaState);

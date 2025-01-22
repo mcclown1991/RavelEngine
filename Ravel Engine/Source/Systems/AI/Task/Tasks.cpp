@@ -5,7 +5,7 @@
 
 BTMoveToTask::BTMoveToTask() {
 	GetScriptManager()->AddFunction("MoveTo", [](lua_State* L) {
-		size_t id = luaL_checklong(L, -3);
+		size_t id = luaL_checkinteger(L, -3);
 		std::string targetkey = luaL_checkstring(L, -2);
 		float acceptable_radius = luaL_checknumber(L, -1);
 

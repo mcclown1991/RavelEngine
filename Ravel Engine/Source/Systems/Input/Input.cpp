@@ -87,7 +87,7 @@ void Input::InitializeInput(HWND hWnd) {
 			auto const& name = it->name.GetString();
 			auto& binding = it->value["binding"];
 			for (rapidjson::Value::ConstValueIterator itr = binding.Begin(); itr != binding.End(); ++itr) {
-				auto const& key = itr->GetObjectW();
+				auto const& key = itr->GetObject();
 						
 				if (stringToKeyDefines.count(key["key"].GetString())) {
 					auto const& keystroke = stringToKeyDefines.at(key["key"].GetString());

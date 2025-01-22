@@ -1,0 +1,5 @@
+#set(HEADER_FILES_SYSTEM_SOUND "${CMAKE_CURRENT_LIST_DIR}/header/AudioManager.h"
+#						PARENT_SCOPE)
+				
+#set(SOURCE_FILES_SYSTEM_SOUND "${CMAKE_CURRENT_LIST_DIR}/AudioManager.cpp"
+#						PARENT_SCOPE)
